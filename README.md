@@ -1,2 +1,2 @@
 # Hatchling
-A spin for hotel STAFF only.
+A spin for hotel STAFF only. 
