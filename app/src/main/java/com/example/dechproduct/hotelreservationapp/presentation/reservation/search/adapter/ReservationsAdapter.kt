@@ -1,18 +1,14 @@
 package com.example.dechproduct.hotelreservationapp.presentation.reservation.search.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.cardview.widget.CardView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dechproduct.hotelreservationapp.R
-import com.example.dechproduct.hotelreservationapp.data.model.Reservation
-import org.w3c.dom.Text
+import com.example.dechproduct.hotelreservationapp.data.model.Booking
 
-class ReservationsAdapter(private val reservations: MutableList<Reservation>)
+class ReservationsAdapter(private val bookings: MutableList<Booking>)
     :RecyclerView.Adapter<ReservationsAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -31,14 +27,14 @@ class ReservationsAdapter(private val reservations: MutableList<Reservation>)
 
     override fun onBindViewHolder(viewHolder: ViewHolder, index: Int) {
         viewHolder.reserveName.text =
-            reservations[index].firstName +"\n"+ reservations[index].lastName
+            bookings[index].firstName +"\n"+ bookings[index].lastName
         viewHolder.reserveDateIn.text = "From Date: " +
-            reservations[index].reserveDateIn
+            bookings[index].arrivalDate
         viewHolder.reserveDateOut.text = "To Date: " +
-            reservations[index].reserveDateOut
+            bookings[index].departDate
         viewHolder.reservePhoneNo.text = "Tel. " +
-            reservations[index].phoneNumber
+            bookings[index].phoneNumber
     }
 
-    override fun getItemCount() = reservations.size
+    override fun getItemCount() = bookings.size
 }

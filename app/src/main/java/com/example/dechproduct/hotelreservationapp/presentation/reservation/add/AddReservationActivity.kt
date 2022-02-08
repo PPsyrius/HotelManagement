@@ -80,7 +80,7 @@ class AddReservationActivity : AppCompatActivity() {
     private fun showDateRangePicker() {
         val dateRangePicker = MaterialDatePicker.Builder
             .dateRangePicker()
-            .setTitleText("Select Reservation Date ")
+            .setTitleText("Select Booking Date ")
             .build()
 
         dateRangePicker.show(
@@ -114,7 +114,7 @@ class AddReservationActivity : AppCompatActivity() {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { _ ->
-                        Toast.makeText(applicationContext, "Reservation Success.",
+                        Toast.makeText(applicationContext, "Booking Success.",
                             Toast.LENGTH_SHORT).show()
                     }
                 }
