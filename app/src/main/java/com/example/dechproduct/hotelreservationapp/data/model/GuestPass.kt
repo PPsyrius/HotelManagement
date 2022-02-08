@@ -4,9 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Address(
-    var firstRow: String? = "",
-    var secondRow: String? = "",
-    var region: String? = "",
-    var country: String? = "",
+data class GuestPass(
+    var userName: String,
+    var password: String,
 ): Parcelable

@@ -2,7 +2,7 @@ package com.example.dechproduct.hotelreservationapp.data.repository
 
 import android.content.SharedPreferences
 import android.util.Log
-import com.example.dechproduct.hotelreservationapp.data.model.User
+import com.example.dechproduct.hotelreservationapp.data.model.Staff
 import com.example.dechproduct.hotelreservationapp.domain.repository.UserRepository
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
@@ -14,21 +14,21 @@ class UserRepositoryImpl @Inject constructor(
     private val firebaseDatabase: FirebaseDatabase,
     val sharedPreferences: SharedPreferences): UserRepository{
 
-    override suspend fun login(username: String, password: String):Resource<User> {
+    override suspend fun login(username: String, password: String):Resource<Staff> {
         return try {
             val userNode = firebaseDatabase.reference.child(Constants.USER_DB_NODE)
-            var user: User = User("", "", "")
+            var staff: Staff = Staff("", "", "")
             var isFound: Boolean = false
 
             userNode.orderByChild(Constants.USER_KEY_USERNAME).equalTo(username).get()
                 .await().children.map { item ->
                     if (item.child(Constants.USER_KEY_PASSWORD).getValue(String::class.java) == password)
                     {
-                        user.userID =
+                        staff.userID =
                             item.child(Constants.USER_KEY_ID).getValue(String::class.java)
-                        user.userName =
+                        staff.userName =
                             item.child(Constants.USER_KEY_USERNAME).getValue(String::class.java)
-                        user.userDisplayName =
+                        staff.displayName =
                             item.child(Constants.USER_KEY_NAME).getValue(String::class.java)
                         isFound =true
                     }
@@ -37,9 +37,9 @@ class UserRepositoryImpl @Inject constructor(
                     }
                 }
             if(isFound)
-                Resource.Success(user)
+                Resource.Success(staff)
             else
-                throw Exception("No User Found.")
+                throw Exception("No Staff Found.")
         }
 
         catch(exception: Exception) {

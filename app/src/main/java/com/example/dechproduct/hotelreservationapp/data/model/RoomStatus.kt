@@ -7,17 +7,11 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class User(
+data class RoomStatus(
 
-    var userID: String?,
+    var displayName: String?,
 
-    var userName: String?,
+    var internalCode: String?,
 
-    var userDisplayName: String?,
-
-    var password: String = "",
-
-    var userType: Int = 0,
-
-    var roomID: String = "") : Parcelable {
+    ) : Parcelable {
 }
