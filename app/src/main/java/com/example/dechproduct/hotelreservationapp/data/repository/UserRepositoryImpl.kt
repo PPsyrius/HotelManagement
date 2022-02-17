@@ -2,6 +2,7 @@ package com.example.dechproduct.hotelreservationapp.data.repository
 
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.dechproduct.hotelreservationapp.data.api.UserAPIService
 import com.example.dechproduct.hotelreservationapp.data.model.Staff
 import com.example.dechproduct.hotelreservationapp.domain.repository.UserRepository
 import com.example.dechproduct.hotelreservationapp.util.Constants
@@ -11,15 +12,18 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
-    private val firebaseDatabase: FirebaseDatabase,
+    private val apiReference: UserAPIService,
     val sharedPreferences: SharedPreferences): UserRepository{
 
     override suspend fun login(username: String, password: String):Resource<Staff> {
         return try {
-            val userNode = firebaseDatabase.reference.child(Constants.USER_DB_NODE)
+            //val userNode = firebaseDatabase.reference.child(Constants.USER_DB_NODE)
             var staff: Staff = Staff("", "", "")
             var isFound: Boolean = false
 
+            
+
+            /*
             userNode.orderByChild(Constants.USER_KEY_USERNAME).equalTo(username).get()
                 .await().children.map { item ->
                     if (item.child(Constants.USER_KEY_PASSWORD).getValue(String::class.java) == password)
@@ -36,6 +40,8 @@ class UserRepositoryImpl @Inject constructor(
                         throw Exception("Authentication Failed.")
                     }
                 }
+             */
+
             if(isFound)
                 Resource.Success(staff)
             else

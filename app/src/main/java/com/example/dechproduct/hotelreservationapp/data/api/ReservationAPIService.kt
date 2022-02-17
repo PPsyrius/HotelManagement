@@ -12,13 +12,13 @@ interface ReservationAPIService {
 
     @GET(Constants.API_BOOK_INDEX_URL)
     suspend fun getByFirstName(
-        @Query("firstName")
+        @Query(Constants.API_BOOK_KEY_FNAME)
         first_name:String,
     ): List<BookingDTO>
 
     @GET(Constants.API_BOOK_INDEX_URL)
     suspend fun getByLastName(
-        @Query("lastName")
+        @Query(Constants.API_BOOK_KEY_LNAME)
         last_name:String,
     ): List<BookingDTO>
 
