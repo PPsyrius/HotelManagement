@@ -2,6 +2,7 @@ package com.example.dechproduct.hotelreservationapp.data.repository
 
 import android.content.SharedPreferences
 import android.util.Log
+import com.example.dechproduct.hotelreservationapp.data.api.ReservationAPIService
 import com.example.dechproduct.hotelreservationapp.data.model.Address
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
 import com.example.dechproduct.hotelreservationapp.domain.repository.ReservationRepository
@@ -12,12 +13,12 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class ReservationRepositoryImpl @Inject constructor(
-    private val firebaseDatabase: FirebaseDatabase,
+    private val apiReference: ReservationAPIService,
     val sharedPreferences: SharedPreferences): ReservationRepository {
 
     override suspend fun addReservation(booking: Booking): Resource<Booking> {
         return try {
-            //TODO: Migrate Database
+            /*
             val bookingNode = firebaseDatabase.getReference(Constants.BOOK_DB_NODE)
             val uid = System.currentTimeMillis()
 
@@ -39,6 +40,7 @@ class ReservationRepositoryImpl @Inject constructor(
                 .setValue(booking.arrivalDate)
             bookingNode.child(uid.toString()).child(Constants.BOOK_KEY_DATE_OUT)
                 .setValue(booking.departDate)
+            */
 
             Resource.Success(booking)
         } catch (exception: Exception) {
@@ -49,9 +51,10 @@ class ReservationRepositoryImpl @Inject constructor(
 
     override suspend fun searchReservation(keyword: String): Resource<MutableList<Booking>> {
         return try {
-            val bookingNode = firebaseDatabase.reference.child(Constants.BOOK_DB_NODE)
+            
+            //val bookingNode = firebaseDatabase.reference.child(Constants.BOOK_DB_NODE)
             var results: MutableList<Booking> = mutableListOf<Booking>()
-
+            /*
             var test: String = ""
 
             bookingNode.orderByChild(Constants.BOOK_KEY_FNAME).equalTo(keyword).get()
@@ -91,6 +94,7 @@ class ReservationRepositoryImpl @Inject constructor(
                 results.add(booking)
                 //Log.d("ReserveRepo",test)
             }
+            */
 
             Resource.Success(results)
         } catch (exception: Exception) {
@@ -100,9 +104,11 @@ class ReservationRepositoryImpl @Inject constructor(
 
     override suspend fun populateReservation(): Resource<MutableList<Booking>> {
         return try {
-            val bookingNode = firebaseDatabase.reference.child(Constants.BOOK_DB_NODE)
+
+            //val bookingNode = firebaseDatabase.reference.child(Constants.BOOK_DB_NODE)
             var results: MutableList<Booking> = mutableListOf<Booking>()
 
+            /*
             var test: String = ""
 
             bookingNode.orderByChild(Constants.BOOK_KEY_FNAME).get().await().children.map { item ->
@@ -122,6 +128,8 @@ class ReservationRepositoryImpl @Inject constructor(
                 results.add(booking)
                 //Log.d("ReserveRepo",test)
             }
+             */
+
             Resource.Success(results)
         } catch (exception: Exception) {
             Resource.Failure(exception)
