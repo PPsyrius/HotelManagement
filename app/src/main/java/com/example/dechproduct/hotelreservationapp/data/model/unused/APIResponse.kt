@@ -1,4 +1,4 @@
-package com.example.dechproduct.hotelreservationapp.data.model
+package com.example.dechproduct.hotelreservationapp.data.model.unused
 
 
 import com.google.gson.annotations.SerializedName
