@@ -1,32 +1,31 @@
 package com.example.dechproduct.hotelreservationapp.data.api
 
-import com.example.dechproduct.hotelreservationapp.BuildConfig
-import com.example.dechproduct.hotelreservationapp.data.model.APIResponse
+import com.example.dechproduct.hotelreservationapp.data.model.BookingDTO
+import com.example.dechproduct.hotelreservationapp.data.model.unused.APIResponse
+import com.example.dechproduct.hotelreservationapp.util.Constants
 import retrofit2.Response
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ReservationAPIService {
-    //TODO:Migrate to Custom API
-    @GET("v2/top-headlines")
-    suspend fun getTopHeadlines(
-        @Query("country")
-        country:String,
-        @Query("page")
-        page:Int,
-        @Query("apiKey")
-        apiKey:String = BuildConfig.API_KEY
-    ): Response<APIResponse>
 
-    @GET("v2/top-headlines")
-    suspend fun getSearchedTopHeadlines(
-        @Query("country")
-        country:String,
-        @Query("q")    //keyword form api -> use to search
-        searchQuery: String,
-        @Query("page")
-        page:Int,
-        @Query("apiKey")
-        apiKey:String = BuildConfig.API_KEY
+    @GET(Constants.API_BOOK_INDEX_URL)
+    suspend fun getByFirstName(
+        @Query("firstName")
+        first_name:String,
+    ): List<BookingDTO>
+
+    @GET(Constants.API_BOOK_INDEX_URL)
+    suspend fun getByLastName(
+        @Query("lastName")
+        last_name:String,
+    ): List<BookingDTO>
+
+    //For placeholder only
+    @GET("/foo/{id}/bar")
+    suspend fun test(
+        @Path("id")
+        id:String,
     ): Response<APIResponse>
 }

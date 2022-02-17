@@ -17,27 +17,33 @@ object Constants {
 
     const val ROOM_MAX_CAPACITY = 2
 
-    //Database
-    const val FIREBASE_DB_URL =
-        "https://nestling-pholder-user-db-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    //Database via API
+    const val API_USER_BASE_URL =
+        "http://localhost:3000"
+    const val API_USER_INDEX_URL =
+        "/user"
+    const val API_USER_KEY_PASSWORD = "password"
+    const val API_USER_KEY_ID = "userID"
+    const val API_USER_KEY_NAME = "displayName"
+    const val API_USER_KEY_USERNAME = "userName"
+    const val API_USER_KEY_TYPE = "userType"
 
-    const val USER_DB_NODE = "user"
-    const val USER_KEY_PASSWORD = "password"
-    const val USER_KEY_ID = "id"
-    const val USER_KEY_NAME = "name"
-    const val USER_KEY_USERNAME = "username"
-
-    const val BOOK_DB_NODE = "booking"
-    const val BOOK_KEY_FNAME = "firstName"
-    const val BOOK_KEY_LNAME = "lastName"
-    const val BOOK_KEY_ID = "bookingID"
-    const val BOOK_KEY_PHONE = "phoneNumber"
-    const val BOOK_KEY_PAYMENT = "paymentType"
-    const val BOOK_KEY_DATE_IN = "reserveDateIn"
-    const val BOOK_KEY_DATE_OUT = "reserveDateOut"
-    const val BOOK_KEY_PASSPORT = "passportID"
-    const val BOOK_KEY_SSN = "ssnID"
-    const val BOOK_KEY_ADDRESS = "address"
+    const val API_BOOK_BASE_URL =
+        "http://localhost:3001"
+    const val API_BOOK_INDEX_URL =
+        "/booking"
+    const val API_BOOK_KEY_FNAME = "firstName"
+    const val API_BOOK_KEY_LNAME = "lastName"
+    const val API_BOOK_KEY_ID = "bookingID"
+    const val API_BOOK_KEY_PHONE = "phoneNumber"
+    const val API_BOOK_KEY_PAYMENT = "paymentType"
+    const val API_BOOK_KEY_DATE_IN = "arrivalDate"
+    const val API_BOOK_KEY_DATE_OUT = "departDate"
+    const val API_BOOK_KEY_VERID = "verificationID"
+    const val API_BOOK_KEY_ADDRESS = "address"
+    const val API_BOOK_KEY_STATUS = "guestStatus"
+    const val API_BOOK_KEY_PASS = "guestPass"
+    const val API_BOOK_KEY_ROOM = "guestRoom"
 
     //Persistent Data
     const val SHARED_PREF_NAME = "USER_SESSION"

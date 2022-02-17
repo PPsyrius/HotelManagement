@@ -16,6 +16,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
+    /*
     @Singleton
     @Provides
     fun provideUserRepository(
@@ -33,5 +34,6 @@ object RepositoryModule {
     ): ReservationRepository {
         return ReservationRepositoryImpl(databaseReference, sharedPreferences)
     }
+    */
 
 }

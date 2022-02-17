@@ -19,10 +19,26 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
+    /*
     @Provides
     @Singleton
     fun provideRealTimeDatabase(): FirebaseDatabase {
         return FirebaseDatabase.getInstance(Constants.FIREBASE_DB_URL)
     }
-    
+    */
+
+    /*
+    @Provides
+    @Singleton
+    fun provideRealTimeDatabase(): FirebaseDatabase {
+        return FirebaseDatabase.getInstance(Constants.FIREBASE_DB_URL)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRealTimeDatabase(): FirebaseDatabase {
+        return FirebaseDatabase.getInstance(Constants.FIREBASE_DB_URL)
+    }
+    */
+
 }
