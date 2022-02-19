@@ -20,12 +20,12 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase):
                            payment : String, unidentified_id : String,
                            sta_date : String,end_date : String,address : String){
 
-        //check TH-ssn
+        //TH Citizen
         if (unidentified_id.matches("\\d{13}".toRegex())){
             viewModelScope.launch {
                 val reservation = useCase.addReserveUseCase(
                     Booking(
-                        firstName = fname, lastName = lname, phoneNumber = phone,
+                        firstName = fname.capitalize(), lastName = lname.capitalize(), phoneNumber = phone,
                         paymentType = payment, verificationID = unidentified_id,
                         arrivalDate = sta_date, departDate = end_date, address = Address(address),
                         guestPass = null, guestRoom = null,
@@ -34,13 +34,13 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase):
             }
         }
 
-        //else not TH-ssn, no usage as of now.
+        //Foreigner
         else{
             viewModelScope.launch {
                 val reservation = useCase.addReserveUseCase(
                     //do same thing as TH-ssn
                     Booking(
-                        firstName = fname, lastName = lname, phoneNumber = phone,
+                        firstName = fname.capitalize(), lastName = lname.capitalize(), phoneNumber = phone,
                         paymentType = payment, verificationID = unidentified_id,
                         arrivalDate = sta_date, departDate = end_date, address = Address(address),
                         guestPass = null, guestRoom = null,
