@@ -12,6 +12,6 @@ interface UserAPIService {
     suspend fun getByUserName(
         @Query(Constants.API_USER_KEY_USERNAME)
         user_name:String,
-    ): StaffDTO
+    ): List<StaffDTO>
 
 }

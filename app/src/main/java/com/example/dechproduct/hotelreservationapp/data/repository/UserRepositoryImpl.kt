@@ -12,16 +12,19 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
-    private val apiReference: UserAPIService,
+    private val userAPI: UserAPIService,
     val sharedPreferences: SharedPreferences): UserRepository{
 
     override suspend fun login(username: String, password: String):Resource<Staff> {
         return try {
             //val userNode = firebaseDatabase.reference.child(Constants.USER_DB_NODE)
-            var staff: Staff = Staff("", "", "")
+            var staff: Staff = userAPI.getByUserName(username)[0].toStaff()
             var isFound: Boolean = false
 
-            
+            //TODO: Implements password hashing for comparison
+            if(staff.password == password){
+                isFound = true
+            }
 
             /*
             userNode.orderByChild(Constants.USER_KEY_USERNAME).equalTo(username).get()
@@ -45,7 +48,11 @@ class UserRepositoryImpl @Inject constructor(
             if(isFound)
                 Resource.Success(staff)
             else
-                throw Exception("No Staff Found.")
+                throw Exception("Authentication Failed.")
+        }
+
+        catch(exception: IndexOutOfBoundsException){
+            Resource.Failure(Exception("No Staff Found."))
         }
 
         catch(exception: Exception) {

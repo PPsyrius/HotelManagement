@@ -14,7 +14,7 @@ data class StaffDTO(
     @SerializedName(Constants.API_USER_KEY_PASSWORD)
     var password: String,
     @SerializedName(Constants.API_USER_KEY_TYPE)
-    var userType: Int,
+    var userType: String,
 ) {
 
     fun toStaff(): Staff{
@@ -22,6 +22,7 @@ data class StaffDTO(
             userID = userID,
             userName = userName,
             displayName = displayName,
+            password = password,
             userType = userType,
         )
     }

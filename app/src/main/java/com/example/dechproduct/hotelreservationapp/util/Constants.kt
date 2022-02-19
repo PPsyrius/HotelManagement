@@ -19,9 +19,9 @@ object Constants {
 
     //Database via API
     const val API_USER_BASE_URL =
-        "http://localhost:3000"
+        "http://10.0.2.2:3000/"
     const val API_USER_INDEX_URL =
-        "/user"
+        "user"
     const val API_USER_KEY_PASSWORD = "password"
     const val API_USER_KEY_ID = "userID"
     const val API_USER_KEY_NAME = "displayName"
@@ -29,9 +29,9 @@ object Constants {
     const val API_USER_KEY_TYPE = "userType"
 
     const val API_BOOK_BASE_URL =
-        "http://localhost:3001"
+        "http://10.0.2.2:3001/"
     const val API_BOOK_INDEX_URL =
-        "/booking"
+        "booking"
     const val API_BOOK_KEY_FNAME = "firstName"
     const val API_BOOK_KEY_LNAME = "lastName"
     const val API_BOOK_KEY_ID = "bookingID"
