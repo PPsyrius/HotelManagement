@@ -1,12 +1,12 @@
 package com.example.dechproduct.hotelreservationapp.data.api
 
+import com.example.dechproduct.hotelreservationapp.data.model.Booking
 import com.example.dechproduct.hotelreservationapp.data.model.BookingDTO
 import com.example.dechproduct.hotelreservationapp.data.model.unused.APIResponse
 import com.example.dechproduct.hotelreservationapp.util.Constants
+import okhttp3.ResponseBody
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ReservationAPIService {
 
@@ -21,6 +21,11 @@ interface ReservationAPIService {
         @Query(Constants.API_BOOK_KEY_LNAME)
         last_name:String,
     ): List<BookingDTO>
+
+    @POST(Constants.API_BOOK_INDEX_URL)
+    suspend fun postBooking(
+        @Body booking: Booking,
+    ): Response<ResponseBody>
 
     //For placeholder only
     @GET("/foo/{id}/bar")

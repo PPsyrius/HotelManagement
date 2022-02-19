@@ -17,7 +17,7 @@ data class Staff(
 
     var password: String = "",
 
-    var userType: Int = 0,
+    var userType: String = "",
 
     ) : Parcelable {
 }

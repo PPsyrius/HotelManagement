@@ -32,4 +32,22 @@ data class Booking(
     var guestRoom: Room?,
 
     ) : Parcelable {
+/*
+    fun toBookingDTO(): BookingDTO{
+        return BookingDTO(
+            bookingID = bookingID,
+            firstName = firstName,
+            lastName = lastName,
+            phoneNumber = phoneNumber,
+            address = address,
+            verificationID = verificationID,
+            arrivalDate = arrivalDate,
+            departDate = departDate,
+            paymentType = paymentType,
+            guestStatus = guestStatus,
+            guestPass = guestPass,
+            guestRoom = guestRoom,
+        )
+    }
+*/
 }

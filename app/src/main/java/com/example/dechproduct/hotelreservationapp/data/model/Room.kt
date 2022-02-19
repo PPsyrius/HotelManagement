@@ -14,6 +14,6 @@ data class Room(
     var posMap: String = Constants.ROOM_LOC_NORMAL,
     var roomStatus: RoomStatus,
     var isWalking: Boolean,
-    var deviceList: String?,
+    var deviceList: List<Device>?,
     var roomPrice: Double,
 ): Parcelable

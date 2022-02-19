@@ -13,36 +13,21 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class ReservationRepositoryImpl @Inject constructor(
-    private val apiReference: ReservationAPIService,
+    private val reservationAPI: ReservationAPIService,
     val sharedPreferences: SharedPreferences): ReservationRepository {
 
     override suspend fun addReservation(booking: Booking): Resource<Booking> {
         return try {
-            /*
-            val bookingNode = firebaseDatabase.getReference(Constants.BOOK_DB_NODE)
+
             val uid = System.currentTimeMillis()
+            var response_msg = reservationAPI.postBooking(booking)
 
-            bookingNode.child(uid.toString()).child(Constants.BOOK_KEY_ID)
-                .setValue(uid)
-            bookingNode.child(uid.toString()).child(Constants.BOOK_KEY_FNAME)
-                .setValue(booking.firstName)
-            bookingNode.child(uid.toString()).child(Constants.BOOK_KEY_LNAME)
-                .setValue(booking.lastName)
-            bookingNode.child(uid.toString()).child(Constants.BOOK_KEY_PHONE)
-                .setValue(booking.phoneNumber)
-            bookingNode.child(uid.toString()).child(Constants.BOOK_KEY_ADDRESS)
-                .setValue(booking.address)
-            bookingNode.child(uid.toString()).child(Constants.BOOK_KEY_PAYMENT)
-                .setValue(booking.paymentType)
-            bookingNode.child(uid.toString()).child(Constants.BOOK_KEY_SSN)
-                .setValue(booking.verificationID)
-            bookingNode.child(uid.toString()).child(Constants.BOOK_KEY_DATE_IN)
-                .setValue(booking.arrivalDate)
-            bookingNode.child(uid.toString()).child(Constants.BOOK_KEY_DATE_OUT)
-                .setValue(booking.departDate)
-            */
+            Log.d("POST:", response_msg.toString())
+            if(response_msg.isSuccessful())
+                Resource.Success(booking)
+            else
+                throw Exception("Can't communicate with the server.")
 
-            Resource.Success(booking)
         } catch (exception: Exception) {
             Log.d("ReserveRepositoryImpl", exception.toString())
             Resource.Failure(exception)
@@ -51,7 +36,7 @@ class ReservationRepositoryImpl @Inject constructor(
 
     override suspend fun searchReservation(keyword: String): Resource<MutableList<Booking>> {
         return try {
-            
+
             //val bookingNode = firebaseDatabase.reference.child(Constants.BOOK_DB_NODE)
             var results: MutableList<Booking> = mutableListOf<Booking>()
             /*
@@ -95,6 +80,17 @@ class ReservationRepositoryImpl @Inject constructor(
                 //Log.d("ReserveRepo",test)
             }
             */
+
+            var result_fname = reservationAPI.getByFirstName(keyword)
+            var result_lname = reservationAPI.getByLastName(keyword)
+
+            //TODO: Partial search implementations?
+            for(item in result_fname){
+                results.add(item.toBooking())
+            }
+            for(item in result_lname){
+                results.add(item.toBooking())
+            }
 
             Resource.Success(results)
         } catch (exception: Exception) {
