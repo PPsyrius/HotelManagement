@@ -5,7 +5,7 @@ Install ***json-server*** through npm.
 ```
 npm install -g json-server
 ```
-Then create a json file to deploy as follow:
+Then create the json files:
 \
 \
 **Guestbook.json**
