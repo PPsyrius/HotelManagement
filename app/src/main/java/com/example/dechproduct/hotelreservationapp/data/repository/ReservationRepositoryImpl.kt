@@ -8,7 +8,6 @@ import com.example.dechproduct.hotelreservationapp.data.model.Booking
 import com.example.dechproduct.hotelreservationapp.domain.repository.ReservationRepository
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
-import com.google.firebase.database.*
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -38,47 +37,6 @@ class ReservationRepositoryImpl @Inject constructor(
         return try {
 
             var results: MutableList<Booking> = mutableListOf<Booking>()
-            /*
-            var test: String = ""
-
-            bookingNode.orderByChild(Constants.BOOK_KEY_FNAME).equalTo(keyword).get()
-                .await().children.map { item ->
-                var booking: Booking = Booking(
-                    item.child(Constants.BOOK_KEY_ID).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_FNAME).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_LNAME).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_PHONE).getValue(String::class.java),
-                    Address(item.child(Constants.BOOK_KEY_ADDRESS).getValue(String::class.java)),
-                    item.child(Constants.BOOK_KEY_SSN).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_DATE_IN).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_DATE_OUT).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_PAYMENT).getValue(String::class.java),
-                    guestPass = null, guestRoom = null
-                )
-
-                results.add(booking)
-                //Log.d("ReserveRepo",test)
-            }
-
-            bookingNode.orderByChild(Constants.BOOK_KEY_LNAME).equalTo(keyword).get()
-                .await().children.map { item ->
-                var booking: Booking = Booking(
-                    item.child(Constants.BOOK_KEY_ID).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_FNAME).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_LNAME).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_PHONE).getValue(String::class.java),
-                    Address(item.child(Constants.BOOK_KEY_ADDRESS).getValue(String::class.java)),
-                    item.child(Constants.BOOK_KEY_SSN).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_DATE_IN).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_DATE_OUT).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_PAYMENT).getValue(String::class.java),
-                    guestPass = null, guestRoom = null
-                )
-
-                results.add(booking)
-                //Log.d("ReserveRepo",test)
-            }
-            */
 
             var result_fname = reservationAPI.getByFirstName(keyword)
             var result_lname = reservationAPI.getByLastName(keyword)
@@ -101,27 +59,6 @@ class ReservationRepositoryImpl @Inject constructor(
         return try {
 
             var results: MutableList<Booking> = mutableListOf<Booking>()
-            /*
-            var test: String = ""
-
-            bookingNode.orderByChild(Constants.BOOK_KEY_FNAME).get().await().children.map { item ->
-                var booking: Booking = Booking(
-                    item.child(Constants.BOOK_KEY_ID).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_FNAME).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_LNAME).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_PHONE).getValue(String::class.java),
-                    Address(item.child(Constants.BOOK_KEY_ADDRESS).getValue(String::class.java)),
-                    item.child(Constants.BOOK_KEY_SSN).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_DATE_IN).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_DATE_OUT).getValue(String::class.java),
-                    item.child(Constants.BOOK_KEY_PAYMENT).getValue(String::class.java),
-                    guestPass = null, guestRoom = null
-                )
-
-                results.add(booking)
-                //Log.d("ReserveRepo",test)
-            }
-             */
 
             var result_default = reservationAPI.getAll()
             for(item in result_default){

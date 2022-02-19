@@ -7,7 +7,6 @@ import com.example.dechproduct.hotelreservationapp.data.model.Staff
 import com.example.dechproduct.hotelreservationapp.domain.repository.UserRepository
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
@@ -17,7 +16,7 @@ class UserRepositoryImpl @Inject constructor(
 
     override suspend fun login(username: String, password: String):Resource<Staff> {
         return try {
-            //val userNode = firebaseDatabase.reference.child(Constants.USER_DB_NODE)
+
             var staff: Staff = userAPI.getByUserName(username)[0].toStaff()
             var isFound: Boolean = false
 
@@ -25,25 +24,6 @@ class UserRepositoryImpl @Inject constructor(
             if(staff.password == password){
                 isFound = true
             }
-
-            /*
-            userNode.orderByChild(Constants.USER_KEY_USERNAME).equalTo(username).get()
-                .await().children.map { item ->
-                    if (item.child(Constants.USER_KEY_PASSWORD).getValue(String::class.java) == password)
-                    {
-                        staff.userID =
-                            item.child(Constants.USER_KEY_ID).getValue(String::class.java)
-                        staff.userName =
-                            item.child(Constants.USER_KEY_USERNAME).getValue(String::class.java)
-                        staff.displayName =
-                            item.child(Constants.USER_KEY_NAME).getValue(String::class.java)
-                        isFound =true
-                    }
-                    else {
-                        throw Exception("Authentication Failed.")
-                    }
-                }
-             */
 
             if(isFound)
                 Resource.Success(staff)
