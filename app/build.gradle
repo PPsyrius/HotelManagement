@@ -56,7 +56,6 @@ android {
 
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'com.google.firebase:firebase-database-ktx:20.0.3'
     def lifecycle_version = "2.3.1"
     //noinspection GroovyUnusedAssignment
     def arch_version = "2.1.0"

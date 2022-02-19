@@ -7,7 +7,6 @@ import com.example.dechproduct.hotelreservationapp.data.repository.ReservationRe
 import com.example.dechproduct.hotelreservationapp.data.repository.UserRepositoryImpl
 import com.example.dechproduct.hotelreservationapp.domain.repository.ReservationRepository
 import com.example.dechproduct.hotelreservationapp.domain.repository.UserRepository
-import com.google.firebase.database.FirebaseDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,25 +34,4 @@ object RepositoryModule {
     ): ReservationRepository {
         return ReservationRepositoryImpl(apiReference, sharedPreferences)
     }
-
-    /*
-    @Singleton
-    @Provides
-    fun provideUserRepository(
-        databaseReference: FirebaseDatabase,
-        sharedPreferences: SharedPreferences,
-    ): UserRepository {
-        return UserRepositoryImpl(databaseReference, sharedPreferences)
-    }
-    
-    @Singleton
-    @Provides
-    fun provideReservationRepository(
-        databaseReference: FirebaseDatabase,
-        sharedPreferences: SharedPreferences,
-    ): ReservationRepository {
-        return ReservationRepositoryImpl(databaseReference, sharedPreferences)
-    }
-    */
-
 }
