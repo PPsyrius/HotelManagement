@@ -23,7 +23,7 @@ class ReservationRepositoryImpl @Inject constructor(
             var response_msg = reservationAPI.postBooking(booking)
 
             Log.d("POST:", response_msg.toString())
-            if(response_msg.isSuccessful())
+            if(response_msg.isSuccessful)
                 Resource.Success(booking)
             else
                 throw Exception("Can't communicate with the server.")
@@ -37,7 +37,6 @@ class ReservationRepositoryImpl @Inject constructor(
     override suspend fun searchReservation(keyword: String): Resource<MutableList<Booking>> {
         return try {
 
-            //val bookingNode = firebaseDatabase.reference.child(Constants.BOOK_DB_NODE)
             var results: MutableList<Booking> = mutableListOf<Booking>()
             /*
             var test: String = ""
@@ -88,7 +87,7 @@ class ReservationRepositoryImpl @Inject constructor(
             for(item in result_fname){
                 results.add(item.toBooking())
             }
-            for(item in result_lname){
+            for(item in result_lname) {
                 results.add(item.toBooking())
             }
 
@@ -101,9 +100,7 @@ class ReservationRepositoryImpl @Inject constructor(
     override suspend fun populateReservation(): Resource<MutableList<Booking>> {
         return try {
 
-            //val bookingNode = firebaseDatabase.reference.child(Constants.BOOK_DB_NODE)
             var results: MutableList<Booking> = mutableListOf<Booking>()
-
             /*
             var test: String = ""
 
@@ -126,6 +123,11 @@ class ReservationRepositoryImpl @Inject constructor(
             }
              */
 
+            var result_default = reservationAPI.getAll()
+            for(item in result_default){
+                results.add(item.toBooking())
+            }
+
             Resource.Success(results)
         } catch (exception: Exception) {
             Resource.Failure(exception)
@@ -134,9 +136,16 @@ class ReservationRepositoryImpl @Inject constructor(
 
     override suspend fun editReservation(booking: Booking): Resource<Booking> {
         return try {
-            Resource.Success(Booking(
-                address = null, guestPass = null, guestRoom = null,
-            ))
+
+            var response = booking.bookingID?.let { reservationAPI.updateBooking(it,booking) }
+            if(response!!.isSuccessful){
+                Resource.Success(booking)
+            }
+            else{
+                throw Exception("Server denies request.")
+            }
+
+            Resource.Success(booking)
         } catch (exception: Exception) {
             Resource.Failure(exception)
         }
@@ -144,9 +153,15 @@ class ReservationRepositoryImpl @Inject constructor(
 
     override suspend fun removeReservation(booking: Booking): Resource<Booking> {
         return try {
-            Resource.Success(Booking(
-                address = null, guestPass = null, guestRoom = null,
-            ))
+
+            var response = booking.bookingID?.let { reservationAPI.deleteBooking(it) }
+            if(response!!.isSuccessful){
+                Resource.Success(booking)
+            }
+            else{
+                throw Exception("Server denies request.")
+            }
+
         } catch (exception: Exception) {
             Resource.Failure(exception)
         }

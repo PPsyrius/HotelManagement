@@ -22,15 +22,39 @@ interface ReservationAPIService {
         last_name:String,
     ): List<BookingDTO>
 
+    @GET(Constants.API_BOOK_INDEX_URL)
+    suspend fun getByBookingID(
+        @Query(Constants.API_BOOK_KEY_ID)
+        id:String,
+    ): List<BookingDTO>
+
+    @GET(Constants.API_BOOK_INDEX_URL)
+    suspend fun getAll(): List<BookingDTO>
+
     @POST(Constants.API_BOOK_INDEX_URL)
     suspend fun postBooking(
         @Body booking: Booking,
     ): Response<ResponseBody>
 
-    //For placeholder only
-    @GET("/foo/{id}/bar")
-    suspend fun test(
-        @Path("id")
+    //Use bookingID, not database internal ID
+    @PUT(Constants.API_BOOK_INDEX_URL)
+    suspend fun putBooking(
+        @Query(Constants.API_BOOK_KEY_ID)
         id:String,
-    ): Response<APIResponse>
+        @Body booking:Booking
+    ): Response<ResponseBody>
+
+    @PATCH(Constants.API_BOOK_INDEX_URL)
+    suspend fun updateBooking(
+        @Query(Constants.API_BOOK_KEY_ID)
+        id:String,
+        @Body booking:Booking
+    ): Response<ResponseBody>
+
+    @DELETE(Constants.API_BOOK_INDEX_URL)
+    suspend fun deleteBooking(
+        @Query(Constants.API_BOOK_KEY_ID)
+        id:String,
+    ): Response<ResponseBody>
+
 }
