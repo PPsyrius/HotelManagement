@@ -1,7 +1,8 @@
 package com.example.dechproduct.hotelreservationapp.domain.usecase
 
-import com.example.dechproduct.hotelreservationapp.domain.usecase.login.LoginUseCase
+import com.example.dechproduct.hotelreservationapp.domain.usecase.login.*
 import com.example.dechproduct.hotelreservationapp.domain.usecase.reservation.*
+import com.example.dechproduct.hotelreservationapp.domain.usecase.room.*
 
 class UseCase(
     var loginUseCase: LoginUseCase,
@@ -11,4 +12,7 @@ class UseCase(
     var populateReserveUseCase: PopulateReserveUseCase,
     var editReserveUseCase: EditReserveUseCase,
     var removeReserveUseCase: RemoveReserveUseCase,
+
+    var searchRoomUseCase: SearchRoomUseCase,
+    var markRoomUseCase: MarkRoomUseCase
     ){}

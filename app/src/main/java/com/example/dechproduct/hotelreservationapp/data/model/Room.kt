@@ -9,7 +9,7 @@ data class Room(
     var roomID: String,
     var roomType: String = Constants.ROOM_TYP_STANDARD,
     var roomBeds: String = Constants.ROOM_BED_SINGLE,
-    var maxCap: Int = Constants.ROOM_MAX_CAPACITY,
+    var maxCap: Int = Constants.ROOM_DEFAULT_CAPACITY,
     var posFloor: String?,
     var posMap: String = Constants.ROOM_LOC_NORMAL,
     var roomStatus: RoomStatus,

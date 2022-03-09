@@ -41,7 +41,7 @@ class ReservationRepositoryImpl @Inject constructor(
             var result_fname = reservationAPI.getByFirstName(keyword)
             var result_lname = reservationAPI.getByLastName(keyword)
 
-            //TODO: Partial search implementations?
+            //TODO: partial search on incomplete string (e.g."Joh" -> ret"John")
             for(item in result_fname){
                 results.add(item.toBooking())
             }

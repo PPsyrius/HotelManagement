@@ -12,10 +12,10 @@ object Constants {
     const val ROOM_BED_SINGLE = "single"
     const val ROOM_BED_DOUBLE = "twin"
 
-    const val ROOM_LOC_NORMAL = "sandwich"
+    const val ROOM_LOC_NORMAL = "wedge"
     const val ROOM_LOC_CORNER = "corner"
 
-    const val ROOM_MAX_CAPACITY = 2
+    const val ROOM_DEFAULT_CAPACITY = 2
 
     //Database via API
     const val API_USER_BASE_URL =
@@ -44,6 +44,22 @@ object Constants {
     const val API_BOOK_KEY_STATUS = "guestStatus"
     const val API_BOOK_KEY_PASS = "guestPass"
     const val API_BOOK_KEY_ROOM = "guestRoom"
+
+    const val API_ROOM_BASE_URL =
+        "http://10.0.2.2:3002/"
+    const val API_ROOM_INDEX_URL =
+        "room/"
+    const val API_ROOM_KEY_ID = "roomID"
+    const val API_ROOM_KEY_TYPE = "roomType"
+    const val API_ROOM_KEY_BEDS = "roomBeds"
+    const val API_ROOM_KEY_CAP = "maxCap"
+    const val API_ROOM_KEY_FLOOR = "posFloor"
+    const val API_ROOM_KEY_MAP = "posMap"
+    const val API_ROOM_KEY_STAT = "roomStatus"
+    
+    const val API_ROOM_KEY_WALK = "isWalking"
+    const val API_ROOM_KEY_DEVICES = "deviceList"
+    const val API_ROOM_KEY_PRICE = "roomPrice"
 
     //Persistent Data
     const val SHARED_PREF_NAME = "USER_SESSION"
