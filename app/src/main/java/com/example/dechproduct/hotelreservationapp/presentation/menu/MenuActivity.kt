@@ -6,7 +6,6 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityMenu2Binding
@@ -33,10 +32,14 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.cardView.setOnClickListener{
+        binding.cvReservation.setOnClickListener{
             val intent = Intent(this, ReservationMenuActivity::class.java)
             startActivity(intent)
         }
+
+
+
+
         updateLoginName()
     }
 

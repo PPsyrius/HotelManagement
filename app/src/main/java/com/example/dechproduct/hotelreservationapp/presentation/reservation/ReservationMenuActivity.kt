@@ -33,11 +33,11 @@ class ReservationMenuActivity : AppCompatActivity() {
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
-        binding.cardView4.setOnClickListener{
+        binding.cvSearch.setOnClickListener{
             val intent = Intent(this, SearchReservationActivity::class.java)
             startActivity(intent)
         }
-        binding.cardView.setOnClickListener{
+        binding.cvReservation.setOnClickListener{
             val intent = Intent(this, AddReservationActivity::class.java)
             startActivity(intent)
         }

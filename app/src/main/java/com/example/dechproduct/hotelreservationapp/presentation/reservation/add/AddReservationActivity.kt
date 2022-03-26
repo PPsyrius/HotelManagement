@@ -17,6 +17,7 @@ import com.example.dechproduct.hotelreservationapp.databinding.ActivityLoginBind
 import com.example.dechproduct.hotelreservationapp.presentation.login.LoginViewModel
 import com.example.dechproduct.hotelreservationapp.presentation.menu.MenuActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
+import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera.AddReservationCameraActivity
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -60,18 +61,20 @@ class AddReservationActivity : AppCompatActivity() {
                     payment,id,sta_date,end_date,address)
             }
 
-            val intent = Intent(this@AddReservationActivity, MenuActivity::class.java)
+            val intent = Intent(this@AddReservationActivity, ReservationMenuActivity::class.java)
             startActivity(intent)
+//            finish()
 
         }
 
         binding.buttonCamera.setOnClickListener {
             Toast.makeText(applicationContext, "Camera Button is Tapped.", Toast.LENGTH_LONG).show()
-            //TODO:Call camera here
+            val intent = Intent(this@AddReservationActivity, AddReservationCameraActivity::class.java)
+            startActivity(intent)
         }
 
         binding.btnBackMenu.setOnClickListener{
-            val intent = Intent(this@AddReservationActivity, MenuActivity::class.java)
+            val intent = Intent(this@AddReservationActivity, ReservationMenuActivity::class.java)
             startActivity(intent)
         }
         observeSubmit()
