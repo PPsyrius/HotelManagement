@@ -1,4 +1,4 @@
-package com.example.dechproduct.hotelreservationapp.presentation.reservation.search.swipe.listener
+package com.example.dechproduct.hotelreservationapp.presentation.swipe.listener
 
 import android.content.Context
 import android.content.res.Resources

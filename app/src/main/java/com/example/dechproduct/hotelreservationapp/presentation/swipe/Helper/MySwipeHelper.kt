@@ -1,4 +1,4 @@
-package com.example.dechproduct.hotelreservationapp.presentation.reservation.search.swipe.Helper
+package com.example.dechproduct.hotelreservationapp.presentation.swipe.Helper
 
 import android.content.Context
 import android.graphics.Canvas
@@ -10,7 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dechproduct.hotelreservationapp.presentation.reservation.search.swipe.listener.MyButton
+import com.example.dechproduct.hotelreservationapp.presentation.swipe.listener.MyButton
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap

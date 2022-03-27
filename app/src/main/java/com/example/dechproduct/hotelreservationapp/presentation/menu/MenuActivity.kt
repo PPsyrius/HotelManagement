@@ -9,6 +9,8 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityMenu2Binding
+import com.example.dechproduct.hotelreservationapp.presentation.checkin.CheckInActivity
+import com.example.dechproduct.hotelreservationapp.presentation.checkout.CheckOutActivity
 import com.example.dechproduct.hotelreservationapp.presentation.login.LoginActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
 import com.example.dechproduct.hotelreservationapp.util.Constants
@@ -37,6 +39,15 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.cvCheckIn.setOnClickListener{
+            val intent = Intent(this, CheckInActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.cvCheckOut.setOnClickListener{
+            val intent = Intent(this, CheckOutActivity::class.java)
+            startActivity(intent)
+        }
 
 
 

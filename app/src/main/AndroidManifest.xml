@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.dechproduct.hotelreservationapp" >
+    package="com.example.dechproduct.hotelreservationapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,8 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HotelReservationApp"
-        android:usesCleartextTraffic="true" >
-
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".presentation.checkout.CheckOutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation.checkin.CheckInActivity"
+            android:exported="false" />
         <activity
             android:name=".presentation.reservation.add.camera.AddReservationCameraActivity"
             android:exported="false" />
@@ -32,11 +37,10 @@
         <activity
             android:name=".presentation.menu.MenuActivity"
             android:theme="@style/Theme.HotelReservationApp" />
-
         <activity
             android:name=".presentation.SplashActivity"
             android:exported="true"
-            android:theme="@style/Splash" >
+            android:theme="@style/Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
