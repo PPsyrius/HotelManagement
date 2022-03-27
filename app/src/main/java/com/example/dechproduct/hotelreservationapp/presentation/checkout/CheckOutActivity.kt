@@ -94,7 +94,7 @@ class CheckOutActivity : AppCompatActivity() {
                             override fun onClick(pos: Int) {
                                 Toast.makeText(
                                     this@CheckOutActivity,
-                                    "Check-in" + pos,
+                                    "Check-out" + pos,
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
