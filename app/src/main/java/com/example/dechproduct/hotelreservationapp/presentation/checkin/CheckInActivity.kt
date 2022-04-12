@@ -14,13 +14,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityCheckInBinding
 import com.example.dechproduct.hotelreservationapp.presentation.checkin.adapter.CheckInAdapter
+import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckinDetailActivity
 import com.example.dechproduct.hotelreservationapp.presentation.menu.MenuActivity
-import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
-import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationActivity
-import com.example.dechproduct.hotelreservationapp.presentation.reservation.search.adapter.SearchAdapter
-import com.example.dechproduct.hotelreservationapp.presentation.swipe.Helper.MySwipeHelper
-import com.example.dechproduct.hotelreservationapp.presentation.swipe.listener.MyButton
-import com.example.dechproduct.hotelreservationapp.presentation.swipe.listener.MyButtonClickListener
+import com.example.dechproduct.hotelreservationapp.util.swipe.Helper.MySwipeHelper
+import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButton
+import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButtonClickListener
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -106,6 +104,8 @@ class CheckInActivity : AppCompatActivity() {
                                     "Check-in" + pos,
                                     Toast.LENGTH_SHORT
                                 ).show()
+                                startSpecificActivity(CheckinDetailActivity::class.java)
+
                             }
                         }
                     ))
@@ -131,6 +131,12 @@ class CheckInActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun startSpecificActivity(otherActivityClass: Class<*>?) {
+        val intent = Intent(applicationContext, otherActivityClass)
+        startActivity(intent)
+    }
+
 
     }
 

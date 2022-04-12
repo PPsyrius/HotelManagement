@@ -19,6 +19,9 @@
         android:theme="@style/Theme.HotelReservationApp"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.checkinDetail.CheckinDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.checkout.CheckOutActivity"
             android:exported="false" />
         <activity

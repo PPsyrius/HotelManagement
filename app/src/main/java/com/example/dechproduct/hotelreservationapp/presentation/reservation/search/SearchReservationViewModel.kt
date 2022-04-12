@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.Room
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,6 +21,7 @@ class SearchReservationViewModel @Inject constructor(private val useCase: UseCas
             //TODO:EDIT HERE
             val reservation = useCase.searchReserveUseCase(keyword)
             reserver.postValue(reservation)
+
         }
     }
     //Only searchReserve() update observer for now.

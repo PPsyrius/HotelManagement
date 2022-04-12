@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:text="Check-in date"
+                android:text="reservation date"
                 android:textColor="#FCAE1E"
                 android:textSize="@dimen/description_font_size"
                 app:layout_constraintBottom_toBottomOf="@+id/textView10"

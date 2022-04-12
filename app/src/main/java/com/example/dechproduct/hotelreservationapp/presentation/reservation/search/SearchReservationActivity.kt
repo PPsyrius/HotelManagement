@@ -14,10 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dechproduct.hotelreservationapp.databinding.ActivitySearchReservationactivityBinding
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationActivity
-import com.example.dechproduct.hotelreservationapp.presentation.swipe.Helper.MySwipeHelper
+import com.example.dechproduct.hotelreservationapp.util.swipe.Helper.MySwipeHelper
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.search.adapter.SearchAdapter
-import com.example.dechproduct.hotelreservationapp.presentation.swipe.listener.MyButton
-import com.example.dechproduct.hotelreservationapp.presentation.swipe.listener.MyButtonClickListener
+import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButton
+import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButtonClickListener
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
