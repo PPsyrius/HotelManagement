@@ -6,14 +6,14 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Room(
-    var roomID: String,
-    var roomType: String = Constants.ROOM_TYP_STANDARD,
-    var roomBeds: String = Constants.ROOM_BED_SINGLE,
-    var maxCap: Int = Constants.ROOM_DEFAULT_CAPACITY,
-    var posFloor: String?,
-    var posMap: String = Constants.ROOM_LOC_NORMAL,
-    var roomStatus: RoomStatus,
-    var isWalking: Boolean,
-    var deviceList: List<Device>?,
-    var roomPrice: Double,
+    var roomID: String? = null,
+    var roomType: String? = null,
+    var roomBeds: String? = null,
+    var maxCap: Int? = null,
+    var posFloor: String? = null,
+    var posMap: String? = null,
+    var roomStatus: RoomStatus? = null,
+    var isWalking: Boolean? = null,
+    var deviceList: List<Device>? = null,
+    var roomPrice: Double? = null,
 ): Parcelable

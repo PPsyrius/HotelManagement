@@ -2,6 +2,7 @@ package com.example.dechproduct.hotelreservationapp.data.api
 
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
 import com.example.dechproduct.hotelreservationapp.data.model.BookingDTO
+import com.example.dechproduct.hotelreservationapp.data.model.RoomDTO
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -13,43 +14,43 @@ interface RoomAPIService {
     suspend fun getByID(
         @Query(Constants.API_ROOM_KEY_ID)
         id: String,
-    ): List<BookingDTO>
+    ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)
     suspend fun getByType(
         @Query(Constants.API_ROOM_KEY_TYPE)
         type:String,
-    ): List<BookingDTO>
+    ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)
     suspend fun getByBed(
         @Query(Constants.API_ROOM_KEY_BEDS)
         bed:String,
-    ): List<BookingDTO>
+    ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)
     suspend fun getByCapacity(
         @Query(Constants.API_ROOM_KEY_CAP)
         capacity:String,
-    ): List<BookingDTO>
+    ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)
     suspend fun getByFloor(
         @Query(Constants.API_ROOM_KEY_FLOOR)
         floor:String,
-    ): List<BookingDTO>
+    ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)
     suspend fun getByMap(
         @Query(Constants.API_ROOM_KEY_MAP)
         mapping:String,
-    ): List<BookingDTO>
+    ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)
     suspend fun getByStatus(
         @Query(Constants.API_ROOM_KEY_STAT)
         status:String,
-    ): List<BookingDTO>
+    ): List<RoomDTO>
 
     //For Non-CheckIn purposes
 
@@ -57,7 +58,7 @@ interface RoomAPIService {
     suspend fun getByIsWalking(
         @Query(Constants.API_ROOM_KEY_WALK)
         walking:String,
-    ): List<BookingDTO>
+    ): List<RoomDTO>
 
     /* UNUSED; If server side doesn't accept queries
 
@@ -71,7 +72,7 @@ interface RoomAPIService {
     //Use this function instead for complex queries (e.g. Range queries)
 
     @GET(Constants.API_ROOM_INDEX_URL)
-    suspend fun getAll(): List<BookingDTO>
+    suspend fun getAll(): List<RoomDTO>
 
     /* UNUSED; Shouldn't be able to add/modify room from kiosks
 

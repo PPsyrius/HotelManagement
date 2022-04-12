@@ -33,7 +33,6 @@ class RoomRepositoryImpl @Inject constructor(
             Log.d("RoomRepositoryImpl", exception.toString())
             Resource.Failure(exception)
         }
-
     }
 
     override suspend fun searchRoom(keyword: String):Resource<MutableList<Room>> {

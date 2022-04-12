@@ -1,10 +1,13 @@
 package com.example.dechproduct.hotelreservationapp.di
 
 import com.example.dechproduct.hotelreservationapp.domain.repository.ReservationRepository
+import com.example.dechproduct.hotelreservationapp.domain.repository.RoomRepository
 import com.example.dechproduct.hotelreservationapp.domain.repository.UserRepository
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.domain.usecase.login.LoginUseCase
 import com.example.dechproduct.hotelreservationapp.domain.usecase.reservation.*
+import com.example.dechproduct.hotelreservationapp.domain.usecase.room.*
+
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +21,9 @@ object UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideUseCase(userRepository: UserRepository , reservationRepository: ReservationRepository): UseCase {
+    fun provideUseCase(userRepository: UserRepository,
+                       reservationRepository: ReservationRepository,
+                       roomRepository: RoomRepository): UseCase {
         return UseCase(
             LoginUseCase(userRepository),
 
@@ -27,6 +32,9 @@ object UseCaseModule {
             PopulateReserveUseCase(reservationRepository),
             EditReserveUseCase(reservationRepository),
             RemoveReserveUseCase(reservationRepository),
+
+            SearchRoomUseCase(roomRepository),
+            MarkRoomUseCase(roomRepository),
         )
     }
 }

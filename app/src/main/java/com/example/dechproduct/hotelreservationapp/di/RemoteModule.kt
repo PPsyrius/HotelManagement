@@ -1,6 +1,7 @@
 package com.example.dechproduct.hotelreservationapp.di
 
 import com.example.dechproduct.hotelreservationapp.data.api.ReservationAPIService
+import com.example.dechproduct.hotelreservationapp.data.api.RoomAPIService
 import com.example.dechproduct.hotelreservationapp.data.api.UserAPIService
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import dagger.Module
@@ -33,6 +34,16 @@ object RemoteModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(UserAPIService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRoomAPI(): RoomAPIService {
+        return Retrofit.Builder()
+            .baseUrl(Constants.API_ROOM_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(RoomAPIService::class.java)
     }
 
 }
