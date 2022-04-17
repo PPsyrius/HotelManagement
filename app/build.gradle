@@ -52,6 +52,7 @@ android {
     buildFeatures{
         viewBinding true
     }
+
 }
 
 dependencies {
@@ -67,6 +68,7 @@ dependencies {
     def Interceptor_version = "4.7.2"
     def Glide_version = "4.12.0"
     def nav_version = "2.3.5"
+    def camerax_version = "1.1.0-beta01"
 
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -87,6 +89,10 @@ dependencies {
     // CardView
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+
+    //swipe layout'
+    implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
+
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
@@ -122,19 +128,30 @@ dependencies {
     //Glide SVG
     implementation 'com.github.corouteam:GlideToVectorYou:v2.0.0'
 
-
     //form
     implementation 'com.github.OmarShehe.FormInputs:forminputkotlin:1.0.1'
     implementation 'com.google.code.gson:gson:2.8.9'
 
     //test
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
+
     // hilt
     implementation("com.google.dagger:hilt-android:2.38.1")
     kapt("com.google.dagger:hilt-android-compiler:2.38.1")
 
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+
+    //camera
+    implementation "androidx.camera:camera-core:${camerax_version}"
+    implementation "androidx.camera:camera-camera2:${camerax_version}"
+    implementation "androidx.camera:camera-lifecycle:${camerax_version}"
+    implementation "androidx.camera:camera-video:${camerax_version}"
+
+    implementation "androidx.camera:camera-view:${camerax_version}"
+    implementation "androidx.camera:camera-extensions:${camerax_version}"
+
+
 
 
 }
