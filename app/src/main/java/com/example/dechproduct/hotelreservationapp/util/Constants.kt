@@ -54,12 +54,18 @@ object Constants {
     const val API_ROOM_KEY_BEDS = "roomBeds"
     const val API_ROOM_KEY_CAP = "maxCap"
     const val API_ROOM_KEY_FLOOR = "posFloor"
-    const val API_ROOM_KEY_MAP = "posMap"
+    const val API_ROOM_KEY_FEATURES = "features"
+    const val API_ROOM_KEY_SMOKING = "smoking"
     const val API_ROOM_KEY_STAT = "roomStatus"
     
     const val API_ROOM_KEY_WALK = "isWalking"
     const val API_ROOM_KEY_DEVICES = "deviceList"
     const val API_ROOM_KEY_PRICE = "roomPrice"
+
+    const val API_INFO_BASE_URL =
+        "http://10.0.2.2:3003/"
+    const val API_INFO_INDEX_URL =
+        "info/"
 
     //Persistent Data
     const val SHARED_PREF_NAME = "USER_SESSION"

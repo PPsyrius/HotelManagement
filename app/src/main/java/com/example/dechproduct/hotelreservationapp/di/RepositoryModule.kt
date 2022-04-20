@@ -1,12 +1,15 @@
 package com.example.dechproduct.hotelreservationapp.di
 
 import android.content.SharedPreferences
+import com.example.dechproduct.hotelreservationapp.data.api.PromotionAPIService
 import com.example.dechproduct.hotelreservationapp.data.api.ReservationAPIService
 import com.example.dechproduct.hotelreservationapp.data.api.RoomAPIService
 import com.example.dechproduct.hotelreservationapp.data.api.UserAPIService
+import com.example.dechproduct.hotelreservationapp.data.repository.InformationRepositoryImpl
 import com.example.dechproduct.hotelreservationapp.data.repository.ReservationRepositoryImpl
 import com.example.dechproduct.hotelreservationapp.data.repository.RoomRepositoryImpl
 import com.example.dechproduct.hotelreservationapp.data.repository.UserRepositoryImpl
+import com.example.dechproduct.hotelreservationapp.domain.repository.InformationRepository
 import com.example.dechproduct.hotelreservationapp.domain.repository.ReservationRepository
 import com.example.dechproduct.hotelreservationapp.domain.repository.RoomRepository
 import com.example.dechproduct.hotelreservationapp.domain.repository.UserRepository
@@ -45,5 +48,14 @@ object RepositoryModule {
         sharedPreferences: SharedPreferences,
     ): RoomRepository {
         return RoomRepositoryImpl(apiReference, sharedPreferences)
+    }
+
+    @Singleton
+    @Provides
+    fun provideInformationRepository(
+        apiReference: PromotionAPIService,
+        sharedPreferences: SharedPreferences,
+    ): InformationRepository {
+        return InformationRepositoryImpl(apiReference, sharedPreferences)
     }
 }

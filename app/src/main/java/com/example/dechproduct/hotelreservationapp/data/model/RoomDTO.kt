@@ -14,14 +14,16 @@ data class RoomDTO(
     var maxCap: Int,
     @SerializedName(Constants.API_ROOM_KEY_FLOOR)
     var posFloor: String?,
-    @SerializedName(Constants.API_ROOM_KEY_MAP)
-    var posMap: String,
+    @SerializedName(Constants.API_ROOM_KEY_FEATURES)
+    var features: List<Feature>,
+    @SerializedName(Constants.API_ROOM_KEY_SMOKING)
+    var smoking: Boolean,
     @SerializedName(Constants.API_ROOM_KEY_STAT)
     var roomStatus: RoomStatus,
     @SerializedName(Constants.API_ROOM_KEY_WALK)
     var isWalking: Boolean,
     @SerializedName(Constants.API_ROOM_KEY_DEVICES)
-    var deviceList: List<Device>?,
+    var deviceList: List<Device>,
     @SerializedName(Constants.API_ROOM_KEY_PRICE)
     var roomPrice: Double,
 ) {
@@ -32,7 +34,8 @@ data class RoomDTO(
             roomBeds = roomBeds,
             maxCap = maxCap,
             posFloor = posFloor,
-            posMap = posMap,
+            features = features,
+            smoking = smoking,
             roomStatus = roomStatus,
             isWalking = isWalking,
             deviceList = deviceList,

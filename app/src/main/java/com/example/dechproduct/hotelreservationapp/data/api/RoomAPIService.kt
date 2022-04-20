@@ -40,10 +40,17 @@ interface RoomAPIService {
         floor:String,
     ): List<RoomDTO>
 
+    //TODO:Query by multiple features.
     @GET(Constants.API_ROOM_INDEX_URL)
-    suspend fun getByMap(
-        @Query(Constants.API_ROOM_KEY_MAP)
+    suspend fun getByFeatures(
+        @Query(Constants.API_ROOM_KEY_FEATURES)
         mapping:String,
+    ): List<RoomDTO>
+
+    @GET(Constants.API_ROOM_INDEX_URL)
+    suspend fun getBySmoking(
+        @Query(Constants.API_ROOM_KEY_SMOKING)
+        smoking:String,
     ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)

@@ -1,5 +1,6 @@
 package com.example.dechproduct.hotelreservationapp.di
 
+import com.example.dechproduct.hotelreservationapp.data.api.PromotionAPIService
 import com.example.dechproduct.hotelreservationapp.data.api.ReservationAPIService
 import com.example.dechproduct.hotelreservationapp.data.api.RoomAPIService
 import com.example.dechproduct.hotelreservationapp.data.api.UserAPIService
@@ -46,4 +47,13 @@ object RemoteModule {
             .create(RoomAPIService::class.java)
     }
 
+    @Provides
+    @Singleton
+    fun providePromotionAPI(): PromotionAPIService {
+        return Retrofit.Builder()
+            .baseUrl(Constants.API_INFO_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(PromotionAPIService::class.java)
+    }
 }
