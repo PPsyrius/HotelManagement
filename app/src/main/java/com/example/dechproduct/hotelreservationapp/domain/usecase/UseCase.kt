@@ -12,6 +12,8 @@ class UseCase(
     var populateReserveUseCase: PopulateReserveUseCase,
     var editReserveUseCase: EditReserveUseCase,
     var removeReserveUseCase: RemoveReserveUseCase,
+    var searchRoomUseCase: SearchRoomUseCase,
+    var markRoomUseCase: MarkRoomUseCase
 
 
     ){}

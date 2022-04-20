@@ -56,6 +56,7 @@ class AddReservationActivity : AppCompatActivity() {
             var end_date = findViewById<TextView>(R.id.tvDateEnd).text.toString()
             var address = findViewById<FormInputMultiline>(R.id.about).getValue()
 
+
             lifecycleScope.launch{
                 addReservationViewModel.addReserve(fname,lname,phone,
                     payment,id,sta_date,end_date,address)

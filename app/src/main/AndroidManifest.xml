@@ -20,17 +20,24 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".presentation.checkinDetail.CheckinDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.HotelReservationApp"
+            />
         <activity
             android:name=".presentation.checkout.CheckOutActivity"
+            android:theme="@style/Theme.HotelReservationApp"
             android:exported="false" />
         <activity
             android:name=".presentation.checkin.CheckInActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.HotelReservationApp"/>
+
         <activity
             android:name=".presentation.reservation.add.camera.AddReservationCameraActivity"
-            android:exported="false" />
-        <activity android:name=".presentation.reservation.search.SearchReservationActivity" />
+            android:exported="false"
+            android:theme="@style/Theme.HotelReservationApp"/>
+        <activity android:name=".presentation.reservation.search.SearchReservationActivity"
+            android:theme="@style/Theme.HotelReservationApp"/>
         <activity
             android:name=".presentation.reservation.add.AddReservationActivity"
             android:theme="@style/Theme.HotelReservationApp" />

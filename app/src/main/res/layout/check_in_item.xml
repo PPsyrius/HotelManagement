@@ -41,12 +41,11 @@
                 app:layout_constraintTop_toTopOf="@+id/textView10" />
 
             <TextView
-                android:id="@+id/test_title_tv"
+                android:id="@+id/testTitleTv"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="218dp"
                 android:text="Username"
                 android:textColor="#FFA500"
                 android:textSize="@dimen/title_font_size"
@@ -82,13 +81,14 @@
 
             <TextView
                 android:id="@+id/textView6"
-                android:layout_width="0dp"
-                android:layout_height="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="2dp"
-                android:text="#Room"
+                android:layout_marginEnd="5dp"
+                android:text="#RoomType"
+
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/test_title_tv"
+                app:layout_constraintStart_toEndOf="@+id/testTitleTv"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -112,7 +112,7 @@
                 android:layout_marginEnd="8dp"
                 android:text="Reservation Date:"
                 app:layout_constraintEnd_toStartOf="@+id/test_desc_tv"
-                app:layout_constraintTop_toBottomOf="@+id/test_title_tv" />
+                app:layout_constraintTop_toBottomOf="@+id/testTitleTv" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

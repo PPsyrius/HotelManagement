@@ -12,6 +12,7 @@ class CheckInAdapter (
     private val bookings: MutableList<Booking>,
 
     ) : RecyclerView.Adapter <CheckInViewHolder>(){
+
     override fun onCreateViewHolder(
         viewGroup: ViewGroup,
         viewType: Int

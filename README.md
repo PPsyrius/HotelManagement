@@ -327,6 +327,12 @@ Used to manage bookings.
 json-server --watch Guestbook.json --port 3001
 ```
 
+### Property.josn
+Used to manage rooms.
+```
+json-server --watch Property.json --port 3002
+```
+
 ## Appendix
 For Windows user, check the port status by using:
 ```
