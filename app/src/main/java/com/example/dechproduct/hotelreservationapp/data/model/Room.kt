@@ -12,6 +12,8 @@ data class Room(
     var maxCap: Int? = null,
     var posFloor: String? = null,
     var features: List<Feature>? = null,
+    var addonBed: Boolean? = null,
+    var breakfast: Boolean? = null,
     var smoking: Boolean? = null,
     var roomStatus: RoomStatus? = null,
     var isWalking: Boolean? = null,

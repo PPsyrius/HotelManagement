@@ -1,6 +1,7 @@
 package com.example.dechproduct.hotelreservationapp.presentation.checkin
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,12 +17,15 @@ import com.example.dechproduct.hotelreservationapp.databinding.ActivityCheckInBi
 import com.example.dechproduct.hotelreservationapp.presentation.checkin.adapter.CheckInAdapter
 import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckinDetailActivity
 import com.example.dechproduct.hotelreservationapp.presentation.menu.MenuActivity
+import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationActivity
+import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.swipe.Helper.MySwipeHelper
 import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButton
 import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButtonClickListener
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class CheckInActivity : AppCompatActivity() {
@@ -29,14 +33,15 @@ class CheckInActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheckInBinding
     private val checkInViewModel: CheckInViewModel by viewModels()
 
-
+    @Inject
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCheckInBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnBackMenu.setOnClickListener{
+        binding.btnBackMenu.setOnClickListener {
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
@@ -44,8 +49,8 @@ class CheckInActivity : AppCompatActivity() {
         var searchBar = binding.searchBar
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                if(query == "")
-                    lifecycleScope.launch{
+                if (query == "")
+                    lifecycleScope.launch {
                         checkInViewModel.populateReserve()
                     }
                 else
@@ -56,12 +61,12 @@ class CheckInActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                if(newText == "")
-                    lifecycleScope.launch{
+                if (newText == "")
+                    lifecycleScope.launch {
                         checkInViewModel.populateReserve()
                     }
                 else
-                    lifecycleScope.launch{
+                    lifecycleScope.launch {
                         checkInViewModel.searchReserve(newText.capitalize())
                     }
                 return false
@@ -70,20 +75,20 @@ class CheckInActivity : AppCompatActivity() {
 
         binding.reservationList.layoutManager = LinearLayoutManager(this)
 
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             checkInViewModel.populateReserve()
         }
 
-//        binding.fabAdd.setOnClickListener{
-//            Toast.makeText(applicationContext, "Add Reservation", Toast.LENGTH_SHORT).show()
-//            val intent = Intent(this, AddReservationActivity::class.java )
-//            startActivity(intent)
-
+        binding.fabAdd.setOnClickListener {
+            Toast.makeText(applicationContext, "Add Reservation", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, AddReservationActivity::class.java)
+            //TODO: Call dedicated add reservation + checkin page
+            startActivity(intent)
+        }
 
         onSwipeHandle()
         observeSearch()
-
-        }
+    }
 
     private fun onSwipeHandle() {
         val swipe = object : MySwipeHelper(this, binding.reservationList, 200) {
@@ -99,37 +104,21 @@ class CheckInActivity : AppCompatActivity() {
                         Color.parseColor("#028A0F"),
                         object : MyButtonClickListener {
                             override fun onClick(pos: Int) {
-                                Toast.makeText(
-                                    this@CheckInActivity,
-                                    "Check-in" + pos,
-                                    Toast.LENGTH_SHORT
-                                ).show()
+//                                Toast.makeText(
+//                                    this@CheckInActivity,
+//                                    "Check-in " + checkInViewModel.result[pos],
+//                                    Toast.LENGTH_SHORT
+//                                ).show()
+//                                runBlocking{checkInViewModel.checkInReserved()}
+                                sharedPreferences.edit()
+                                    .putString(Constants.RESERVED_ID, checkInViewModel.result[pos].bookingID)
+                                    .apply()
                                 startSpecificActivity(CheckinDetailActivity::class.java)
-
                             }
                         }
                     ))
-
             }
-
         }
-    }
-
-    private fun observeSearch() {
-        checkInViewModel.reserver.observe(this, {
-            when (it) {
-                is Resource.Success -> {
-                    it.data?.let { reservationList ->
-                        Log.d("CheckInResActivity",reservationList.toString())
-                        binding.reservationList.adapter = CheckInAdapter(reservationList)            //here adapter set up recycler view
-                    }
-                }
-
-                is Resource.Failure -> {
-                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
     }
 
     private fun startSpecificActivity(otherActivityClass: Class<*>?) {
@@ -137,7 +126,26 @@ class CheckInActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    private fun observeSearch() {
+        checkInViewModel.reserver.observe(this, {
+            when (it) {
+                is Resource.Success -> {
+                    it.data?.let { reservation_list ->
+                        checkInViewModel.result = reservation_list
+                        Log.d("CheckInActivity", checkInViewModel.result.toString())
+                        binding.reservationList.adapter =
+                            CheckInAdapter(checkInViewModel.result)            //here adapter set up recycler view
+                    }
+                }
 
+                is Resource.Failure -> {
+                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        })
     }
+
+}
 
 

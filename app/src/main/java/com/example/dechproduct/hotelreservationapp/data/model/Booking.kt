@@ -23,9 +23,13 @@ data class Booking(
 
     var departDate: String? = "",
 
+    var adultCount: Int?,
+
+    var childCount: Int?,
+
     var paymentType: String? = "",
 
-    var guestStatus: String? = Constants.GUEST_STATUS_ONCREATE,
+    var guestStatus: String? = Constants.GUEST_STATUS_CREATED,
 
     var guestPass: GuestPass?,
 

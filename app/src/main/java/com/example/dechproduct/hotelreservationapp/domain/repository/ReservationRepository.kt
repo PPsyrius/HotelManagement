@@ -4,9 +4,10 @@ import com.example.dechproduct.hotelreservationapp.data.model.Booking
 import com.example.dechproduct.hotelreservationapp.util.Resource
 
 interface ReservationRepository {
-    suspend fun addReservation(booking:Booking):Resource<Booking>
-    suspend fun editReservation(booking:Booking):Resource<Booking>
-    suspend fun removeReservation(booking: Booking):Resource<Booking>
-    suspend fun searchReservation(keyword: String):Resource<MutableList<Booking>>
-    suspend fun populateReservation():Resource<MutableList<Booking>>
+    suspend fun add(booking:Booking):Resource<Booking>
+    suspend fun edit(booking:Booking):Resource<Booking>
+    suspend fun remove(booking: Booking):Resource<Booking>
+    suspend fun searchByName(keyword: String):Resource<MutableList<Booking>>
+    suspend fun searchByID(keyword: String):Resource<Booking>
+    suspend fun populate():Resource<MutableList<Booking>>
 }

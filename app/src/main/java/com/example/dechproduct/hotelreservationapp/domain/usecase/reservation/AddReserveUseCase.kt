@@ -6,5 +6,5 @@ import com.example.dechproduct.hotelreservationapp.util.Resource
 import javax.inject.Inject
 
 class AddReserveUseCase @Inject constructor(private val reservationRepository: ReservationRepository) {
-    suspend operator fun invoke(booking: Booking): Resource<Booking> = reservationRepository.addReservation(booking)
+    suspend operator fun invoke(booking: Booking): Resource<Booking> = reservationRepository.add(booking)
 }

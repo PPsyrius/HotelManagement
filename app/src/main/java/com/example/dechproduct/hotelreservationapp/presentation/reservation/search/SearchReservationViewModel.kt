@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
-import com.example.dechproduct.hotelreservationapp.data.model.Room
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,7 +18,7 @@ class SearchReservationViewModel @Inject constructor(private val useCase: UseCas
     suspend fun searchReserve(keyword:String){
         viewModelScope.launch {
             //TODO:EDIT HERE
-            val reservation = useCase.searchReserveUseCase(keyword)
+            val reservation = useCase.searchReserveByNameUseCase(keyword)
             reserver.postValue(reservation)
 
         }

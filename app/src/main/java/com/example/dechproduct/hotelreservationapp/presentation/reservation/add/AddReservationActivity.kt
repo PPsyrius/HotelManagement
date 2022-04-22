@@ -46,7 +46,7 @@ class AddReservationActivity : AppCompatActivity() {
 
         binding.btnSubmit.setOnClickListener{
 
-            //TODO:Check no fields are blank
+            //TODO:Check no fields are blank, implement adult/child count
             var fname = findViewById<FormInputText>(R.id.first_name_customer).getValue()
             var lname = findViewById<FormInputText>(R.id.last_name_customer).getValue()
             var phone = findViewById<FormInputText>(R.id.phoneNumber).getValue()
@@ -55,11 +55,12 @@ class AddReservationActivity : AppCompatActivity() {
             var sta_date = findViewById<TextView>(R.id.tvDateStart).text.toString()
             var end_date = findViewById<TextView>(R.id.tvDateEnd).text.toString()
             var address = findViewById<FormInputMultiline>(R.id.about).getValue()
-
+            var adult_count = 2
+            var child_count = 0
 
             lifecycleScope.launch{
                 addReservationViewModel.addReserve(fname,lname,phone,
-                    payment,id,sta_date,end_date,address)
+                    payment,id,sta_date,end_date,address,adult_count,child_count)
             }
 
             val intent = Intent(this@AddReservationActivity, ReservationMenuActivity::class.java)

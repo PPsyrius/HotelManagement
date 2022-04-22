@@ -2,7 +2,11 @@ package com.example.dechproduct.hotelreservationapp.util
 
 object Constants {
     //Guest Model
-    const val GUEST_STATUS_ONCREATE = "created"
+    const val GUEST_STATUS_CREATED = "CREATED"
+    const val GUEST_STATUS_RESERVED = "RESERVED"
+    const val GUEST_STATUS_CHECKIN = "CH_IN"
+    const val GUEST_STATUS_CHECKOUT = "CH_OUT"
+    const val GUEST_STATUS_ERROR = "ERR"
 
     //Room Model
     const val ROOM_TYP_STANDARD = "standard"
@@ -39,6 +43,8 @@ object Constants {
     const val API_BOOK_KEY_PAYMENT = "paymentType"
     const val API_BOOK_KEY_DATE_IN = "arrivalDate"
     const val API_BOOK_KEY_DATE_OUT = "departDate"
+    const val API_BOOK_KEY_ADULT = "adult"
+    const val API_BOOK_KEY_CHILD = "child"
     const val API_BOOK_KEY_VERID = "verificationID"
     const val API_BOOK_KEY_ADDRESS = "address"
     const val API_BOOK_KEY_STATUS = "guestStatus"
@@ -55,6 +61,8 @@ object Constants {
     const val API_ROOM_KEY_CAP = "maxCap"
     const val API_ROOM_KEY_FLOOR = "posFloor"
     const val API_ROOM_KEY_FEATURES = "features"
+    const val API_ROOM_ADDON_FEATURES = "addon"
+    const val API_ROOM_BREAKFAST_FEATURES = "breakfast"
     const val API_ROOM_KEY_SMOKING = "smoking"
     const val API_ROOM_KEY_STAT = "roomStatus"
     
@@ -67,10 +75,11 @@ object Constants {
     const val API_INFO_INDEX_URL =
         "info/"
 
-    //Persistent Data
+    //Passable Data
     const val SHARED_PREF_NAME = "USER_SESSION"
 
     //Miscellaneous
     const val LOGGED_IN_USER_NAME = "LOGGED_IN_USER"
     const val LOGGED_IN_DISPLAY_NAME = "LOGGED_IN_USER_NAME"
+    const val RESERVED_ID = "RESERVED_ID"
 }

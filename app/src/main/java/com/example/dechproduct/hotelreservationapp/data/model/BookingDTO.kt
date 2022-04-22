@@ -21,6 +21,10 @@ data class BookingDTO(
     var arrivalDate: String?,
     @SerializedName(Constants.API_BOOK_KEY_DATE_OUT)
     var departDate: String?,
+    @SerializedName(Constants.API_BOOK_KEY_ADULT)
+    var adultCount: Int?,
+    @SerializedName(Constants.API_BOOK_KEY_CHILD)
+    var childCount: Int?,
     @SerializedName(Constants.API_BOOK_KEY_PAYMENT)
     var paymentType: String?,
     @SerializedName(Constants.API_BOOK_KEY_STATUS)
@@ -41,6 +45,8 @@ data class BookingDTO(
             verificationID = verificationID,
             arrivalDate = arrivalDate,
             departDate = departDate,
+            adultCount = adultCount,
+            childCount = childCount,
             paymentType = paymentType,
             guestStatus = guestStatus,
             guestPass = guestPass,

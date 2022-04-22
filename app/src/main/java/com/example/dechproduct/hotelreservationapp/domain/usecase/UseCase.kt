@@ -23,7 +23,8 @@ class UseCase(
     var loginUseCase: LoginUseCase,
 
     var addReserveUseCase: AddReserveUseCase,
-    var searchReserveUseCase: SearchReserveUseCase,
+    var searchReserveByNameUseCase: SearchReserveByNameUseCase,
+    var searchReserveByIDUseCase: SearchReserveByIDUseCase,
     var populateReserveUseCase: PopulateReserveUseCase,
     var editReserveUseCase: EditReserveUseCase,
     var removeReserveUseCase: RemoveReserveUseCase,

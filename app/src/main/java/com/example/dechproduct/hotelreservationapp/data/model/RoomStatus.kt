@@ -8,7 +8,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class RoomStatus(
-
+    //TODO: Enum class
     var displayName: String?,
 
     var internalCode: String?,

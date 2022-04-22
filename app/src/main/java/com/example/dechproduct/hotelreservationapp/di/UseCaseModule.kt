@@ -16,7 +16,6 @@ import com.example.dechproduct.hotelreservationapp.domain.usecase.utility.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -32,8 +31,8 @@ object UseCaseModule {
                        informationRepository: InformationRepository
     ): UseCase {
         return UseCase(
-            CheckInFromReservationUseCase(reservationRepository, roomRepository),
-            CheckInFromWalkInUseCase(reservationRepository, roomRepository),
+            CheckInFromReservationUseCase(roomRepository, EditReserveUseCase(reservationRepository)),
+            CheckInFromWalkInUseCase(roomRepository, AddReserveUseCase(reservationRepository)),
 
             CheckOutGuestUseCase(reservationRepository, roomRepository),
             ExtendStayUseCase(reservationRepository, roomRepository),
@@ -44,7 +43,8 @@ object UseCaseModule {
             LoginUseCase(userRepository),
 
             AddReserveUseCase(reservationRepository),
-            SearchReserveUseCase(reservationRepository),
+            SearchReserveByNameUseCase(reservationRepository),
+            SearchReserveByIDUseCase(reservationRepository),
             PopulateReserveUseCase(reservationRepository),
             EditReserveUseCase(reservationRepository),
             RemoveReserveUseCase(reservationRepository),

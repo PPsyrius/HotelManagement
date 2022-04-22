@@ -49,8 +49,6 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
         updateLoginName()
     }
 

@@ -4,7 +4,9 @@ import android.content.SharedPreferences
 import android.util.Log
 import com.example.dechproduct.hotelreservationapp.data.api.RoomAPIService
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.Feature
 import com.example.dechproduct.hotelreservationapp.data.model.Room
+import com.example.dechproduct.hotelreservationapp.data.model.RoomStatus
 import com.example.dechproduct.hotelreservationapp.domain.repository.RoomRepository
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
@@ -14,7 +16,7 @@ class RoomRepositoryImpl @Inject constructor(
     private val roomAPI: RoomAPIService,
     val sharedPreferences: SharedPreferences): RoomRepository{
 
-    override suspend fun markRoom(room: Room): Resource<Room> {
+    override suspend fun markRoom(room: Room, roomStatus: RoomStatus): Resource<Room> {
         return try {
 
             //TODO: Implements room marking functions

@@ -12,5 +12,6 @@ class CheckInViewHolder (
     val reserveDateIn = binding.testDescTv
     val reserveDateOut= binding.testDescTv2
     val reservePhoneNo = binding.textView9
+    val reserveID = binding.textView6
 
 }

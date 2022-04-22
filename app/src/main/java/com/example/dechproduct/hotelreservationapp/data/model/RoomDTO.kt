@@ -16,6 +16,10 @@ data class RoomDTO(
     var posFloor: String?,
     @SerializedName(Constants.API_ROOM_KEY_FEATURES)
     var features: List<Feature>,
+    @SerializedName(Constants.API_ROOM_ADDON_FEATURES)
+    var addonBed: Boolean?,
+    @SerializedName(Constants.API_ROOM_BREAKFAST_FEATURES)
+    var breakfast: Boolean?,
     @SerializedName(Constants.API_ROOM_KEY_SMOKING)
     var smoking: Boolean,
     @SerializedName(Constants.API_ROOM_KEY_STAT)
@@ -35,6 +39,8 @@ data class RoomDTO(
             maxCap = maxCap,
             posFloor = posFloor,
             features = features,
+            addonBed = addonBed,
+            breakfast = breakfast,
             smoking = smoking,
             roomStatus = roomStatus,
             isWalking = isWalking,

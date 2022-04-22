@@ -13,16 +13,17 @@ import javax.inject.Inject
 
 class ReservationRepositoryImpl @Inject constructor(
     private val reservationAPI: ReservationAPIService,
-    val sharedPreferences: SharedPreferences): ReservationRepository {
+    val sharedPreferences: SharedPreferences
+) : ReservationRepository {
 
-    override suspend fun addReservation(booking: Booking): Resource<Booking> {
+    override suspend fun add(booking: Booking): Resource<Booking> {
         return try {
 
             val uid = System.currentTimeMillis()
             var response_msg = reservationAPI.postBooking(booking)
 
             Log.d("POST:", response_msg.toString())
-            if(response_msg.isSuccessful)
+            if (response_msg.isSuccessful)
                 Resource.Success(booking)
             else
                 throw Exception("Can't communicate with the server.")
@@ -33,7 +34,7 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun searchReservation(keyword: String): Resource<MutableList<Booking>> {
+    override suspend fun searchByName(keyword: String): Resource<MutableList<Booking>> {
         return try {
 
             var results: MutableList<Booking> = mutableListOf<Booking>()
@@ -42,10 +43,10 @@ class ReservationRepositoryImpl @Inject constructor(
             var result_lname = reservationAPI.getByLastName(keyword)
 
             //TODO: partial search on incomplete string (e.g."Joh" -> ret"John")
-            for(item in result_fname){
+            for (item in result_fname) {
                 results.add(item.toBooking())
             }
-            for(item in result_lname) {
+            for (item in result_lname) {
                 results.add(item.toBooking())
             }
 
@@ -55,13 +56,33 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun populateReservation(): Resource<MutableList<Booking>> {
+    override suspend fun searchByID(keyword: String): Resource<Booking> {
+        //No 'Partial Search' feature on this function.
+        return try {
+
+//            var results: MutableList<Booking> = mutableListOf<Booking>()
+
+            var result_id = reservationAPI.getByBookingID(keyword)
+
+            if(result_id.size >1){throw Exception("Danger: Duplicate entry found in reservation database.")}
+
+//            for (item in result_id) {
+//                results.add(item.toBooking())
+//            }
+
+            Resource.Success(result_id[0].toBooking())
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
+
+    override suspend fun populate(): Resource<MutableList<Booking>> {
         return try {
 
             var results: MutableList<Booking> = mutableListOf<Booking>()
 
             var result_default = reservationAPI.getAll()
-            for(item in result_default){
+            for (item in result_default) {
                 results.add(item.toBooking())
             }
 
@@ -71,14 +92,13 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun editReservation(booking: Booking): Resource<Booking> {
+    override suspend fun edit(booking: Booking): Resource<Booking> {
         return try {
 
-            var response = booking.bookingID?.let { reservationAPI.updateBooking(it,booking) }
-            if(response!!.isSuccessful){
+            var response = booking.bookingID?.let { reservationAPI.updateBooking(it, booking) }
+            if (response!!.isSuccessful) {
                 Resource.Success(booking)
-            }
-            else{
+            } else {
                 throw Exception("Server denies request.")
             }
 
@@ -88,20 +108,24 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun removeReservation(booking: Booking): Resource<Booking> {
+    override suspend fun remove(booking: Booking): Resource<Booking> {
         return try {
 
             var response = booking.bookingID?.let { reservationAPI.deleteBooking(it) }
-            if(response!!.isSuccessful){
+            if (response!!.isSuccessful) {
                 Resource.Success(booking)
-            }
-            else{
+            } else {
                 throw Exception("Server denies request.")
             }
 
         } catch (exception: Exception) {
             Resource.Failure(exception)
         }
+    }
+
+    private fun partialSearch(): MutableList<Booking> {
+        var results: MutableList<Booking> = mutableListOf<Booking>()
+        return results
     }
 
 }

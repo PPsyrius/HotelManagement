@@ -3,7 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_search_reservationactivity.xml" value="0.1" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_add_reservation.xml" value="0.22" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_check_in.xml" value="0.1716485507246377" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_checkin_detail.xml" value="0.3333333333333333" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_login.xml" value="0.17074275362318841" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_menu2.xml" value="0.1" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_reservation_menu.xml" value="0.1" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_search_reservationactivity.xml" value="0.32967032967032966" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/add_check_in.xml" value="0.1716485507246377" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/check_in_item.xml" value="0.18614130434782608" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/reservation_item.xml" value="0.1" />
         <entry key="..\:/SEPR/App/HotelReservationApp2021/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.21614583333333334" />
         <entry key="..\:/SEPR/App/HotelReservationApp2021/app/src/main/res/drawable/ic_baseline_arrow_forward_24.xml" value="0.21614583333333334" />
         <entry key="..\:/SEPR/App/HotelReservationApp2021/app/src/main/res/drawable/ic_hotel_background.xml" value="0.21614583333333334" />
@@ -27,42 +36,24 @@
         <entry key="..\:/SEPR/App/HotelReservationApp2021/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.21614583333333334" />
         <entry key="..\:/SEPR/App/HotelReservationApp2021/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.21614583333333334" />
         <entry key="..\:/Users/User/.gradle/caches/transforms-3/f7e5bdd82df44ce902a233b45bab8697/transformed/core-1.7.0/res/drawable/notification_icon_background.xml" value="0.28958333333333336" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/drawable/button_circular.xml" value="0.31979166666666664" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/drawable/custom_btn_remove.xml" value="0.31979166666666664" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/drawable/ic_add_circle_full.xml" value="0.31979166666666664" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/drawable/ic_add_circle_outline.xml" value="0.31979166666666664" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/drawable/ic_baseline_bedroom_parent_24.xml" value="0.17407407407407408" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/drawable/ic_baseline_room_24.xml" value="0.31979166666666664" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/drawable/ic_edit_24.xml" value="0.28958333333333336" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/drawable/ic_room_beds.xml" value="0.31979166666666664" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/drawable/rounded_corner.xml" value="0.26979166666666665" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/drawable/splash_background.xml" value="0.30974358974358973" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_add_reservation.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_add_reservation_camera.xml" value="0.19655797101449277" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_check_in.xml" value="0.1" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_check_in.xml" value="0.19630192502532928" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_check_out.xml" value="0.34427083333333336" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_checkin_detail.xml" value="0.6" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_checkin_detail.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_menu.xml" value="0.21784420289855072" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_menu2.xml" value="0.21784420289855072" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_reservation_menu.xml" value="0.21784420289855072" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/activity_search_reservationactivity.xml" value="0.152" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/add_check_in.xml" value="0.264" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/check_in_item.xml" value="0.264" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/check_in_item.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/check_out_item.xml" value="0.4" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/fragment_bottom.xml" value="0.264" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.1" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/fragment_room_available_bottom_sheet.xml" value="0.264" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/fragment_room_bed_bottom_sheet.xml" value="0.4" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/fragment_room_bottom_sheet.xml" value="0.1" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/fragment_room_type_bottom_sheet.xml" value="0.1" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/fragment_searchbar.xml" value="0.1" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/layout_item.xml" value="0.28802083333333334" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/news_list_item.xml" value="0.2" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/reservation_item.xml" value="0.19349005424954793" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/reservation_item.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/reservation_item_2.xml" value="0.2453125" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/room_available_item.xml" value="0.26017699115044246" />
-        <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/layout/room_bed_item.xml" value="0.4" />
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/menu/bottom_menu.xml" value="0.2972222222222222" />
         <entry key="..\:/Users/User/AppData/Local/Android/Sdk/platforms/android-31/data/res/drawable-watch/sym_def_app_icon.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/User/AppData/Local/Android/Sdk/platforms/android-31/data/res/drawable/sym_def_app_icon.xml" value="0.36041666666666666" />

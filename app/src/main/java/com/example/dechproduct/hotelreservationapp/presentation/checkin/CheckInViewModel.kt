@@ -14,20 +14,19 @@ import javax.inject.Inject
 class CheckInViewModel @Inject constructor(private val useCase: UseCase): ViewModel(){
 
     var reserver = MutableLiveData<Resource<MutableList<Booking>>>()
+    lateinit var result: MutableList<Booking>
 
     suspend fun searchReserve(keyword:String){
         viewModelScope.launch {
-            //TODO:EDIT HERE
-            val reservation = useCase.searchReserveUseCase(keyword)
-            reserver.postValue(reservation)
+            val reservations = useCase.searchReserveByNameUseCase(keyword)
+            reserver.postValue(reservations)
         }
     }
-    //Only searchReserve() update observer for now.
 
     suspend fun populateReserve(){
         viewModelScope.launch {
-            val reservation = useCase.populateReserveUseCase()
-            reserver.postValue(reservation)
+            val reservations = useCase.populateReserveUseCase()
+            reserver.postValue(reservations)
         }
     }
 
