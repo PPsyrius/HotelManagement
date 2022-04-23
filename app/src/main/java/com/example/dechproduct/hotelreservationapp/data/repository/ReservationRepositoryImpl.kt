@@ -5,6 +5,7 @@ import android.util.Log
 import com.example.dechproduct.hotelreservationapp.data.api.ReservationAPIService
 import com.example.dechproduct.hotelreservationapp.data.model.Address
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.BookingDTO
 import com.example.dechproduct.hotelreservationapp.domain.repository.ReservationRepository
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
@@ -34,57 +35,73 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun searchByName(keyword: String): Resource<MutableList<Booking>> {
+    override suspend fun searchByName(
+        keyword: String,
+        status: String
+    ): Resource<MutableList<Booking>> {
         return try {
-
             var results: MutableList<Booking> = mutableListOf<Booking>()
-
             var result_fname = reservationAPI.getByFirstName(keyword)
             var result_lname = reservationAPI.getByLastName(keyword)
 
             //TODO: partial search on incomplete string (e.g."Joh" -> ret"John")
-            for (item in result_fname) {
-                results.add(item.toBooking())
-            }
-            for (item in result_lname) {
-                results.add(item.toBooking())
-            }
+            filterResult(result_fname, results, status)
+            filterResult(result_lname, results, status)
 
             Resource.Success(results)
+
         } catch (exception: Exception) {
             Resource.Failure(exception)
         }
     }
 
-    override suspend fun searchByID(keyword: String): Resource<Booking> {
-        //No 'Partial Search' feature on this function.
+    private fun filterResult(frag: List<BookingDTO>, results: MutableList<Booking>, arg: String) {
+        if (arg.isNotEmpty()) {
+            for (item in frag) {
+                if (item.guestStatus == arg) {
+                    results.add(item.toBooking())
+                }
+            }
+        } else {
+            for (item in frag) {
+                results.add(item.toBooking())
+            }
+        }
+    }
+
+    override suspend fun searchByID(
+        keyword: String,
+        status: String
+    ): Resource<MutableList<Booking>> {
+        //TODO: partial search on incomplete string (e.g."160" -> ret"1603492,16023482")
         return try {
-
-//            var results: MutableList<Booking> = mutableListOf<Booking>()
-
+            var results: MutableList<Booking> = mutableListOf<Booking>()
             var result_id = reservationAPI.getByBookingID(keyword)
 
-            if(result_id.size >1){throw Exception("Danger: Duplicate entry found in reservation database.")}
+            filterResult(result_id, results, status)
+            Resource.Success(results)
 
-//            for (item in result_id) {
-//                results.add(item.toBooking())
-//            }
-
-            Resource.Success(result_id[0].toBooking())
         } catch (exception: Exception) {
             Resource.Failure(exception)
         }
     }
 
-    override suspend fun populate(): Resource<MutableList<Booking>> {
+    override suspend fun getByID(keyword: String): Resource<Booking> {
+        return try {
+            var result_id = reservationAPI.getByID(keyword)
+            Resource.Success(result_id.toBooking())
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
+
+    override suspend fun populate(status: String): Resource<MutableList<Booking>> {
         return try {
 
             var results: MutableList<Booking> = mutableListOf<Booking>()
 
             var result_default = reservationAPI.getAll()
-            for (item in result_default) {
-                results.add(item.toBooking())
-            }
+            filterResult(result_default, results, status)
 
             Resource.Success(results)
         } catch (exception: Exception) {

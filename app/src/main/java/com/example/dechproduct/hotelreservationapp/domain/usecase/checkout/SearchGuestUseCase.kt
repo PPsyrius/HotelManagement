@@ -8,5 +8,5 @@ import javax.inject.Inject
 
 class SearchGuestUseCase @Inject constructor(
     private val reservationRepository: ReservationRepository, private val roomRepository: RoomRepository) {
-    suspend operator fun invoke(keyword: String): Resource<Booking> = reservationRepository.searchByID(keyword)
+    suspend operator fun invoke(keyword: String): Resource<MutableList<Booking>> = reservationRepository.searchByID(keyword)
 }

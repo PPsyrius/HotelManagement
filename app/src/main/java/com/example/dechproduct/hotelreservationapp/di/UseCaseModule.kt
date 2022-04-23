@@ -8,10 +8,10 @@ import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.domain.usecase.checkin.*
 import com.example.dechproduct.hotelreservationapp.domain.usecase.checkout.*
 import com.example.dechproduct.hotelreservationapp.domain.usecase.information.*
-import com.example.dechproduct.hotelreservationapp.domain.usecase.login.*
+import com.example.dechproduct.hotelreservationapp.domain.usecase.auth.*
+import com.example.dechproduct.hotelreservationapp.domain.usecase.com.GetReserveByIDUseCase
 import com.example.dechproduct.hotelreservationapp.domain.usecase.reservation.*
 import com.example.dechproduct.hotelreservationapp.domain.usecase.room.*
-import com.example.dechproduct.hotelreservationapp.domain.usecase.utility.*
 
 import dagger.Module
 import dagger.Provides
@@ -31,6 +31,9 @@ object UseCaseModule {
                        informationRepository: InformationRepository
     ): UseCase {
         return UseCase(
+            LoginUseCase(userRepository),
+            LogoutUseCase(userRepository),
+
             CheckInFromReservationUseCase(roomRepository, EditReserveUseCase(reservationRepository)),
             CheckInFromWalkInUseCase(roomRepository, AddReserveUseCase(reservationRepository)),
 
@@ -38,21 +41,19 @@ object UseCaseModule {
             ExtendStayUseCase(reservationRepository, roomRepository),
             SearchGuestUseCase(reservationRepository, roomRepository),
 
+            GetReserveByIDUseCase(reservationRepository),
+
             ShowPromotionUseCase(informationRepository),
 
-            LoginUseCase(userRepository),
-
             AddReserveUseCase(reservationRepository),
-            SearchReserveByNameUseCase(reservationRepository),
-            SearchReserveByIDUseCase(reservationRepository),
-            PopulateReserveUseCase(reservationRepository),
             EditReserveUseCase(reservationRepository),
+            PopulateReserveUseCase(reservationRepository),
             RemoveReserveUseCase(reservationRepository),
+            SearchReserveByIDUseCase(reservationRepository),
+            SearchReserveByNameUseCase(reservationRepository),
 
             MarkRoomUseCase(roomRepository),
             SearchRoomUseCase(roomRepository),
-
-            LogoutUseCase(userRepository),
         )
     }
 }

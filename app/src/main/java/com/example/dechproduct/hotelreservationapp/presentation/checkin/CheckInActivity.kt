@@ -82,7 +82,7 @@ class CheckInActivity : AppCompatActivity() {
         binding.fabAdd.setOnClickListener {
             Toast.makeText(applicationContext, "Add Reservation", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, AddReservationActivity::class.java)
-            //TODO: Call dedicated add reservation + checkin page
+            //TODO: Call dedicated AddReservationActivity with CheckIn Button
             startActivity(intent)
         }
 

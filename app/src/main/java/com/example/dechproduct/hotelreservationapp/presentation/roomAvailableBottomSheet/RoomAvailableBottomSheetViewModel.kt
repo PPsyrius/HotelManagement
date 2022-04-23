@@ -17,7 +17,6 @@ class RoomAvailableBottomSheetViewModel @Inject constructor(private val useCase:
 
     suspend fun searchReserve(keyword:String){
         viewModelScope.launch {
-            //TODO:EDIT HERE
             val reservation = useCase.searchReserveByNameUseCase(keyword)
             reserver.postValue(reservation)
         }

@@ -1,4 +1,4 @@
-package com.example.dechproduct.hotelreservationapp.domain.usecase.login
+package com.example.dechproduct.hotelreservationapp.domain.usecase.auth
 
 import com.example.dechproduct.hotelreservationapp.data.model.Staff
 import com.example.dechproduct.hotelreservationapp.util.Resource

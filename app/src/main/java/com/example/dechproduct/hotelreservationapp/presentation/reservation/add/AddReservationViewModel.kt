@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.dechproduct.hotelreservationapp.data.model.Address
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
+import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -39,6 +40,7 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
                         address = Address(address),
                         guestPass = null,
                         guestRoom = null,
+                        guestStatus = Constants.GUEST_STATUS_RESERVED
                     )
                 )
                 reserver.postValue(reservation)
@@ -63,6 +65,7 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
                         address = Address(address),
                         guestPass = null,
                         guestRoom = null,
+                        guestStatus = Constants.GUEST_STATUS_RESERVED
                     )
                 )
                 reserver.postValue(reservation)

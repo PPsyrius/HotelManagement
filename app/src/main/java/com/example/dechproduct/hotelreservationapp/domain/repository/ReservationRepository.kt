@@ -7,7 +7,8 @@ interface ReservationRepository {
     suspend fun add(booking:Booking):Resource<Booking>
     suspend fun edit(booking:Booking):Resource<Booking>
     suspend fun remove(booking: Booking):Resource<Booking>
-    suspend fun searchByName(keyword: String):Resource<MutableList<Booking>>
-    suspend fun searchByID(keyword: String):Resource<Booking>
-    suspend fun populate():Resource<MutableList<Booking>>
+    suspend fun searchByName(keyword: String, status: String = ""):Resource<MutableList<Booking>>
+    suspend fun searchByID(keyword: String, status: String = ""):Resource<MutableList<Booking>>
+    suspend fun getByID(keyword: String):Resource<Booking>
+    suspend fun populate(status: String = ""):Resource<MutableList<Booking>>
 }

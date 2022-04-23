@@ -13,20 +13,26 @@ interface ReservationAPIService {
     @GET(Constants.API_BOOK_INDEX_URL)
     suspend fun getByFirstName(
         @Query(Constants.API_BOOK_KEY_FNAME)
-        first_name:String,
+        first_name: String,
     ): List<BookingDTO>
 
     @GET(Constants.API_BOOK_INDEX_URL)
     suspend fun getByLastName(
         @Query(Constants.API_BOOK_KEY_LNAME)
-        last_name:String,
+        last_name: String,
     ): List<BookingDTO>
 
     @GET(Constants.API_BOOK_INDEX_URL)
     suspend fun getByBookingID(
         @Query(Constants.API_BOOK_KEY_ID)
-        id:String,
+        id: String,
     ): List<BookingDTO>
+
+    @GET(Constants.API_BOOK_INDEX_URL + "/{id}")
+    suspend fun getByID(
+        @Path("id")
+        id: String,
+    ): BookingDTO
 
     @GET(Constants.API_BOOK_INDEX_URL)
     suspend fun getAll(): List<BookingDTO>
@@ -36,25 +42,24 @@ interface ReservationAPIService {
         @Body booking: Booking,
     ): Response<ResponseBody>
 
-    //Use bookingID, not database internal ID
-    @PUT(Constants.API_BOOK_INDEX_URL)
+    @PUT(Constants.API_BOOK_INDEX_URL + "/{id}")
     suspend fun putBooking(
-        @Query(Constants.API_BOOK_KEY_ID)
-        id:String,
-        @Body booking:Booking
+        @Path("id")
+        id: String,
+        @Body booking: Booking
     ): Response<ResponseBody>
 
-    @PATCH(Constants.API_BOOK_INDEX_URL)
+    @PATCH(Constants.API_BOOK_INDEX_URL + "/{id}")
     suspend fun updateBooking(
-        @Query(Constants.API_BOOK_KEY_ID)
-        id:String,
-        @Body booking:Booking
+        @Path("id")
+        id: String,
+        @Body booking: Booking
     ): Response<ResponseBody>
 
     @DELETE(Constants.API_BOOK_INDEX_URL)
     suspend fun deleteBooking(
         @Query(Constants.API_BOOK_KEY_ID)
-        id:String,
+        id: String,
     ): Response<ResponseBody>
 
 }

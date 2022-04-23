@@ -5,27 +5,29 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
+import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CheckInViewModel @Inject constructor(private val useCase: UseCase): ViewModel(){
+class CheckInViewModel @Inject constructor(private val useCase: UseCase) : ViewModel() {
 
     var reserver = MutableLiveData<Resource<MutableList<Booking>>>()
     lateinit var result: MutableList<Booking>
 
-    suspend fun searchReserve(keyword:String){
+    suspend fun searchReserve(keyword: String) {
         viewModelScope.launch {
-            val reservations = useCase.searchReserveByNameUseCase(keyword)
+            val reservations =
+                useCase.searchReserveByNameUseCase(keyword, arg = Constants.GUEST_STATUS_RESERVED)
             reserver.postValue(reservations)
         }
     }
 
-    suspend fun populateReserve(){
+    suspend fun populateReserve() {
         viewModelScope.launch {
-            val reservations = useCase.populateReserveUseCase()
+            val reservations = useCase.populateReserveUseCase(arg = Constants.GUEST_STATUS_RESERVED)
             reserver.postValue(reservations)
         }
     }

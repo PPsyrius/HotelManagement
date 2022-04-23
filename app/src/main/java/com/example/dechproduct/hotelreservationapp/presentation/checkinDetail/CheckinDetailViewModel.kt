@@ -71,7 +71,7 @@ class CheckinDetailViewModel @Inject constructor(private val useCase: UseCase) :
 
     suspend fun updateInfo(reserved: String) {
         viewModelScope.launch {
-            val reservation = useCase.searchReserveByIDUseCase(reserved)
+            val reservation = useCase.getReserveByIDUseCase(reserved)
             selected.postValue(reservation)
         }
     }

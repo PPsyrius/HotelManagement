@@ -46,7 +46,7 @@ class AddReservationActivity : AppCompatActivity() {
 
         binding.btnSubmit.setOnClickListener{
 
-            //TODO:Check no fields are blank, implement adult/child count
+            //TODO: Check no fields are blank
             var fname = findViewById<FormInputText>(R.id.first_name_customer).getValue()
             var lname = findViewById<FormInputText>(R.id.last_name_customer).getValue()
             var phone = findViewById<FormInputText>(R.id.phoneNumber).getValue()
@@ -55,6 +55,7 @@ class AddReservationActivity : AppCompatActivity() {
             var sta_date = findViewById<TextView>(R.id.tvDateStart).text.toString()
             var end_date = findViewById<TextView>(R.id.tvDateEnd).text.toString()
             var address = findViewById<FormInputMultiline>(R.id.about).getValue()
+            //TODO: Bind adult/child count to view component
             var adult_count = 2
             var child_count = 0
 

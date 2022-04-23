@@ -169,24 +169,18 @@ class CheckinDetailActivity : AppCompatActivity() {
 //                        ).show()
                         checkInDetailViewModel.reservation = reservation
 
+                        binding.tvGuestName.text =
+                            reservation.firstName + " " + reservation.lastName
                         binding.roomType.text = reservation.guestRoom?.roomType
                         binding.tvCheckInDate.text = reservation.arrivalDate
                         binding.tvCheckOutDate.text = reservation.departDate
                         binding.tvDisplayRoomBed.text = reservation.guestRoom?.roomBeds
-                        reservation.adultCount?.let { adult_count ->
-                            binding.edtGuestNumber.setText(
-                                adult_count
-                            )
-                        }
-                        reservation.childCount?.let { child_count ->
-                            binding.edtGuestNumber.setText(
-                                child_count
-                            )
-                        }
+                        //TODO: Set binding to reservation.adultCount, reservation.childCount
+
                         if (reservation.guestRoom?.breakfast == true) {
-                            //TODO:Set check box true
+                            //TODO: Set check box true
                         } else {
-                            //Set check box false
+                            //TODO: Set check box false
                         }
                     }
                 }
@@ -199,11 +193,17 @@ class CheckinDetailActivity : AppCompatActivity() {
     }
 
     private fun observeCheckInResolve() {
-        checkInDetailViewModel.selected.observe(this, {
+        checkInDetailViewModel.resolve.observe(this, {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { reservation ->
                         Log.d("CheckInResActivity", reservation.toString())
+                        Toast.makeText(
+                            applicationContext,
+                            "Check-In Successful!",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
                         val intent =
                             Intent(this@CheckinDetailActivity, MenuActivity::class.java)
                         startActivity(intent)

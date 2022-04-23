@@ -4,20 +4,17 @@ object Constants {
     //Guest Model
     const val GUEST_STATUS_CREATED = "CREATED"
     const val GUEST_STATUS_RESERVED = "RESERVED"
-    const val GUEST_STATUS_CHECKIN = "CH_IN"
-    const val GUEST_STATUS_CHECKOUT = "CH_OUT"
+    const val GUEST_STATUS_CHECKIN = "CHECKIN"
+    const val GUEST_STATUS_CHECKOUT = "CHECKOUT"
     const val GUEST_STATUS_ERROR = "ERR"
 
     //Room Model
-    const val ROOM_TYP_STANDARD = "standard"
-    const val ROOM_TYP_DELUXE = "deluxe"
-    const val ROOM_TYP_SUITE = "suite"
+    const val ROOM_TYP_STANDARD = "Standard"
+    const val ROOM_TYP_DELUXE = "Deluxe"
+    const val ROOM_TYP_SUITE = "Suite"
 
-    const val ROOM_BED_SINGLE = "single"
-    const val ROOM_BED_DOUBLE = "twin"
-
-    const val ROOM_LOC_NORMAL = "wedge"
-    const val ROOM_LOC_CORNER = "corner"
+    const val ROOM_BED_SINGLE = "Single"
+    const val ROOM_BED_DOUBLE = "Twin"
 
     const val ROOM_DEFAULT_CAPACITY = 2
 
