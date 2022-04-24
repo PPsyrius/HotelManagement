@@ -6,6 +6,6 @@ import com.example.dechproduct.hotelreservationapp.data.model.RoomStatus
 import com.example.dechproduct.hotelreservationapp.util.Resource
 
 interface RoomRepository {
-    suspend fun markRoom(room: Room, roomStatus: RoomStatus):Resource<Room>
+    suspend fun editRoom(room: Room):Resource<Room>
     suspend fun searchRoom(keyword: String):Resource<MutableList<Room>>
 }

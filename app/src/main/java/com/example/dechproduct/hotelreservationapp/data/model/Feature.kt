@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Feature(
+    //TODO: enum here as well?
     var displayName: String? = "",
 
     var internalCode: String? = "",

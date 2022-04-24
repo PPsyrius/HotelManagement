@@ -14,47 +14,40 @@ import javax.inject.Inject
 
 class RoomRepositoryImpl @Inject constructor(
     private val roomAPI: RoomAPIService,
-    val sharedPreferences: SharedPreferences): RoomRepository{
+    val sharedPreferences: SharedPreferences
+) : RoomRepository {
 
-    override suspend fun markRoom(room: Room, roomStatus: RoomStatus): Resource<Room> {
+    override suspend fun editRoom(room: Room): Resource<Room> {
         return try {
 
-            //TODO: Implements room marking functions
+            var response = room.roomID?.let{ roomAPI.updateRoom(it, room)}
 
-            if(true)
-                Resource.Success(Room())
+            if (response!!.isSuccessful)
+                Resource.Success(room)
             else
                 throw Exception("An unknown error has occur.")
-        }
-
-        catch(exception: IndexOutOfBoundsException){
+        } catch (exception: IndexOutOfBoundsException) {
             Resource.Failure(Exception("No room(s) found."))
-        }
-
-        catch(exception: Exception) {
+        } catch (exception: Exception) {
             Log.d("RoomRepositoryImpl", exception.toString())
             Resource.Failure(exception)
         }
     }
 
-    override suspend fun searchRoom(keyword: String):Resource<MutableList<Room>> {
+    override suspend fun searchRoom(keyword: String): Resource<MutableList<Room>> {
         return try {
 
             var results: MutableList<Room> = mutableListOf<Room>()
 
             //TODO: Implements multiple ways to search (price range, type, floor)
 
-            if(true)
+            if (true)
                 Resource.Success(results)
             else
                 throw Exception("An unknown error has occur.")
-        }
-
-        catch(exception: IndexOutOfBoundsException){
+        } catch (exception: IndexOutOfBoundsException) {
             Resource.Failure(Exception("No room(s) found."))
-        }
-
-        catch(exception: Exception) {
+        } catch (exception: Exception) {
             Log.d("RoomRepositoryImpl", exception.toString())
             Resource.Failure(exception)
         }

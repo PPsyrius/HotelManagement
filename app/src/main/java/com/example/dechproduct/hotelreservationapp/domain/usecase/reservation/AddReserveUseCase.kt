@@ -6,5 +6,8 @@ import com.example.dechproduct.hotelreservationapp.util.Resource
 import javax.inject.Inject
 
 class AddReserveUseCase @Inject constructor(private val reservationRepository: ReservationRepository) {
-    suspend operator fun invoke(booking: Booking): Resource<Booking> = reservationRepository.add(booking)
+    suspend operator fun invoke(booking: Booking): Resource<Booking> {
+        booking.bookingID = System.currentTimeMillis().toString()
+        return reservationRepository.add(booking)
+    }
 }

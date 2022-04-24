@@ -8,9 +8,11 @@ import com.example.dechproduct.hotelreservationapp.util.Resource
 import javax.inject.Inject
 
 class CheckInFromWalkInUseCase @Inject constructor(
-    private val roomRepository: RoomRepository, private val addReserveUseCase: AddReserveUseCase
+    private val roomRepository: RoomRepository,
+    private val addReserveUseCase: AddReserveUseCase
 ) {
-    suspend operator fun invoke(): String {
-        return "Resource<Booking>"
+    suspend operator fun invoke(booking: Booking): Resource<Booking>{
+        //TODO: Implements from the dedicated walk-in page.
+        return addReserveUseCase(booking)
     }
 }

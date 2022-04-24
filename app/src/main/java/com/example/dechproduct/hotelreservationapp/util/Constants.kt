@@ -1,6 +1,7 @@
 package com.example.dechproduct.hotelreservationapp.util
 
 object Constants {
+    //TODO: All model enum?
     //Guest Model
     const val GUEST_STATUS_CREATED = "CREATED"
     const val GUEST_STATUS_RESERVED = "RESERVED"
@@ -72,10 +73,8 @@ object Constants {
     const val API_INFO_INDEX_URL =
         "info/"
 
-    //Passable Data
+    //Shared Preference
     const val SHARED_PREF_NAME = "USER_SESSION"
-
-    //Miscellaneous
     const val LOGGED_IN_USER_NAME = "LOGGED_IN_USER"
     const val LOGGED_IN_DISPLAY_NAME = "LOGGED_IN_USER_NAME"
     const val RESERVED_ID = "RESERVED_ID"

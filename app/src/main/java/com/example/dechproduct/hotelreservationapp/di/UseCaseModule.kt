@@ -25,21 +25,29 @@ object UseCaseModule {
 
     @Singleton
     @Provides
-    fun provideUseCase(userRepository: UserRepository,
-                       reservationRepository: ReservationRepository,
-                       roomRepository: RoomRepository,
-                       informationRepository: InformationRepository
+    fun provideUseCase(
+        userRepository: UserRepository,
+        reservationRepository: ReservationRepository,
+        roomRepository: RoomRepository,
+        informationRepository: InformationRepository
     ): UseCase {
         return UseCase(
             LoginUseCase(userRepository),
             LogoutUseCase(userRepository),
 
-            CheckInFromReservationUseCase(roomRepository, EditReserveUseCase(reservationRepository)),
+            CheckInFromReservationUseCase(
+                roomRepository,
+                EditReserveUseCase(reservationRepository)
+            ),
             CheckInFromWalkInUseCase(roomRepository, AddReserveUseCase(reservationRepository)),
 
-            CheckOutGuestUseCase(reservationRepository, roomRepository),
-            ExtendStayUseCase(reservationRepository, roomRepository),
-            SearchGuestUseCase(reservationRepository, roomRepository),
+            CheckOutGuestUseCase(
+                roomRepository,
+                EditReserveUseCase(reservationRepository),
+                EditRoomUseCase(roomRepository)
+            ),
+            ExtendStayUseCase(roomRepository, EditReserveUseCase(reservationRepository)),
+            SearchGuestUseCase(roomRepository, reservationRepository),
 
             GetReserveByIDUseCase(reservationRepository),
 
@@ -52,7 +60,8 @@ object UseCaseModule {
             SearchReserveByIDUseCase(reservationRepository),
             SearchReserveByNameUseCase(reservationRepository),
 
-            MarkRoomUseCase(roomRepository),
+            EditRoomUseCase(roomRepository),
+            MarkRoomUseCase(EditRoomUseCase(roomRepository)),
             SearchRoomUseCase(roomRepository),
         )
     }

@@ -28,6 +28,12 @@ interface ReservationAPIService {
         id: String,
     ): List<BookingDTO>
 
+    @GET(Constants.API_BOOK_INDEX_URL)
+    suspend fun getByBookingArrivalDate(
+        @Query(Constants.API_BOOK_KEY_DATE_IN)
+        id: String,
+    ): List<BookingDTO>
+
     @GET(Constants.API_BOOK_INDEX_URL + "/{id}")
     suspend fun getByID(
         @Path("id")

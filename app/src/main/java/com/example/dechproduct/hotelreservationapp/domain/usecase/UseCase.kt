@@ -33,6 +33,7 @@ class UseCase(
     var searchReserveByIDUseCase: SearchReserveByIDUseCase,
     var searchReserveByNameUseCase: SearchReserveByNameUseCase,
 
+    var editRoomUseCase: EditRoomUseCase,
     var markRoomUseCase: MarkRoomUseCase,
     var searchRoomUseCase: SearchRoomUseCase,
     ){}

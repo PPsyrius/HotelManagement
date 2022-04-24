@@ -28,7 +28,7 @@ data class Booking(
     var childCount: Int?,
 
     var paymentType: String? = "",
-
+    //TODO: enum for guest status?
     var guestStatus: String? = Constants.GUEST_STATUS_CREATED,
 
     var guestPass: GuestPass?,

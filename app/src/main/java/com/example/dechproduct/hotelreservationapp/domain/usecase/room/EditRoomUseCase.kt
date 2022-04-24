@@ -7,9 +7,7 @@ import com.example.dechproduct.hotelreservationapp.domain.repository.RoomReposit
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import javax.inject.Inject
 
-class MarkRoomUseCase @Inject constructor(private val editRoomUseCase: EditRoomUseCase) {
-    suspend operator fun invoke(room: Room, roomStatus: RoomStatus): Resource<Room> {
-        room.roomStatus = roomStatus
-        return editRoomUseCase(room)
-    }
+class EditRoomUseCase @Inject constructor(private val roomRepository: RoomRepository) {
+    suspend operator fun invoke(room: Room): Resource<Room> =
+        roomRepository.editRoom(room)
 }

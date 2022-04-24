@@ -20,7 +20,6 @@ class ReservationRepositoryImpl @Inject constructor(
     override suspend fun add(booking: Booking): Resource<Booking> {
         return try {
 
-            val uid = System.currentTimeMillis()
             var response_msg = reservationAPI.postBooking(booking)
 
             Log.d("POST:", response_msg.toString())
@@ -34,6 +33,8 @@ class ReservationRepositoryImpl @Inject constructor(
             Resource.Failure(exception)
         }
     }
+
+    //TODO: Implements search keyword e.g. #TODAY
 
     override suspend fun searchByName(
         keyword: String,
@@ -55,7 +56,7 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun filterResult(frag: List<BookingDTO>, results: MutableList<Booking>, arg: String) {
+    private fun filterResult(frag: List<BookingDTO>, results: MutableList<Booking>, arg: String = "") {
         if (arg.isNotEmpty()) {
             for (item in frag) {
                 if (item.guestStatus == arg) {
@@ -79,6 +80,21 @@ class ReservationRepositoryImpl @Inject constructor(
             var result_id = reservationAPI.getByBookingID(keyword)
 
             filterResult(result_id, results, status)
+            Resource.Success(results)
+
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
+
+    override suspend fun searchByDate(
+        date: String
+    ): Resource<MutableList<Booking>> {
+        return try {
+            var results: MutableList<Booking> = mutableListOf<Booking>()
+            var result_date = reservationAPI.getByBookingArrivalDate(date)
+
+            filterResult(result_date, results)
             Resource.Success(results)
 
         } catch (exception: Exception) {
@@ -143,6 +159,22 @@ class ReservationRepositoryImpl @Inject constructor(
     private fun partialSearch(): MutableList<Booking> {
         var results: MutableList<Booking> = mutableListOf<Booking>()
         return results
+    }
+
+    override suspend fun searchByRoomID(
+        keyword: String
+    ): Resource<MutableList<Booking>> {
+        //TODO: partial search on incomplete string (e.g."30" -> ret"305,306")
+        return try {
+            var results: MutableList<Booking> = mutableListOf<Booking>()
+            var result_id = reservationAPI.getByBookingID(keyword)
+
+            filterResult(result_id, results)
+            Resource.Success(results)
+
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
     }
 
 }

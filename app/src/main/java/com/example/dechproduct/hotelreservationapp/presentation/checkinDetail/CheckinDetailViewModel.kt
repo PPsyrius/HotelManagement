@@ -77,9 +77,9 @@ class CheckinDetailViewModel @Inject constructor(private val useCase: UseCase) :
     }
 
     suspend fun checkInReserved() {
-        reservation.guestStatus = Constants.GUEST_STATUS_CHECKIN
         viewModelScope.launch {
-            val response = useCase.checkInFromReservationUseCase(reservation)
+            //TODO: Select room from list, then pass it here at 'Room()'
+            val response = useCase.checkInFromReservationUseCase(reservation, Room())
             resolve.postValue(response)
         }
     }

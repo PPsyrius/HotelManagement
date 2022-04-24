@@ -7,11 +7,15 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class RoomStatus(
-    //TODO: Enum class
+enum class RoomStatus(
     var displayName: String?,
 
     var internalCode: String?,
 
     ) : Parcelable {
+    SALE("Ready", "RS"),
+    CLEAN("Not Cleaned", "NC"),
+    ORDER("Out of Order", "NF"),
+    OCUPD("Occupied", "U0"),
+    INSPC("Inspecting", "WI"),
 }
