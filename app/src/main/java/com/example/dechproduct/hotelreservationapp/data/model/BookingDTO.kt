@@ -1,8 +1,15 @@
 package com.example.dechproduct.hotelreservationapp.data.model
 
 
+import android.os.Build
+import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.GuestStatus
+import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.PaymentType
+import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.VerificationID
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.*
 
 data class BookingDTO(
     @SerializedName(Constants.API_BOOK_KEY_ID)
@@ -32,25 +39,25 @@ data class BookingDTO(
     @SerializedName(Constants.API_BOOK_KEY_PASS)
     var guestPass: GuestPass?,
     @SerializedName(Constants.API_BOOK_KEY_ROOM)
-    var guestRoom: Room?,
+    var guestRoom: RoomDTO?,
 ) {
-
     fun toBooking(): Booking{
+        var dateFormat = SimpleDateFormat("dd-MM-yyyy")
         return Booking(
             bookingID = bookingID,
             firstName = firstName,
             lastName = lastName,
             phoneNumber = phoneNumber,
             address = address,
-            verificationID = verificationID,
-            arrivalDate = arrivalDate,
-            departDate = departDate,
+            verificationID = verificationID?.let { VerificationID(it) },
+            arrivalDate = dateFormat.parse(arrivalDate),
+            departDate = dateFormat.parse(departDate),
             adultCount = adultCount,
             childCount = childCount,
-            paymentType = paymentType,
-            guestStatus = guestStatus,
+            paymentType = paymentType?.let { PaymentType.unpack(it) },
+            guestStatus = guestStatus?.let { GuestStatus.unpack(it) },
             guestPass = guestPass,
-            guestRoom = guestRoom,
+            guestRoom = guestRoom?.toRoom(),
         )
     }
 }

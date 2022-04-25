@@ -1,25 +1,7 @@
 package com.example.dechproduct.hotelreservationapp.util
 
 object Constants {
-    //TODO: All model enum?
-    //Guest Model
-    const val GUEST_STATUS_CREATED = "CREATED"
-    const val GUEST_STATUS_RESERVED = "RESERVED"
-    const val GUEST_STATUS_CHECKIN = "CHECKIN"
-    const val GUEST_STATUS_CHECKOUT = "CHECKOUT"
-    const val GUEST_STATUS_ERROR = "ERR"
-
-    //Room Model
-    const val ROOM_TYP_STANDARD = "Standard"
-    const val ROOM_TYP_DELUXE = "Deluxe"
-    const val ROOM_TYP_SUITE = "Suite"
-
-    const val ROOM_BED_SINGLE = "Single"
-    const val ROOM_BED_DOUBLE = "Twin"
-
-    const val ROOM_DEFAULT_CAPACITY = 2
-
-    //Database via API
+    //Target API
     const val API_USER_BASE_URL =
         "http://10.0.2.2:3000/"
     const val API_USER_INDEX_URL =
@@ -59,11 +41,10 @@ object Constants {
     const val API_ROOM_KEY_CAP = "maxCap"
     const val API_ROOM_KEY_FLOOR = "posFloor"
     const val API_ROOM_KEY_FEATURES = "features"
-    const val API_ROOM_ADDON_FEATURES = "addon"
-    const val API_ROOM_BREAKFAST_FEATURES = "breakfast"
+    const val API_ROOM_KEY_ADDON = "addon"
+    const val API_ROOM_KEY_BREAKFAST = "breakfast"
     const val API_ROOM_KEY_SMOKING = "smoking"
     const val API_ROOM_KEY_STAT = "roomStatus"
-    
     const val API_ROOM_KEY_WALK = "isWalking"
     const val API_ROOM_KEY_DEVICES = "deviceList"
     const val API_ROOM_KEY_PRICE = "roomPrice"

@@ -29,7 +29,7 @@ class RoomAvailableAdapter (
 
         holder.rooms.text = bookings[index].firstName
 //        +"\n"+ bookings[index].lastName
-        holder.roomStatus.text = bookings[index].guestStatus
+        holder.roomStatus.text = bookings[index].guestStatus?.displayName
 
         holder.roomPrice.text = "10,000"+ " ฿"
 

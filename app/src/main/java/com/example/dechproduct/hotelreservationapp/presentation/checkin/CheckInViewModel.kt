@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.GuestStatus
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
@@ -20,14 +21,14 @@ class CheckInViewModel @Inject constructor(private val useCase: UseCase) : ViewM
     suspend fun searchReserve(keyword: String) {
         viewModelScope.launch {
             val reservations =
-                useCase.searchReserveByNameUseCase(keyword, arg = Constants.GUEST_STATUS_RESERVED)
+                useCase.searchReserveByNameUseCase(keyword, arg = GuestStatus.RESERVED)
             reserver.postValue(reservations)
         }
     }
 
     suspend fun populateReserve() {
         viewModelScope.launch {
-            val reservations = useCase.populateReserveUseCase(arg = Constants.GUEST_STATUS_RESERVED)
+            val reservations = useCase.populateReserveUseCase(arg = GuestStatus.RESERVED)
             reserver.postValue(reservations)
         }
     }

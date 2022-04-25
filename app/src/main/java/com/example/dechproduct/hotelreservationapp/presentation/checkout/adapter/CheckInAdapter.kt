@@ -29,7 +29,7 @@ class CheckOutAdapter (
         holder.reserveDateOut.text = bookings[index].departDate.toString()
         holder.reservePhoneNo.text = bookings[index].phoneNumber.toString()
     }
-
+    
     override fun getItemCount() = bookings.size
 
 }

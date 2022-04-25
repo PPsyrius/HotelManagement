@@ -35,11 +35,10 @@ object UseCaseModule {
             LoginUseCase(userRepository),
             LogoutUseCase(userRepository),
 
-            CheckInFromReservationUseCase(
+            CheckInGuestUseCase(
                 roomRepository,
                 EditReserveUseCase(reservationRepository)
             ),
-            CheckInFromWalkInUseCase(roomRepository, AddReserveUseCase(reservationRepository)),
 
             CheckOutGuestUseCase(
                 roomRepository,

@@ -44,24 +44,25 @@ class AddReservationActivity : AppCompatActivity() {
             showDateRangePicker()
         }
 
-        binding.btnSubmit.setOnClickListener{
+        binding.btnSubmit.setOnClickListener {
 
             //TODO: Check no fields are blank
             var fname = findViewById<FormInputText>(R.id.first_name_customer).getValue()
             var lname = findViewById<FormInputText>(R.id.last_name_customer).getValue()
             var phone = findViewById<FormInputText>(R.id.phoneNumber).getValue()
+            //TODO: Pass Payment Type object from here
             var payment = findViewById<FormInputSpinner>(R.id.payment_type).getValue()
             var id = findViewById<FormInputText>(R.id.ID).getValue()
-            var sta_date = findViewById<TextView>(R.id.tvDateStart).text.toString()
-            var end_date = findViewById<TextView>(R.id.tvDateEnd).text.toString()
             var address = findViewById<FormInputMultiline>(R.id.about).getValue()
             //TODO: Bind adult/child count to view component
             var adult_count = 2
             var child_count = 0
 
-            lifecycleScope.launch{
-                addReservationViewModel.addReserve(fname,lname,phone,
-                    payment,id,sta_date,end_date,address,adult_count,child_count)
+            lifecycleScope.launch {
+                addReservationViewModel.addReserve(
+                    fname, lname, phone,
+                    payment, id, address, adult_count, child_count
+                )
             }
 
             val intent = Intent(this@AddReservationActivity, ReservationMenuActivity::class.java)
@@ -72,11 +73,12 @@ class AddReservationActivity : AppCompatActivity() {
 
         binding.buttonCamera.setOnClickListener {
             Toast.makeText(applicationContext, "Camera Button is Tapped.", Toast.LENGTH_LONG).show()
-            val intent = Intent(this@AddReservationActivity, AddReservationCameraActivity::class.java)
+            val intent =
+                Intent(this@AddReservationActivity, AddReservationCameraActivity::class.java)
             startActivity(intent)
         }
 
-        binding.btnBackMenu.setOnClickListener{
+        binding.btnBackMenu.setOnClickListener {
             val intent = Intent(this@AddReservationActivity, ReservationMenuActivity::class.java)
             startActivity(intent)
         }
@@ -95,12 +97,11 @@ class AddReservationActivity : AppCompatActivity() {
         )
 
         dateRangePicker.addOnPositiveButtonClickListener { datePicked ->
-
-            val startDate = datePicked.first
-            val endDate = datePicked.second
-            if (startDate != null && endDate != null) {
-                binding.tvDateStart.text = convertLongToDate(startDate)
-                binding.tvDateEnd.text = convertLongToDate(endDate)
+            addReservationViewModel.startDateEpoch = datePicked.first
+            addReservationViewModel.endDateEpoch = datePicked.second
+            if (addReservationViewModel.startDateEpoch != null && addReservationViewModel.endDateEpoch != null) {
+                binding.tvDateStart.text = convertLongToDate(addReservationViewModel.startDateEpoch)
+                binding.tvDateEnd.text = convertLongToDate(addReservationViewModel.endDateEpoch)
 
             }
         }
@@ -120,13 +121,16 @@ class AddReservationActivity : AppCompatActivity() {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { _ ->
-                        Toast.makeText(applicationContext, "Booking Success.",
-                            Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            applicationContext, "Booking Success.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
                 }
 
                 is Resource.Failure -> {
-                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         })

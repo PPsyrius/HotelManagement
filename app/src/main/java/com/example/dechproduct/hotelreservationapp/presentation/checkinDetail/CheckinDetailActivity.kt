@@ -19,6 +19,8 @@ import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -172,8 +174,14 @@ class CheckinDetailActivity : AppCompatActivity() {
                         binding.tvGuestName.text =
                             reservation.firstName + " " + reservation.lastName
                         binding.roomType.text = reservation.guestRoom?.roomType
-                        binding.tvCheckInDate.text = reservation.arrivalDate
-                        binding.tvCheckOutDate.text = reservation.departDate
+                        binding.tvCheckInDate.text = SimpleDateFormat(
+                            "dd-MM-yyyy",
+                            Locale.getDefault()
+                        ).format(reservation.arrivalDate)
+                        binding.tvCheckOutDate.text = SimpleDateFormat(
+                            "dd-MM-yyyy",
+                            Locale.getDefault()
+                        ).format(reservation.departDate)
                         binding.tvDisplayRoomBed.text = reservation.guestRoom?.roomBeds
                         //TODO: Set binding to reservation.adultCount, reservation.childCount
 

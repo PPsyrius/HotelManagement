@@ -1,11 +1,17 @@
-package com.example.dechproduct.hotelreservationapp.presentation.reservation.add
+package com.example.dechproduct.hotelreservationapp.presentation.checkinWalk
 
-import android.os.Build
+import android.annotation.SuppressLint
+import android.app.Application
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dechproduct.hotelreservationapp.data.model.Address
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.Room
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.GuestStatus
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.PaymentType
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.VerificationID
@@ -14,18 +20,14 @@ import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.time.Instant
-import java.time.LocalDate
-import java.time.ZoneId
 import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class AddReservationViewModel @Inject constructor(private val useCase: UseCase) : ViewModel() {
+class CheckinWalkViewModel @Inject constructor(private val useCase: UseCase) : ViewModel() {
 
-    var reserver = MutableLiveData<Resource<Booking>>()
-    var startDateEpoch: Long = 0
-    var endDateEpoch: Long = 0
+    var builtReserve = MutableLiveData<Resource<Booking>>()
+    var resolve = MutableLiveData<Resource<Booking>>()
 
     suspend fun addReserve(
         fname: String, lname: String, phone: String,
@@ -42,8 +44,9 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
                         //TODO: Return and pass PaymentType object, replacing {PaymentType.CASH}
                         paymentType = PaymentType.CASH,
                         verificationID = VerificationID(verification),
-                        arrivalDate = Date(startDateEpoch),
-                        departDate = Date(endDateEpoch),
+                        //TODO: Pass arrival and depart date
+                        arrivalDate = Date(),
+                        departDate = Date(),
                         adultCount = adult_count,
                         childCount = child_count,
                         address = Address(address),
@@ -52,7 +55,15 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
                         guestStatus = GuestStatus.RESERVED
                     )
                 )
-            reserver.postValue(reservation)
+            builtReserve.postValue(reservation)
+        }
+    }
+
+    suspend fun checkInReserve(reservation: Booking) {
+        viewModelScope.launch {
+            //TODO: Select room from list, then pass it here at 'Room()'
+            val response = useCase.checkInGuestUseCase(reservation, Room())
+            resolve.postValue(response)
         }
     }
 }

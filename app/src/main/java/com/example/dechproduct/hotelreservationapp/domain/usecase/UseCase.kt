@@ -15,8 +15,7 @@ class UseCase(
     var loginUseCase: LoginUseCase,
     var logoutUseCase: LogoutUseCase,
 
-    var checkInFromReservationUseCase: CheckInFromReservationUseCase,
-    var checkInFromWalkInUseCase: CheckInFromWalkInUseCase,
+    var checkInGuestUseCase: CheckInGuestUseCase,
 
     var checkOutGuestUseCase: CheckOutGuestUseCase,
     var extendStayUseCase: ExtendStayUseCase,
@@ -36,4 +35,4 @@ class UseCase(
     var editRoomUseCase: EditRoomUseCase,
     var markRoomUseCase: MarkRoomUseCase,
     var searchRoomUseCase: SearchRoomUseCase,
-    ){}
+) {}
