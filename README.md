@@ -1,5 +1,5 @@
 # Hotel Management Application
-*From Version 0.8.6 onwards, data model overhauled.*
+*From Version 0.8.6 onwards, data model structure overhauled.*
 ## Setting Up Testing Environment
 Install ***json-server*** through npm.
 ```
