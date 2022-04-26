@@ -15,13 +15,14 @@ enum class RoomStatus(
     var internalCode: String,
 
     ) : Parcelable {
-    READY("Ready", "RS"),
+    READY("Ready", "RA"),
+    RESERVED("Reserved", "RS"),
     REQ_CLEAN("Request Cleaning", "NC"),
-    ORDER("Out of Order", "NF"),
+    OUTORDER("Out of Order", "NF"),
     OCCUPIED("Occupied", "U0"),
     INSPECTING("Inspecting", "WI"),
     NONE("Default", "NON");
-
+    //TODO: Implement room reserved status check
     companion object {
         private fun getByInternalCode(key: String) = RoomStatus.values().find { it.internalCode == key }
         fun pack(roomStatus: RoomStatus): String = roomStatus.internalCode
