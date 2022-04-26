@@ -227,111 +227,64 @@ Then create the json files:
     "room": [
         {
             "roomID": "000",
-            "roomType": "standard",
-            "roomBeds": "single",
+            "roomType": "SD",
+            "roomBeds": "SB",
             "maxCap": 2,
             "posFloor": "G",
             "features": [
-                {
-                    "displayName": "Away from Lift",
-                    "internalCode": "AL"
-                },
-                {
-                    "displayName": "Corner Room",
-                    "internalCode": "CO"
-                }
+                "AL",
+                "CR"
             ],
             "addonBed": false,
             "breakfast": true,
             "smoking": false,
-            "roomStatus": {
-                "displayName": "Ready",
-                "internalCode": "99"
-            },
-            "isWalking": true,
+            "roomStatus": "RS",
+            "isWalking": false,
             "deviceList": [
-                {
-                    "deviceName": "Dev1"
-                },
-                {
-                    "deviceName": "Dev2"
-                }
+                "Serial_1",
+                "Serial_2"
             ],
             "roomPrice": 1000.10
         },
         {
             "roomID": "001",
-            "roomType": "deluxe",
-            "roomBeds": "double",
+            "roomType": "DX",
+            "roomBeds": "DB",
             "maxCap": 2,
             "posFloor": "B1",
             "features": [
-                {
-                    "displayName": "Away from Lift",
-                    "internalCode": "AL"
-                },
-                {
-                    "displayName": "Connected Room",
-                    "internalCode": "CX"
-                }
+                "AL",
+                "CX"
             ],
             "addonBed": false,
             "breakfast": true,
             "smoking": false,
-            "roomStatus": {
-                "displayName": "Needs Maintenance",
-                "internalCode": "1F"
-            },
+            "roomStatus": "NF",
             "isWalking": false,
             "deviceList": [
-                {
-                    "deviceName": "Dev1"
-                },
-                {
-                    "deviceName": "Dev2"
-                },
-                {
-                    "deviceName": "Dev3"
-                }
+                "Serial_1",
+                "Serial_2",
+                "Serial_3"
             ],
             "roomPrice": 2000.35
         },
         {
             "roomID": "002",
-            "roomType": "suite",
-            "roomBeds": "single",
+            "roomType": "SE",
+            "roomBeds": "SB",
             "maxCap": 3,
             "posFloor": "B2",
             "features": [
-                {
-                    "displayName": "Connected Room",
-                    "internalCode": "CX"
-                }
+                "CX"
             ],
             "addonBed": false,
             "breakfast": true,
             "smoking": false,
-            "roomStatus": {
-                "displayName": "To Clean",
-                "internalCode": "C0"
-            },
+            "roomStatus": "NC",
             "isWalking": false,
             "deviceList": [
-                {
-                    "deviceName": "Dev1"
-                },
-                {
-                    "deviceName": "Dev2"
-                },
-                {
-                    "deviceName": "Dev3"
-                },
-                {
-                    "deviceName": "Dev4"
-                },
-                {
-                    "deviceName": "Dev5"
-                }
+                "Serial_20",
+                "Serial_0"
             ],
             "roomPrice": 3500.10
         }
