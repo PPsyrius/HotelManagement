@@ -10,10 +10,13 @@ enum class PaymentType(
 
     var internalCode: String,
 ) : Parcelable {
-    CASH("Cash", "CA");
+    CASH("Cash", "CA"),
+    CARD("Card", "CD"),
+    EPAY("e-Payment", "EP");
 
     companion object {
-        private fun getByInternalCode(key: String) = PaymentType.values().find { it.internalCode == key }
+        private fun getByInternalCode(key: String) =
+            PaymentType.values().find { it.internalCode == key }
         fun pack(paymentType: PaymentType): String = paymentType.internalCode
         fun unpack(paymentType: String): PaymentType? = PaymentType.getByInternalCode(paymentType)
     }

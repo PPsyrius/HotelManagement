@@ -15,6 +15,8 @@ enum class BedType(
     TWIN("Twin Beds", "DB");
 
     companion object {
-        fun getByInternalCode(key: String) = BedType.values().find { it.internalCode == key }
+        private fun getByInternalCode(key: String) = BedType.values().find { it.internalCode == key }
+        fun pack(bedType: BedType): String = bedType.internalCode
+        fun unpack(bedType: String): BedType? = BedType.getByInternalCode(bedType)
     }
 }

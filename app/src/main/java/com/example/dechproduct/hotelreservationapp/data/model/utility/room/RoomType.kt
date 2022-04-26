@@ -17,6 +17,8 @@ enum class RoomType(
     SUITE("Suite", "SE");
 
     companion object {
-        fun getByInternalCode(key: String) = RoomType.values().find { it.internalCode == key }
+        private fun getByInternalCode(key: String) = RoomType.values().find { it.internalCode == key }
+        fun pack(roomType: RoomType): String = roomType.internalCode
+        fun unpack(roomType: String): RoomType? = RoomType.getByInternalCode(roomType)
     }
 }

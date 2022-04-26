@@ -28,6 +28,7 @@ class CheckOutAdapter (
         holder.reserveDateIn.text = bookings[index].arrivalDate.toString()
         holder.reserveDateOut.text = bookings[index].departDate.toString()
         holder.reservePhoneNo.text = bookings[index].phoneNumber.toString()
+        holder.reserveID.text = bookings[index].bookingID.toString()
     }
     
     override fun getItemCount() = bookings.size

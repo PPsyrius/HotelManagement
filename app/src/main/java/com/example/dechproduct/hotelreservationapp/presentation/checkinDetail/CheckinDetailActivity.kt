@@ -48,7 +48,7 @@ class CheckinDetailActivity : AppCompatActivity() {
         // ex)      val displayName = findViewById<TextView>(R.id.textView5)
         // with ->  val displayName = binding.textView5     that's all! (no need <Type of view> and findVeiwByID) -> read viewbinding library
 
-
+        // TODO: Set default text to something formal or empty("Samson Bujova" -> "")
         binding.btnBackMenu.setOnClickListener {
             val intent = Intent(this, ReservationMenuActivity::class.java)
             finish()
@@ -170,10 +170,10 @@ class CheckinDetailActivity : AppCompatActivity() {
 //                            Toast.LENGTH_SHORT
 //                        ).show()
                         checkInDetailViewModel.reservation = reservation
-
+                        //TODO: If property is null, display nothing (e.g. RoomType = null -> UI field should be blank)
                         binding.tvGuestName.text =
                             reservation.firstName + " " + reservation.lastName
-                        binding.roomType.text = reservation.guestRoom?.roomType
+                        binding.roomType.text = reservation.guestRoom?.roomType.toString()
                         binding.tvCheckInDate.text = SimpleDateFormat(
                             "dd-MM-yyyy",
                             Locale.getDefault()
@@ -182,7 +182,7 @@ class CheckinDetailActivity : AppCompatActivity() {
                             "dd-MM-yyyy",
                             Locale.getDefault()
                         ).format(reservation.departDate)
-                        binding.tvDisplayRoomBed.text = reservation.guestRoom?.roomBeds
+                        binding.tvDisplayRoomBed.text = reservation.guestRoom?.roomBeds.toString()
                         //TODO: Set binding to reservation.adultCount, reservation.childCount
 
                         if (reservation.guestRoom?.breakfast == true) {

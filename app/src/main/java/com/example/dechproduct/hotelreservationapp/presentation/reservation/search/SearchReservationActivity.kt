@@ -40,6 +40,8 @@ class SearchReservationActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //TODO: Format display date correctly
+        //TODO: Edit #RoomType to #Booking.ID
         var searchBar = binding.searchBar
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
@@ -83,7 +85,6 @@ class SearchReservationActivity : AppCompatActivity() {
         observeSearch()
 
     }
-
 
     // Add Swipe
     private fun onSwipeHandle() {
