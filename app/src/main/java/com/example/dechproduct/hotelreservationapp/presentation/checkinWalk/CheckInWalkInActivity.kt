@@ -1,4 +1,4 @@
-package com.example.dechproduct.hotelreservationapp.presentation.reservation.add
+package com.example.dechproduct.hotelreservationapp.presentation.checkinWalk
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.example.dechproduct.hotelreservationapp.R
-import com.example.dechproduct.hotelreservationapp.databinding.ActivityAddReservationBinding
+import com.example.dechproduct.hotelreservationapp.databinding.ActivityChecinWalkInBinding
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera.CameraActivity
 import com.example.dechproduct.hotelreservationapp.presentation.roomBedBottomSheet.adapter.adapter.RoomBedBottomSheetFragment
@@ -24,11 +24,12 @@ import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
-@AndroidEntryPoint
-class AddReservationActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAddReservationBinding
-    private val addReservationViewModel: AddReservationViewModel by viewModels()
+@AndroidEntryPoint
+class CheckInWalkInActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityChecinWalkInBinding
+    private val checkInWalkInViewModel: CheckInWalkinViewModel by viewModels()
 
     var bottomSheetRoomBedFragment = RoomBedBottomSheetFragment()
     var bottomSheetChangeRoomTypeFragment = RoomTypeBottomSheetFragment()
@@ -36,7 +37,7 @@ class AddReservationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_add_reservation)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_checin_walk_in)
 
         binding.buttonTest.setOnClickListener {
             showDateRangePicker()
@@ -44,7 +45,7 @@ class AddReservationActivity : AppCompatActivity() {
 
         binding.btnSubmit.setOnClickListener {
 
-            //TODO: Check no fields are blank --TUNG
+            //TODO: Check no fields are blank -- TUNG
             var fname = findViewById<FormInputText>(R.id.first_name_customer).getValue()
             var lname = findViewById<FormInputText>(R.id.last_name_customer).getValue()
             var phone = findViewById<FormInputText>(R.id.phoneNumber).getValue()
@@ -52,9 +53,6 @@ class AddReservationActivity : AppCompatActivity() {
             var payment = findViewById<FormInputSpinner>(R.id.payment_type).getValue()
             var id = findViewById<FormInputText>(R.id.ID).getValue()
             var address = findViewById<FormInputMultiline>(R.id.about).getValue()
-
-
-            //TODO: Bind adult/child count to view component --finish--
             var adult_count = binding.edtGuestNumber.text.toString()
             var child_count = binding.edtChildNumber.text.toString()
 
@@ -67,7 +65,7 @@ class AddReservationActivity : AppCompatActivity() {
 
 
             lifecycleScope.launch {
-                addReservationViewModel.addReserve(
+                checkInWalkInViewModel.addReserve(
                     fname, lname, phone,
                     payment, id, address, adultIntFromET, childIntFromET
                 )
@@ -76,16 +74,14 @@ class AddReservationActivity : AppCompatActivity() {
                 Log.i("Addreser2", childIntFromET.toString())
             }
 
-            val intent = Intent(this@AddReservationActivity, ReservationMenuActivity::class.java)
-            startActivity(intent)
-//            finish()
+            finish()
 
         }
 
         binding.buttonCamera.setOnClickListener {
             Toast.makeText(applicationContext, "Camera Button is Tapped.", Toast.LENGTH_LONG).show()
             val intent =
-                Intent(this@AddReservationActivity, CameraActivity::class.java)
+                Intent(this, CameraActivity::class.java)
             startActivity(intent)
         }
 
@@ -93,12 +89,10 @@ class AddReservationActivity : AppCompatActivity() {
             finish()
         }
 
-
-
         binding.btnPlus.setOnClickListener {
             lifecycleScope.launch {
-                addReservationViewModel.increment()
-                binding.edtGuestNumber.setText(addReservationViewModel.amount.value.toString())
+                checkInWalkInViewModel.increment()
+                binding.edtGuestNumber.setText(checkInWalkInViewModel.amount.value.toString())
 
             }
 
@@ -106,23 +100,23 @@ class AddReservationActivity : AppCompatActivity() {
 
         binding.btnMinus.setOnClickListener {
             lifecycleScope.launch {
-                addReservationViewModel.decrement()
-                binding.edtGuestNumber.setText(addReservationViewModel.amount.value.toString())
+                checkInWalkInViewModel.decrement()
+                binding.edtGuestNumber.setText(checkInWalkInViewModel.amount.value.toString())
             }
 
         }
 
         binding.btnPlusChild.setOnClickListener {
             lifecycleScope.launch {
-                addReservationViewModel.incrementChild()
-                binding.edtChildNumber.setText(addReservationViewModel.amountChild.value.toString())
+                checkInWalkInViewModel.incrementChild()
+                binding.edtChildNumber.setText(checkInWalkInViewModel.amountChild.value.toString())
             }
         }
 
         binding.btnMinusChild.setOnClickListener {
             lifecycleScope.launch {
-                addReservationViewModel.decrementChild()
-                binding.edtChildNumber.setText(addReservationViewModel.amountChild.value.toString())
+                checkInWalkInViewModel.decrementChild()
+                binding.edtChildNumber.setText(checkInWalkInViewModel.amountChild.value.toString())
             }
         }
 
@@ -159,11 +153,11 @@ class AddReservationActivity : AppCompatActivity() {
         )
 
         dateRangePicker.addOnPositiveButtonClickListener { datePicked ->
-            addReservationViewModel.startDateEpoch = datePicked.first
-            addReservationViewModel.endDateEpoch = datePicked.second
-            if (addReservationViewModel.startDateEpoch != null && addReservationViewModel.endDateEpoch != null) {
-                binding.tvDateStart.text = convertLongToDate(addReservationViewModel.startDateEpoch)
-                binding.tvDateEnd.text = convertLongToDate(addReservationViewModel.endDateEpoch)
+            checkInWalkInViewModel.startDateEpoch = datePicked.first
+            checkInWalkInViewModel.endDateEpoch = datePicked.second
+            if (checkInWalkInViewModel.startDateEpoch != null && checkInWalkInViewModel.endDateEpoch != null) {
+                binding.tvDateStart.text = convertLongToDate(checkInWalkInViewModel.startDateEpoch)
+                binding.tvDateEnd.text = convertLongToDate(checkInWalkInViewModel.endDateEpoch)
 
             }
         }
@@ -179,7 +173,7 @@ class AddReservationActivity : AppCompatActivity() {
     }
 
     private fun observeSubmit() {
-        addReservationViewModel.reserver.observe(this, {
+        checkInWalkInViewModel.reserver.observe(this, {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { _ ->

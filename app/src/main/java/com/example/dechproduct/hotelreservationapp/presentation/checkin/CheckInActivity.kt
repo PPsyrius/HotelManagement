@@ -16,6 +16,7 @@ import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityCheckInBinding
 import com.example.dechproduct.hotelreservationapp.presentation.checkin.adapter.CheckInAdapter
 import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckinDetailActivity
+import com.example.dechproduct.hotelreservationapp.presentation.checkinWalk.CheckInWalkInActivity
 import com.example.dechproduct.hotelreservationapp.presentation.menu.MenuActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationActivity
 import com.example.dechproduct.hotelreservationapp.util.Constants
@@ -80,9 +81,9 @@ class CheckInActivity : AppCompatActivity() {
         }
 
         binding.fabAdd.setOnClickListener {
-            Toast.makeText(applicationContext, "Add Reservation", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, AddReservationActivity::class.java)
-            //TODO: Call dedicated AddReservationActivity with CheckIn Button
+
+            Toast.makeText(applicationContext, "Walk in Check-in", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, CheckInWalkInActivity::class.java )
             startActivity(intent)
         }
 

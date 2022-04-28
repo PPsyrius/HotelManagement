@@ -13,7 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/testTitleTv"
         app:layout_constraintTop_toTopOf="@+id/testTitleTv">
 
@@ -56,6 +56,7 @@
             app:layout_constraintStart_toEndOf="@+id/view3"
             app:layout_constraintTop_toTopOf="@+id/tvRoomStatus"
             app:layout_constraintVertical_bias="0.0" />
+
 
         <TextView
             android:id="@+id/tvRoomStatus"

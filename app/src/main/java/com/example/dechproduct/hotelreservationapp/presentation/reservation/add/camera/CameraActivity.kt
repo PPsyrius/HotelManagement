@@ -1,12 +1,10 @@
 package com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera
 
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -16,30 +14,24 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.dechproduct.hotelreservationapp.R
-import com.example.dechproduct.hotelreservationapp.databinding.ActivityAddReservationBinding
-import com.example.dechproduct.hotelreservationapp.databinding.ActivityAddReservationCameraBinding
-import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
-import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationActivity
-import com.example.dechproduct.hotelreservationapp.util.Constants
-import retrofit2.http.Tag
+import com.example.dechproduct.hotelreservationapp.databinding.ActivityCameraBinding
 import java.io.File
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class AddReservationCameraActivity : AppCompatActivity() {
+class CameraActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityAddReservationCameraBinding
+    private lateinit var binding: ActivityCameraBinding
     private var imageCapture: ImageCapture? = null
     private lateinit var outputDirectory: File
     private lateinit var  cameraExecutor : ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAddReservationCameraBinding.inflate(layoutInflater)
+        binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         outputDirectory = getOutputDirectory()
@@ -93,7 +85,7 @@ class AddReservationCameraActivity : AppCompatActivity() {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = Uri.fromFile(photoFile)
                     val msg  = "Photo Saved"
-                    Toast.makeText(this@AddReservationCameraActivity,
+                    Toast.makeText(this@CameraActivity,
                         "$msg $savedUri",
                         Toast.LENGTH_LONG).show()
                 }

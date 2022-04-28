@@ -151,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
-                android:text="Single"
+                android:text=""
                 app:layout_constraintEnd_toEndOf="@+id/textView16"
                 app:layout_constraintHorizontal_bias="0.642"
                 app:layout_constraintStart_toStartOf="@+id/textView16"
@@ -184,14 +184,13 @@
                 app:layout_constraintTop_toTopOf="@+id/textView7"
                 app:layout_constraintVertical_bias="0.0" />
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
                 android:id="@+id/tvDisplayRoomNumber"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
                 android:background="@color/white"
                 android:hint="0"
-                android:inputType="number"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/textView7"
                 app:layout_constraintStart_toStartOf="@+id/textView7"
@@ -294,7 +293,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
-                android:text="STANDARD"
+                android:text="Select Room Type"
                 android:textFontWeight="800"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@+id/textView15"
@@ -441,7 +440,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Samson Bujova"
+        android:text=""
         android:textSize="32sp"
         android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="@+id/textView3"

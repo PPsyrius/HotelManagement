@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -26,8 +27,12 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class CheckinDetailActivity : AppCompatActivity() {
 
+
+    //TODO: Handle Layout to Responsive --TUNG
+
     private lateinit var binding: ActivityCheckinDetailBinding    // <- can click here to open the xml that related
     private val checkInDetailViewModel: CheckinDetailViewModel by viewModels()
+
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -48,9 +53,8 @@ class CheckinDetailActivity : AppCompatActivity() {
         // ex)      val displayName = findViewById<TextView>(R.id.textView5)
         // with ->  val displayName = binding.textView5     that's all! (no need <Type of view> and findVeiwByID) -> read viewbinding library
 
-        // TODO: Set default text to something formal or empty("Samson Bujova" -> "")
+        // TODO: Set default text to something formal or empty("Samson Bujova" -> "") --finish--
         binding.btnBackMenu.setOnClickListener {
-            val intent = Intent(this, ReservationMenuActivity::class.java)
             finish()
         }
 
@@ -119,7 +123,9 @@ class CheckinDetailActivity : AppCompatActivity() {
         binding.btnConfirmationCheckIn.setOnClickListener {
             Toast.makeText(applicationContext, "Confirmation Check in clicked", Toast.LENGTH_LONG)
                 .show()
-            lifecycleScope.launch { checkInDetailViewModel.checkInReserved() }
+//            lifecycleScope.launch { checkInDetailViewModel.checkInReserved() }
+            bottomSheetRoomBedFragment.show(supportFragmentManager, "TAG")
+
         }
 
         binding.cbBreakfast.setOnClickListener {
@@ -170,7 +176,7 @@ class CheckinDetailActivity : AppCompatActivity() {
 //                            Toast.LENGTH_SHORT
 //                        ).show()
                         checkInDetailViewModel.reservation = reservation
-                        //TODO: If property is null, display nothing (e.g. RoomType = null -> UI field should be blank)
+                        //TODO: If property is null, display nothing (e.g. RoomType = null -> UI field should be blank) --finish?--
                         binding.tvGuestName.text =
                             reservation.firstName + " " + reservation.lastName
                         binding.roomType.text = reservation.guestRoom?.roomType.toString()
@@ -182,11 +188,16 @@ class CheckinDetailActivity : AppCompatActivity() {
                             "dd-MM-yyyy",
                             Locale.getDefault()
                         ).format(reservation.departDate)
+
                         binding.tvDisplayRoomBed.text = reservation.guestRoom?.roomBeds.toString()
-                        //TODO: Set binding to reservation.adultCount, reservation.childCount
+                        //TODO: Set binding to reservation.adultCount, reservation.childCount       --finish?--
+
+                        binding.edtGuestNumber.setText(reservation.adultCount?.toString())
+
+                        binding.edtChildNumber.setText(reservation.childCount?.toString())
 
                         if (reservation.guestRoom?.breakfast == true) {
-                            //TODO: Set check box true
+//                            binding.cbBreakfast.isChecked(true)
                         } else {
                             //TODO: Set check box false
                         }

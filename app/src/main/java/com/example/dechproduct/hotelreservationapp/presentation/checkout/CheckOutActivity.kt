@@ -28,7 +28,6 @@ class CheckOutActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCheckOutBinding
     private val checkOutViewModel: CheckOutViewModel by viewModels()
-    //TODO: Refactor name in adapter folder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

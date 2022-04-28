@@ -9,9 +9,9 @@ class CheckOutViewHolder (
 
     ): RecyclerView.ViewHolder(binding.root){
 
-    val reserveName = binding.testTitleTv
-    val reserveDateIn = binding.testDescTv
-    val reserveDateOut= binding.testDescTv2
-    val reservePhoneNo = binding.textView9
-    val reserveID = binding.textView6
+    val checkOutName = binding.testTitleTv
+    val checkOutDateIn = binding.testDescTv
+    val checkOutDateOut= binding.testDescTv2
+    val checkOutPhoneNumber = binding.textView9
+    val checkOutID = binding.textView6
 }

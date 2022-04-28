@@ -6,6 +6,8 @@ import com.example.dechproduct.hotelreservationapp.databinding.RoomAvailableItem
 class RoomAvailableViewHolder (
     val binding: RoomAvailableItemBinding
 
+    //TODO: Handle Layout To responsive (GUIDE: Add Reservation Activity.xml) --TUNG
+
 ): RecyclerView.ViewHolder(binding.root){
 
     val rooms = binding.tvRoom

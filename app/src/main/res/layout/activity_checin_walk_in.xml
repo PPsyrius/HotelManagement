@@ -423,7 +423,7 @@
                 android:drawablePadding="8dp"
                 android:fontFamily="@font/bodoniflf_bold"
                 android:gravity="center"
-                android:text="Add Reservation"
+                android:text="Walk in check-in"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@id/toolbar"
                 app:layout_constraintEnd_toEndOf="@id/toolbar"

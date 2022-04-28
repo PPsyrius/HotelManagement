@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dechproduct.hotelreservationapp.databinding.ActivitySearchReservationactivityBinding
+import com.example.dechproduct.hotelreservationapp.presentation.checkinWalk.CheckInWalkInActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationActivity
 import com.example.dechproduct.hotelreservationapp.util.swipe.Helper.MySwipeHelper
@@ -28,7 +29,6 @@ class SearchReservationActivity : AppCompatActivity() {
     private lateinit var binding:ActivitySearchReservationactivityBinding
     private val searchReservationViewModel: SearchReservationViewModel by viewModels()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,8 +40,10 @@ class SearchReservationActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //TODO: Format display date correctly
-        //TODO: Edit #RoomType to #Booking.ID
+        //TODO: Format display date correctly --TUNG
+
+
+        //TODO: Edit #RoomType to #Booking.ID --finish?--
         var searchBar = binding.searchBar
         searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
@@ -77,7 +79,7 @@ class SearchReservationActivity : AppCompatActivity() {
 
         binding.fabAdd.setOnClickListener{
             Toast.makeText(applicationContext, "Add Reservation", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, AddReservationActivity::class.java )
+            val intent = Intent(this, AddReservationActivity::class.java)
             startActivity(intent)
         }
 
