@@ -15,10 +15,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityCheckInBinding
 import com.example.dechproduct.hotelreservationapp.presentation.checkin.adapter.CheckInAdapter
-import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckinDetailActivity
+import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckInDetailActivity
 import com.example.dechproduct.hotelreservationapp.presentation.checkinWalk.CheckInWalkInActivity
 import com.example.dechproduct.hotelreservationapp.presentation.menu.MenuActivity
-import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationActivity
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.swipe.Helper.MySwipeHelper
 import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButton
@@ -114,7 +113,7 @@ class CheckInActivity : AppCompatActivity() {
                                 sharedPreferences.edit()
                                     .putString(Constants.RESERVED_ID, checkInViewModel.result[pos].bookingID)
                                     .apply()
-                                startSpecificActivity(CheckinDetailActivity::class.java)
+                                startSpecificActivity(CheckInDetailActivity::class.java)
                             }
                         }
                     ))

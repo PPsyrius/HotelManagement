@@ -22,7 +22,7 @@
             android:name=".presentation.checkinWalk.CheckInWalkInActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation.checkinDetail.CheckinDetailActivity"
+            android:name=".presentation.checkinDetail.CheckInDetailActivity"
             android:exported="false"
             android:theme="@style/Theme.HotelReservationApp" />
         <activity

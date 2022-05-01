@@ -5,14 +5,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityCheckinDetailBinding
+import com.example.dechproduct.hotelreservationapp.presentation.confirmCheckinBottomSheet.ConfirmationCheckInBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.menu.MenuActivity
-import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
 import com.example.dechproduct.hotelreservationapp.presentation.roomAvailableBottomSheet.RoomAvailableBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.roomBedBottomSheet.adapter.adapter.RoomBedBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.roomTypeBottomSheet.RoomTypeBottomSheetFragment
@@ -25,7 +24,7 @@ import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CheckinDetailActivity : AppCompatActivity() {
+class CheckInDetailActivity : AppCompatActivity() {
 
 
     //TODO: Handle Layout to Responsive --TUNG
@@ -42,6 +41,8 @@ class CheckinDetailActivity : AppCompatActivity() {
     var bottomSheetCheckingRoomAvailableFragment = RoomAvailableBottomSheetFragment()
 
     var bottomSheetRoomBedFragment = RoomBedBottomSheetFragment()
+
+    var bottomSheetConfirmationFragment = ConfirmationCheckInBottomSheetFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -121,10 +122,9 @@ class CheckinDetailActivity : AppCompatActivity() {
         }
 
         binding.btnConfirmationCheckIn.setOnClickListener {
-            Toast.makeText(applicationContext, "Confirmation Check in clicked", Toast.LENGTH_LONG)
-                .show()
+
 //            lifecycleScope.launch { checkInDetailViewModel.checkInReserved() }
-            bottomSheetRoomBedFragment.show(supportFragmentManager, "TAG")
+            bottomSheetConfirmationFragment.show(supportFragmentManager, "TAG")
 
         }
 
@@ -196,10 +196,14 @@ class CheckinDetailActivity : AppCompatActivity() {
 
                         binding.edtChildNumber.setText(reservation.childCount?.toString())
 
+
                         if (reservation.guestRoom?.breakfast == true) {
-//                            binding.cbBreakfast.isChecked(true)
+                            binding.cbBreakfast.isChecked = true
+
+
                         } else {
-                            //TODO: Set check box false
+                            //TODO: Set check box false -> finished?
+                            binding.cbSmoking.isChecked = false
                         }
                     }
                 }
@@ -224,7 +228,7 @@ class CheckinDetailActivity : AppCompatActivity() {
                         )
                             .show()
                         val intent =
-                            Intent(this@CheckinDetailActivity, MenuActivity::class.java)
+                            Intent(this@CheckInDetailActivity, MenuActivity::class.java)
                         startActivity(intent)
                     }
                 }

@@ -9,16 +9,14 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.example.dechproduct.hotelreservationapp.R
-import com.example.dechproduct.hotelreservationapp.databinding.ActivityChecinWalkInBinding
-import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
+import com.example.dechproduct.hotelreservationapp.databinding.ActivityCheckinWalkInBinding
+import com.example.dechproduct.hotelreservationapp.presentation.confirmCheckinBottomSheet.ConfirmationCheckInBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera.CameraActivity
+import com.example.dechproduct.hotelreservationapp.presentation.roomAvailableBottomSheet.RoomAvailableBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.roomBedBottomSheet.adapter.adapter.RoomBedBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.roomTypeBottomSheet.RoomTypeBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.omarshehe.forminputkotlin.FormInputMultiline
-import com.omarshehe.forminputkotlin.FormInputSpinner
-import com.omarshehe.forminputkotlin.FormInputText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -28,16 +26,20 @@ import java.util.*
 @AndroidEntryPoint
 class CheckInWalkInActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityChecinWalkInBinding
+    //TODO: Handle Responsive UI -- TUNG
+
+    private lateinit var binding: ActivityCheckinWalkInBinding
     private val checkInWalkInViewModel: CheckInWalkinViewModel by viewModels()
 
     var bottomSheetRoomBedFragment = RoomBedBottomSheetFragment()
-    var bottomSheetChangeRoomTypeFragment = RoomTypeBottomSheetFragment()
+    var bottomSheetRoomTypeFragment = RoomTypeBottomSheetFragment()
+    var bottomSheetRoomFragmment  = RoomAvailableBottomSheetFragment()
+    var bottomSheetConfirmCheckInWalkInFragment = ConfirmationCheckInBottomSheetFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_checin_walk_in)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_checkin_walk_in)
 
         binding.buttonTest.setOnClickListener {
             showDateRangePicker()
@@ -45,36 +47,34 @@ class CheckInWalkInActivity : AppCompatActivity() {
 
         binding.btnSubmit.setOnClickListener {
 
-            //TODO: Check no fields are blank -- TUNG
-            var fname = findViewById<FormInputText>(R.id.first_name_customer).getValue()
-            var lname = findViewById<FormInputText>(R.id.last_name_customer).getValue()
-            var phone = findViewById<FormInputText>(R.id.phoneNumber).getValue()
-            //TODO: Pass Payment Type object from here
-            var payment = findViewById<FormInputSpinner>(R.id.payment_type).getValue()
-            var id = findViewById<FormInputText>(R.id.ID).getValue()
-            var address = findViewById<FormInputMultiline>(R.id.about).getValue()
-            var adult_count = binding.edtGuestNumber.text.toString()
-            var child_count = binding.edtChildNumber.text.toString()
+//            //TODO: Check no fields are blank -- TUNG
+//            var fname = findViewById<FormInputText>(R.id.first_name_customer).getValue()
+//            var lname = findViewById<FormInputText>(R.id.last_name_customer).getValue()
+//            var phone = findViewById<FormInputText>(R.id.phoneNumber).getValue()
+//            //TODO: Pass Payment Type object from here -- TUNG
+//            var payment = findViewById<FormInputSpinner>(R.id.payment_type).getValue()
+//            var id = findViewById<FormInputText>(R.id.ID).getValue()
+//            var address = findViewById<FormInputMultiline>(R.id.about).getValue()
+//            var adult_count = binding.edtGuestNumber.text.toString()
+//            var child_count = binding.edtChildNumber.text.toString()
+//
+//
+//            val adultIntFromET: Int = adult_count.toInt()
+//            val childIntFromET: Int = child_count.toInt()
+//
+//
+//            lifecycleScope.launch {
+//                checkInWalkInViewModel.addReserve(
+//                    fname, lname, phone,
+//                    payment, id, address, adultIntFromET, childIntFromET
+//                )
+//
+//                Log.i("Addreser", adultIntFromET.toString())
+//                Log.i("Addreser2", childIntFromET.toString())
+//            }
 
+            bottomSheetConfirmCheckInWalkInFragment.show(supportFragmentManager,"TAG")
 
-            val adultIntFromET: Int = adult_count.toInt()
-            val childIntFromET: Int = child_count.toInt()
-
-
-
-
-
-            lifecycleScope.launch {
-                checkInWalkInViewModel.addReserve(
-                    fname, lname, phone,
-                    payment, id, address, adultIntFromET, childIntFromET
-                )
-
-                Log.i("Addreser", adultIntFromET.toString())
-                Log.i("Addreser2", childIntFromET.toString())
-            }
-
-            finish()
 
         }
 
@@ -130,14 +130,43 @@ class CheckInWalkInActivity : AppCompatActivity() {
         }
 
         binding.btnRoomType.setOnClickListener{
-            bottomSheetChangeRoomTypeFragment.show(supportFragmentManager, "TAG")
+            bottomSheetRoomTypeFragment.show(supportFragmentManager, "TAG")
 
         }
 
         binding.btnRoomBed.setOnClickListener {
             bottomSheetRoomBedFragment.show(supportFragmentManager, "TAG")
 
+
         }
+
+        binding.btnRoom.setOnClickListener{
+            bottomSheetRoomFragmment.show(supportFragmentManager,"TAG")
+        }
+
+        binding.tvDisplayRoomType.text = "SELECTED ROOM TYPE"
+
+        binding.tvDisplayRoomBed.text = "SELECTED ROOM BED"
+
+        binding.TVDisplayRoomSelected.text = "SELECTED ROOM"
+
+
+        binding.checkBoxWalkInBreakfast.setOnClickListener {
+            Toast.makeText(applicationContext, "checkbox breakfast  clicked", Toast.LENGTH_LONG)
+                .show()
+
+
+        }
+
+        binding.checkBoxWalkInSmoking.setOnClickListener {
+            Toast.makeText(applicationContext, "checkbox smoking  clicked", Toast.LENGTH_LONG)
+                .show()
+
+
+
+        }
+
+
         observeSubmit()
     }
 

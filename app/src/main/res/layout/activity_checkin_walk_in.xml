@@ -113,7 +113,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/tvRoomBed"
+                android:id="@+id/tvDisplayRoomBed"
                 android:layout_width="match_parent"
                 android:layout_height="24dp"
                 android:layout_marginStart="16dp"
@@ -129,6 +129,17 @@
                 app:layout_constraintStart_toStartOf="@+id/tvRoomType2"
                 app:layout_constraintTop_toBottomOf="@+id/tvRoomType2" />
 
+            <Button
+                android:id="@+id/btnRoom"
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:background="@drawable/ic_baseline_room_24"
+                android:textColor="@color/colorGrey"
+                app:layout_constraintBottom_toBottomOf="@+id/TVDisplayRoomSelected"
+                app:layout_constraintEnd_toEndOf="@+id/btnRoomBed"
+                app:layout_constraintStart_toStartOf="@+id/btnRoomBed"
+                app:layout_constraintTop_toTopOf="@+id/TVDisplayRoomSelected" />
+
             <TextView
                 android:id="@+id/tvRoomType3"
                 android:layout_width="wrap_content"
@@ -137,7 +148,7 @@
                 android:layout_marginTop="16dp"
                 android:text="Select Customer"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvRoomBed" />
+                app:layout_constraintTop_toBottomOf="@+id/TVDisplayRoomSelected" />
 
             <Button
                 android:id="@+id/btnRoomBed"
@@ -145,10 +156,10 @@
                 android:layout_height="25dp"
                 android:background="@drawable/ic_baseline_king_bed_24"
                 android:textColor="@color/colorGrey"
-                app:layout_constraintBottom_toBottomOf="@+id/tvRoomBed"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDisplayRoomBed"
                 app:layout_constraintEnd_toEndOf="@+id/btnRoomType"
                 app:layout_constraintStart_toStartOf="@+id/btnRoomType"
-                app:layout_constraintTop_toTopOf="@+id/tvRoomBed" />
+                app:layout_constraintTop_toTopOf="@+id/tvDisplayRoomBed" />
 
             <TextView
                 android:id="@+id/tvRoomType2"
@@ -386,16 +397,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
                 android:fontFamily="@font/bodoniflf_roman"
-                android:text="Confirm Reservation"
-                android:layout_marginTop="16dp"
+                android:text="Confirm Check-in"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnPlus"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintStart_toStartOf="parent" />
 
             <FrameLayout
                 android:id="@+id/toolbar"
@@ -471,6 +477,70 @@
                 app:layout_constraintHorizontal_bias="0.529"
                 app:layout_constraintStart_toEndOf="@+id/tvRoomType3"
                 app:layout_constraintTop_toBottomOf="@+id/tvRoomType4" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:text="Addition"
+                app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnMinus"
+                app:layout_constraintVertical_bias="0.593" />
+
+            <CheckBox
+                android:id="@+id/checkBoxWalkInBreakfast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breakfast"
+                android:textColor="@color/colorGrey"
+                app:layout_constraintBottom_toBottomOf="@+id/textView21"
+                app:layout_constraintEnd_toEndOf="@+id/btnPlus"
+                app:layout_constraintStart_toStartOf="@+id/btnMinus"
+                app:layout_constraintTop_toTopOf="@+id/textView21"
+                app:layout_constraintVertical_bias="0.482" />
+
+            <CheckBox
+                android:id="@+id/checkBoxWalkInSmoking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Smoking"
+                android:textColor="@color/colorGrey"
+
+                app:layout_constraintBottom_toBottomOf="@+id/checkBoxWalkInBreakfast"
+                app:layout_constraintEnd_toEndOf="@+id/btnPlusChild"
+                app:layout_constraintStart_toStartOf="@+id/btnMinusChild"
+                app:layout_constraintTop_toTopOf="@+id/checkBoxWalkInBreakfast"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Room"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDisplayRoomBed" />
+
+            <TextView
+                android:id="@+id/TVDisplayRoomSelected"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:text="Select Room"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="40dp"
+                android:background="@drawable/shape_tv"
+                android:paddingLeft="10dp"
+                android:paddingTop="2dp"
+                app:layout_constraintEnd_toStartOf="@+id/btnRoom"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/textView24"
+                app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

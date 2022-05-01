@@ -83,7 +83,7 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
                         firstName = fname.capitalize(),
                         lastName = lname.capitalize(),
                         phoneNumber = phone,
-                        //TODO: Return and pass PaymentType object, replacing {PaymentType.CASH}
+                        //TODO: Return and pass PaymentType object, replacing {PaymentType.CASH} --TUNG
                         paymentType = PaymentType.CASH,
                         verificationID = VerificationID(verification),
                         arrivalDate = Date(startDateEpoch),

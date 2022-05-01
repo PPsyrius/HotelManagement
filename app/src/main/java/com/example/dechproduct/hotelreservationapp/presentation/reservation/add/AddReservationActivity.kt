@@ -10,6 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityAddReservationBinding
+import com.example.dechproduct.hotelreservationapp.presentation.addReservationRoomBedBottomSheet.AddReservationRoomBedBottomSheetFragment
+import com.example.dechproduct.hotelreservationapp.presentation.addReservationRoomTypeBottomSheet.AddReservationRoomTypeBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera.CameraActivity
 import com.example.dechproduct.hotelreservationapp.presentation.roomBedBottomSheet.adapter.adapter.RoomBedBottomSheetFragment
@@ -30,8 +32,8 @@ class AddReservationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddReservationBinding
     private val addReservationViewModel: AddReservationViewModel by viewModels()
 
-    var bottomSheetRoomBedFragment = RoomBedBottomSheetFragment()
-    var bottomSheetChangeRoomTypeFragment = RoomTypeBottomSheetFragment()
+    var bottomSheetRoomBedFragment = AddReservationRoomBedBottomSheetFragment()
+    var bottomSheetChangeRoomTypeFragment = AddReservationRoomTypeBottomSheetFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +50,7 @@ class AddReservationActivity : AppCompatActivity() {
             var fname = findViewById<FormInputText>(R.id.first_name_customer).getValue()
             var lname = findViewById<FormInputText>(R.id.last_name_customer).getValue()
             var phone = findViewById<FormInputText>(R.id.phoneNumber).getValue()
-            //TODO: Pass Payment Type object from here
+            //TODO: Pass Payment Type object from here --TUNG
             var payment = findViewById<FormInputSpinner>(R.id.payment_type).getValue()
             var id = findViewById<FormInputText>(R.id.ID).getValue()
             var address = findViewById<FormInputMultiline>(R.id.about).getValue()
