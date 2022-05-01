@@ -67,7 +67,6 @@ class AddReservationActivity : AppCompatActivity() {
 
 
 
-
             lifecycleScope.launch {
                 addReservationViewModel.addReserve(
                     fname, lname, phone,
@@ -146,6 +145,29 @@ class AddReservationActivity : AppCompatActivity() {
             bottomSheetRoomBedFragment.show(supportFragmentManager, "TAG")
 
         }
+
+        binding.checkBoxBreakfast.setOnClickListener {
+            if (binding.checkBoxBreakfast.isChecked){
+                Toast.makeText(applicationContext, "Checkbox breakfast clicked", Toast.LENGTH_LONG).show()
+                binding.checkBoxBreakfast.isChecked = true
+
+            } else {
+                Toast.makeText(applicationContext, "Checkbox breakfast not checked", Toast.LENGTH_LONG).show()
+                binding.checkBoxBreakfast.isChecked = false
+
+            }
+
+
+            // NOTE -> use "isChecked" for set the checked state of ui -> binding.checkBoxBreakfast.isChecked = true -> The checkbox will checked
+        }
+        binding.checkBoxSmoking.setOnClickListener {
+            Toast.makeText(applicationContext, "Checkbox smoking clicked", Toast.LENGTH_LONG).show()
+
+
+        }
+
+
+
         observeSubmit()
     }
 

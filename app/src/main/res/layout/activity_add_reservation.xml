@@ -472,6 +472,44 @@
                 app:layout_constraintStart_toEndOf="@+id/tvRoomType3"
                 app:layout_constraintTop_toBottomOf="@+id/tvRoomType4" />
 
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:text="Addition"
+                app:layout_constraintBottom_toTopOf="@+id/btnSubmit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnMinus"
+                app:layout_constraintVertical_bias="0.593" />
+
+            <CheckBox
+                android:id="@+id/checkBoxBreakfast"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Breakfast"
+                android:textColor="@color/colorGrey"
+                app:layout_constraintBottom_toBottomOf="@+id/textView21"
+                app:layout_constraintEnd_toEndOf="@+id/btnPlus"
+                app:layout_constraintStart_toStartOf="@+id/btnMinus"
+                app:layout_constraintTop_toTopOf="@+id/textView21"
+                app:layout_constraintVertical_bias="0.482" />
+
+            <CheckBox
+                android:id="@+id/checkBoxSmoking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Smoking"
+                android:textColor="@color/colorGrey"
+
+                app:layout_constraintBottom_toBottomOf="@+id/checkBoxBreakfast"
+                app:layout_constraintEnd_toEndOf="@+id/btnPlusChild"
+                app:layout_constraintStart_toStartOf="@+id/btnMinusChild"
+                app:layout_constraintTop_toTopOf="@+id/checkBoxBreakfast"
+                app:layout_constraintVertical_bias="0.0" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
