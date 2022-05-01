@@ -74,7 +74,8 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
     suspend fun addReserve(
         fname: String, lname: String, phone: String,
         payment: String, verification: String,
-        address: String, adult_count: Int, child_count: Int
+        address: String, adult_count: Int, child_count: Int,
+        breakfast: Boolean, isAddonBed: Boolean
     ) {
         viewModelScope.launch {
             val reservation =
@@ -93,7 +94,9 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
                         address = Address(address),
                         guestPass = null,
                         guestRoom = null,
-                        guestStatus = GuestStatus.RESERVED
+                        guestStatus = GuestStatus.RESERVED,
+                        breakfast = breakfast,
+                        isAddonBed = isAddonBed
                     )
                 )
             reserver.postValue(reservation)

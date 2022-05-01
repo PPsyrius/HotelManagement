@@ -40,15 +40,15 @@ interface RoomAPIService {
     ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)
-    suspend fun getByFeatures(
-        @Query(Constants.API_ROOM_KEY_FEATURES)
-        mapping:String,
+    suspend fun getByFeature(
+        @Query(Constants.API_ROOM_KEY_FEATURES + Constants.JSON_SERVER_FILTER)
+        feature:String,
     ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)
     suspend fun getBySmoking(
         @Query(Constants.API_ROOM_KEY_SMOKING)
-        smoking:String,
+        smoking:Boolean,
     ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)
@@ -57,18 +57,11 @@ interface RoomAPIService {
         status:String,
     ): List<RoomDTO>
 
-    //For Non-CheckIn purposes
     @GET(Constants.API_ROOM_INDEX_URL)
     suspend fun getByIsWalking(
         @Query(Constants.API_ROOM_KEY_WALK)
-        walking:String,
+        walking:Boolean,
     ): List<RoomDTO>
-
-//    @GET(Constants.API_ROOM_INDEX_URL)
-//    suspend fun getByPriceRange(
-//        @Query(Constants.API_ROOM_KEY_PRICE)
-//        Price:String, toPrice:String,
-//    ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)
     suspend fun getAll(): List<RoomDTO>

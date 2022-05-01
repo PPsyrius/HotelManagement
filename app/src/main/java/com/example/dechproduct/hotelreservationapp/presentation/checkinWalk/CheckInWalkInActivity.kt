@@ -51,7 +51,7 @@ class CheckInWalkInActivity : AppCompatActivity() {
 //            var fname = findViewById<FormInputText>(R.id.first_name_customer).getValue()
 //            var lname = findViewById<FormInputText>(R.id.last_name_customer).getValue()
 //            var phone = findViewById<FormInputText>(R.id.phoneNumber).getValue()
-//            //TODO: Pass Payment Type object from here -- TUNG
+            //TODO: Pass Payment Type object from here -- TUNG
 //            var payment = findViewById<FormInputSpinner>(R.id.payment_type).getValue()
 //            var id = findViewById<FormInputText>(R.id.ID).getValue()
 //            var address = findViewById<FormInputMultiline>(R.id.about).getValue()
@@ -66,7 +66,10 @@ class CheckInWalkInActivity : AppCompatActivity() {
 //            lifecycleScope.launch {
 //                checkInWalkInViewModel.addReserve(
 //                    fname, lname, phone,
-//                    payment, id, address, adultIntFromET, childIntFromET
+//                    payment, id, address, adultIntFromET, childIntFromET,
+//                    breakfast = true, isAddonBed = false
+            //TODO: Pass breakfast and addonBed here
+
 //                )
 //
 //                Log.i("Addreser", adultIntFromET.toString())

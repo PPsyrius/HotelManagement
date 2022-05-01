@@ -7,6 +7,7 @@ import com.example.dechproduct.hotelreservationapp.data.model.Address
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
 import com.example.dechproduct.hotelreservationapp.data.model.BookingDTO
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.GuestStatus
+import com.example.dechproduct.hotelreservationapp.data.model.utility.room.RoomStatus
 import com.example.dechproduct.hotelreservationapp.domain.repository.ReservationRepository
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
@@ -74,7 +75,6 @@ class ReservationRepositoryImpl @Inject constructor(
             Resource.Failure(exception)
         }
     }
-    //TODO: Implements search keyword e.g. #TODAY
 
     override suspend fun searchByName(
         keyword: String,
@@ -85,7 +85,6 @@ class ReservationRepositoryImpl @Inject constructor(
             var result_fname = reservationAPI.getByFirstName(keyword)
             var result_lname = reservationAPI.getByLastName(keyword)
 
-            //TODO: partial search on incomplete string (e.g."Joh" -> ret"John")
             filterResult(result_fname, results, status)
             filterResult(result_lname, results, status)
 
@@ -96,11 +95,11 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
+    //BookingID
     override suspend fun searchByID(
         keyword: String,
         status: GuestStatus
     ): Resource<MutableList<Booking>> {
-        //TODO: partial search on incomplete string (e.g."160" -> ret"1603492,16023482")
         return try {
             var results: MutableList<Booking> = mutableListOf<Booking>()
             var result_id = reservationAPI.getByBookingID(keyword)
@@ -113,6 +112,7 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
+    //TODO: Implements search keyword e.g. #TODAY
     override suspend fun searchByDate(
         keyword: String,
         status: GuestStatus
@@ -129,11 +129,11 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
+    //RoomID
     override suspend fun searchByRoomID(
         keyword: String,
         status: GuestStatus
     ): Resource<MutableList<Booking>> {
-        //TODO: partial search on incomplete string (e.g."30" -> ret"305,306")
         return try {
             var results: MutableList<Booking> = mutableListOf<Booking>()
             var result_id = reservationAPI.getByBookingID(keyword)
@@ -160,25 +160,17 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
-    private fun partialSearch(): MutableList<Booking> {
-        var results: MutableList<Booking> = mutableListOf<Booking>()
-        return results
-    }
-
     private fun filterResult(
-        frag: List<BookingDTO>,
+        s_results: List<BookingDTO>,
         results: MutableList<Booking>,
-        arg: GuestStatus = GuestStatus.NONE
+        status: GuestStatus = GuestStatus.NONE
     ) {
-        if (arg != GuestStatus.NONE) {
-            for (item in frag) {
-                if (item.guestStatus == arg.internalCode) {
-                    results.add(item.toBooking())
+        for (result in s_results) {
+            try {
+                if (status == GuestStatus.NONE || status.internalCode == result.guestStatus) {
+                    results.add(result.toBooking())
                 }
-            }
-        } else {
-            for (item in frag) {
-                results.add(item.toBooking())
+            } catch (e: java.lang.Exception) {
             }
         }
     }

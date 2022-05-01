@@ -6,7 +6,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class VerificationID(
     var id: String,
-    //TODO:  Add photo storing in pixel map here.
+    var url: String = ""
+    //TODO: Implement photo path here
 ) : Parcelable {
     lateinit var type: Type
 

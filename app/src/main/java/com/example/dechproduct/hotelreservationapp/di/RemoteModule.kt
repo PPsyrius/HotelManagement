@@ -1,9 +1,6 @@
 package com.example.dechproduct.hotelreservationapp.di
 
-import com.example.dechproduct.hotelreservationapp.data.api.PromotionAPIService
-import com.example.dechproduct.hotelreservationapp.data.api.ReservationAPIService
-import com.example.dechproduct.hotelreservationapp.data.api.RoomAPIService
-import com.example.dechproduct.hotelreservationapp.data.api.UserAPIService
+import com.example.dechproduct.hotelreservationapp.data.api.*
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import dagger.Module
 import dagger.Provides
@@ -55,5 +52,15 @@ object RemoteModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(PromotionAPIService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideDeviceAPI(): DeviceAPIService {
+        return Retrofit.Builder()
+            .baseUrl(Constants.API_DEVICE_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(DeviceAPIService::class.java)
     }
 }

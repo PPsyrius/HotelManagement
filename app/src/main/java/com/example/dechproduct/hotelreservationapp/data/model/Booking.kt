@@ -27,7 +27,7 @@ data class Booking(
     var verificationID: VerificationID?,
 
     var arrivalDate: Date?,
-    //TODO:New Date class extension, override toString parseDate error prevention
+
     var departDate: Date?,
 
     var adultCount: Int?,
@@ -41,6 +41,10 @@ data class Booking(
     var guestPass: GuestPass?,
 
     var guestRoom: Room?,
+
+    var breakfast: Boolean?,
+
+    var isAddonBed: Boolean?,
 
     ) : Parcelable {
     fun toBookingDTO(): BookingDTO {
@@ -60,6 +64,8 @@ data class Booking(
             guestStatus = guestStatus?.let{GuestStatus.pack(it)},
             guestPass = guestPass,
             guestRoom = guestRoom?.toRoomDTO(),
+            breakfast = breakfast,
+            isAddonBed = isAddonBed,
         )
     }
 }

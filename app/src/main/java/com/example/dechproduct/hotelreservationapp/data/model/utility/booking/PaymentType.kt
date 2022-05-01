@@ -11,7 +11,8 @@ enum class PaymentType(
     var internalCode: String,
 ) : Parcelable {
     CASH("Cash", "CA"),
-    CARD("Card", "CD"),
+    CARD_VISA("Visa Card", "VI"),
+    CARD_MASTERCARD("Mastercard Card", "MS"),
     EPAY("e-Payment", "EP");
 
     companion object {

@@ -45,7 +45,11 @@ object UseCaseModule {
                 EditReserveUseCase(reservationRepository),
                 EditRoomUseCase(roomRepository)
             ),
-            ExtendStayUseCase(roomRepository, EditReserveUseCase(reservationRepository)),
+            ExtendStayUseCase(
+                roomRepository,
+                EditReserveUseCase(reservationRepository),
+                EditRoomUseCase(roomRepository)
+            ),
             SearchGuestUseCase(roomRepository, reservationRepository),
 
             GetReserveByIDUseCase(reservationRepository),

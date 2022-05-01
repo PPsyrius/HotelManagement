@@ -197,7 +197,7 @@ class CheckInDetailActivity : AppCompatActivity() {
                         binding.edtChildNumber.setText(reservation.childCount?.toString())
 
 
-                        if (reservation.guestRoom?.breakfast == true) {
+                        if (reservation.breakfast == true) {
                             binding.cbBreakfast.isChecked = true
 
 

@@ -8,5 +8,5 @@ import javax.inject.Inject
 
 class SearchRoomUseCase @Inject constructor(private val roomRepository: RoomRepository) {
     suspend operator fun invoke(keyword: String, arg: RoomStatus = RoomStatus.NONE): Resource<MutableList<Room>> =
-        roomRepository.searchRoom(keyword, arg)
+        roomRepository.getRoom(keyword, arg)
 }

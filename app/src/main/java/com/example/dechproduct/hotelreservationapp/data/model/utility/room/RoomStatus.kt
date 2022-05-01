@@ -21,8 +21,9 @@ enum class RoomStatus(
     OUTORDER("Out of Order", "NF"),
     OCCUPIED("Occupied", "U0"),
     INSPECTING("Inspecting", "WI"),
+    SOF_CLEAN("Cleaning for Extensions", "UC"),
     NONE("Default", "NON");
-    //TODO: Implement room reserved status check
+
     companion object {
         private fun getByInternalCode(key: String) = RoomStatus.values().find { it.internalCode == key }
         fun pack(roomStatus: RoomStatus): String = roomStatus.internalCode

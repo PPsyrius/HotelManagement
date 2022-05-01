@@ -40,6 +40,10 @@ data class BookingDTO(
     var guestPass: GuestPass?,
     @SerializedName(Constants.API_BOOK_KEY_ROOM)
     var guestRoom: RoomDTO?,
+    @SerializedName(Constants.API_BOOK_KEY_BREAKFAST)
+    var breakfast: Boolean?,
+    @SerializedName(Constants.API_BOOK_KEY_ADDONBED)
+    var isAddonBed: Boolean?,
 ) {
     fun toBooking(): Booking{
         var dateFormat = SimpleDateFormat("dd-MM-yyyy")
@@ -58,6 +62,8 @@ data class BookingDTO(
             guestStatus = guestStatus?.let { GuestStatus.unpack(it) },
             guestPass = guestPass,
             guestRoom = guestRoom?.toRoom(),
+            breakfast = breakfast,
+            isAddonBed = isAddonBed,
         )
     }
 }

@@ -2,7 +2,6 @@ package com.example.dechproduct.hotelreservationapp.data.api
 
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
 import com.example.dechproduct.hotelreservationapp.data.model.BookingDTO
-import com.example.dechproduct.hotelreservationapp.data.model.unused.APIResponse
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -12,22 +11,22 @@ interface ReservationAPIService {
 
     @GET(Constants.API_BOOK_INDEX_URL)
     suspend fun getByFirstName(
-        @Query(Constants.API_BOOK_KEY_FNAME)
+        @Query(Constants.API_BOOK_KEY_FNAME + Constants.JSON_SERVER_FILTER)
         first_name: String,
     ): List<BookingDTO>
 
     @GET(Constants.API_BOOK_INDEX_URL)
     suspend fun getByLastName(
-        @Query(Constants.API_BOOK_KEY_LNAME)
+        @Query(Constants.API_BOOK_KEY_LNAME + Constants.JSON_SERVER_FILTER)
         last_name: String,
     ): List<BookingDTO>
 
     @GET(Constants.API_BOOK_INDEX_URL)
     suspend fun getByBookingID(
-        @Query(Constants.API_BOOK_KEY_ID)
+        @Query(Constants.API_BOOK_KEY_ID + Constants.JSON_SERVER_FILTER)
         id: String,
     ): List<BookingDTO>
-
+    //TODO: Compressed stream to DB
     @GET(Constants.API_BOOK_INDEX_URL)
     suspend fun getByBookingArrivalDate(
         @Query(Constants.API_BOOK_KEY_DATE_IN)

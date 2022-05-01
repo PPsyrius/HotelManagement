@@ -8,25 +8,39 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Device(
-    var deviceName: String? = "",
+    var displayName: String? = "",
     var deviceSerial: String? = "",
-): Parcelable{
+    var manufacturer: String? = "",
+    var deviceStatus: String? = "",
+    var roomAssigned: String? = ""
+) : Parcelable {
     override fun toString(): String {
-        return deviceName.toString()
+        return displayName.toString() + ":" + deviceSerial.toString()
     }
-    companion object{
+
+    fun toDeviceDTO(): DeviceDTO {
+        return DeviceDTO(
+            displayName = displayName,
+            deviceSerial = deviceSerial,
+            manufacturer = manufacturer,
+            deviceStatus = deviceStatus,
+            roomAssigned = roomAssigned
+        )
+    }
+
+    companion object {
         fun pack(devices: List<Device>): List<String> {
             var parcel: MutableList<String> = mutableListOf<String>()
             for (device in devices) {
-                device.deviceSerial?.let { parcel.add(it) }
+                parcel.add(device.deviceSerial.toString())
             }
             return parcel
         }
-//TODO: Decide whether to keep device name in database?
+
         fun unpack(devices: List<String>): List<Device> {
             var parcel: MutableList<Device> = mutableListOf<Device>()
             for (device in devices) {
-                device?.let { parcel.add(Device(deviceSerial = it)) }
+                parcel.add(Device(deviceSerial = device))
             }
             return parcel
         }

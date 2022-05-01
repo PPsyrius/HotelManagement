@@ -70,7 +70,9 @@ class AddReservationActivity : AppCompatActivity() {
             lifecycleScope.launch {
                 addReservationViewModel.addReserve(
                     fname, lname, phone,
-                    payment, id, address, adultIntFromET, childIntFromET
+                    payment, id, address, adultIntFromET, childIntFromET,
+                    //TODO: Pass breakfast and is AddonBed here
+                    breakfast = true, isAddonBed = false
                 )
 
                 Log.i("Addreser", adultIntFromET.toString())
