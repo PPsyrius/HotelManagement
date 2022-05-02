@@ -176,7 +176,6 @@ class CheckInDetailActivity : AppCompatActivity() {
 //                            Toast.LENGTH_SHORT
 //                        ).show()
                         checkInDetailViewModel.reservation = reservation
-                        //TODO: If property is null, display nothing (e.g. RoomType = null -> UI field should be blank) --finish?--
                         binding.tvGuestName.text =
                             reservation.firstName + " " + reservation.lastName
                         binding.roomType.text = reservation.guestRoom?.roomType.toString()
@@ -202,7 +201,6 @@ class CheckInDetailActivity : AppCompatActivity() {
 
 
                         } else {
-                            //TODO: Set check box false -> finished?
                             binding.cbSmoking.isChecked = false
                         }
                     }
