@@ -1,22 +1,17 @@
 package com.example.dechproduct.hotelreservationapp.presentation.reservation.add
 
-import android.os.Build
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dechproduct.hotelreservationapp.data.model.Address
+import com.example.dechproduct.hotelreservationapp.data.model.unused.Address
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.GuestStatus
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.PaymentType
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.VerificationID
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
-import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.time.Instant
-import java.time.LocalDate
-import java.time.ZoneId
 import java.util.*
 import javax.inject.Inject
 

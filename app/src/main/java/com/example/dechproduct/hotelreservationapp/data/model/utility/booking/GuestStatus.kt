@@ -14,6 +14,7 @@ enum class GuestStatus(
     RESERVED("Reservation Completed","RSC"),
     CHECK_IN("Check-In Completed","CHI"),
     CHECK_OUT("Check-Out Completed","CHO"),
+    CANCEL("Guest Cancelled", "CAX"),
     ERROR("Error State","ERR"),
     NONE("Default","NON");
 

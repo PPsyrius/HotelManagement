@@ -3,7 +3,7 @@ package com.example.dechproduct.hotelreservationapp.presentation.checkinWalk
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dechproduct.hotelreservationapp.data.model.Address
+import com.example.dechproduct.hotelreservationapp.data.model.unused.Address
 import com.example.dechproduct.hotelreservationapp.data.model.Booking
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.GuestStatus
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.PaymentType

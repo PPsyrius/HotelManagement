@@ -57,6 +57,7 @@ object UseCaseModule {
             ShowPromotionUseCase(informationRepository),
 
             AddReserveUseCase(reservationRepository),
+            CancelReserveUseCase(reservationRepository),
             EditReserveUseCase(reservationRepository),
             PopulateReserveUseCase(reservationRepository),
             RemoveReserveUseCase(reservationRepository),

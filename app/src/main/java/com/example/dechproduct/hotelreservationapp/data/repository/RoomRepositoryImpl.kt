@@ -56,8 +56,6 @@ class RoomRepositoryImpl @Inject constructor(
         }
     }
 
-    //TODO:Cutoff unfulfilled reserved
-
     override suspend fun searchRoom(
         roomType: RoomType,
         bedType: BedType,

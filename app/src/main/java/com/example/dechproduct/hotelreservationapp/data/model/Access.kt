@@ -7,7 +7,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Staff(
+data class Access(
 
     var userID: String?,
 

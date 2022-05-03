@@ -17,6 +17,7 @@ enum class RoomStatus(
     ) : Parcelable {
     READY("Ready", "RA"),
     RESERVED("Reserved", "RS"),
+    GUARANTEED("Guaranteed Room", "GR"),
     REQ_CLEAN("Request Cleaning", "NC"),
     OUTORDER("Out of Order", "NF"),
     OCCUPIED("Occupied", "U0"),

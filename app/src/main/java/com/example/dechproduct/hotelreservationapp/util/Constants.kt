@@ -2,72 +2,79 @@ package com.example.dechproduct.hotelreservationapp.util
 
 object Constants {
     //Target API
-    const val API_USER_BASE_URL =
+    const val API_ACCESS_BASE_URL =
         "http://10.0.2.2:3000/"
-    const val API_USER_INDEX_URL =
-        "user/"
-    const val API_USER_KEY_PASSWORD = "password"
-    const val API_USER_KEY_ID = "userID"
-    const val API_USER_KEY_NAME = "displayName"
-    const val API_USER_KEY_USERNAME = "userName"
-    const val API_USER_KEY_TYPE = "userType"
+    const val API_ACCESS_INDEX_URL =
+        "EmployeeLoginAPI/"
+    const val API_ACCESS_KEY_ID = "accessID"
+    const val API_ACCESS_KEY_USERNAME = "username"
+    const val API_ACCESS_KEY_PASSWORD = "password"
+    const val API_ACCESS_KEY_EMPLOYEE = "employee"
 
-    const val API_BOOK_BASE_URL =
+    const val API_BOOKING_BASE_URL =
         "http://10.0.2.2:3001/"
-    const val API_BOOK_INDEX_URL =
-        "booking/"
-    const val API_BOOK_KEY_FNAME = "firstName"
-    const val API_BOOK_KEY_LNAME = "lastName"
-    const val API_BOOK_KEY_ID = "bookingID"
-    const val API_BOOK_KEY_PHONE = "phoneNumber"
-    const val API_BOOK_KEY_PAYMENT = "paymentType"
-    const val API_BOOK_KEY_DATE_IN = "arrivalDate"
-    const val API_BOOK_KEY_DATE_OUT = "departDate"
-    const val API_BOOK_KEY_ADULT = "adult"
-    const val API_BOOK_KEY_CHILD = "child"
-    const val API_BOOK_KEY_VERID = "verificationID"
-    const val API_BOOK_KEY_ADDRESS = "address"
-    const val API_BOOK_KEY_STATUS = "guestStatus"
-    const val API_BOOK_KEY_PASS = "guestPass"
-    const val API_BOOK_KEY_ROOM = "guestRoom"
-    const val API_BOOK_KEY_BREAKFAST = "breakfast"
-    const val API_BOOK_KEY_ADDONBED = "isAddonBed"
+    const val API_BOOKING_INDEX_URL =
+        "ReservationAPI/"
+    const val API_BOOKING_KEY_ID = "bookingID"
+    const val API_BOOKING_KEY_GUEST = "guest"
+    const val API_BOOKING_KEY_TICKET = "ticket"
+    const val API_BOOKING_KEY_ROOM = "room"
+    const val API_BOOKING_KEY_PAYMENT = "payment"
+    const val API_BOOKING_KEY_DATE_IN = "arrivalDate"
+    const val API_BOOKING_KEY_DATE_OUT = "departDate"
+    const val API_BOOKING_KEY_ADULT = "adult"
+    const val API_BOOKING_KEY_CHILD = "child"
+    const val API_BOOKING_KEY_STATUS = "bookingStatus"
+    const val API_BOOKING_KEY_BREAKFAST = "breakfast"
+    const val API_BOOKING_KEY_ADDBED = "isAddonBed"
 
     const val API_ROOM_BASE_URL =
         "http://10.0.2.2:3002/"
     const val API_ROOM_INDEX_URL =
-        "room/"
+        "RoomAPI/"
     const val API_ROOM_KEY_ID = "roomID"
     const val API_ROOM_KEY_TYPE = "roomType"
     const val API_ROOM_KEY_BEDS = "roomBeds"
     const val API_ROOM_KEY_CAP = "maxCap"
     const val API_ROOM_KEY_FLOOR = "posFloor"
     const val API_ROOM_KEY_FEATURES = "features"
-    const val API_ROOM_KEY_ADDONBED = "canAddonBed"
+    const val API_ROOM_KEY_ADDBED = "canAddonBed"
     const val API_ROOM_KEY_SMOKING = "smoking"
-    const val API_ROOM_KEY_STAT = "roomStatus"
-    const val API_ROOM_KEY_WALK = "isWalking"
-    const val API_ROOM_KEY_DEVICES = "deviceList"
+    const val API_ROOM_KEY_STATUS = "roomStatus"
+    const val API_ROOM_KEY_WALKING = "isWalking"
+    const val API_ROOM_KEY_DEVICES = "deviceID"
     const val API_ROOM_KEY_PRICE = "roomPrice"
 
-    const val API_INFO_BASE_URL =
+    const val API_TICKET_BASE_URL =
         "http://10.0.2.2:3003/"
-    const val API_INFO_INDEX_URL =
-        "info/"
-    const val API_INFO_KEY_TITLE = "title"
-    const val API_INFO_KEY_DESC = "description"
-    const val API_INFO_KEY_PARTNER = "partners"
-    const val API_INFO_KEY_DISCOUNT = "discount"
+    const val API_TICKET_INDEX_URL =
+        "GuestLoginAPI/"
+    const val API_TICKET_KEY_ID = "ticketID"
+    const val API_TICKET_KEY_USERNAME = "username"
+    const val API_TICKET_KEY_PASSWORD = "password"
+    const val API_TICKET_KEY_GUEST = "guest"
 
-    const val API_DEVICE_BASE_URL =
+    const val API_PROMOTION_BASE_URL =
         "http://10.0.2.2:3004/"
-    const val API_DEVICE_INDEX_URL =
-        "device/"
-    const val API_DEVICE_KEY_NAME = "displayName"
-    const val API_DEVICE_KEY_SERIAL = "deviceSerial"
-    const val API_DEVICE_KEY_OEM = "manufacturer"
-    const val API_DEVICE_KEY_STAT = "deviceStatus"
-    const val API_DEVICE_KEY_ASSIGN = "roomAssigned"
+    const val API_PROMOTION_INDEX_URL =
+        "PromotionAPI/"
+    const val API_PROMOTION_KEY_ID = "promotionID"
+    const val API_PROMOTION_KEY_TITLE = "title"
+    const val API_PROMOTION_KEY_DESCRIPTION = "description"
+    const val API_PROMOTION_KEY_PARTNER = "partners"
+    const val API_PROMOTION_KEY_DISCOUNT = "discount"
+
+    //Helper API
+    const val API_GUEST_KEY_ID = "guestID"
+    const val API_GUEST_KEY_FNAME = "firstName"
+    const val API_GUEST_KEY_LNAME = "lastName"
+    const val API_GUEST_KEY_PHONE = "phoneNumber"
+    const val API_GUEST_KEY_ADDRESS = "address"
+    const val API_GUEST_KEY_REGION = "region"
+    const val API_GUEST_KEY_POSTAL = "postalCode"
+    const val API_GUEST_KEY_COUNTRY = "country"
+    const val API_GUEST_KEY_VERID = "verificationID"
+    const val API_GUEST_KEY_VERPHOTO = "verificationPhoto"
 
     //Shared Preference
     const val SHARED_PREF_NAME = "USER_SESSION"

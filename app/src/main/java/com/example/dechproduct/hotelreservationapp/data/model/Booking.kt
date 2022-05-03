@@ -2,6 +2,7 @@ package com.example.dechproduct.hotelreservationapp.data.model
 
 import android.os.Build
 import android.os.Parcelable
+import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.Guest
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.GuestStatus
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.PaymentType
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.VerificationID
@@ -14,17 +15,15 @@ import java.util.*
 @Parcelize
 data class Booking(
 
-    var bookingID: String? = "",
+    var bookingID: String?,
 
-    var firstName: String? = "",
+    var guest: Guest?,
 
-    var lastName: String? = "",
+    var ticket: Ticket?,
 
-    var phoneNumber: String? = "",
+    var room: Room?,
 
-    var address: Address?,
-
-    var verificationID: VerificationID?,
+    var payment: Payment?,
 
     var arrivalDate: Date?,
 
@@ -34,13 +33,7 @@ data class Booking(
 
     var childCount: Int?,
 
-    var paymentType: PaymentType?,
-
-    var guestStatus: GuestStatus?,
-
-    var guestPass: GuestPass?,
-
-    var guestRoom: Room?,
+    var bookingStatus: String?,
 
     var breakfast: Boolean?,
 
@@ -51,10 +44,7 @@ data class Booking(
         var dateFormat = SimpleDateFormat("dd-MM-yyyy")
         return BookingDTO(
             bookingID = bookingID,
-            firstName = firstName,
-            lastName = lastName,
-            phoneNumber = phoneNumber,
-            address = address,
+            guest = guest
             verificationID = verificationID?.id,
             arrivalDate = dateFormat.format(arrivalDate),
             departDate = dateFormat.format(departDate),

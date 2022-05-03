@@ -26,6 +26,7 @@ class UseCase(
     var showPromotionUseCase: ShowPromotionUseCase,
 
     var addReserveUseCase: AddReserveUseCase,
+    var cancelReserveUseCase: CancelReserveUseCase,
     var editReserveUseCase: EditReserveUseCase,
     var populateReserveUseCase: PopulateReserveUseCase,
     var removeReserveUseCase: RemoveReserveUseCase,

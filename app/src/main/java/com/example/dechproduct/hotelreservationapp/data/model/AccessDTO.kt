@@ -4,7 +4,7 @@ package com.example.dechproduct.hotelreservationapp.data.model
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
 
-data class StaffDTO(
+data class AccessDTO(
     @SerializedName(Constants.API_USER_KEY_ID)
     var userID: String?,
     @SerializedName(Constants.API_USER_KEY_USERNAME)
@@ -17,8 +17,8 @@ data class StaffDTO(
     var userType: String,
 ) {
 
-    fun toStaff(): Staff{
-        return Staff(
+    fun toStaff(): Access{
+        return Access(
             userID = userID,
             userName = userName,
             displayName = displayName,

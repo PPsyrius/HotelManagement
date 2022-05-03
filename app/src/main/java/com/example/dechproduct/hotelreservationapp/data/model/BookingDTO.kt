@@ -1,29 +1,25 @@
 package com.example.dechproduct.hotelreservationapp.data.model
 
 
-import android.os.Build
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.GuestStatus
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.PaymentType
 import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.VerificationID
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 data class BookingDTO(
     @SerializedName(Constants.API_BOOK_KEY_ID)
     var bookingID: String?,
     @SerializedName(Constants.API_BOOK_KEY_FNAME)
-    var firstName: String?,
+    var guest: Guest?,
     @SerializedName(Constants.API_BOOK_KEY_LNAME)
-    var lastName: String?,
+    var ticket: Ticket?,
     @SerializedName(Constants.API_BOOK_KEY_PHONE)
-    var phoneNumber: String?,
+    var room: Room?,
     @SerializedName(Constants.API_BOOK_KEY_ADDRESS)
-    var address: Address?,
-    @SerializedName(Constants.API_BOOK_KEY_VERID)
-    var verificationID: String?,
+    var payment: Payment?,
     @SerializedName(Constants.API_BOOK_KEY_DATE_IN)
     var arrivalDate: String?,
     @SerializedName(Constants.API_BOOK_KEY_DATE_OUT)
@@ -33,14 +29,8 @@ data class BookingDTO(
     @SerializedName(Constants.API_BOOK_KEY_CHILD)
     var childCount: Int?,
     @SerializedName(Constants.API_BOOK_KEY_PAYMENT)
-    var paymentType: String?,
+    var bookingStatus: String?,
     @SerializedName(Constants.API_BOOK_KEY_STATUS)
-    var guestStatus: String?,
-    @SerializedName(Constants.API_BOOK_KEY_PASS)
-    var guestPass: GuestPass?,
-    @SerializedName(Constants.API_BOOK_KEY_ROOM)
-    var guestRoom: RoomDTO?,
-    @SerializedName(Constants.API_BOOK_KEY_BREAKFAST)
     var breakfast: Boolean?,
     @SerializedName(Constants.API_BOOK_KEY_ADDONBED)
     var isAddonBed: Boolean?,
@@ -60,8 +50,8 @@ data class BookingDTO(
             childCount = childCount,
             paymentType = paymentType?.let { PaymentType.unpack(it) },
             guestStatus = guestStatus?.let { GuestStatus.unpack(it) },
-            guestPass = guestPass,
-            guestRoom = guestRoom?.toRoom(),
+            guestPass = Ticket(),
+            guestRoom = Guest,
             breakfast = breakfast,
             isAddonBed = isAddonBed,
         )

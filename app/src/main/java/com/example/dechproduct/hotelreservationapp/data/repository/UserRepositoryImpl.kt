@@ -3,30 +3,28 @@ package com.example.dechproduct.hotelreservationapp.data.repository
 import android.content.SharedPreferences
 import android.util.Log
 import com.example.dechproduct.hotelreservationapp.data.api.UserAPIService
-import com.example.dechproduct.hotelreservationapp.data.model.Staff
+import com.example.dechproduct.hotelreservationapp.data.model.Access
 import com.example.dechproduct.hotelreservationapp.domain.repository.UserRepository
-import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
-import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val userAPI: UserAPIService,
     val sharedPreferences: SharedPreferences): UserRepository{
 
-    override suspend fun login(username: String, password: String):Resource<Staff> {
+    override suspend fun login(username: String, password: String):Resource<Access> {
         return try {
 
-            var staff: Staff = userAPI.getByUserName(username)[0].toStaff()
+            var access: Access = userAPI.getByUserName(username)[0].toStaff()
             var isFound: Boolean = false
 
             //TODO: Implements password hashing for comparison
-            if(staff.password == password){
+            if(access.password == password){
                 isFound = true
             }
 
             if(isFound)
-                Resource.Success(staff)
+                Resource.Success(access)
             else
                 throw Exception("Authentication Failed.")
         }
