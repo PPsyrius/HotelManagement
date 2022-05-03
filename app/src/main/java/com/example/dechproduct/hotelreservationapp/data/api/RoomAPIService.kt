@@ -1,7 +1,7 @@
 package com.example.dechproduct.hotelreservationapp.data.api
 
-import com.example.dechproduct.hotelreservationapp.data.model.Room
-import com.example.dechproduct.hotelreservationapp.data.model.RoomDTO
+import com.example.dechproduct.hotelreservationapp.data.model.room.Room
+import com.example.dechproduct.hotelreservationapp.data.model.room.RoomDTO
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -75,7 +75,7 @@ interface RoomAPIService {
     suspend fun putRoom(
         @Path("id")
         id:String,
-        @Body room:Room
+        @Body room: Room
     ): Response<ResponseBody>
 
     @PATCH(Constants.API_ROOM_INDEX_URL + "/{id}")

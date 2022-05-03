@@ -1,9 +1,6 @@
-package com.example.dechproduct.hotelreservationapp.data.model
+package com.example.dechproduct.hotelreservationapp.data.model.room
 
-import com.example.dechproduct.hotelreservationapp.data.model.utility.room.BedType
-import com.example.dechproduct.hotelreservationapp.data.model.utility.room.Feature
-import com.example.dechproduct.hotelreservationapp.data.model.utility.room.RoomStatus
-import com.example.dechproduct.hotelreservationapp.data.model.utility.room.RoomType
+import com.example.dechproduct.hotelreservationapp.data.model.device.Device
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
 
@@ -20,13 +17,13 @@ data class RoomDTO(
     var posFloor: String?,
     @SerializedName(Constants.API_ROOM_KEY_FEATURES)
     var features: List<String>?,
-    @SerializedName(Constants.API_ROOM_KEY_ADDONBED)
+    @SerializedName(Constants.API_ROOM_KEY_ADDBED)
     var canAddonBed: Boolean?,
     @SerializedName(Constants.API_ROOM_KEY_SMOKING)
     var smoking: Boolean?,
-    @SerializedName(Constants.API_ROOM_KEY_STAT)
+    @SerializedName(Constants.API_ROOM_KEY_STATUS)
     var roomStatus: String?,
-    @SerializedName(Constants.API_ROOM_KEY_WALK)
+    @SerializedName(Constants.API_ROOM_KEY_WALKING)
     var isWalking: Boolean?,
     @SerializedName(Constants.API_ROOM_KEY_DEVICES)
     var deviceList: List<String>?,

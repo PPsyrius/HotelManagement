@@ -1,20 +1,18 @@
-package com.example.dechproduct.hotelreservationapp.data.model
+package com.example.dechproduct.hotelreservationapp.data.model.promotion
 
-import android.os.Parcelable
-import com.example.dechproduct.hotelreservationapp.data.model.utility.room.Feature
-import com.example.dechproduct.hotelreservationapp.data.model.utility.room.RoomStatus
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
 data class PromotionDTO(
-    @SerializedName(Constants.API_INFO_KEY_TITLE)
+    @SerializedName(Constants.API_PROMOTION_KEY_ID)
+    var promotionID: String,
+    @SerializedName(Constants.API_PROMOTION_KEY_TITLE)
     var title: String?,
-    @SerializedName(Constants.API_INFO_KEY_DESC)
+    @SerializedName(Constants.API_PROMOTION_KEY_DESCRIPTION)
     var description: String?,
-    @SerializedName(Constants.API_INFO_KEY_PARTNER)
+    @SerializedName(Constants.API_PROMOTION_KEY_PARTNER)
     var partners: List<String>?,
-    @SerializedName(Constants.API_INFO_KEY_DISCOUNT)
+    @SerializedName(Constants.API_PROMOTION_KEY_DISCOUNT)
     var discount: Double?
 ) {
     override fun toString(): String {
@@ -23,6 +21,7 @@ data class PromotionDTO(
 
     fun toPromotion(): Promotion {
         return Promotion(
+            promotionID = promotionID,
             title = title,
             description = description,
             partners = partners,

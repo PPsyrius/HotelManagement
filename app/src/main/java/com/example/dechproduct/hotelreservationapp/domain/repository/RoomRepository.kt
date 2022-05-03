@@ -1,10 +1,10 @@
 package com.example.dechproduct.hotelreservationapp.domain.repository
 
-import com.example.dechproduct.hotelreservationapp.data.model.Room
-import com.example.dechproduct.hotelreservationapp.data.model.utility.room.BedType
-import com.example.dechproduct.hotelreservationapp.data.model.utility.room.Feature
-import com.example.dechproduct.hotelreservationapp.data.model.utility.room.RoomStatus
-import com.example.dechproduct.hotelreservationapp.data.model.utility.room.RoomType
+import com.example.dechproduct.hotelreservationapp.data.model.room.Room
+import com.example.dechproduct.hotelreservationapp.data.model.room.BedType
+import com.example.dechproduct.hotelreservationapp.data.model.room.Feature
+import com.example.dechproduct.hotelreservationapp.data.model.room.RoomStatus
+import com.example.dechproduct.hotelreservationapp.data.model.room.RoomType
 import com.example.dechproduct.hotelreservationapp.util.Resource
 
 interface RoomRepository {

@@ -1,21 +1,18 @@
-package com.example.dechproduct.hotelreservationapp.data.model
+package com.example.dechproduct.hotelreservationapp.data.model.booking
 
-import android.os.Build
 import android.os.Parcelable
-import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.Guest
-import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.GuestStatus
-import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.PaymentType
-import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.VerificationID
-import com.example.dechproduct.hotelreservationapp.util.Constants
+import com.example.dechproduct.hotelreservationapp.data.model.guest.Guest
+import com.example.dechproduct.hotelreservationapp.data.model.payment.Payment
+import com.example.dechproduct.hotelreservationapp.data.model.guest.Ticket
+import com.example.dechproduct.hotelreservationapp.data.model.room.Room
 import kotlinx.parcelize.Parcelize
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
 
 @Parcelize
 data class Booking(
 
-    var bookingID: String?,
+    var bookingID: String,
 
     var guest: Guest?,
 
@@ -44,16 +41,17 @@ data class Booking(
         var dateFormat = SimpleDateFormat("dd-MM-yyyy")
         return BookingDTO(
             bookingID = bookingID,
-            guest = guest
-            verificationID = verificationID?.id,
+            guest = guest,
+            ticket = ticket,
+            room = room,
+            payment = payment,
             arrivalDate = dateFormat.format(arrivalDate),
             departDate = dateFormat.format(departDate),
             adultCount = adultCount,
             childCount = childCount,
-            paymentType = paymentType?.let{PaymentType.pack(it)},
-            guestStatus = guestStatus?.let{GuestStatus.pack(it)},
-            guestPass = guestPass,
-            guestRoom = guestRoom?.toRoomDTO(),
+//            paymentType = paymentType?.let{PaymentType.pack(it)},
+//            guestStatus = guestStatus?.let{GuestStatus.pack(it)},
+            bookingStatus = bookingStatus,
             breakfast = breakfast,
             isAddonBed = isAddonBed,
         )

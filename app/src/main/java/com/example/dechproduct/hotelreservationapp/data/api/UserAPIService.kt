@@ -1,6 +1,6 @@
 package com.example.dechproduct.hotelreservationapp.data.api
 
-import com.example.dechproduct.hotelreservationapp.data.model.AccessDTO
+import com.example.dechproduct.hotelreservationapp.data.model.employee.AccessDTO
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import retrofit2.http.GET
 import retrofit2.http.Query

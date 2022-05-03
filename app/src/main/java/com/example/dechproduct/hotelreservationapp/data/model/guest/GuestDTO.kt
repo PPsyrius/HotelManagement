@@ -1,13 +1,9 @@
-package com.example.dechproduct.hotelreservationapp.data.model.utility.booking
+package com.example.dechproduct.hotelreservationapp.data.model.guest
 
-import android.os.Parcelable
-import com.example.dechproduct.hotelreservationapp.data.model.unused.Address
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
-data class Guest(
+data class GuestDTO(
     @SerializedName(Constants.API_GUEST_KEY_ID)
     var guestID: String,
     @SerializedName(Constants.API_GUEST_KEY_FNAME)
@@ -28,4 +24,19 @@ data class Guest(
     var verificationID: String?,
     @SerializedName(Constants.API_GUEST_KEY_VERPHOTO)
     var verificationPhoto: String?,
-): Parcelable
+) {
+    fun toGuest(): Guest {
+        return Guest(
+            guestID = guestID,
+            firstName = firstName,
+            lastName = lastName,
+            phoneNumber = phoneNumber,
+            address = address,
+            region = region,
+            postalCode = postalCode,
+            country = country,
+            verificationID = verificationID,
+            verificationPhoto = verificationPhoto
+        )
+    }
+}

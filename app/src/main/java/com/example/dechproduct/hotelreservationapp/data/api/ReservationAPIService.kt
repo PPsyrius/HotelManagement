@@ -1,7 +1,7 @@
 package com.example.dechproduct.hotelreservationapp.data.api
 
-import com.example.dechproduct.hotelreservationapp.data.model.Booking
-import com.example.dechproduct.hotelreservationapp.data.model.BookingDTO
+import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingDTO
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import okhttp3.ResponseBody
 import retrofit2.Response

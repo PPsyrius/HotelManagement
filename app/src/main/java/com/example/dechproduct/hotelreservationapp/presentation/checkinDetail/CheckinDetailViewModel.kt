@@ -1,18 +1,11 @@
 package com.example.dechproduct.hotelreservationapp.presentation.checkinDetail
 
-import android.annotation.SuppressLint
-import android.app.Application
-import android.content.Context
-import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dechproduct.hotelreservationapp.data.model.Booking
-import com.example.dechproduct.hotelreservationapp.data.model.Room
+import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.room.Room
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
-import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

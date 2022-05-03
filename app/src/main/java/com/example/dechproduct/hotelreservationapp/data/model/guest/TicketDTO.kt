@@ -1,8 +1,6 @@
-package com.example.dechproduct.hotelreservationapp.data.model
+package com.example.dechproduct.hotelreservationapp.data.model.guest
 
 import android.os.Parcelable
-import android.provider.SyncStateContract
-import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.Guest
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize

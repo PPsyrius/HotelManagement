@@ -4,10 +4,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dechproduct.hotelreservationapp.data.model.unused.Address
-import com.example.dechproduct.hotelreservationapp.data.model.Booking
-import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.GuestStatus
-import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.PaymentType
-import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.VerificationID
+import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingStatus
+import com.example.dechproduct.hotelreservationapp.data.model.payment.PaymentType
+import com.example.dechproduct.hotelreservationapp.data.model.guest.VerificationID
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -89,7 +89,7 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
                         address = Address(address),
                         guestPass = null,
                         guestRoom = null,
-                        guestStatus = GuestStatus.RESERVED,
+                        guestStatus = BookingStatus.RESERVED,
                         breakfast = breakfast,
                         isAddonBed = isAddonBed
                     )

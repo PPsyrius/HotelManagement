@@ -3,7 +3,7 @@ package com.example.dechproduct.hotelreservationapp.presentation.login
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dechproduct.hotelreservationapp.data.model.Access
+import com.example.dechproduct.hotelreservationapp.data.model.employee.Access
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import dagger.hilt.android.lifecycle.HiltViewModel

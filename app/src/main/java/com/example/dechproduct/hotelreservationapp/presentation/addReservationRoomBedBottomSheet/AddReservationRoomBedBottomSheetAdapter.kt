@@ -3,11 +3,8 @@ package com.example.dechproduct.hotelreservationapp.presentation.addReservationR
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dechproduct.hotelreservationapp.data.model.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
 import com.example.dechproduct.hotelreservationapp.databinding.RoomBedReservationItemBinding
 
 

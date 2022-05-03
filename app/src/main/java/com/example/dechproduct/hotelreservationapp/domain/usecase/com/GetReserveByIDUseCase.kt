@@ -1,6 +1,6 @@
 package com.example.dechproduct.hotelreservationapp.domain.usecase.com
 
-import com.example.dechproduct.hotelreservationapp.data.model.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
 import com.example.dechproduct.hotelreservationapp.domain.repository.ReservationRepository
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import javax.inject.Inject

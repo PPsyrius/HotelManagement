@@ -1,4 +1,4 @@
-package com.example.dechproduct.hotelreservationapp.data.model.utility.booking
+package com.example.dechproduct.hotelreservationapp.data.model.guest
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
@@ -6,10 +6,10 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class VerificationID(
     var id: String,
-    var url: String = ""
-    //TODO: Implement photo path here
+
+    var type: Type
+
 ) : Parcelable {
-    lateinit var type: Type
 
     enum class Type {
         THAI, FOREIGNER

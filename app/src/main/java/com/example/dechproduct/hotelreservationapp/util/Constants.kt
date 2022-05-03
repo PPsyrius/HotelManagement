@@ -76,6 +76,17 @@ object Constants {
     const val API_GUEST_KEY_VERID = "verificationID"
     const val API_GUEST_KEY_VERPHOTO = "verificationPhoto"
 
+    const val API_PAYMENT_KEY_ID = "paymentID"
+    const val API_PAYMENT_KEY_TYPE = "paymentType"
+    const val API_PAYMENT_KEY_PHOTO = "paymentPhoto"
+
+    const val API_DEVICE_KEY_ID = "paymentID"
+    const val API_DEVICE_KEY_NAME = "paymentType"
+    const val API_DEVICE_KEY_TYPE = "paymentPhoto"
+    const val API_DEVICE_KEY_SERIAL = "paymentID"
+    const val API_DEVICE_KEY_OEM = "paymentType"
+    const val API_DEVICE_KEY_STATUS = "paymentPhoto"
+
     //Shared Preference
     const val SHARED_PREF_NAME = "USER_SESSION"
     const val LOGGED_IN_USER_NAME = "LOGGED_IN_USER"

@@ -1,6 +1,6 @@
 package com.example.dechproduct.hotelreservationapp.domain.usecase.auth
 
-import com.example.dechproduct.hotelreservationapp.data.model.Access
+import com.example.dechproduct.hotelreservationapp.data.model.employee.Access
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import com.example.dechproduct.hotelreservationapp.domain.repository.UserRepository
 import javax.inject.Inject

@@ -1,8 +1,6 @@
-package com.example.dechproduct.hotelreservationapp.data.model.utility.room
+package com.example.dechproduct.hotelreservationapp.data.model.room
 
 import android.os.Parcelable
-import com.example.dechproduct.hotelreservationapp.data.model.utility.booking.GuestStatus
-import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

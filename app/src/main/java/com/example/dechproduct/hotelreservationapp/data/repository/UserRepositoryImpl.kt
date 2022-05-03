@@ -3,7 +3,7 @@ package com.example.dechproduct.hotelreservationapp.data.repository
 import android.content.SharedPreferences
 import android.util.Log
 import com.example.dechproduct.hotelreservationapp.data.api.UserAPIService
-import com.example.dechproduct.hotelreservationapp.data.model.Access
+import com.example.dechproduct.hotelreservationapp.data.model.employee.Access
 import com.example.dechproduct.hotelreservationapp.domain.repository.UserRepository
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import javax.inject.Inject

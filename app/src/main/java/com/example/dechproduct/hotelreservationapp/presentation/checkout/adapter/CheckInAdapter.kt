@@ -3,7 +3,7 @@ package com.example.dechproduct.hotelreservationapp.presentation.checkout.adapte
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dechproduct.hotelreservationapp.data.model.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
 import com.example.dechproduct.hotelreservationapp.databinding.CheckOutItemBinding
 
 class CheckOutAdapter (
