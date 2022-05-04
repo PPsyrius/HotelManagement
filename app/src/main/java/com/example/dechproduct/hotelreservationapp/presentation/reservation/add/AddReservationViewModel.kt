@@ -6,8 +6,10 @@ import androidx.lifecycle.viewModelScope
 import com.example.dechproduct.hotelreservationapp.data.model.unused.Address
 import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
 import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingStatus
+import com.example.dechproduct.hotelreservationapp.data.model.guest.Guest
 import com.example.dechproduct.hotelreservationapp.data.model.payment.PaymentType
 import com.example.dechproduct.hotelreservationapp.data.model.guest.VerificationID
+import com.example.dechproduct.hotelreservationapp.data.model.payment.Payment
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -76,20 +78,32 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
             val reservation =
                 useCase.addReserveUseCase(
                     Booking(
-                        firstName = fname.capitalize(),
-                        lastName = lname.capitalize(),
-                        phoneNumber = phone,
-                        //TODO: Return and pass PaymentType object, replacing {PaymentType.CASH} --TUNG
-                        paymentType = PaymentType.CASH,
-                        verificationID = VerificationID(verification),
+                        bookingID = null,
+                        guest = Guest(
+                            guestID = null,
+                            firstName = fname.capitalize(),
+                            lastName = lname.capitalize(),
+                            phoneNumber = phone,
+                            address = listOf(address),
+                            region = null,
+                            postalCode = null,
+                            country = null,
+                            verificationID = VerificationID(verification),
+                            verificationPhoto = null
+                        ),
+                        ticket = null,
+                        room = null,
+                        payment = Payment(
+                            paymentID = null,
+                            type = PaymentType.CASH,
+                            //TODO: Return and pass PaymentType object, replacing {PaymentType.CASH} -- TUNG
+                            photo = null
+                        ),
                         arrivalDate = Date(startDateEpoch),
                         departDate = Date(endDateEpoch),
                         adultCount = adult_count,
                         childCount = child_count,
-                        address = Address(address),
-                        guestPass = null,
-                        guestRoom = null,
-                        guestStatus = BookingStatus.RESERVED,
+                        status = BookingStatus.CREATED,
                         breakfast = breakfast,
                         isAddonBed = isAddonBed
                     )

@@ -22,10 +22,10 @@ class CheckInAdapter (
 
     override fun onBindViewHolder(holder: CheckInViewHolder, index: Int) {
         holder.reserveName.text =
-            bookings[index].firstName +"\n"+ bookings[index].lastName
+            bookings[index].guest?.firstName +"\n"+ bookings[index].guest?.lastName
         holder.reserveDateIn.text = bookings[index].arrivalDate.toString()
         holder.reserveDateOut.text = bookings[index].departDate.toString()
-        holder.reservePhoneNo.text = bookings[index].phoneNumber.toString()
+        holder.reservePhoneNo.text = bookings[index].guest?.phoneNumber.toString()
         holder.reserveID.text = bookings[index].bookingID.toString()
     }
 

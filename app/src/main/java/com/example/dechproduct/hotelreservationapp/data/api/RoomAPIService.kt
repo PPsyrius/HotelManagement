@@ -53,13 +53,13 @@ interface RoomAPIService {
 
     @GET(Constants.API_ROOM_INDEX_URL)
     suspend fun getByStatus(
-        @Query(Constants.API_ROOM_KEY_STAT)
+        @Query(Constants.API_ROOM_KEY_STATUS)
         status:String,
     ): List<RoomDTO>
 
     @GET(Constants.API_ROOM_INDEX_URL)
     suspend fun getByIsWalking(
-        @Query(Constants.API_ROOM_KEY_WALK)
+        @Query(Constants.API_ROOM_KEY_WALKING)
         walking:Boolean,
     ): List<RoomDTO>
 

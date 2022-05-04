@@ -9,6 +9,7 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface DeviceAPIService {
+    //Unused for the scope
 
     @GET(Constants.API_DEVICE_INDEX_URL)
     suspend fun getAllDevice(): List<DeviceDTO>
@@ -21,19 +22,13 @@ interface DeviceAPIService {
 
     @GET(Constants.API_DEVICE_INDEX_URL)
     suspend fun getByStatus(
-        @Query(Constants.API_DEVICE_KEY_STAT)
+        @Query(Constants.API_DEVICE_KEY_STATUS)
         keyword: String,
     ): List<DeviceDTO>
 
     @GET(Constants.API_DEVICE_INDEX_URL)
     suspend fun getByManufacturer(
         @Query(Constants.API_DEVICE_KEY_OEM)
-        keyword: String,
-    ): List<DeviceDTO>
-
-    @GET(Constants.API_DEVICE_INDEX_URL)
-    suspend fun getByRoom(
-        @Query(Constants.API_DEVICE_KEY_ASSIGN)
         keyword: String,
     ): List<DeviceDTO>
 

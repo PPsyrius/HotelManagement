@@ -7,32 +7,32 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Room(
     var roomID: String? = null,
-    var roomType: RoomType? = null,
-    var roomBeds: BedType? = null,
+    var type: RoomType? = null,
+    var beds: BedType? = null,
     var maxCap: Int? = null,
-    var posFloor: String? = null,
+    var floor: String? = null,
     var features: List<Feature>? = null,
     var canAddonBed: Boolean? = null,
     var smoking: Boolean? = null,
-    var roomStatus: RoomStatus? = null,
+    var status: RoomStatus? = null,
     var isWalking: Boolean? = null,
-    var deviceList: List<Device>? = null,
-    var roomPrice: Double? = null,
+    var device: List<Device>? = null,
+    var price: Double? = null,
 ) : Parcelable {
     fun toRoomDTO(): RoomDTO {
         return RoomDTO(
             roomID = roomID,
-            roomType = roomType?.let { RoomType.pack(it) },
-            roomBeds = roomBeds?.let { BedType.pack(it) },
+            type = type?.let { RoomType.pack(it) },
+            beds = beds?.let { BedType.pack(it) },
             maxCap = maxCap,
-            posFloor = posFloor,
+            floor = floor,
             features = features?.let { Feature.pack(it) },
             canAddonBed = canAddonBed,
             smoking = smoking,
-            roomStatus = roomStatus?.let { RoomStatus.pack(it) },
+            status = status?.let { RoomStatus.pack(it) },
             isWalking = isWalking,
-            deviceList = deviceList?.let { Device.pack(it) },
-            roomPrice = roomPrice,
+            device = device,
+            price = price,
         )
     }
 }

@@ -35,15 +35,15 @@ data class Device(
         )
     }
 
-    companion object {
-        fun pack(devices: List<Device>): List<String> {
-            var parcel: MutableList<String> = mutableListOf<String>()
-            for (device in devices) {
-                parcel.add(device.serial.toString())
-            }
-            return parcel
-        }
-
+//    companion object {
+//        fun pack(devices: List<Device>): List<String> {
+//            var parcel: MutableList<String> = mutableListOf<String>()
+//            for (device in devices) {
+//                parcel.add(device.serial.toString())
+//            }
+//            return parcel
+//        }
+//
 //        fun unpack(devices: List<String>): List<Device> {
 //            var parcel: MutableList<Device> = mutableListOf<Device>()
 //            for (device in devices) {
@@ -58,5 +58,5 @@ data class Device(
 //            }
 //            return parcel
 //        }
-    }
+//    }
 }

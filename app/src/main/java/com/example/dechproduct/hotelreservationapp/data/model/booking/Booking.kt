@@ -12,7 +12,7 @@ import java.util.*
 @Parcelize
 data class Booking(
 
-    var bookingID: String,
+    var bookingID: String?,
 
     var guest: Guest?,
 
@@ -30,7 +30,7 @@ data class Booking(
 
     var childCount: Int?,
 
-    var bookingStatus: String?,
+    var status: BookingStatus?,
 
     var breakfast: Boolean?,
 
@@ -41,7 +41,7 @@ data class Booking(
         var dateFormat = SimpleDateFormat("dd-MM-yyyy")
         return BookingDTO(
             bookingID = bookingID,
-            guest = guest,
+            guest = guest?.toGuestDTO(),
             ticket = ticket,
             room = room,
             payment = payment,
@@ -49,9 +49,7 @@ data class Booking(
             departDate = dateFormat.format(departDate),
             adultCount = adultCount,
             childCount = childCount,
-//            paymentType = paymentType?.let{PaymentType.pack(it)},
-//            guestStatus = guestStatus?.let{GuestStatus.pack(it)},
-            bookingStatus = bookingStatus,
+            status = status?.let { BookingStatus.pack(it) },
             breakfast = breakfast,
             isAddonBed = isAddonBed,
         )

@@ -28,7 +28,7 @@ class RoomBedAdapter (
     override fun onBindViewHolder(holder: RoomBedViewHolder, index: Int) {
 
 
-        holder.rooms.text = bookings[index].firstName
+        holder.rooms.text = bookings[index].guest?.firstName
 //        +"\n"+ bookings[index].lastName
 
         holder.selectRoom.setOnClickListener { v ->

@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class MarkRoomUseCase @Inject constructor(private val editRoomUseCase: EditRoomUseCase) {
     suspend operator fun invoke(room: Room, roomStatus: RoomStatus): Resource<Room> {
-        room.roomStatus = roomStatus
+        room.status = roomStatus
         return editRoomUseCase(room)
     }
 }

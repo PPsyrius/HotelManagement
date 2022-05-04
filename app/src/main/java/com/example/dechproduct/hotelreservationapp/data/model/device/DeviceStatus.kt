@@ -11,7 +11,7 @@ enum class DeviceStatus(
 
     ) : Parcelable {
     NORMAL("Device Functioning.", "NM"),
-    BROKEN("Needs Fixing.", "BD"),
+    BROKEN("Needs Fixing.", "NF"),
     NONE("Default", "NON");
 
     companion object {

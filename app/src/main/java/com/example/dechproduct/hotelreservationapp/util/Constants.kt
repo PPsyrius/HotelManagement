@@ -24,7 +24,7 @@ object Constants {
     const val API_BOOKING_KEY_DATE_OUT = "departDate"
     const val API_BOOKING_KEY_ADULT = "adult"
     const val API_BOOKING_KEY_CHILD = "child"
-    const val API_BOOKING_KEY_STATUS = "bookingStatus"
+    const val API_BOOKING_KEY_STATUS = "status"
     const val API_BOOKING_KEY_BREAKFAST = "breakfast"
     const val API_BOOKING_KEY_ADDBED = "isAddonBed"
 
@@ -33,17 +33,17 @@ object Constants {
     const val API_ROOM_INDEX_URL =
         "RoomAPI/"
     const val API_ROOM_KEY_ID = "roomID"
-    const val API_ROOM_KEY_TYPE = "roomType"
-    const val API_ROOM_KEY_BEDS = "roomBeds"
+    const val API_ROOM_KEY_TYPE = "type"
+    const val API_ROOM_KEY_BEDS = "beds"
     const val API_ROOM_KEY_CAP = "maxCap"
-    const val API_ROOM_KEY_FLOOR = "posFloor"
+    const val API_ROOM_KEY_FLOOR = "floor"
     const val API_ROOM_KEY_FEATURES = "features"
     const val API_ROOM_KEY_ADDBED = "canAddonBed"
     const val API_ROOM_KEY_SMOKING = "smoking"
-    const val API_ROOM_KEY_STATUS = "roomStatus"
+    const val API_ROOM_KEY_STATUS = "status"
     const val API_ROOM_KEY_WALKING = "isWalking"
-    const val API_ROOM_KEY_DEVICES = "deviceID"
-    const val API_ROOM_KEY_PRICE = "roomPrice"
+    const val API_ROOM_KEY_DEVICES = "device"
+    const val API_ROOM_KEY_PRICE = "price"
 
     const val API_TICKET_BASE_URL =
         "http://10.0.2.2:3003/"
@@ -77,15 +77,21 @@ object Constants {
     const val API_GUEST_KEY_VERPHOTO = "verificationPhoto"
 
     const val API_PAYMENT_KEY_ID = "paymentID"
-    const val API_PAYMENT_KEY_TYPE = "paymentType"
-    const val API_PAYMENT_KEY_PHOTO = "paymentPhoto"
+    const val API_PAYMENT_KEY_TYPE = "type"
+    const val API_PAYMENT_KEY_PHOTO = "photo"
 
-    const val API_DEVICE_KEY_ID = "paymentID"
-    const val API_DEVICE_KEY_NAME = "paymentType"
-    const val API_DEVICE_KEY_TYPE = "paymentPhoto"
-    const val API_DEVICE_KEY_SERIAL = "paymentID"
-    const val API_DEVICE_KEY_OEM = "paymentType"
-    const val API_DEVICE_KEY_STATUS = "paymentPhoto"
+    const val API_DEVICE_KEY_ID = "deviceID"
+    const val API_DEVICE_KEY_NAME = "displayName"
+    const val API_DEVICE_KEY_TYPE = "type"
+    const val API_DEVICE_KEY_SERIAL = "serial"
+    const val API_DEVICE_KEY_OEM = "manufacturer"
+    const val API_DEVICE_KEY_STATUS = "status"
+
+    //Maintenance API
+    const val API_DEVICE_BASE_URL =
+        "http://10.0.2.2:3005/"
+    const val API_DEVICE_INDEX_URL =
+        "MaintenanceAPI/"
 
     //Shared Preference
     const val SHARED_PREF_NAME = "USER_SESSION"

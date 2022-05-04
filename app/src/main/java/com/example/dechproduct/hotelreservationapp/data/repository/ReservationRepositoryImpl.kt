@@ -163,7 +163,7 @@ class ReservationRepositoryImpl @Inject constructor(
     ) {
         for (result in s_results) {
             try {
-                if (status == BookingStatus.NONE || status.internalCode == result.guestStatus) {
+                if (status == BookingStatus.NONE || status.internalCode == result.status) {
                     results.add(result.toBooking())
                 }
             } catch (e: java.lang.Exception) {

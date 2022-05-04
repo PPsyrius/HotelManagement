@@ -21,10 +21,10 @@ class CheckOutAdapter (
 
     override fun onBindViewHolder(holder: CheckOutViewHolder, index: Int) {
         holder.checkOutName.text =
-            bookings[index].firstName +"\n"+ bookings[index].lastName
+            bookings[index].guest?.firstName +"\n"+ bookings[index].guest?.lastName
         holder.checkOutDateIn.text = bookings[index].arrivalDate.toString()
         holder.checkOutDateOut.text = bookings[index].departDate.toString()
-        holder.checkOutPhoneNumber.text = bookings[index].phoneNumber.toString()
+        holder.checkOutPhoneNumber.text = bookings[index].guest?.phoneNumber.toString()
         holder.checkOutID.text = bookings[index].bookingID.toString()
     }
     

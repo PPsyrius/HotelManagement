@@ -6,11 +6,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Guest(
 
-    var guestID: String,
+    var guestID: String?,
 
-    var firstName: String,
+    var firstName: String?,
 
-    var lastName: String,
+    var lastName: String?,
 
     var phoneNumber: String?,
 
@@ -22,7 +22,7 @@ data class Guest(
 
     var country: String?,
 
-    var verificationID: String?,
+    var verificationID: VerificationID?,
 
     var verificationPhoto: String?,
 ) : Parcelable {
@@ -36,7 +36,7 @@ data class Guest(
             region = region,
             postalCode = postalCode,
             country = country,
-            verificationID = verificationID,
+            verificationID = verificationID.toString(),
             verificationPhoto = verificationPhoto
         )
     }

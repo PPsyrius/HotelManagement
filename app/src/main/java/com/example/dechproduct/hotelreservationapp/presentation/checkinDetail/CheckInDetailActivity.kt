@@ -178,8 +178,8 @@ class CheckInDetailActivity : AppCompatActivity() {
                         checkInDetailViewModel.reservation = reservation
                         //TODO: If property is null, display nothing (e.g. RoomType = null -> UI field should be blank) --finish?--
                         binding.tvGuestName.text =
-                            reservation.firstName + " " + reservation.lastName
-                        binding.roomType.text = reservation.guestRoom?.roomType.toString()
+                            reservation.guest?.firstName + " " + reservation.guest?.lastName
+                        binding.roomType.text = reservation.room?.type.toString()
                         binding.tvCheckInDate.text = SimpleDateFormat(
                             "dd-MM-yyyy",
                             Locale.getDefault()
@@ -189,7 +189,7 @@ class CheckInDetailActivity : AppCompatActivity() {
                             Locale.getDefault()
                         ).format(reservation.departDate)
 
-                        binding.tvDisplayRoomBed.text = reservation.guestRoom?.roomBeds.toString()
+                        binding.tvDisplayRoomBed.text = reservation.room?.beds.toString()
                         //TODO: Set binding to reservation.adultCount, reservation.childCount       --finish?--
 
                         binding.edtGuestNumber.setText(reservation.adultCount?.toString())

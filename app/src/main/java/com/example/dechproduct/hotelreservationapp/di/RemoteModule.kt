@@ -18,7 +18,7 @@ object RemoteModule {
     @Singleton
     fun provideGuestbookAPI(): ReservationAPIService {
         return Retrofit.Builder()
-            .baseUrl(Constants.API_BOOK_BASE_URL)
+            .baseUrl(Constants.API_BOOKING_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ReservationAPIService::class.java)
@@ -28,7 +28,7 @@ object RemoteModule {
     @Singleton
     fun provideUserAPI(): UserAPIService {
         return Retrofit.Builder()
-            .baseUrl(Constants.API_USER_BASE_URL)
+            .baseUrl(Constants.API_ACCESS_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(UserAPIService::class.java)
@@ -48,7 +48,7 @@ object RemoteModule {
     @Singleton
     fun providePromotionAPI(): PromotionAPIService {
         return Retrofit.Builder()
-            .baseUrl(Constants.API_INFO_BASE_URL)
+            .baseUrl(Constants.API_PROMOTION_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(PromotionAPIService::class.java)

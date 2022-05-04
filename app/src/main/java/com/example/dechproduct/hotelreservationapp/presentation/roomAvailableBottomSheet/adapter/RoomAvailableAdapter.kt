@@ -27,9 +27,9 @@ class RoomAvailableAdapter (
     override fun onBindViewHolder(holder: RoomAvailableViewHolder, index: Int) {
 
 
-        holder.rooms.text = bookings[index].firstName
+        holder.rooms.text = bookings[index].guest?.firstName
 //        +"\n"+ bookings[index].lastName
-        holder.roomStatus.text = bookings[index].guestStatus?.displayName
+        holder.roomStatus.text = bookings[index].status?.displayName
 
         holder.roomPrice.text = "10,000"+ " ฿"
 

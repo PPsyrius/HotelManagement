@@ -88,7 +88,7 @@ class RoomRepositoryImpl @Inject constructor(
     ) {
         for (result in s_results) {
             try {
-                if (status == RoomStatus.NONE || status.internalCode == result.roomStatus) {
+                if (status == RoomStatus.NONE || status.internalCode == result.status) {
                     results.add(result.toRoom())
                 }
             } catch (e: java.lang.Exception) {

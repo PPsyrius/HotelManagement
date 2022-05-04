@@ -13,11 +13,11 @@ data class Access(
 
     var accessID: String,
 
-    var userName: String?,
+    var userName: String,
 
-    var password: String?,
+    var password: String,
 
-    var employee: Employee?,
+    var employee: Employee,
 
     ) : Parcelable {
 }

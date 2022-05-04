@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class CancelReserveUseCase @Inject constructor(private val reservationRepository: ReservationRepository) {
     suspend operator fun invoke(booking: Booking): Resource<Booking> {
-        booking.guestStatus = BookingStatus.CANCEL
+        booking.status = BookingStatus.CANCEL
         return reservationRepository.edit(booking)
     }
 }

@@ -14,8 +14,8 @@ class ExtendStayUseCase @Inject constructor(
     private val editRoomUseCase: EditRoomUseCase
 ) {
     suspend operator fun invoke(booking: Booking): Resource<Booking>{
-        booking.guestRoom?.roomStatus = RoomStatus.SOF_CLEAN
-        booking.guestRoom?.let { editRoomUseCase(it) }
+        booking.room?.status = RoomStatus.SOF_CLEAN
+        booking.room?.let { editRoomUseCase(it) }
 
         return editReserveUseCase(booking)
     }

@@ -13,8 +13,8 @@ class CheckInGuestUseCase @Inject constructor(
     private val editReserveUseCase: EditReserveUseCase
 ) {
     suspend operator fun invoke(booking: Booking, room: Room): Resource<Booking> {
-        booking.guestRoom = room
-        booking.guestStatus = BookingStatus.CHECK_IN
+        booking.room = room
+        booking.status = BookingStatus.CHECK_IN
         return editReserveUseCase(booking)
     }
 }

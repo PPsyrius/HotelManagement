@@ -8,13 +8,13 @@ data class RoomDTO(
     @SerializedName(Constants.API_ROOM_KEY_ID)
     var roomID: String?,
     @SerializedName(Constants.API_ROOM_KEY_TYPE)
-    var roomType: String?,
+    var type: String?,
     @SerializedName(Constants.API_ROOM_KEY_BEDS)
-    var roomBeds: String?,
+    var beds: String?,
     @SerializedName(Constants.API_ROOM_KEY_CAP)
     var maxCap: Int?,
     @SerializedName(Constants.API_ROOM_KEY_FLOOR)
-    var posFloor: String?,
+    var floor: String?,
     @SerializedName(Constants.API_ROOM_KEY_FEATURES)
     var features: List<String>?,
     @SerializedName(Constants.API_ROOM_KEY_ADDBED)
@@ -22,28 +22,28 @@ data class RoomDTO(
     @SerializedName(Constants.API_ROOM_KEY_SMOKING)
     var smoking: Boolean?,
     @SerializedName(Constants.API_ROOM_KEY_STATUS)
-    var roomStatus: String?,
+    var status: String?,
     @SerializedName(Constants.API_ROOM_KEY_WALKING)
     var isWalking: Boolean?,
     @SerializedName(Constants.API_ROOM_KEY_DEVICES)
-    var deviceList: List<String>?,
+    var device: List<Device>?,
     @SerializedName(Constants.API_ROOM_KEY_PRICE)
-    var roomPrice: Double?,
+    var price: Double?,
 ) {
     fun toRoom(): Room {
         return Room(
             roomID = roomID,
-            roomType = roomType?.let { RoomType.unpack(it) },
-            roomBeds = roomBeds?.let { BedType.unpack(it) },
+            type = type?.let { RoomType.unpack(it) },
+            beds = beds?.let { BedType.unpack(it) },
             maxCap = maxCap,
-            posFloor = posFloor,
+            floor = floor,
             features = features?.let { Feature.unpack(it) },
             canAddonBed = canAddonBed,
             smoking = smoking,
-            roomStatus = roomStatus?.let { RoomStatus.unpack(it) },
+            status = status?.let { RoomStatus.unpack(it) },
             isWalking = isWalking,
-            deviceList = deviceList?.let { Device.unpack(it) },
-            roomPrice = roomPrice,
+            device = device,
+            price = price,
         )
     }
 }

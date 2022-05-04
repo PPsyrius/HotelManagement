@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class GuestDTO(
     @SerializedName(Constants.API_GUEST_KEY_ID)
-    var guestID: String,
+    var guestID: String?,
     @SerializedName(Constants.API_GUEST_KEY_FNAME)
-    var firstName: String,
+    var firstName: String?,
     @SerializedName(Constants.API_GUEST_KEY_LNAME)
-    var lastName: String,
+    var lastName: String?,
     @SerializedName(Constants.API_GUEST_KEY_PHONE)
     var phoneNumber: String?,
     @SerializedName(Constants.API_GUEST_KEY_ADDRESS)
@@ -35,7 +35,7 @@ data class GuestDTO(
             region = region,
             postalCode = postalCode,
             country = country,
-            verificationID = verificationID,
+            verificationID = verificationID?.let { VerificationID(it) },
             verificationPhoto = verificationPhoto
         )
     }

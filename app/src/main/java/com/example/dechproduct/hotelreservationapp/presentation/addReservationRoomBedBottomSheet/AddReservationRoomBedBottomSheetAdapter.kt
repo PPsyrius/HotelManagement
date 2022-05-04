@@ -29,8 +29,8 @@ class AddReservationRoomBedBottomSheetAdapter (
 
     override fun onBindViewHolder(holder: AddReservationRoomBedBottomSheetViewHolder, index: Int) {
 
-
-        holder.rooms.text = bookings[index].firstName
+        holder.rooms.text = "Test"
+//        holder.rooms.text = bookings[index].firstName
 //        +"\n"+ bookings[index].lastName
 
         holder.selectRoom.setOnClickListener { v ->

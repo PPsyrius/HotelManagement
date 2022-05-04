@@ -22,10 +22,10 @@ class SearchAdapter(
 
     override fun onBindViewHolder(holder: SearchViewHolder, index: Int) {
         holder.reserveName.text =
-            bookings[index].firstName +"\n"+ bookings[index].lastName
+            bookings[index].guest?.firstName +"\n"+ bookings[index].guest?.lastName
         holder.reserveDateIn.text = bookings[index].arrivalDate.toString()
         holder.reserveDateOut.text = bookings[index].departDate.toString()
-        holder.reservePhoneNo.text = bookings[index].phoneNumber.toString()
+        holder.reservePhoneNo.text = bookings[index].guest?.phoneNumber.toString()
         holder.reserveRoomType.text = bookings[index].bookingID.toString()
 
     }

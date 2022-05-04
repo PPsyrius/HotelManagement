@@ -8,20 +8,19 @@ data class AccessDTO(
     @SerializedName(Constants.API_ACCESS_KEY_ID)
     var accessID: String,
     @SerializedName(Constants.API_ACCESS_KEY_USERNAME)
-    var userName: String?,
+    var userName: String,
     @SerializedName(Constants.API_ACCESS_KEY_PASSWORD)
-    var password: String?,
+    var password: String,
     @SerializedName(Constants.API_ACCESS_KEY_EMPLOYEE)
-    var employee: Employee?,
+    var employee: Employee,
 ) {
 
     fun toStaff(): Access {
         return Access(
-            userID = userID,
+            accessID = accessID,
             userName = userName,
-            displayName = displayName,
             password = password,
-            userType = userType,
+            employee = employee
         )
     }
 }

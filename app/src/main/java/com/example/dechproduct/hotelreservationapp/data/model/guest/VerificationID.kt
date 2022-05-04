@@ -7,10 +7,8 @@ import kotlinx.parcelize.Parcelize
 data class VerificationID(
     var id: String,
 
-    var type: Type
-
 ) : Parcelable {
-
+    lateinit var type: Type
     enum class Type {
         THAI, FOREIGNER
     }
@@ -25,5 +23,9 @@ data class VerificationID(
         } else {
             Type.FOREIGNER
         }
+    }
+
+    override fun toString(): String {
+        return id.toString()
     }
 }
