@@ -1,0 +1,60 @@
+{
+    "Device": [
+        {
+            "deviceID": "001",
+            "displayName": "Electric Kettle",
+            "type": "EK",
+            "serial": "SN0112",
+            "manufacturer": "Skyworth",
+            "status": "NM"
+        },
+        {
+            "deviceID": "002",
+            "displayName": "Air Conditioner",
+            "type": "AC",
+            "serial": "SS50392128",
+            "manufacturer": "Samsung",
+            "status": "NF"
+        },
+        {
+            "deviceID": "003",
+            "displayName": "Television",
+            "type": "TV",
+            "serial": "LG109348304723X",
+            "manufacturer": "LG",
+            "status": "NF"
+        },
+        {
+            "deviceID": "004",
+            "displayName": "Electric Kettle",
+            "type": "EK",
+            "serial": "SN163B",
+            "manufacturer": "Skyworth",
+            "status": "NM"
+        },
+        {
+            "deviceID": "005",
+            "displayName": "Air Conditioner",
+            "type": "AC",
+            "serial": "SS5032345B",
+            "manufacturer": "Samsung",
+            "status": "NM"
+        },
+        {
+            "deviceID": "006",
+            "displayName": "Television",
+            "type": "TV",
+            "serial": "LG1093483223B",
+            "manufacturer": "LG",
+            "status": "NM"
+        },
+        {
+            "deviceID": "007",
+            "displayName": "Television",
+            "type": "TV",
+            "serial": "LG1093483223B",
+            "manufacturer": "LG",
+            "status": "NM"
+        }
+    ]
+}

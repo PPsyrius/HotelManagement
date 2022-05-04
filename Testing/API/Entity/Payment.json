@@ -1,0 +1,14 @@
+{
+    "Payment": [
+        {
+            "paymentID": "F123",
+            "type": "CA",
+            "photo": ""
+        },
+        {
+            "paymentID": "P234",
+            "type": "VI",
+            "photo": ""
+        }
+    ]
+}

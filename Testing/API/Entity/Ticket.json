@@ -1,0 +1,19 @@
+{
+    "Ticket": [
+        {
+            "ticketID": "0A01",
+            "username": "943JDC12",
+            "password": "E349823JFSF0DK2"
+        },
+        {
+            "ticketID": "0A21",
+            "username": "gpass_username",
+            "password": "gpass_password"
+        },
+        {
+            "ticketID": "0000",
+            "username": "guest",
+            "password": "123"
+        }
+    ]
+}

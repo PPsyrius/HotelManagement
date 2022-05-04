@@ -1,0 +1,13 @@
+{
+    "GuestLoginAPI": [
+        {
+            "ticketID":"0A01",
+            "username": "943JDC12",
+            "password": "E349823JFSF0DK2",
+            "guest": {
+                "firstName": "Johannas",
+                "lastName": "Vicketry"
+            }
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "Access": [
+        {
+            "accessID": "0M01",
+            "username": "jimbo",
+            "password": "notjim"
+        },
+        {
+            "accessID": "R0121",
+            "username": "siri",
+            "password": "hey"
+        },
+        {
+            "accessID": "M1592",
+            "username": "cortana",
+            "password": "hi"
+        }
+    ]
+}
