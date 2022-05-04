@@ -13,7 +13,7 @@
         android:id="@+id/tvMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Select room type"
+        android:text="Select Room Type"
         android:gravity="center"
         android:textSize="20sp"
         android:paddingTop="6dp"
@@ -27,20 +27,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_bar"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorGrey"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/white"
-        android:tint="@color/colorAccent"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMenu"
-
         app:layout_constraintVertical_chainStyle="packed"
-        tools:text="BottomSheet" />
+
+
+        >
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/white"
+            android:tint="@color/colorAccent"
+            android:background="#FBFBFB"
+            tools:text="BottomSheet" />
+    </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRoomAvailableList"
@@ -48,7 +58,9 @@
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/cvSearch"
+        android:layout_marginTop="7dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

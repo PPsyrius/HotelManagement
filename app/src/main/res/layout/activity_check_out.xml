@@ -16,9 +16,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <TextView
@@ -29,7 +29,7 @@
         android:drawablePadding="8dp"
         android:fontFamily="@font/cinzeldecorative_bold"
         android:gravity="center"
-        android:text="Check - oUT"
+        android:text="Check - Out"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,10 +40,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="5dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/cvSearch" />
 
 
     <LinearLayout
@@ -53,7 +54,6 @@
         android:layout_marginBottom="51dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/reservationList"
-        app:layout_constraintEnd_toStartOf="@+id/fragmentContainerView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -71,41 +71,35 @@
 
     </LinearLayout>
 
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="7"
-        android:visibility="gone"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/bnv_news"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnv_news"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="411dp"
-        android:layout_weight="1"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/fragmentContainerView"
-        app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/bottom_menu" />
-
-    <SearchView
-        android:id="@+id/searchBar"
-        android:layout_width="0dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvSearch"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:background="@color/colorGrey"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+        app:layout_constraintVertical_chainStyle="packed"
+
+
+        >
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FBFBFB"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:tint="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvSearch" />
+
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

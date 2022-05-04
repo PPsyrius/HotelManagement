@@ -40,7 +40,7 @@ class CheckOutActivity : AppCompatActivity() {
         }
 
         var searchBar = binding.searchBar
-        searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchBar.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 if(query == "")
                     lifecycleScope.launch{
