@@ -21,7 +21,7 @@
             android:id="@+id/view3"
             android:layout_width="1dp"
             android:layout_height="20dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginBottom="8dp"
             android:background="#c0c0c0"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -35,14 +35,15 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="20sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvRoomStatus2"
-            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/view3"
             app:layout_constraintTop_toBottomOf="@+id/tvRoomStatus2"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="0.75"
             tools:text="Android" />
+
 
         <TextView
             android:id="@+id/tvRoomStatus2"
@@ -55,8 +56,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/tvRoomStatus"
             app:layout_constraintStart_toEndOf="@+id/view3"
             app:layout_constraintTop_toTopOf="@+id/tvRoomStatus"
-            app:layout_constraintVertical_bias="0.0" />
-
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/tvRoomStatus"
@@ -79,23 +79,23 @@
             android:layout_marginBottom="8dp"
             android:gravity="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="20sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvRoomStatus"
-            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/view2"
             app:layout_constraintTop_toBottomOf="@+id/tvRoomStatus"
-            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_bias="0.75"
             tools:text="Android" />
 
         <TextView
             android:id="@+id/tvRoomTopic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Room :"
             android:gravity="center"
+            android:text="Room :"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -105,22 +105,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="20sp"
             android:gravity="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/tvRoomTopic"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tvRoomTopic"
             app:layout_constraintTop_toBottomOf="@+id/tvRoomTopic"
+            app:layout_constraintVertical_bias="1.0"
             tools:text="Android" />
 
         <View
             android:id="@+id/view2"
             android:layout_width="1dp"
             android:layout_height="20dp"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="56dp"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
             android:background="#c0c0c0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvRoom" />

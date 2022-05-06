@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.example.dechproduct.hotelreservationapp.R
+import com.example.dechproduct.hotelreservationapp.data.model.payment.PaymentType
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityAddReservationBinding
 import com.example.dechproduct.hotelreservationapp.presentation.addReservationRoomBedBottomSheet.AddReservationRoomBedBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.addReservationRoomTypeBottomSheet.AddReservationRoomTypeBottomSheetFragment
@@ -64,20 +65,22 @@ class AddReservationActivity : AppCompatActivity() {
             val adultIntFromET: Int = adult_count.toInt()
             val childIntFromET: Int = child_count.toInt()
 
+            if(fname.isNotEmpty() and lname.isNotEmpty() and phone.isNotEmpty() and payment.isNotEmpty() and id.isNotEmpty() and address.isNotEmpty()){
+                lifecycleScope.launch {
+                    addReservationViewModel.addReserve(
+                        fname, lname, phone,
+                        payment, id, address, adultIntFromET, childIntFromET,
+                        //TODO: Pass breakfast and is AddonBed here
+                        breakfast = true, isAddonBed = false
+                    )
 
-
-
-            lifecycleScope.launch {
-                addReservationViewModel.addReserve(
-                    fname, lname, phone,
-                    payment, id, address, adultIntFromET, childIntFromET,
-                    //TODO: Pass breakfast and is AddonBed here
-                    breakfast = true, isAddonBed = false
-                )
-
-                Log.i("Addreser", adultIntFromET.toString())
-                Log.i("Addreser2", childIntFromET.toString())
+                    Log.i("Addreser", adultIntFromET.toString())
+                    Log.i("Addreser2", childIntFromET.toString())
+                }
+            }else{
+                Toast.makeText(applicationContext,"Insufficient Information.", Toast.LENGTH_SHORT).show()
             }
+
 
             val intent = Intent(this@AddReservationActivity, ReservationMenuActivity::class.java)
             startActivity(intent)
