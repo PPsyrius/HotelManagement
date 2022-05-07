@@ -1,0 +1,5 @@
+start cmd /c "json-server --watch REST\EmployeeLogin.json --id accessID --port 3000"
+start cmd /c "json-server --watch REST\Reservation.json --id bookingID --port 3001"
+start cmd /c "json-server --watch REST\Room.json --id roomID --port 3002"
+start cmd /c "json-server --watch REST\GuestLogin.json --id ticketID --port 3003"
+::start cmd /c "json-server --watch REST\Promotion.json --id promotionID --port 3004"

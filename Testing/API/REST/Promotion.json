@@ -1,0 +1,23 @@
+{
+    "PromotionAPI": [
+        {
+            "promotionID":"0",
+            "title": "Credit Card Partnership",
+            "description": "3% Price Reduction Exclusive of VAT",
+            "partners": [
+                "VI",
+                "MS"
+            ],
+            "discount": 0.97
+        },
+        {
+            "promotionID":"1",
+            "title": "Pay in Cash Promotion",
+            "description": "10% Price reduction fo payment in full",
+            "partners": [
+                "CA"
+            ],
+            "discount": 0.90
+        }
+    ]
+}

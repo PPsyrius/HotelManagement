@@ -95,7 +95,7 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
                         room = null,
                         payment = Payment(
                             paymentID = null,
-                            type = PaymentType.CASH,
+                            type = PaymentType.unpack(payment),
                             //TODO: Return and pass PaymentType object, replacing {PaymentType.CASH} -- TUNG
                             photo = null
                         ),

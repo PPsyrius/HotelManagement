@@ -1,0 +1,82 @@
+{
+    "Room": [
+        {
+            "roomID": "000",
+            "type": "SD",
+            "beds": "SB",
+            "maxCap": 2,
+            "floor": "G",
+            "features": [
+                "AL",
+                "CR",
+                "MV",
+                "SV"
+            ],
+            "canAddonBed": false,
+            "smoking": false,
+            "status": "RS",
+            "isWalking": false,
+            "deviceID": [
+                "001",
+                "002"
+            ],
+            "price": 1000.10
+        },
+        {
+            "roomID": "001",
+            "type": "DX",
+            "beds": "DB",
+            "maxCap": 2,
+            "floor": "B1",
+            "features": [
+                "AL",
+                "CV"
+            ],
+            "canAddonBed": true,
+            "smoking": false,
+            "status": "RS",
+            "isWalking": false,
+            "deviceID": [
+                "004",
+                "005",
+                "006"
+            ],
+            "price": 2000.35
+        },
+        {
+            "roomID": "002",
+            "type": "SE",
+            "beds": "SB",
+            "maxCap": 3,
+            "floor": "B2",
+            "features": [
+                "CV"
+            ],
+            "canAddonBed": false,
+            "smoking": true,
+            "status": "U0",
+            "isWalking": false,
+            "deviceID": [
+                "007"
+            ],
+            "price": 3500.10
+        },
+        {
+            "roomID": "006",
+            "type": "SE",
+            "beds": "SB",
+            "maxCap": 3,
+            "floor": "B2",
+            "features": [
+                "CV"
+            ],
+            "canAddonBed": false,
+            "smoking": true,
+            "status": "NF",
+            "isWalking": false,
+            "deviceID": [
+            ],
+            "price": 3500.10
+        }
+    ]
+}

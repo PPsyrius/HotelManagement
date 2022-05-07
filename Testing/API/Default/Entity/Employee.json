@@ -1,0 +1,28 @@
+{
+    "Employee": [
+        {
+            "employeeID": "00",
+            "firstName": "Jim",
+            "lastName": "Bezos",
+            "department": "MS",
+            "position": "MNG",
+            "accessID": "0M01"
+        },
+        {
+            "employeeID": "001121",
+            "firstName": "Siri",
+            "lastName": "Gates",
+            "department": "RD",
+            "position": "FO",
+            "accessID": "R0121"
+        },
+        {
+            "employeeID": "221592",
+            "firstName": "Cortana",
+            "lastName": "Katejina",
+            "department": "MS",
+            "position": "RS",
+            "accessID": "M1592"
+        }
+    ]
+}

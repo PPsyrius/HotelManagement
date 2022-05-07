@@ -1,0 +1,88 @@
+{
+    "Booking": [
+        {
+            "bookingID": "1639872139204",
+            "guestID": "P001",
+            "ticketID": "",
+            "roomID": "000",
+            "paymentID": "F123",
+            "arrivalDate": "01-02-2023",
+            "departDate": "02-03-2025",
+            "adultCount": 2,
+            "childCount": 0,
+            "status": "RSC",
+            "breakfast": true,
+            "isAddonBed": false
+        },
+        {
+            "bookingID": "1639924905347",
+            "guestID": "P021",
+            "ticketID": "",
+            "roomID": "",
+            "paymentID": "",
+            "arrivalDate": "01-05-2023",
+            "departDate": "02-05-2023",
+            "adultCount": 2,
+            "childCount": 1,
+            "status": "RSC",
+            "breakfast": true,
+            "isAddonBed": false
+        },
+        {
+            "bookingID": "1639926914880",
+            "guestID": "BB123",
+            "ticketID": "",
+            "roomID": "",
+            "paymentID": "",
+            "arrivalDate": "01-01-2022",
+            "departDate": "08-01-2022",
+            "adultCount": 3,
+            "childCount": 0,
+            "status": "RSC",
+            "breakfast": true,
+            "isAddonBed": false
+        },
+        {
+            "bookingID": "1640008163515",
+            "guestID": "FF123",
+            "ticketID": "",
+            "roomID": "",
+            "paymentID": "",
+            "arrivalDate": "29-12-2021",
+            "departDate": "01-01-2022",
+            "adultCount": 1,
+            "childCount": 0,
+            "status": "RSC",
+            "breakfast": false,
+            "isAddonBed": false
+        },
+        {
+            "bookingID": "1644245558580",
+            "guestID": "GX01",
+            "ticketID": "",
+            "roomID": "",
+            "paymentID": "",
+            "arrivalDate": "10-10-1900",
+            "departDate": "10-10-1910",
+            "adultCount": 2,
+            "childCount": 2,
+            "status": "ERR",
+            "breakfast": true,
+            "isAddonBed": true
+        },
+        {
+            "bookingID": "1639872139204",
+            "guestID": "GX01",
+            "ticketID": "0A01",
+            "roomID": "001",
+            "paymentID": "P234",
+            "arrivalDate": "01-02-2023",
+            "departDate": "02-03-2025",
+            "adultCount": 2,
+            "childCount": 0,
+            "status": "CHI",
+            "breakfast": true,
+            "isAddonBed": false
+        }
+    ]
+}

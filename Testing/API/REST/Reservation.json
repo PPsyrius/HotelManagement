@@ -1,0 +1,159 @@
+{
+    "ReservationAPI": [
+        {
+            "bookingID": "1639872139204",
+            "guest": {
+                "guestID": "P001",
+                "firstName": "John",
+                "lastName": "Wicked",
+                "phoneNumber": "6600123456789",
+                "address": [
+                    "Ham and Cheese Rd.",
+                    "With Eggs District"
+                ],
+                "region": "Bangkok",
+                "postalCode": "10240",
+                "country": "Thailand",
+                "verificationID": "1234567890123",
+                "verificationPhoto": ""
+            },
+            "ticket": {},
+            "room": {
+                "roomID": "000",
+                "type": "SD",
+                "beds": "SB",
+                "maxCap": 2,
+                "floor": "G",
+                "features": [
+                    "AL",
+                    "CR",
+                    "MV",
+                    "SV"
+                ],
+                "canAddonBed": false,
+                "smoking": false,
+                "status": "GR",
+                "isWalking": false,
+                "device": [
+                    {
+                        "deviceID": "001",
+                        "displayName": "Electric Kettle",
+                        "type": "EK",
+                        "serial": "SN0112",
+                        "manufacturer": "Skyworth",
+                        "status": "NM"
+                    },
+                    {
+                        "deviceID": "002",
+                        "displayName": "Air Conditioner",
+                        "type": "AC",
+                        "serial": "SS50392128",
+                        "manufacturer": "Samsung",
+                        "status": "NF"
+                    }
+                ],
+                "price": 1000.10
+            },
+            "payment": {
+                "paymentID": "F123",
+                "type": "CA",
+                "photo": ""
+            },
+            "arrivalDate": "01-02-2023",
+            "departDate": "02-03-2025",
+            "adultCount": 2,
+            "childCount": 0,
+            "status": "RSC",
+            "breakfast": true,
+            "isAddonBed": false
+        },
+        {
+            "bookingID": "1639924905347",
+            "guest": {
+                "guestID": "P021",
+                "firstName": "John",
+                "lastName": "Cena",
+                "phoneNumber": "12039458924",
+                "address": [
+                    "Icecream Rd.",
+                    "Poyo Bay"
+                ],
+                "region": "Soda Island",
+                "postalCode": "943JDC12",
+                "country": "Dreamland",
+                "verificationID": "0X0X0X0X0",
+                "verificationPhoto": ""
+            },
+            "ticket": {},
+            "room": {},
+            "payment": {
+                "type": "MS"
+            },
+            "arrivalDate": "01-05-2023",
+            "departDate": "02-05-2023",
+            "adultCount": 2,
+            "childCount": 1,
+            "status": "RSC",
+            "breakfast": true,
+            "isAddonBed": false
+        },
+        {
+            "bookingID": "16398721313504",
+            "guest": {
+                "guestID": "GX01",
+                "firstName": "Johannas",
+                "lastName": "Vicketry",
+                "phoneNumber": "0980000011",
+                "address": [
+                    "25 Broadway Rd.",
+                    "Something Something Lane"
+                ],
+                "region": "Bangkok",
+                "postalCode": "10000",
+                "country": "Thailand",
+                "verificationID": "10000000000",
+                "verificationPhoto": ""
+            },
+            "ticket": {
+                "ticketID": "0A01"
+            },
+            "room": {
+                "roomID": "002",
+                "type": "SE",
+                "beds": "SB",
+                "maxCap": 3,
+                "floor": "B2",
+                "features": [
+                    "CV"
+                ],
+                "canAddonBed": false,
+                "smoking": true,
+                "status": "U0",
+                "isWalking": false,
+                "device": [
+                    {
+                        "deviceID": "007",
+                        "displayName": "Television",
+                        "type": "TV",
+                        "serial": "LG1093483223B",
+                        "manufacturer": "LG",
+                        "status": "NM"
+                    }
+                ],
+                "price": 3500.10
+            },
+            "payment": {
+                "paymentID": "P234",
+                "type": "VI",
+                "photo": ""
+            },
+            "arrivalDate": "01-02-2023",
+            "departDate": "02-03-2025",
+            "adultCount": 2,
+            "childCount": 0,
+            "status": "CHI",
+            "breakfast": true,
+            "isAddonBed": false
+        }
+    ]
+}
