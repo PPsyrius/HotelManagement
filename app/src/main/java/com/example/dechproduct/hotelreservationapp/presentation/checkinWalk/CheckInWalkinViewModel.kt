@@ -71,7 +71,7 @@ class CheckInWalkinViewModel @Inject constructor(private val useCase: UseCase) :
     suspend fun addReserve(
         fname: String, lname: String, phone: String,
         payment: String, verification: String,
-        address: String, adult_count: Int, child_count: Int,
+        address: List<String>, adult_count: Int, child_count: Int,
         breakfast: Boolean, isAddonBed: Boolean
     ) {
         viewModelScope.launch {
@@ -84,7 +84,7 @@ class CheckInWalkinViewModel @Inject constructor(private val useCase: UseCase) :
                             firstName = fname.capitalize(),
                             lastName = lname.capitalize(),
                             phoneNumber = phone,
-                            address = listOf(address),
+                            address = address,
                             region = null,
                             postalCode = null,
                             country = null,

@@ -23,15 +23,17 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
     private val loginViewModel: LoginViewModel by viewModels()
+
     @Inject
-    lateinit var sharedPreferences:SharedPreferences
+    lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(
-            this, R.layout.activity_login)
+            this, R.layout.activity_login
+        )
 
-        binding.btSignIn.setOnClickListener{
+        binding.btSignIn.setOnClickListener {
             val userInput = findViewById<EditText>(R.id.editText)
             val pwdInput = findViewById<EditText>(R.id.editText2)
 
@@ -39,16 +41,16 @@ class LoginActivity : AppCompatActivity() {
             var password: String = pwdInput.text.toString()
 
             if (username.isNotEmpty() and password.isNotEmpty()) {
-                lifecycleScope.launch{
+                lifecycleScope.launch {
                     loginViewModel.loginUser(username, password)
                 }
-            }
-            else {
-                Toast.makeText(applicationContext,"Insufficient Information.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(applicationContext, "Insufficient Information.", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
 
-        binding.tvSignIn.setOnClickListener{
+        binding.tvSignIn.setOnClickListener {
             val userInput = findViewById<EditText>(R.id.editText)
             val pwdInput = findViewById<EditText>(R.id.editText2)
 
@@ -56,12 +58,12 @@ class LoginActivity : AppCompatActivity() {
             var password: String = pwdInput.text.toString()
 
             if (username.isNotEmpty() and password.isNotEmpty()) {
-                lifecycleScope.launch{
+                lifecycleScope.launch {
                     loginViewModel.loginUser(username, password)
                 }
-            }
-            else {
-                Toast.makeText(applicationContext,"Insufficient Information.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(applicationContext, "Insufficient Information.", Toast.LENGTH_SHORT)
+                    .show()
             }
             //val intent = Intent(this, MenuActivity::class.java)
             //startActivity(intent)
@@ -74,20 +76,29 @@ class LoginActivity : AppCompatActivity() {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { user ->
+
                         sharedPreferences.edit()
-                            .putString(Constants.LOGGED_IN_USER_NAME, user.userName).apply()
-                        sharedPreferences.edit()
-                            .putString(Constants.LOGGED_IN_DISPLAY_NAME, user.employee.firstName).apply()
-                        //TODO: Display full name with position
-                        
-                        Toast.makeText(applicationContext,"Welcome! "+ user.employee.firstName ,Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this@LoginActivity, MenuActivity::class.java )
+                            .putString(
+                                Constants.SHARED_PREF_SESSION,
+                                user.employee.firstName + " " + user.employee.lastName
+                            ).apply()
+
+                        val intent = Intent(this@LoginActivity, MenuActivity::class.java)
+//                        intent.putExtra(Constants.INTENT_EXP_USER, user.employee)
+
+                        Toast.makeText(
+                            applicationContext,
+                            "Welcome! " + ": " + user.employee.firstName + " " + user.employee.lastName,
+                            Toast.LENGTH_SHORT
+                        ).show()
+
                         startActivity(intent)
                     }
                 }
-                
+
                 is Resource.Failure -> {
-                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         })

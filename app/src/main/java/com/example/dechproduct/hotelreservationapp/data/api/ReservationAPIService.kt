@@ -47,14 +47,14 @@ interface ReservationAPIService {
         @Body booking: Booking,
     ): Response<ResponseBody>
 
-    @PUT(Constants.API_BOOKING_INDEX_URL + "/{id}")
+    @PUT(Constants.API_BOOKING_INDEX_URL + "{id}")
     suspend fun putBooking(
         @Path("id")
         id: String,
         @Body booking: Booking
     ): Response<ResponseBody>
 
-    @PATCH(Constants.API_BOOKING_INDEX_URL + "/{id}")
+    @PATCH(Constants.API_BOOKING_INDEX_URL + "{id}")
     suspend fun updateBooking(
         @Path("id")
         id: String,

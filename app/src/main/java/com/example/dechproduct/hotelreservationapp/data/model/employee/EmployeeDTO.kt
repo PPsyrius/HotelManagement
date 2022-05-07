@@ -5,11 +5,11 @@ import com.google.gson.annotations.SerializedName
 
 data class EmployeeDTO(
     @SerializedName(Constants.API_GUEST_KEY_ID)
-    var employeeID: String,
+    var employeeID: String?,
     @SerializedName(Constants.API_GUEST_KEY_ID)
-    var firstName: String,
+    var firstName: String?,
     @SerializedName(Constants.API_GUEST_KEY_ID)
-    var lastName: String,
+    var lastName: String?,
     @SerializedName(Constants.API_GUEST_KEY_ID)
     var department: String?,
     @SerializedName(Constants.API_GUEST_KEY_ID)

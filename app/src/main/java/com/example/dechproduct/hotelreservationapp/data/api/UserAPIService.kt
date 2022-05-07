@@ -15,7 +15,7 @@ interface UserAPIService {
         username:String,
     ): List<AccessDTO>
 
-    @GET(Constants.API_ACCESS_INDEX_URL + "/{id}")
+    @GET(Constants.API_ACCESS_INDEX_URL + "{id}")
     suspend fun getByUserID(
         @Path("id")
         id:String,

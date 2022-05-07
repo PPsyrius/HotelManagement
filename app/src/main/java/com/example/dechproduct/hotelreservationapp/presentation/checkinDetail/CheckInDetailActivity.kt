@@ -9,6 +9,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityCheckinDetailBinding
 import com.example.dechproduct.hotelreservationapp.presentation.confirmCheckinBottomSheet.ConfirmationCheckInBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.menu.MenuActivity
@@ -19,6 +20,7 @@ import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -32,6 +34,7 @@ class CheckInDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheckinDetailBinding    // <- can click here to open the xml that related
     private val checkInDetailViewModel: CheckinDetailViewModel by viewModels()
 
+    private lateinit var selectedItem: Booking
 
     @Inject
     lateinit var sharedPreferences: SharedPreferences
@@ -145,23 +148,14 @@ class CheckInDetailActivity : AppCompatActivity() {
     }
 
     private fun receiveSelected() {
-        sharedPreferences = applicationContext.getSharedPreferences(
-            Constants.SHARED_PREF_NAME,
-            Context.MODE_PRIVATE
-        )
-//        Log.d("HERH:", sharedPreferences.getString(
-//            Constants.RESERVED_ID,
-//            null).toString()
-//        )
+        try {
+            selectedItem = intent.getParcelableExtra<Booking>(Constants.INTENT_SELECTED_BOOKING)!!
 
-        lifecycleScope.launch {
-            checkInDetailViewModel.updateInfo(
-                sharedPreferences.getString(
-                    Constants.RESERVED_ID,
-                    null
-                ).toString()
-            )
+            lifecycleScope.launch {
+                selectedItem.bookingID?.let { checkInDetailViewModel.updateInfo(it) }
+            }
         }
+        catch (e: Exception){}
     }
 
     private fun observeUpdateInfo() {
@@ -178,6 +172,7 @@ class CheckInDetailActivity : AppCompatActivity() {
                         checkInDetailViewModel.reservation = reservation
                         binding.tvGuestName.text =
                             reservation.guest?.firstName + " " + reservation.guest?.lastName
+                        //TODO:check if reservation.room.type is null, set text to ""
                         binding.roomType.text = reservation.room?.type.toString()
                         binding.tvCheckInDate.text = SimpleDateFormat(
                             "dd-MM-yyyy",
@@ -188,6 +183,7 @@ class CheckInDetailActivity : AppCompatActivity() {
                             Locale.getDefault()
                         ).format(reservation.departDate)
 
+                        //TODO:check if reservation.room.beds is null, set text to ""
                         binding.tvDisplayRoomBed.text = reservation.room?.beds.toString()
                         //TODO: Set binding to reservation.adultCount, reservation.childCount       --finish?--
 
@@ -195,7 +191,7 @@ class CheckInDetailActivity : AppCompatActivity() {
 
                         binding.edtChildNumber.setText(reservation.childCount?.toString())
 
-
+                        //TODO: Checkbox Wrong
                         if (reservation.breakfast == true) {
                             binding.cbBreakfast.isChecked = true
 

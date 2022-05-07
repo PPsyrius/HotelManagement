@@ -5,7 +5,10 @@ import com.example.dechproduct.hotelreservationapp.data.model.guest.Guest
 import com.example.dechproduct.hotelreservationapp.data.model.guest.GuestDTO
 import com.example.dechproduct.hotelreservationapp.data.model.payment.Payment
 import com.example.dechproduct.hotelreservationapp.data.model.guest.Ticket
+import com.example.dechproduct.hotelreservationapp.data.model.guest.TicketDTO
+import com.example.dechproduct.hotelreservationapp.data.model.payment.PaymentDTO
 import com.example.dechproduct.hotelreservationapp.data.model.room.Room
+import com.example.dechproduct.hotelreservationapp.data.model.room.RoomDTO
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
 import java.text.SimpleDateFormat
@@ -16,12 +19,11 @@ data class BookingDTO(
     @SerializedName(Constants.API_BOOKING_KEY_GUEST)
     var guest: GuestDTO?,
     @SerializedName(Constants.API_BOOKING_KEY_TICKET)
-    var ticket: Ticket?,
+    var ticket: TicketDTO?,
     @SerializedName(Constants.API_BOOKING_KEY_ROOM)
-    var room: Room?,
+    var room: RoomDTO?,
     @SerializedName(Constants.API_BOOKING_KEY_PAYMENT)
-    var payment: Payment?,
-    //TODO: Payment DTO?
+    var payment: PaymentDTO?,
     @SerializedName(Constants.API_BOOKING_KEY_DATE_IN)
     var arrivalDate: String?,
     @SerializedName(Constants.API_BOOKING_KEY_DATE_OUT)
@@ -42,9 +44,9 @@ data class BookingDTO(
         return Booking(
             bookingID = bookingID,
             guest = guest?.toGuest(),
-            ticket = ticket,
-            room = room,
-            payment = payment,
+            ticket = ticket?.toTicket(),
+            room = room?.toRoom(),
+            payment = payment?.toPayment(),
             arrivalDate = dateFormat.parse(arrivalDate),
             departDate = dateFormat.parse(departDate),
             adultCount = adultCount,

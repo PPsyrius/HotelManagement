@@ -22,8 +22,8 @@ object Constants {
     const val API_BOOKING_KEY_PAYMENT = "payment"
     const val API_BOOKING_KEY_DATE_IN = "arrivalDate"
     const val API_BOOKING_KEY_DATE_OUT = "departDate"
-    const val API_BOOKING_KEY_ADULT = "adult"
-    const val API_BOOKING_KEY_CHILD = "child"
+    const val API_BOOKING_KEY_ADULT = "adultCount"
+    const val API_BOOKING_KEY_CHILD = "childCount"
     const val API_BOOKING_KEY_STATUS = "status"
     const val API_BOOKING_KEY_BREAKFAST = "breakfast"
     const val API_BOOKING_KEY_ADDBED = "isAddonBed"
@@ -93,11 +93,11 @@ object Constants {
     const val API_DEVICE_INDEX_URL =
         "MaintenanceAPI/"
 
-    //Shared Preference
-    const val SHARED_PREF_NAME = "USER_SESSION"
-    const val LOGGED_IN_USER_NAME = "LOGGED_IN_USER"
-    const val LOGGED_IN_DISPLAY_NAME = "LOGGED_IN_USER_NAME"
-    const val RESERVED_ID = "RESERVED_ID"
+    //Persistent Data
+    const val SHARED_PREF = "USER_CONFIG"
+    const val SHARED_PREF_SESSION = "SESSION_NAME"
+
+    const val INTENT_SELECTED_BOOKING = "SELECTED_BOOKING"
 
     //Debug
     const val JSON_SERVER_FILTER = "_like"

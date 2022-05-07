@@ -31,10 +31,10 @@ class AddReservationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddReservationBinding
     private val addReservationViewModel: AddReservationViewModel by viewModels()
+    //TODO: Title of this activity should adapt to which activity calls it
 
     var bottomSheetRoomBedFragment = AddReservationRoomBedBottomSheetFragment()
     var bottomSheetChangeRoomTypeFragment = AddReservationRoomTypeBottomSheetFragment()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,9 @@ class AddReservationActivity : AppCompatActivity() {
             //TODO: Pass Payment Type object from here --TUNG
             var payment = findViewById<FormInputSpinner>(R.id.payment_type).getValue()
             var id = findViewById<FormInputText>(R.id.ID).getValue()
-            var address = findViewById<FormInputMultiline>(R.id.about).getValue()
+            var address = listOf(findViewById<FormInputMultiline>(R.id.about).getValue())
+            //TODO: adjust code to binding.item
+            //TODO: Divide address into List<String> by new line before passing as 'address' var
 
 
             //TODO: Bind adult/child count to view component --finish--

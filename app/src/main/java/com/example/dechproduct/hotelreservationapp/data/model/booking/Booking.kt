@@ -42,9 +42,9 @@ data class Booking(
         return BookingDTO(
             bookingID = bookingID,
             guest = guest?.toGuestDTO(),
-            ticket = ticket,
-            room = room,
-            payment = payment,
+            ticket = ticket?.toTicketDTO(),
+            room = room?.toRoomDTO(),
+            payment = payment?.toPaymentDTO(),
             arrivalDate = dateFormat.format(arrivalDate),
             departDate = dateFormat.format(departDate),
             adultCount = adultCount,

@@ -32,14 +32,14 @@ interface DeviceAPIService {
         keyword: String,
     ): List<DeviceDTO>
 
-    @PUT(Constants.API_DEVICE_INDEX_URL + "/{id}")
+    @PUT(Constants.API_DEVICE_INDEX_URL + "{id}")
     suspend fun putDevice(
         @Path("id")
         id: String,
         @Body device: Device
     ): Response<ResponseBody>
 
-    @PATCH(Constants.API_DEVICE_INDEX_URL + "/{id}")
+    @PATCH(Constants.API_DEVICE_INDEX_URL + "{id}")
     suspend fun updateDevice(
         @Path("id")
         id: String,

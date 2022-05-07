@@ -47,7 +47,8 @@ class CheckInActivity : AppCompatActivity() {
         }
 
         var searchBar = binding.searchBar
-        searchBar.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        searchBar.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 if (query == "")
                     lifecycleScope.launch {
@@ -82,7 +83,7 @@ class CheckInActivity : AppCompatActivity() {
         binding.fabAdd.setOnClickListener {
 
             Toast.makeText(applicationContext, "Walk in Check-in", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, CheckInWalkInActivity::class.java )
+            val intent = Intent(this, CheckInWalkInActivity::class.java)
             startActivity(intent)
         }
 
@@ -104,16 +105,14 @@ class CheckInActivity : AppCompatActivity() {
                         Color.parseColor("#028A0F"),
                         object : MyButtonClickListener {
                             override fun onClick(pos: Int) {
-//                                Toast.makeText(
-//                                    this@CheckInActivity,
-//                                    "Check-in " + checkInViewModel.result[pos],
-//                                    Toast.LENGTH_SHORT
-//                                ).show()
-//                                runBlocking{checkInViewModel.checkInReserved()}
-                                sharedPreferences.edit()
-                                    .putString(Constants.RESERVED_ID, checkInViewModel.result[pos].bookingID)
-                                    .apply()
-                                startSpecificActivity(CheckInDetailActivity::class.java)
+                                //runBlocking{checkInViewModel.checkInReserved()}
+                                val intent =
+                                    Intent(this@CheckInActivity, CheckInDetailActivity::class.java)
+                                intent.putExtra(
+                                    Constants.INTENT_SELECTED_BOOKING,
+                                    checkInViewModel.result[pos]
+                                )
+                                startActivity(intent)
                             }
                         }
                     ))

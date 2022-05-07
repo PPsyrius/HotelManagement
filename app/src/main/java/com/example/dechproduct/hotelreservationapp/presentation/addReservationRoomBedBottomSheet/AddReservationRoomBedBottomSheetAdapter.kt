@@ -16,7 +16,7 @@ class AddReservationRoomBedBottomSheetAdapter (
 
     ) : RecyclerView.Adapter <AddReservationRoomBedBottomSheetViewHolder>(){
 
-
+//TODO: Arrange file into correct package (e.g. adapter folder)
 
     override fun onCreateViewHolder(
         viewGroup: ViewGroup,

@@ -71,14 +71,14 @@ interface RoomAPIService {
         @Body room: Room,
     ): Response<ResponseBody>
 
-    @PUT(Constants.API_ROOM_INDEX_URL + "/{id}")
+    @PUT(Constants.API_ROOM_INDEX_URL + "{id}")
     suspend fun putRoom(
         @Path("id")
         id:String,
         @Body room: Room
     ): Response<ResponseBody>
 
-    @PATCH(Constants.API_ROOM_INDEX_URL + "/{id}")
+    @PATCH(Constants.API_ROOM_INDEX_URL + "{id}")
     suspend fun updateRoom(
         @Path("id")
         id:String,

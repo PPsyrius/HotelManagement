@@ -8,11 +8,20 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Ticket(
     @SerializedName(Constants.API_TICKET_KEY_ID)
-    var ticketID: String,
+    var ticketID: String?,
     @SerializedName(Constants.API_TICKET_KEY_USERNAME)
-    var userName: String,
+    var userName: String?,
     @SerializedName(Constants.API_TICKET_KEY_PASSWORD)
-    var password: String,
+    var password: String?,
     @SerializedName(Constants.API_TICKET_KEY_GUEST)
     var guest: Guest?,
-): Parcelable
+) : Parcelable {
+    fun toTicketDTO(): TicketDTO {
+        return TicketDTO(
+            ticketID = ticketID,
+            userName = userName,
+            password = password,
+            guest = guest
+        )
+    }
+}

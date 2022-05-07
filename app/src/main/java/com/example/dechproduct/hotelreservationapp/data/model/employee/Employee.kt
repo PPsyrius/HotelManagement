@@ -6,11 +6,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Employee(
 
-    var employeeID: String,
+    var employeeID: String?,
 
-    var firstName: String,
+    var firstName: String?,
 
-    var lastName: String,
+    var lastName: String?,
 
     var department: String?,
 

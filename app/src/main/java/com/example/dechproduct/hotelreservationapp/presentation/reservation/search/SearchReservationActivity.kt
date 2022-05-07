@@ -28,7 +28,7 @@ class SearchReservationActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivitySearchReservationactivityBinding
     private val searchReservationViewModel: SearchReservationViewModel by viewModels()
-
+    //TODO:(Important!!) Pressing edit reservation should populate data into form
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

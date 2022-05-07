@@ -7,18 +7,18 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Payment(
-
+data class PaymentDTO(
+    @SerializedName(Constants.API_PAYMENT_KEY_ID)
     var paymentID: String?,
-
-    var type: PaymentType?,
-
+    @SerializedName(Constants.API_PAYMENT_KEY_TYPE)
+    var type: String?,
+    @SerializedName(Constants.API_PAYMENT_KEY_PHOTO)
     var photo: String?,
 ) : Parcelable {
-    fun toPaymentDTO(): PaymentDTO {
-        return PaymentDTO(
+    fun toPayment(): Payment {
+        return Payment(
             paymentID = paymentID,
-            type = type?.let { PaymentType.pack(it) },
+            type = type?.let { PaymentType.unpack(it) },
             photo = photo
         )
     }

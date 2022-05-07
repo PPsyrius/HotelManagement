@@ -18,6 +18,8 @@ class UserRepositoryImpl @Inject constructor(
             var access: Access = userAPI.getByUserName(username)[0].toStaff()
             var isFound: Boolean = false
 
+            //TODO: Camera
+            //TODO: Implements LOGout system
             //TODO: Implements password hashing for comparison
             if(access.password == password){
                 isFound = true

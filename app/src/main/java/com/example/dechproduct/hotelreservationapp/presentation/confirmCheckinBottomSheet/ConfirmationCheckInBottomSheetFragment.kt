@@ -31,7 +31,7 @@ class ConfirmationCheckInBottomSheetFragment : BottomSheetDialogFragment() {
     private lateinit var binding : FragmentConfirmationCheckInBottomSheetBinding
     private val confirmationCheckInBottomSheetViewModel: ConfirmationCheckInBottomSheetViewModel by viewModels()
 
-
+    //TODO: Pass booking data from previous with intent put extra
     private lateinit var dialog: BottomSheetDialog
     private lateinit var behavior: BottomSheetBehavior<View>
 
