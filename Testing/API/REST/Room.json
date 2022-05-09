@@ -14,7 +14,19 @@
             ],
             "canAddonBed": false,
             "smoking": false,
-            "status": "GR",
+            "occupancy": [
+                {
+                    "arrivalDate": "01-02-2023",
+                    "departDate": "02-03-2025",
+                    "status": "RS"
+                },
+                {
+                    "arrivalDate": "01-06-2022",
+                    "departDate": "01-08-2025",
+                    "status": "RS"
+                }
+            ],
+            "status": "RS",
             "isWalking": false,
             "device": [
                 {
@@ -34,7 +46,7 @@
                     "status": "NF"
                 }
             ],
-            "price": 1000.10
+            "price": 1000.1
         },
         {
             "roomID": "001",
@@ -48,6 +60,7 @@
             ],
             "canAddonBed": true,
             "smoking": false,
+            "occupancy": [],
             "status": "RS",
             "isWalking": false,
             "device": [
@@ -80,28 +93,29 @@
         },
         {
             "roomID": "002",
-            "type": "SE",
-            "beds": "SB",
+            "type": "SUITE",
+            "beds": "SINGLE",
             "maxCap": 3,
             "floor": "B2",
             "features": [
-                "CV"
+                "CITY_VIEW"
             ],
             "canAddonBed": false,
             "smoking": true,
-            "status": "U0",
+            "occupancy": [],
+            "status": "REQ_CLEAN",
             "isWalking": false,
             "device": [
                 {
                     "deviceID": "007",
                     "displayName": "Television",
-                    "type": "TV",
-                    "serial": "LG1093483223B",
                     "manufacturer": "LG",
-                    "status": "NM"
+                    "serial": "LG1093483223B",
+                    "status": "NM",
+                    "type": "TV"
                 }
             ],
-            "price": 3500.10
+            "price": 3500.1
         },
         {
             "roomID": "006",
@@ -114,10 +128,11 @@
             ],
             "canAddonBed": false,
             "smoking": true,
+            "occupancy": [],
             "status": "NF",
             "isWalking": false,
             "device": [],
-            "price": 3500.10
+            "price": 3500.1
         }
     ]
 }
