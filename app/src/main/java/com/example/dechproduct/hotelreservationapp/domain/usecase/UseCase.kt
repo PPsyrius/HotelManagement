@@ -35,5 +35,7 @@ class UseCase(
 
     var editRoomUseCase: EditRoomUseCase,
     var markRoomUseCase: MarkRoomUseCase,
+    var getRoomUseCase: GetRoomUseCase,
     var searchRoomUseCase: SearchRoomUseCase,
+    var populateRoomUseCase: PopulateRoomUseCase,
 ) {}

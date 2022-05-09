@@ -10,6 +10,9 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.room.BedType
+import com.example.dechproduct.hotelreservationapp.data.model.room.RoomStatus
+import com.example.dechproduct.hotelreservationapp.data.model.room.RoomType
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityCheckinDetailBinding
 import com.example.dechproduct.hotelreservationapp.presentation.confirmCheckinBottomSheet.ConfirmationCheckInBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.menu.MenuActivity
@@ -116,17 +119,20 @@ class CheckInDetailActivity : AppCompatActivity() {
         }
 
         binding.tvCheckingRoom.setOnClickListener {
-            bottomSheetCheckingRoomAvailableFragment.show(supportFragmentManager, "TAG")
+            try {
+                Log.d("",checkInDetailViewModel.roomConfig.toString())
+                bottomSheetCheckingRoomAvailableFragment.show(supportFragmentManager, "TAG")
+                bottomSheetCheckingRoomAvailableFragment.onResume()
+            }
+            catch(e:Exception){Log.d("ERR", e.toString())}
         }
-
 
         binding.tvSelectRoomBed.setOnClickListener {
             bottomSheetRoomBedFragment.show(supportFragmentManager, "TAG")
         }
 
         binding.btnConfirmationCheckIn.setOnClickListener {
-
-//            lifecycleScope.launch { checkInDetailViewModel.checkInReserved() }
+            lifecycleScope.launch { checkInDetailViewModel.checkInReserved() }
             bottomSheetConfirmationFragment.show(supportFragmentManager, "TAG")
 
         }
@@ -159,17 +165,15 @@ class CheckInDetailActivity : AppCompatActivity() {
     }
 
     private fun observeUpdateInfo() {
-        checkInDetailViewModel.selected.observe(this, {
+        checkInDetailViewModel.selectedReservation.observe(this, {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { reservation ->
-                        Log.d("CheckInResActivity", reservation.toString())
-//                        Toast.makeText(
-//                            applicationContext,
-//                            reservation.toString(),
-//                            Toast.LENGTH_SHORT
-//                        ).show()
                         checkInDetailViewModel.reservation = reservation
+                        checkInDetailViewModel.roomConfig.beds = reservation.room?.beds
+                        checkInDetailViewModel.roomConfig.type = reservation.room?.type
+                        checkInDetailViewModel.roomConfig.smoking = reservation.room?.smoking
+
                         binding.tvGuestName.text =
                             reservation.guest?.firstName + " " + reservation.guest?.lastName
                         //TODO:check if reservation.room.type is null, set text to ""
@@ -210,7 +214,7 @@ class CheckInDetailActivity : AppCompatActivity() {
     }
 
     private fun observeCheckInResolve() {
-        checkInDetailViewModel.resolve.observe(this, {
+        checkInDetailViewModel.resolveReservation.observe(this, {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { reservation ->

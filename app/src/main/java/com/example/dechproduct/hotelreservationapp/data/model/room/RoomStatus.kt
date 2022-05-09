@@ -10,9 +10,8 @@ enum class RoomStatus(
     var internalCode: String,
 
     ) : Parcelable {
-    READY("Ready", "RA"),
-    RESERVED("Reserved", "RS"),
-    GUARANTEED("Guaranteed Room", "GR"),
+    READY("Ready", "RS"),
+    GUARANTEED("Guaranteed", "GR"),
     REQ_CLEAN("Request Cleaning", "NC"),
     OUT_ORDER("Out of Order", "NF"),
     OCCUPIED("Occupied", "U0"),

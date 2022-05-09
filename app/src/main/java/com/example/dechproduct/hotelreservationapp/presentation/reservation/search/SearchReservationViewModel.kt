@@ -19,7 +19,7 @@ class SearchReservationViewModel @Inject constructor(private val useCase: UseCas
     suspend fun searchReserve(keyword: String) {
         viewModelScope.launch {
             val reservation =
-                useCase.searchReserveByNameUseCase(keyword, arg = BookingStatus.RESERVED)
+                useCase.searchReserveByNameUseCase(keyword, mutableListOf<BookingStatus>(BookingStatus.RESERVED))
             reserver.postValue(reservation)
 
         }
@@ -28,7 +28,7 @@ class SearchReservationViewModel @Inject constructor(private val useCase: UseCas
 
     suspend fun populateReserve() {
         viewModelScope.launch {
-            val reservation = useCase.populateReserveUseCase(arg = BookingStatus.RESERVED)
+            val reservation = useCase.populateReserveUseCase(mutableListOf<BookingStatus>(BookingStatus.RESERVED))
             reserver.postValue(reservation)
         }
     }

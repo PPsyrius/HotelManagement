@@ -17,9 +17,12 @@ class CheckinDetailViewModel @Inject constructor(private val useCase: UseCase) :
     val amount = MutableLiveData<Int>().apply { value = 0 }
     val amountChild = MutableLiveData<Int>().apply { value = 0 }
 
-    var selected = MutableLiveData<Resource<Booking>>()
-    var resolve = MutableLiveData<Resource<Booking>>()
+    var selectedReservation = MutableLiveData<Resource<Booking>>()
+    var resolveReservation = MutableLiveData<Resource<Booking>>()
+
     lateinit var reservation: Booking
+    var roomConfig: Room = Room()
+    lateinit var selectedRoom: Room
 //    @SuppressLint("StaticFieldLeak")
 //    private val context: Context = getApplication<Application>().applicationContext
 
@@ -65,15 +68,14 @@ class CheckinDetailViewModel @Inject constructor(private val useCase: UseCase) :
     suspend fun updateInfo(reserved: String) {
         viewModelScope.launch {
             val reservation = useCase.getReserveByIDUseCase(reserved)
-            selected.postValue(reservation)
+            selectedReservation.postValue(reservation)
         }
     }
 
     suspend fun checkInReserved() {
         viewModelScope.launch {
-            //TODO: Select room from list, then pass it here at 'Room()' --Mekh
-            val response = useCase.checkInGuestUseCase(reservation, Room())
-            resolve.postValue(response)
+            val response = useCase.checkInGuestUseCase(reservation, selectedRoom)
+            resolveReservation.postValue(response)
         }
     }
 }

@@ -7,6 +7,6 @@ import com.example.dechproduct.hotelreservationapp.util.Resource
 import javax.inject.Inject
 
 class PopulateReserveUseCase @Inject constructor(private val reservationRepository: ReservationRepository) {
-    suspend operator fun invoke(arg: BookingStatus = BookingStatus.NONE): Resource<MutableList<Booking>> =
+    suspend operator fun invoke(arg: List<BookingStatus> = mutableListOf<BookingStatus>()): Resource<MutableList<Booking>> =
         reservationRepository.populate(arg)
 }

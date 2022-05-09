@@ -1,5 +1,6 @@
 package com.example.dechproduct.hotelreservationapp.data.api
 
+import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingDTO
 import com.example.dechproduct.hotelreservationapp.data.model.room.Room
 import com.example.dechproduct.hotelreservationapp.data.model.room.RoomDTO
 import com.example.dechproduct.hotelreservationapp.util.Constants
@@ -9,9 +10,15 @@ import retrofit2.http.*
 
 interface RoomAPIService {
 
-    @GET(Constants.API_ROOM_INDEX_URL)
+    @GET(Constants.API_ROOM_INDEX_URL + "/{id}")
     suspend fun getByID(
-        @Query(Constants.API_ROOM_KEY_ID)
+        @Path("id")
+        id: String,
+    ): RoomDTO
+
+    @GET(Constants.API_ROOM_INDEX_URL)
+    suspend fun getByRoomID(
+        @Query(Constants.API_ROOM_KEY_ID + Constants.JSON_SERVER_FILTER)
         id: String,
     ): List<RoomDTO>
 
@@ -68,21 +75,21 @@ interface RoomAPIService {
 
     @POST(Constants.API_ROOM_INDEX_URL)
     suspend fun postRoom(
-        @Body room: Room,
+        @Body room: RoomDTO,
     ): Response<ResponseBody>
 
     @PUT(Constants.API_ROOM_INDEX_URL + "{id}")
     suspend fun putRoom(
         @Path("id")
         id:String,
-        @Body room: Room
+        @Body room: RoomDTO
     ): Response<ResponseBody>
 
     @PATCH(Constants.API_ROOM_INDEX_URL + "{id}")
     suspend fun updateRoom(
         @Path("id")
         id:String,
-        @Body room: Room
+        @Body room: RoomDTO
     ): Response<ResponseBody>
 
     @DELETE(Constants.API_ROOM_INDEX_URL)

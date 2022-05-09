@@ -63,7 +63,7 @@ class AddReservationActivity : AppCompatActivity() {
             var adult_count = binding.edtGuestNumber.text.toString()
             var child_count = binding.edtChildNumber.text.toString()
 
-
+            //TODO: Check if adult+child count doesn't exceed room max cap
             val adultIntFromET: Int = adult_count.toInt()
             val childIntFromET: Int = child_count.toInt()
 

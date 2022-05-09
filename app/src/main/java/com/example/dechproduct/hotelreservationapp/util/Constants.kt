@@ -40,10 +40,14 @@ object Constants {
     const val API_ROOM_KEY_FEATURES = "features"
     const val API_ROOM_KEY_ADDBED = "canAddonBed"
     const val API_ROOM_KEY_SMOKING = "smoking"
-    const val API_ROOM_KEY_STATUS = "status"
+    const val API_ROOM_KEY_OCCUP = "occupancy"
     const val API_ROOM_KEY_WALKING = "isWalking"
     const val API_ROOM_KEY_DEVICES = "device"
     const val API_ROOM_KEY_PRICE = "price"
+
+    const val API_ROOM_KEY_DATE_IN = "arrivalDate"
+    const val API_ROOM_KEY_DATE_OUT = "departDate"
+    const val API_ROOM_KEY_STATUS = "status"
 
     const val API_TICKET_BASE_URL =
         "http://10.0.2.2:3003/"

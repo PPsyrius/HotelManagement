@@ -7,12 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dechproduct.hotelreservationapp.R
+import com.example.dechproduct.hotelreservationapp.data.model.room.Room
+import com.example.dechproduct.hotelreservationapp.data.model.room.RoomType
 import com.example.dechproduct.hotelreservationapp.databinding.FragmentAddReservationRoomTypeBottomSheetBinding
 import com.example.dechproduct.hotelreservationapp.databinding.FragmentRoomTypeBottomSheetBinding
+import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationViewModel
 import com.example.dechproduct.hotelreservationapp.presentation.roomTypeBottomSheet.RoomTypeAdapter
 import com.example.dechproduct.hotelreservationapp.presentation.roomTypeBottomSheet.RoomTypeBottomSheetViewModel
 import com.example.dechproduct.hotelreservationapp.util.Resource
@@ -25,7 +29,7 @@ class AddReservationRoomTypeBottomSheetFragment : BottomSheetDialogFragment() {
 
     private lateinit var roomTypeBinding: FragmentAddReservationRoomTypeBottomSheetBinding
     private val roomTypeViewModel: AddReservationRoomTypeBottomSheetViewModel by viewModels()
-
+    private val addReservationViewModel: AddReservationViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,8 +81,18 @@ class AddReservationRoomTypeBottomSheetFragment : BottomSheetDialogFragment() {
         lifecycleScope.launch {
             roomTypeViewModel.populateReserve()
         }
-        observeSearch()
 
+        roomTypeBinding.rvRoomAvailableList.adapter =
+            AddReservationRoomTypeBottomSheetAdapter(
+                RoomType.values().toMutableList(),
+                this@AddReservationRoomTypeBottomSheetFragment::onRecyclerItemClicked
+            )
+        //observeSearch()
+    }
+
+    private fun onRecyclerItemClicked(roomType: RoomType) {
+        Toast.makeText(context, roomType.toString(), Toast.LENGTH_SHORT).show()
+        addReservationViewModel.reservation.room?.type = roomType
     }
 
     private fun observeSearch() {
@@ -86,8 +100,9 @@ class AddReservationRoomTypeBottomSheetFragment : BottomSheetDialogFragment() {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { reservationList ->
-                        Log.d("AddReservation",reservationList.toString())
-                        roomTypeBinding.rvRoomAvailableList.adapter = AddReservationRoomTypeBottomSheetAdapter(reservationList)            //here adapter set up recycler view
+                        Log.d("AddReservation", reservationList.toString())
+//                        roomTypeBinding.rvRoomAvailableList.adapter =
+//                            AddReservationRoomTypeBottomSheetAdapter(reservationList)            //here adapter set up recycler view
                     }
                 }
 

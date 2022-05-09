@@ -27,7 +27,7 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
     val amount = MutableLiveData<Int>().apply { value = 0 }
     val amountChild = MutableLiveData<Int>().apply { value = 0 }
 
-
+    lateinit var reservation:Booking
 
     fun increment() {
 

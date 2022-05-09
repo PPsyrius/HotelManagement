@@ -16,10 +16,13 @@ import javax.inject.Inject
 class CheckOutViewModel @Inject constructor(private val useCase: UseCase): ViewModel(){
 
     var reserver = MutableLiveData<Resource<MutableList<Booking>>>()
+    var resolveReservation = MutableLiveData<Resource<Booking>>()
+
+    lateinit var result: MutableList<Booking>
 
     suspend fun searchReserve(keyword:String){
         viewModelScope.launch {
-            val reservation = useCase.searchReserveByNameUseCase(keyword, arg = BookingStatus.CHECK_IN)
+            val reservation = useCase.searchReserveByNameUseCase(keyword, mutableListOf<BookingStatus>(BookingStatus.CHECK_IN))
             reserver.postValue(reservation)
         }
     }
@@ -27,8 +30,15 @@ class CheckOutViewModel @Inject constructor(private val useCase: UseCase): ViewM
 
     suspend fun populateReserve(){
         viewModelScope.launch {
-            val reservation = useCase.populateReserveUseCase(arg = BookingStatus.CHECK_IN)
+            val reservation = useCase.populateReserveUseCase(mutableListOf<BookingStatus>(BookingStatus.CHECK_IN))
             reserver.postValue(reservation)
+        }
+    }
+
+    suspend fun checkOutReserved(booking: Booking){
+        viewModelScope.launch {
+            val response = useCase.checkOutGuestUseCase(booking)
+            resolveReservation.postValue(response)
         }
     }
 

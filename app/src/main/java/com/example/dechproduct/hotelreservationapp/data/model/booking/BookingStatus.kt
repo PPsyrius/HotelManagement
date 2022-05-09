@@ -12,6 +12,7 @@ enum class BookingStatus(
     ) : Parcelable {
     CREATED("Reservation Created", "CRE"),
     RESERVED("Reservation Completed", "RSC"),
+    GUARANTEED("Guaranteed Reserved", "GRR"),
     CHECK_IN("Check-In Completed", "CHI"),
     CHECK_OUT("Check-Out Completed", "CHO"),
     CANCEL("Guest Cancelled", "CAX"),

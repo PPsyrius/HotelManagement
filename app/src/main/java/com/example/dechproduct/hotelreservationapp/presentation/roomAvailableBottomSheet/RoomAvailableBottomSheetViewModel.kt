@@ -3,7 +3,7 @@ package com.example.dechproduct.hotelreservationapp.presentation.roomAvailableBo
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.room.*
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,21 +13,35 @@ import javax.inject.Inject
 @HiltViewModel
 class RoomAvailableBottomSheetViewModel @Inject constructor(private val useCase: UseCase): ViewModel(){
 
-    var reserver = MutableLiveData<Resource<MutableList<Booking>>>()
+    var roomer = MutableLiveData<Resource<MutableList<Room>>>()
 
-    suspend fun searchReserve(keyword:String){
+    suspend fun getRoom(keyword:String){
         viewModelScope.launch {
-            val reservation = useCase.searchReserveByNameUseCase(keyword)
-            reserver.postValue(reservation)
-        }
-    }
-    //Only searchReserve() update observer for now.
-
-    suspend fun populateReserve(){
-        viewModelScope.launch {
-            val reservation = useCase.populateReserveUseCase()
-            reserver.postValue(reservation)
+            val rooms = useCase.getRoomUseCase(keyword)
+            roomer.postValue(rooms)
         }
     }
 
+    suspend fun searchRoom(
+        keyword: String="",
+        roomType: RoomType,
+        bedType: BedType,
+        features: List<Feature> = listOf<Feature>(),
+        smoking: Boolean,
+        roomStatus: List<RoomStatus> = listOf<RoomStatus>(),
+        occupancy: Occupancy?
+    ){
+        viewModelScope.launch {
+            val rooms = useCase.searchRoomUseCase(
+                keyword = keyword,
+                roomType = roomType,
+                bedType = bedType,
+                features = features,
+                smoking = smoking,
+                status = roomStatus,
+                occupancy = occupancy
+            )
+            roomer.postValue(rooms)
+        }
+    }
 }

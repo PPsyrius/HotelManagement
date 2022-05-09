@@ -11,7 +11,8 @@ enum class BedType(
 
     ) : Parcelable {
     SINGLE("Single Bed", "SB"),
-    TWIN("Twin Beds", "DB");
+    TWIN("Twin Beds", "DB"),
+    NONE("Empty", "NON");
 
     companion object {
         private fun getByInternalCode(key: String) = BedType.values().find { it.internalCode == key }

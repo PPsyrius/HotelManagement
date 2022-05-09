@@ -6,6 +6,7 @@ import com.example.dechproduct.hotelreservationapp.data.api.ReservationAPIServic
 import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
 import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingDTO
 import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingStatus
+import com.example.dechproduct.hotelreservationapp.data.model.room.RoomStatus
 import com.example.dechproduct.hotelreservationapp.domain.repository.ReservationRepository
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import javax.inject.Inject
@@ -18,7 +19,7 @@ class ReservationRepositoryImpl @Inject constructor(
     override suspend fun add(booking: Booking): Resource<Booking> {
         return try {
 
-            var response_msg = reservationAPI.postBooking(booking)
+            var response_msg = reservationAPI.postBooking(booking.toBookingDTO())
 
             Log.d("POST:", response_msg.toString())
             if (response_msg.isSuccessful)
@@ -34,8 +35,7 @@ class ReservationRepositoryImpl @Inject constructor(
 
     override suspend fun edit(booking: Booking): Resource<Booking> {
         return try {
-
-            var response = booking.bookingID?.let { reservationAPI.updateBooking(it, booking) }
+            var response = booking.bookingID?.let { reservationAPI.updateBooking(it, booking.toBookingDTO()) }
             if (response!!.isSuccessful) {
                 Resource.Success(booking)
             } else {
@@ -74,7 +74,7 @@ class ReservationRepositoryImpl @Inject constructor(
 
     override suspend fun searchByName(
         keyword: String,
-        status: BookingStatus
+        status: List<BookingStatus>
     ): Resource<MutableList<Booking>> {
         return try {
             var results: MutableList<Booking> = mutableListOf<Booking>()
@@ -94,7 +94,7 @@ class ReservationRepositoryImpl @Inject constructor(
     //BookingID
     override suspend fun searchByID(
         keyword: String,
-        status: BookingStatus
+        status: List<BookingStatus>
     ): Resource<MutableList<Booking>> {
         return try {
             var results: MutableList<Booking> = mutableListOf<Booking>()
@@ -111,7 +111,7 @@ class ReservationRepositoryImpl @Inject constructor(
     //TODO: Implements search keyword e.g. #TODAY
     override suspend fun searchByDate(
         keyword: String,
-        status: BookingStatus
+        status: List<BookingStatus>
     ): Resource<MutableList<Booking>> {
         return try {
             var results: MutableList<Booking> = mutableListOf<Booking>()
@@ -128,7 +128,7 @@ class ReservationRepositoryImpl @Inject constructor(
     //RoomID
     override suspend fun searchByRoomID(
         keyword: String,
-        status: BookingStatus
+        status: List<BookingStatus>
     ): Resource<MutableList<Booking>> {
         return try {
             var results: MutableList<Booking> = mutableListOf<Booking>()
@@ -142,7 +142,7 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun populate(status: BookingStatus): Resource<MutableList<Booking>> {
+    override suspend fun populate(status: List<BookingStatus>): Resource<MutableList<Booking>> {
         return try {
 
             var results: MutableList<Booking> = mutableListOf<Booking>()
@@ -159,11 +159,11 @@ class ReservationRepositoryImpl @Inject constructor(
     private fun filterResult(
         s_results: List<BookingDTO>,
         results: MutableList<Booking>,
-        status: BookingStatus = BookingStatus.NONE
+        status: List<BookingStatus> = mutableListOf<BookingStatus>()
     ) {
         for (result in s_results) {
             try {
-                if (status == BookingStatus.NONE || status.internalCode == result.status) {
+                if (status.isEmpty() || status.contains(BookingStatus.unpack(result.status.toString()))) {
                     results.add(result.toBooking())
                 }
             } catch (e: Exception) {

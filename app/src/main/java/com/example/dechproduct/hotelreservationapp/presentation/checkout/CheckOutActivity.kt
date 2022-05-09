@@ -34,16 +34,17 @@ class CheckOutActivity : AppCompatActivity() {
         binding = ActivityCheckOutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnBackMenu.setOnClickListener{
+        binding.btnBackMenu.setOnClickListener {
             val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
 
         var searchBar = binding.searchBar
-        searchBar.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        searchBar.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                if(query == "")
-                    lifecycleScope.launch{
+                if (query == "")
+                    lifecycleScope.launch {
                         checkOutViewModel.populateReserve()
                     }
                 else
@@ -54,12 +55,12 @@ class CheckOutActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                if(newText == "")
-                    lifecycleScope.launch{
+                if (newText == "")
+                    lifecycleScope.launch {
                         checkOutViewModel.populateReserve()
                     }
                 else
-                    lifecycleScope.launch{
+                    lifecycleScope.launch {
                         checkOutViewModel.searchReserve(newText.capitalize())
                     }
                 return false
@@ -68,12 +69,13 @@ class CheckOutActivity : AppCompatActivity() {
 
         binding.reservationList.layoutManager = LinearLayoutManager(this)
 
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             checkOutViewModel.populateReserve()
         }
 
         onSwipeHandle()
         observeSearch()
+        observeCheckOutResolve()
 
     }
 
@@ -96,6 +98,9 @@ class CheckOutActivity : AppCompatActivity() {
                                     "Check-out" + pos,
                                     Toast.LENGTH_SHORT
                                 ).show()
+                                lifecycleScope.launch {
+                                    checkOutViewModel.checkOutReserved(checkOutViewModel.result[pos])
+                                }
                             }
                         }
                     ))
@@ -110,13 +115,41 @@ class CheckOutActivity : AppCompatActivity() {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { reservationList ->
-                        Log.d("CheckOutResActivity",reservationList.toString())
-                        binding.reservationList.adapter = CheckOutAdapter(reservationList)            //here adapter set up recycler view
+                        Log.d("CheckOutResActivity", reservationList.toString())
+                        checkOutViewModel.result = reservationList
+                        binding.reservationList.adapter =
+                            CheckOutAdapter(checkOutViewModel.result)            //here adapter set up recycler view
                     }
                 }
 
                 is Resource.Failure -> {
-                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        })
+    }
+
+    private fun observeCheckOutResolve() {
+        checkOutViewModel.resolveReservation.observe(this, {
+            when (it) {
+                is Resource.Success -> {
+                    it.data?.let { reservation ->
+                        Log.d("CheckOutResActivity", reservation.toString())
+                        Toast.makeText(
+                            applicationContext,
+                            "Check-Out Successful!",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                        val intent =
+                            Intent(this@CheckOutActivity, MenuActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+                is Resource.Failure -> {
+                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         })

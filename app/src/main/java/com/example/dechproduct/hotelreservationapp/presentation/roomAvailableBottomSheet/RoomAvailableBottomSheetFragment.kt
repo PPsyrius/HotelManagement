@@ -1,16 +1,21 @@
 package com.example.dechproduct.hotelreservationapp.presentation.roomAvailableBottomSheet
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dechproduct.hotelreservationapp.R
+import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingStatus
+import com.example.dechproduct.hotelreservationapp.data.model.room.*
 import com.example.dechproduct.hotelreservationapp.databinding.FragmentRoomAvailableBottomSheetBinding
+import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckinDetailViewModel
 import com.example.dechproduct.hotelreservationapp.presentation.roomAvailableBottomSheet.adapter.RoomAvailableAdapter
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -20,9 +25,9 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class RoomAvailableBottomSheetFragment : BottomSheetDialogFragment() {
 
-    private lateinit var roomAvailableBinding : FragmentRoomAvailableBottomSheetBinding
-    private  val roomAvailableviewModel: RoomAvailableBottomSheetViewModel by viewModels()
-
+    private lateinit var roomAvailableBinding: FragmentRoomAvailableBottomSheetBinding
+    private val roomAvailableviewModel: RoomAvailableBottomSheetViewModel by viewModels()
+    private val checkinDetailViewModel: CheckinDetailViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,48 +42,79 @@ class RoomAvailableBottomSheetFragment : BottomSheetDialogFragment() {
         roomAvailableBinding = FragmentRoomAvailableBottomSheetBinding.bind(view)
 
         var searchBar = roomAvailableBinding.searchBar
-        searchBar.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
+        searchBar.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                if(query == "")
-                    lifecycleScope.launch{
-                        roomAvailableviewModel.populateReserve()
-                    }
-                else
-                    lifecycleScope.launch {
-                        roomAvailableviewModel.searchReserve(query.capitalize())
-                    }
+                try {
+                    launchSearch(query)
+                } catch (e: Exception) {
+                }
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                if(newText == "")
-                    lifecycleScope.launch{
-                        roomAvailableviewModel.populateReserve()
-                    }
-                else
-                    lifecycleScope.launch{
-                        roomAvailableviewModel.searchReserve(newText.capitalize())
-                    }
+                try {
+                    launchSearch(newText)
+                } catch (e: Exception) {
+                }
                 return false
             }
         })
 
         roomAvailableBinding.rvRoomAvailableList.layoutManager = LinearLayoutManager(context)
-
-        lifecycleScope.launch{
-            roomAvailableviewModel.populateReserve()
-        }
+        //TODO: fragment doesn't call launchSearch() unless host activity is destroyed
+        //TODO: fragment persist even when room is selected
+        launchSearch()
         observeSearch()
+    }
 
+    private fun launchSearch(keyword: String = "") {
+        try {
+            var availableRoomStatus: MutableList<RoomStatus> = mutableListOf<RoomStatus>()
+
+            if (checkinDetailViewModel.reservation.status == BookingStatus.GUARANTEED) {
+                lifecycleScope.launch {
+                    roomAvailableviewModel.getRoom(checkinDetailViewModel.reservation.room?.roomID.toString())
+                }
+            } else {
+                availableRoomStatus.add(RoomStatus.READY)
+
+                lifecycleScope.launch {
+                    roomAvailableviewModel.searchRoom(
+                        keyword = keyword,
+                        roomType = checkinDetailViewModel.roomConfig.type ?: RoomType.NONE,
+                        bedType = checkinDetailViewModel.roomConfig.beds ?: BedType.NONE,
+                        smoking = checkinDetailViewModel.roomConfig.smoking ?: false,
+                        roomStatus = availableRoomStatus,
+                        occupancy = Occupancy(
+                            checkinDetailViewModel.reservation.arrivalDate,
+                            checkinDetailViewModel.reservation.departDate,
+                            OccupancyStatus.NONE
+                        )
+                    )
+                }
+            }
+        } catch (e: Exception) {
+            Log.d("ERR", e.toString())
+        }
+    }
+
+    private fun onRecyclerItemClicked(room: Room) {
+        Toast.makeText(context, room.toString(), Toast.LENGTH_SHORT).show()
+        checkinDetailViewModel.selectedRoom = room
     }
 
     private fun observeSearch() {
-        roomAvailableviewModel.reserver.observe(this, {
+        roomAvailableviewModel.roomer.observe(this, {
             when (it) {
                 is Resource.Success -> {
-                    it.data?.let { reservationList ->
-                        Log.d("CheckInResActivity1",reservationList.toString())
-                        roomAvailableBinding.rvRoomAvailableList.adapter = RoomAvailableAdapter(reservationList)            //here adapter set up recycler view
+                    it.data?.let { roomList ->
+                        Log.d("CheckInResActivity1", roomList.toString())
+                        roomAvailableBinding.rvRoomAvailableList.adapter =
+                            RoomAvailableAdapter(
+                                roomList,
+                                this@RoomAvailableBottomSheetFragment::onRecyclerItemClicked
+                            )            //here adapter set up recycler view
                     }
                 }
 
@@ -88,11 +124,6 @@ class RoomAvailableBottomSheetFragment : BottomSheetDialogFragment() {
             }
         })
     }
-
-
-
-
-
 
 
 }

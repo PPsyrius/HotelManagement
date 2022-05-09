@@ -23,6 +23,8 @@ data class RoomDTO(
     var smoking: Boolean?,
     @SerializedName(Constants.API_ROOM_KEY_STATUS)
     var status: String?,
+    @SerializedName(Constants.API_ROOM_KEY_OCCUP)
+    var occupancy: List<OccupancyDTO>?,
     @SerializedName(Constants.API_ROOM_KEY_WALKING)
     var isWalking: Boolean?,
     @SerializedName(Constants.API_ROOM_KEY_DEVICES)
@@ -41,6 +43,7 @@ data class RoomDTO(
             canAddonBed = canAddonBed,
             smoking = smoking,
             status = status?.let { RoomStatus.unpack(it) },
+            occupancy = occupancy?.let { OccupancyDTO.toListOfOccupancy(it) },
             isWalking = isWalking,
             device = device,
             price = price,

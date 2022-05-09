@@ -13,7 +13,8 @@ enum class RoomType(
     STANDARD("Standard", "SD"),
     SUPERIOR("Superior","SP"),
     DELUXE("Deluxe", "DX"),
-    SUITE("Suite", "SE");
+    SUITE("Suite", "SE"),
+    NONE("Empty", "NON");
 
     companion object {
         private fun getByInternalCode(key: String) = RoomType.values().find { it.internalCode == key }

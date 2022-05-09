@@ -2,17 +2,19 @@ package com.example.dechproduct.hotelreservationapp.presentation.roomAvailableBo
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.room.Room
 import com.example.dechproduct.hotelreservationapp.databinding.RoomAvailableItemBinding
 
 
-class RoomAvailableAdapter (
-    private val bookings: MutableList<Booking>,
+class RoomAvailableAdapter(
+    private val rooms: MutableList<Room>,
+    private val onRecyclerItemClicked: (Room) -> Unit
 
-    ) : RecyclerView.Adapter <RoomAvailableViewHolder>(){
-
+) : RecyclerView.Adapter<RoomAvailableViewHolder>() {
 
 
     override fun onCreateViewHolder(
@@ -20,28 +22,23 @@ class RoomAvailableAdapter (
         viewType: Int
     ): RoomAvailableViewHolder {
         val binding = RoomAvailableItemBinding
-            .inflate(LayoutInflater.from(viewGroup.context),viewGroup,false)
+            .inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         return RoomAvailableViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RoomAvailableViewHolder, index: Int) {
 
-
-        holder.rooms.text = bookings[index].guest?.firstName
-//        +"\n"+ bookings[index].lastName
-        holder.roomStatus.text = bookings[index].status?.displayName
-
-        holder.roomPrice.text = "10,000"+ " ฿"
+        holder.rooms.text = rooms[index].roomID
+        holder.roomStatus.text = rooms[index].status?.displayName
+        holder.roomPrice.text = rooms[index].price.toString()
 
         holder.selectRoom.setOnClickListener { v ->
-            Toast.makeText(v.context, "Clicked", Toast.LENGTH_LONG).show()
-            // mekh implement here eg: call back FIGHTING!!
+            onRecyclerItemClicked.invoke(rooms[index])
         }
-
 
     }
 
-    override fun getItemCount() = bookings.size
+    override fun getItemCount() = rooms.size
 
 
 }

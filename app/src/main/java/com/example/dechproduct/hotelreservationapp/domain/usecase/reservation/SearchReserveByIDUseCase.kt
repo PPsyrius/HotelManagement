@@ -7,6 +7,6 @@ import com.example.dechproduct.hotelreservationapp.util.Resource
 import javax.inject.Inject
 
 class SearchReserveByIDUseCase @Inject constructor(private val reservationRepository: ReservationRepository) {
-    suspend operator fun invoke(keyword: String, arg: BookingStatus = BookingStatus.NONE): Resource<MutableList<Booking>> =
+    suspend operator fun invoke(keyword: String, arg: List<BookingStatus>): Resource<MutableList<Booking>> =
         reservationRepository.searchByID(keyword, arg)
 }

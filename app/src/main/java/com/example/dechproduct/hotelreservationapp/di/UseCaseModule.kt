@@ -36,7 +36,7 @@ object UseCaseModule {
             LogoutUseCase(userRepository),
 
             CheckInGuestUseCase(
-                roomRepository,
+                MarkRoomUseCase(EditRoomUseCase(roomRepository)),
                 EditReserveUseCase(reservationRepository)
             ),
 
@@ -66,7 +66,9 @@ object UseCaseModule {
 
             EditRoomUseCase(roomRepository),
             MarkRoomUseCase(EditRoomUseCase(roomRepository)),
+            GetRoomUseCase(roomRepository),
             SearchRoomUseCase(roomRepository),
+            PopulateRoomUseCase(roomRepository)
         )
     }
 }
