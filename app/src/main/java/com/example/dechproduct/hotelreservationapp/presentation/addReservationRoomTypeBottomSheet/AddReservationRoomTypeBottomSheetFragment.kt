@@ -49,33 +49,35 @@ class AddReservationRoomTypeBottomSheetFragment : BottomSheetDialogFragment() {
 
         roomTypeBinding = FragmentAddReservationRoomTypeBottomSheetBinding.bind(view)
 
-        var searchBar = roomTypeBinding.searchBar
-        searchBar.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                if (query == "")
-                    lifecycleScope.launch {
-                        roomTypeViewModel.populateReserve()
-                    }
-                else
-                    lifecycleScope.launch {
-                        roomTypeViewModel.searchReserve(query.capitalize())
-                    }
-                return false
-            }
+//        var searchBar = roomTypeBinding.searchBar
+//        searchBar.setOnQueryTextListener(object :
+//            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String): Boolean {
+//                if (query == "")
+//                    lifecycleScope.launch {
+//                        roomTypeViewModel.populateReserve()
+//                    }
+//                else
+//                    lifecycleScope.launch {
+//                        roomTypeViewModel.searchReserve(query.capitalize())
+//                    }
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String): Boolean {
+//                if (newText == "")
+//                    lifecycleScope.launch {
+//                        roomTypeViewModel.populateReserve()
+//                    }
+//                else
+//                    lifecycleScope.launch {
+//                        roomTypeViewModel.searchReserve(newText.capitalize())
+//                    }
+//                return false
+//            }
+//        })
+//
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                if (newText == "")
-                    lifecycleScope.launch {
-                        roomTypeViewModel.populateReserve()
-                    }
-                else
-                    lifecycleScope.launch {
-                        roomTypeViewModel.searchReserve(newText.capitalize())
-                    }
-                return false
-            }
-        })
         roomTypeBinding.rvRoomAvailableList.layoutManager = LinearLayoutManager(context)
 
         lifecycleScope.launch {
@@ -92,7 +94,10 @@ class AddReservationRoomTypeBottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun onRecyclerItemClicked(roomType: RoomType) {
         Toast.makeText(context, roomType.toString(), Toast.LENGTH_SHORT).show()
-        addReservationViewModel.reservation.room?.type = roomType
+
+        addReservationViewModel.reservation?.room?.type = roomType // TODO(Error) "reservation" lateinit initializer , so change it to default null
+
+        dismiss()
     }
 
     private fun observeSearch() {

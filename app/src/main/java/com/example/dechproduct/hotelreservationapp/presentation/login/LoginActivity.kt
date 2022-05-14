@@ -93,6 +93,7 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
 
                         startActivity(intent)
+//                        finish()
                     }
                 }
 

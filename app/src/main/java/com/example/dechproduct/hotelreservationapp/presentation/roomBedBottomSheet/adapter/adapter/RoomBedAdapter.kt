@@ -6,13 +6,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.room.BedType
 import com.example.dechproduct.hotelreservationapp.databinding.RoomBedItemBinding
 
 
 class RoomBedAdapter (
-    private val bookings: MutableList<Booking>,
+    private val bedTypes: MutableList<BedType>,
+    private val onRecyclerItemClicked: (BedType) -> Unit
 
-    ) : RecyclerView.Adapter <RoomBedViewHolder>(){
+
+) : RecyclerView.Adapter <RoomBedViewHolder>(){
 
 
 
@@ -28,18 +31,18 @@ class RoomBedAdapter (
     override fun onBindViewHolder(holder: RoomBedViewHolder, index: Int) {
 
 
-        holder.rooms.text = bookings[index].guest?.firstName
+        holder.rooms.text = bedTypes[index].toString()
 //        +"\n"+ bookings[index].lastName
 
         holder.selectRoom.setOnClickListener { v ->
-            Toast.makeText(v.context, "Clicked", Toast.LENGTH_LONG).show()
+            onRecyclerItemClicked.invoke(bedTypes[index])
             // mekh implement here eg: call back FIGHTING!!
         }
 
 
     }
 
-    override fun getItemCount() = bookings.size
+    override fun getItemCount() = bedTypes.size
 
 
 }

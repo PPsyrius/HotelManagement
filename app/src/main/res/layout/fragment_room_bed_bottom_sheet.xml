@@ -49,6 +49,7 @@
             android:textColor="@color/white"
             android:tint="@color/colorAccent"
             android:background="#FBFBFB"
+            android:visibility="gone"
             tools:text="BottomSheet" />
     </androidx.cardview.widget.CardView>
 

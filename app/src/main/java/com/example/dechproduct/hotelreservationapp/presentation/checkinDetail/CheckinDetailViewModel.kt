@@ -22,7 +22,13 @@ class CheckinDetailViewModel @Inject constructor(private val useCase: UseCase) :
 
     lateinit var reservation: Booking
     var roomConfig: Room = Room()
-    lateinit var selectedRoom: Room
+    var selectedRoom: Room? = null
+
+
+
+
+
+
 //    @SuppressLint("StaticFieldLeak")
 //    private val context: Context = getApplication<Application>().applicationContext
 
@@ -74,8 +80,8 @@ class CheckinDetailViewModel @Inject constructor(private val useCase: UseCase) :
 
     suspend fun checkInReserved() {
         viewModelScope.launch {
-            val response = useCase.checkInGuestUseCase(reservation, selectedRoom)
-            resolveReservation.postValue(response)
+            val response = selectedRoom?.let { useCase.checkInGuestUseCase(reservation, it) }
+            resolveReservation.postValue(response!!)
         }
     }
 }

@@ -36,6 +36,8 @@ data class Booking(
 
     var isAddonBed: Boolean?,
 
+
+
     ) : Parcelable {
     fun toBookingDTO(): BookingDTO {
         var dateFormat = SimpleDateFormat("dd-MM-yyyy")

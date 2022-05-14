@@ -6,11 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dechproduct.hotelreservationapp.R
+import com.example.dechproduct.hotelreservationapp.data.model.room.BedType
+import com.example.dechproduct.hotelreservationapp.data.model.room.RoomType
 import com.example.dechproduct.hotelreservationapp.databinding.FragmentAddReservationRoomBedBottomSheetBinding
+import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationViewModel
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,6 +25,7 @@ class AddReservationRoomBedBottomSheetFragment : BottomSheetDialogFragment() {
 
     private lateinit var roomBedBinding: FragmentAddReservationRoomBedBottomSheetBinding
     private val roomBedViewModel: AddReservationRoomBedBottomSheetViewModel by viewModels()
+    private val addReservationViewModel: AddReservationViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -41,41 +46,63 @@ class AddReservationRoomBedBottomSheetFragment : BottomSheetDialogFragment() {
 
         roomBedBinding = FragmentAddReservationRoomBedBottomSheetBinding.bind(view)
 
-        var searchBar = roomBedBinding.searchBar
-        searchBar.setOnQueryTextListener(object :
-            androidx.appcompat.widget.SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                if (query == "")
-                    lifecycleScope.launch {
-                        roomBedViewModel.populateReserve()
-                    }
-                else
-                    lifecycleScope.launch {
-                        roomBedViewModel.searchReserve(query.capitalize())
-                    }
-                return false
-            }
+//        var searchBar = roomBedBinding.searchBar
+//        searchBar.setOnQueryTextListener(object :
+//            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+//            override fun onQueryTextSubmit(query: String): Boolean {
+//                if (query == "")
+//                    lifecycleScope.launch {
+//                        roomBedViewModel.populateReserve()
+//                    }
+//                else
+//                    lifecycleScope.launch {
+//                        roomBedViewModel.searchReserve(query.capitalize())
+//                    }
+//                return false
+//            }
+//
+//            override fun onQueryTextChange(newText: String): Boolean {
+//                if (newText == "")
+//                    lifecycleScope.launch {
+//                        roomBedViewModel.populateReserve()
+//                    }
+//                else
+//                    lifecycleScope.launch {
+//                        roomBedViewModel.searchReserve(newText.capitalize())
+//                    }
+//                return false
+//            }
+//        })
+//
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                if (newText == "")
-                    lifecycleScope.launch {
-                        roomBedViewModel.populateReserve()
-                    }
-                else
-                    lifecycleScope.launch {
-                        roomBedViewModel.searchReserve(newText.capitalize())
-                    }
-                return false
-            }
-        })
         roomBedBinding.rvRoomAvailableList.layoutManager = LinearLayoutManager(context)
 
         lifecycleScope.launch {
             roomBedViewModel.populateReserve()
         }
-        observeSearch()
+
+        roomBedBinding.rvRoomAvailableList.adapter =
+            AddReservationRoomBedBottomSheetAdapter(
+                BedType.values().toMutableList(),
+                this::onRecyclerItemClicked
+
+
+            )
+
+      // observeSearch()
+
+
 
     }
+
+    private fun onRecyclerItemClicked(bedType: BedType) {
+        Toast.makeText(context, bedType.toString(), Toast.LENGTH_SHORT).show()
+
+        addReservationViewModel.reservation?.room?.beds = bedType // TODO(Error) "reservation" lateinit initializer , so change it to default null
+
+        dismiss()
+    }
+
 
     private fun observeSearch() {
         roomBedViewModel.reserver.observe(this, {
@@ -83,7 +110,7 @@ class AddReservationRoomBedBottomSheetFragment : BottomSheetDialogFragment() {
                 is Resource.Success -> {
                     it.data?.let { reservationList ->
                         Log.d("AddReservation",reservationList.toString())
-                        roomBedBinding.rvRoomAvailableList.adapter = AddReservationRoomBedBottomSheetAdapter(reservationList)            //here adapter set up recycler view
+//                        roomBedBinding.rvRoomAvailableList.adapter = AddReservationRoomBedBottomSheetAdapter(reservationList)            //here adapter set up recycler view
                     }
                 }
 

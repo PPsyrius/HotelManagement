@@ -1,5 +1,6 @@
 package com.example.dechproduct.hotelreservationapp.presentation.reservation.add
 
+import android.widget.CheckBox
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,6 +11,7 @@ import com.example.dechproduct.hotelreservationapp.data.model.guest.Guest
 import com.example.dechproduct.hotelreservationapp.data.model.payment.PaymentType
 import com.example.dechproduct.hotelreservationapp.data.model.guest.VerificationID
 import com.example.dechproduct.hotelreservationapp.data.model.payment.Payment
+import com.example.dechproduct.hotelreservationapp.data.model.room.Room
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +20,7 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class AddReservationViewModel @Inject constructor(private val useCase: UseCase) : ViewModel() {
+class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewModel() {
 
     var reserver = MutableLiveData<Resource<Booking>>()
     var startDateEpoch: Long = 0
@@ -27,7 +29,42 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
     val amount = MutableLiveData<Int>().apply { value = 0 }
     val amountChild = MutableLiveData<Int>().apply { value = 0 }
 
-    lateinit var reservation:Booking
+    val checkedBreakfast = MutableLiveData <Boolean>().apply { value = false  }
+    val checkedSmoking= MutableLiveData <Boolean>().apply { value = false  }
+
+
+    //     lateinit var reservation: Booking -- error
+    var reservation: Booking? = null
+
+    fun breakfastChecked(){
+        checkedBreakfast.value?.let { a ->
+            checkedBreakfast.value = true
+        }
+
+    }
+
+    fun breakfastNotChecked(){
+        checkedBreakfast.value?.let { a ->
+            checkedBreakfast.value = false
+        }
+
+    }
+
+    fun smokingChecked(){
+        checkedSmoking.value?.let { a ->
+            checkedSmoking.value = true
+        }
+
+    }
+
+    fun smokingNotChecked(){
+        checkedSmoking.value?.let { a ->
+            checkedSmoking.value = false
+        }
+
+    }
+
+
 
     fun increment() {
 
@@ -71,8 +108,8 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
     suspend fun addReserve(
         fname: String, lname: String, phone: String,
         payment: String, verification: String,
-        address: List<String>, adult_count: Int, child_count: Int,
-        breakfast: Boolean, isAddonBed: Boolean
+        address: List<String>, adult_count: Int?, child_count: Int?,
+        breakfast: Boolean?, isAddonBed: Boolean
     ) {
         viewModelScope.launch {
             val reservation =
@@ -106,7 +143,8 @@ class AddReservationViewModel @Inject constructor(private val useCase: UseCase) 
                         status = BookingStatus.CREATED,
                         breakfast = breakfast,
                         isAddonBed = isAddonBed
-                    )
+                    ),
+
                 )
             reserver.postValue(reservation)
         }

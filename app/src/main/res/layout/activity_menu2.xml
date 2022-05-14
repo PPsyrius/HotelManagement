@@ -194,7 +194,7 @@
                 android:layout_gravity="start|center_vertical"
                 android:background="@android:color/transparent"
                 android:padding="@dimen/common_padding"
-                android:src="@drawable/icon_arrow_backward" />
+                android:src="@drawable/ic_baseline_power_settings_new_24" />
         </FrameLayout>
 
         <TextView

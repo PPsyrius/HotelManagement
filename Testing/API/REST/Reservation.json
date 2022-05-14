@@ -1,159 +1,265 @@
 {
-    "ReservationAPI": [
-        {
-            "bookingID": "1639872139204",
-            "guest": {
-                "guestID": "P001",
-                "firstName": "John",
-                "lastName": "Wicked",
-                "phoneNumber": "6600123456789",
-                "address": [
-                    "Ham and Cheese Rd.",
-                    "With Eggs District"
-                ],
-                "region": "Bangkok",
-                "postalCode": "10240",
-                "country": "Thailand",
-                "verificationID": "1234567890123",
-                "verificationPhoto": ""
-            },
-            "ticket": {},
-            "room": {
-                "roomID": "000",
-                "type": "SD",
-                "beds": "SB",
-                "maxCap": 2,
-                "floor": "G",
-                "features": [
-                    "AL",
-                    "CR",
-                    "MV",
-                    "SV"
-                ],
-                "canAddonBed": false,
-                "smoking": false,
-                "status": "RS",
-                "isWalking": false,
-                "device": [
-                    {
-                        "deviceID": "001",
-                        "displayName": "Electric Kettle",
-                        "type": "EK",
-                        "serial": "SN0112",
-                        "manufacturer": "Skyworth",
-                        "status": "NM"
-                    },
-                    {
-                        "deviceID": "002",
-                        "displayName": "Air Conditioner",
-                        "type": "AC",
-                        "serial": "SS50392128",
-                        "manufacturer": "Samsung",
-                        "status": "NF"
-                    }
-                ],
-                "price": 1000.10
-            },
-            "payment": {
-                "paymentID": "F123",
-                "type": "CA",
-                "photo": ""
-            },
+  "ReservationAPI": [
+    {
+      "bookingID": "1639872139204",
+      "guest": {
+        "address": [
+          "Ham and Cheese Rd.",
+          "With Eggs District"
+        ],
+        "country": "Thailand",
+        "firstName": "John",
+        "guestID": "P001",
+        "lastName": "Wicked",
+        "phoneNumber": "6600123456789",
+        "postalCode": "10240",
+        "region": "Bangkok",
+        "verificationID": "1234567890123",
+        "verificationPhoto": ""
+      },
+      "ticket": {},
+      "room": {
+        "beds": "SB",
+        "canAddonBed": false,
+        "device": [
+          {
+            "deviceID": "001",
+            "displayName": "Electric Kettle",
+            "manufacturer": "Skyworth",
+            "serial": "SN0112",
+            "status": "NM",
+            "type": "EK"
+          },
+          {
+            "deviceID": "002",
+            "displayName": "Air Conditioner",
+            "manufacturer": "Samsung",
+            "serial": "SS50392128",
+            "status": "NF",
+            "type": "AC"
+          }
+        ],
+        "features": [
+          "AL",
+          "CR",
+          "MV",
+          "SV"
+        ],
+        "floor": "G",
+        "isWalking": false,
+        "maxCap": 2,
+        "occupancy": [
+          {
             "arrivalDate": "01-02-2023",
             "departDate": "02-03-2025",
-            "adultCount": 2,
-            "childCount": 0,
-            "status": "RSC",
-            "breakfast": true,
-            "isAddonBed": false
-        },
-        {
-            "bookingID": "1639924905347",
-            "guest": {
-                "guestID": "P021",
-                "firstName": "John",
-                "lastName": "Cena",
-                "phoneNumber": "12039458924",
-                "address": [
-                    "Icecream Rd.",
-                    "Poyo Bay"
-                ],
-                "region": "Soda Island",
-                "postalCode": "943JDC12",
-                "country": "Dreamland",
-                "verificationID": "0X0X0X0X0",
-                "verificationPhoto": ""
-            },
-            "ticket": {},
-            "room": {},
-            "payment": {
-                "type": "MS"
-            },
-            "arrivalDate": "01-05-2023",
-            "departDate": "02-05-2023",
-            "adultCount": 2,
-            "childCount": 1,
-            "status": "RSC",
-            "breakfast": true,
-            "isAddonBed": false
-        },
-        {
-            "bookingID": "16398721313504",
-            "guest": {
-                "guestID": "GX01",
-                "firstName": "Johannas",
-                "lastName": "Vicketry",
-                "phoneNumber": "0980000011",
-                "address": [
-                    "25 Broadway Rd.",
-                    "Something Something Lane"
-                ],
-                "region": "Bangkok",
-                "postalCode": "10000",
-                "country": "Thailand",
-                "verificationID": "10000000000",
-                "verificationPhoto": ""
-            },
-            "ticket": {
-                "ticketID": "0A01"
-            },
-            "room": {
-                "roomID": "002",
-                "type": "SE",
-                "beds": "SB",
-                "maxCap": 3,
-                "floor": "B2",
-                "features": [
-                    "CV"
-                ],
-                "canAddonBed": false,
-                "smoking": true,
-                "status": "U0",
-                "isWalking": false,
-                "device": [
-                    {
-                        "deviceID": "007",
-                        "displayName": "Television",
-                        "type": "TV",
-                        "serial": "LG1093483223B",
-                        "manufacturer": "LG",
-                        "status": "NM"
-                    }
-                ],
-                "price": 3500.10
-            },
-            "payment": {
-                "paymentID": "P234",
-                "type": "VI",
-                "photo": ""
-            },
-            "arrivalDate": "01-02-2023",
-            "departDate": "02-03-2025",
-            "adultCount": 2,
-            "childCount": 0,
-            "status": "CHI",
-            "breakfast": true,
-            "isAddonBed": false
-        }
-    ]
+            "status": "RS"
+          },
+          {
+            "arrivalDate": "01-06-2022",
+            "departDate": "01-08-2025",
+            "status": "RS"
+          }
+        ],
+        "price": 1000.1,
+        "roomID": "000",
+        "smoking": false,
+        "status": "RS",
+        "type": "SD"
+      },
+      "payment": {
+        "paymentID": "F123",
+        "photo": "",
+        "type": "CA"
+      },
+      "arrivalDate": "01-02-2023",
+      "departDate": "02-03-2025",
+      "adultCount": 2,
+      "childCount": 0,
+      "status": "CHI",
+      "breakfast": true,
+      "isAddonBed": false
+    },
+    {
+      "bookingID": "1639924905347",
+      "guest": {
+        "guestID": "P021",
+        "firstName": "John",
+        "lastName": "Cena",
+        "phoneNumber": "12039458924",
+        "address": [
+          "Icecream Rd.",
+          "Poyo Bay"
+        ],
+        "region": "Soda Island",
+        "postalCode": "943JDC12",
+        "country": "Dreamland",
+        "verificationID": "0X0X0X0X0",
+        "verificationPhoto": ""
+      },
+      "ticket": {},
+      "room": {},
+      "payment": {
+        "type": "MS"
+      },
+      "arrivalDate": "01-05-2023",
+      "departDate": "02-05-2023",
+      "adultCount": 2,
+      "childCount": 1,
+      "status": "RSC",
+      "breakfast": true,
+      "isAddonBed": false
+    },
+    {
+      "bookingID": "16398721313504",
+      "guest": {
+        "address": [
+          "25 Broadway Rd.",
+          "Something Something Lane"
+        ],
+        "country": "Thailand",
+        "firstName": "Johannas",
+        "guestID": "GX01",
+        "lastName": "Vicketry",
+        "phoneNumber": "0980000011",
+        "postalCode": "10000",
+        "region": "Bangkok",
+        "verificationID": "10000000000",
+        "verificationPhoto": ""
+      },
+      "ticket": {
+        "ticketID": "0A01"
+      },
+      "room": {},
+      "payment": {
+        "paymentID": "P234",
+        "photo": "",
+        "type": "VI"
+      },
+      "arrivalDate": "01-02-2023",
+      "departDate": "02-03-2025",
+      "adultCount": 2,
+      "childCount": 0,
+      "status": "CHO",
+      "breakfast": true,
+      "isAddonBed": false
+    },
+    {
+      "adultCount": 1,
+      "arrivalDate": "19-05-2022",
+      "bookingID": "1652299839954",
+      "breakfast": true,
+      "childCount": 1,
+      "departDate": "20-05-2022",
+      "guest": {
+        "address": [
+          "23/32"
+        ],
+        "firstName": "Kingbo",
+        "lastName": "Kobing",
+        "phoneNumber": "0888888888",
+        "verificationID": "22323232323"
+      },
+      "isAddonBed": false,
+      "payment": {},
+      "status": "CRE"
+    },
+    {
+      "adultCount": 1,
+      "arrivalDate": "12-05-2022",
+      "bookingID": "1652302262809",
+      "breakfast": true,
+      "childCount": 1,
+      "departDate": "20-05-2022",
+      "guest": {
+        "address": [
+          "12251/52"
+        ],
+        "firstName": "Markman",
+        "lastName": "Eiei",
+        "phoneNumber": "0888888888",
+        "verificationID": "1454545455"
+      },
+      "isAddonBed": false,
+      "payment": {},
+      "status": "CRE"
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "20-05-2022",
+      "bookingID": "1652381837734",
+      "breakfast": true,
+      "childCount": 2,
+      "departDate": "28-05-2022",
+      "guest": {
+        "address": [
+          "235/88"
+        ],
+        "firstName": "Add",
+        "lastName": "Error",
+        "phoneNumber": "0945454545",
+        "verificationID": "1222111111111"
+      },
+      "isAddonBed": false,
+      "payment": {},
+      "status": "CRE"
+    },
+    {
+      "adultCount": 2,
+      "arrivalDate": "19-05-2022",
+      "bookingID": "1652384349317",
+      "breakfast": true,
+      "childCount": 1,
+      "departDate": "20-05-2022",
+      "guest": {
+        "address": [
+          "23/65"
+        ],
+        "firstName": "Anna",
+        "lastName": "Zamak",
+        "phoneNumber": "0888888888",
+        "verificationID": "1223322232"
+      },
+      "isAddonBed": false,
+      "payment": {},
+      "status": "CRE"
+    },
+    {
+      "adultCount": 1,
+      "arrivalDate": "27-05-2022",
+      "bookingID": "1652396141501",
+      "breakfast": true,
+      "departDate": "04-06-2022",
+      "guest": {
+        "address": [
+          "25/olympus"
+        ],
+        "firstName": "Percy",
+        "lastName": "Jackson",
+        "phoneNumber": "0974848448",
+        "verificationID": "781515115151515"
+      },
+      "isAddonBed": false,
+      "payment": {},
+      "status": "CRE"
+    },
+    {
+      "adultCount": 1,
+      "arrivalDate": "19-05-2022",
+      "bookingID": "1652571871743",
+      "breakfast": true,
+      "departDate": "21-05-2022",
+      "guest": {
+        "address": [
+          "225/45"
+        ],
+        "firstName": "Mahatja",
+        "lastName": "Kaba",
+        "phoneNumber": "0844848484",
+        "verificationID": "6596595956226"
+      },
+      "isAddonBed": false,
+      "payment": {},
+      "status": "CRE"
+    }
+  ]
 }

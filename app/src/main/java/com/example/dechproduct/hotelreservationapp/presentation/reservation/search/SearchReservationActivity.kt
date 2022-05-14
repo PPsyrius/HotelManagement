@@ -28,7 +28,9 @@ class SearchReservationActivity : AppCompatActivity() {
 
     private lateinit var binding:ActivitySearchReservationactivityBinding
     private val searchReservationViewModel: SearchReservationViewModel by viewModels()
-    //TODO:(Important!!) Pressing edit reservation should populate data into form
+
+    //TODO:(Important!!) Pressing edit reservation should populate data into form -- what??
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -43,7 +45,6 @@ class SearchReservationActivity : AppCompatActivity() {
         //TODO: Format display date correctly --TUNG
 
 
-        //TODO: Edit #RoomType to #Booking.ID --finish?--
         var searchBar = binding.searchBar
         searchBar.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {

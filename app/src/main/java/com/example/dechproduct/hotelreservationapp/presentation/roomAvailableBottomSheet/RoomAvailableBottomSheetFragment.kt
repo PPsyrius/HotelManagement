@@ -29,6 +29,7 @@ class RoomAvailableBottomSheetFragment : BottomSheetDialogFragment() {
     private val roomAvailableviewModel: RoomAvailableBottomSheetViewModel by viewModels()
     private val checkinDetailViewModel: CheckinDetailViewModel by activityViewModels()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

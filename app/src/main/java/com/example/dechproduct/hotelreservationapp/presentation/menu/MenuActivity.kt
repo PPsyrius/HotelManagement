@@ -56,6 +56,11 @@ class MenuActivity : AppCompatActivity() {
         updateLoginName()
     }
 
+    override fun onBackPressed() {
+        moveTaskToBack(true);
+
+    }
+
     private fun updateLoginName() {
         try {
         sharedPreferences = applicationContext.getSharedPreferences(Constants.SHARED_PREF, Context.MODE_PRIVATE)

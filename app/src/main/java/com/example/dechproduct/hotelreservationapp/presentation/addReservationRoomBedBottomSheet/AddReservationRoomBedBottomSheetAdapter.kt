@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.room.BedType
+import com.example.dechproduct.hotelreservationapp.data.model.room.RoomType
 import com.example.dechproduct.hotelreservationapp.databinding.RoomBedReservationItemBinding
 
 
-
-
-
 class AddReservationRoomBedBottomSheetAdapter (
-    private val bookings: MutableList<Booking>,
+    private val bedTypes: MutableList<BedType>,
+    private val onRecyclerItemClicked: (BedType) -> Unit
 
     ) : RecyclerView.Adapter <AddReservationRoomBedBottomSheetViewHolder>(){
 
@@ -29,19 +29,19 @@ class AddReservationRoomBedBottomSheetAdapter (
 
     override fun onBindViewHolder(holder: AddReservationRoomBedBottomSheetViewHolder, index: Int) {
 
-        holder.rooms.text = "Test"
-//        holder.rooms.text = bookings[index].firstName
-//        +"\n"+ bookings[index].lastName
+        holder.rooms.text = bedTypes[index].toString()
+//        holder.rooms.text = bedTypes[index].firstName
+//        +"\n"+ bedTypes[index].lastName
 
         holder.selectRoom.setOnClickListener { v ->
-            Toast.makeText(v.context, "Clicked", Toast.LENGTH_LONG).show()
+            onRecyclerItemClicked.invoke(bedTypes[index])
             // mekh implement here eg: call back FIGHTING!!
         }
 
 
     }
 
-    override fun getItemCount() = bookings.size
+    override fun getItemCount() = bedTypes.size
 
 
 }
