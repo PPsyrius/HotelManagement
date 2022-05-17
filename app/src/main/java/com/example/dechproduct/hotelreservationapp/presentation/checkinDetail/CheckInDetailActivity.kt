@@ -32,7 +32,7 @@ import javax.inject.Inject
 class CheckInDetailActivity : AppCompatActivity() {
 
 
-    //TODO: Handle Layout to Responsive --TUNG
+    //TODO: Handle Layout to Responsive --TUNG  --finish?--
 
     private lateinit var binding: ActivityCheckinDetailBinding    // <- can click here to open the xml that related
     private val checkInDetailViewModel: CheckinDetailViewModel by viewModels()
@@ -176,8 +176,11 @@ class CheckInDetailActivity : AppCompatActivity() {
 
                         binding.tvGuestName.text =
                             reservation.guest?.firstName + " " + reservation.guest?.lastName
-                        //TODO:check if reservation.room.type is null, set text to ""
+                        //TODO:check if reservation.room.type is null, set text to ""   --finish?--
                         binding.roomType.text = reservation.room?.type.toString()
+                        if(binding.roomType.text == null){
+                            binding.roomType.text = ""
+                        }
                         binding.tvCheckInDate.text = SimpleDateFormat(
                             "dd-MM-yyyy",
                             Locale.getDefault()
@@ -187,8 +190,11 @@ class CheckInDetailActivity : AppCompatActivity() {
                             Locale.getDefault()
                         ).format(reservation.departDate)
 
-                        //TODO:check if reservation.room.beds is null, set text to ""
+                        //TODO:check if reservation.room.beds is null, set text to ""   --finish?--
                         binding.tvDisplayRoomBed.text = reservation.room?.beds.toString()
+                        if(binding.tvDisplayRoomBed.text == null){
+                            binding.tvDisplayRoomBed.text = ""
+                        }
                         //TODO: Set binding to reservation.adultCount, reservation.childCount       --finish?--
 
                         binding.edtGuestNumber.setText(reservation.adultCount?.toString())

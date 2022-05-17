@@ -133,7 +133,7 @@ class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewMo
                         payment = Payment(
                             paymentID = null,
                             type = PaymentType.unpack(payment),
-                            //TODO: Return and pass PaymentType object, replacing {PaymentType.CASH} -- TUNG
+                            //TODO: Return and pass PaymentType object, replacing {PaymentType.CASH} -- TUNG --finish?--
                             photo = null
                         ),
                         arrivalDate = Date(startDateEpoch),
