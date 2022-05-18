@@ -87,6 +87,7 @@
         <entry key="app/src/main/res/layout/fragment_room_available_bottom_sheet.xml" value="0.19655797101449277" />
         <entry key="app/src/main/res/layout/fragment_room_bed_bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_room_type_bottom_sheet.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/room_available_item.xml" value="0.1609375" />
       </map>
     </option>
   </component>

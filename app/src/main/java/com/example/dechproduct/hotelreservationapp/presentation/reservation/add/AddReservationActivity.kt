@@ -57,8 +57,12 @@ class AddReservationActivity : AppCompatActivity() {
 
 
             //TODO: adjust code to binding.item ?? Mekh describe more to TUNG
-            //TODO: Divide address into List<String> by new line before passing as 'address' var -- TUNG
-
+            //TODO: Divide address into List<String> by new line before passing as 'address' var -- TUNG -- finish?
+            var listToAddress: List<String> = emptyList()
+            for(addr in address){
+                listToAddress.toMutableList().add(addr)
+            }
+            address = listToAddress
 
 
             //TODO: Bind adult/child count to view component --finish? Please Checking  Mekh --
