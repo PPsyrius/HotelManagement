@@ -71,6 +71,10 @@ class LoginActivity : AppCompatActivity() {
         observeLogin()
     }
 
+    override fun onBackPressed() {
+        moveTaskToBack(true);
+    }
+
     private fun observeLogin() {
         loginViewModel.activeUser.observe(this, {
             when (it) {
@@ -93,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
 
                         startActivity(intent)
-//                        finish()
+                        //finish()
                     }
                 }
 
