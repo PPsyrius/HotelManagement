@@ -1,12 +1,11 @@
 package com.example.dechproduct.hotelreservationapp.presentation.reservation.add
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.CheckBox
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.example.dechproduct.hotelreservationapp.R
@@ -167,8 +166,17 @@ class AddReservationActivity : AppCompatActivity() {
 
         binding.btnRoomType.setOnClickListener{
             bottomSheetChangeRoomTypeFragment.show(supportFragmentManager, "TAG")
-
+//            if(bottomSheetChangeRoomTypeFragment.isAdded){
+//                binding.tvDisplayRoomType.setText(addReservationViewModel.reservation?.room?.beds)
+//                Log.e()
+//            }
         }
+
+//        binding.tvDisplayRoomType.setOnClickListener{
+//            lifecycleScope.launch {
+//                binding.tvDisplayRoomType.setText(bottomSheetChangeRoomTypeFragment.toString())
+//            }
+//        }
 
         binding.btnRoomBed.setOnClickListener {
             bottomSheetRoomBedFragment.show(supportFragmentManager, "TAG")
