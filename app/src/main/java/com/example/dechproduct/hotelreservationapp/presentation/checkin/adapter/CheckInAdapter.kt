@@ -5,11 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
 import com.example.dechproduct.hotelreservationapp.databinding.CheckInItemBinding
+import java.text.SimpleDateFormat
 
 class CheckInAdapter (
     private val bookings: MutableList<Booking>,
 
     ) : RecyclerView.Adapter <CheckInViewHolder>(){
+
+    var dateFormat = SimpleDateFormat("dd-MM-yyyy")
 
     override fun onCreateViewHolder(
         viewGroup: ViewGroup,
@@ -23,8 +26,8 @@ class CheckInAdapter (
     override fun onBindViewHolder(holder: CheckInViewHolder, index: Int) {
         holder.reserveName.text =
             bookings[index].guest?.firstName +"\n"+ bookings[index].guest?.lastName
-        holder.reserveDateIn.text = bookings[index].arrivalDate.toString()
-        holder.reserveDateOut.text = bookings[index].departDate.toString()
+        holder.reserveDateIn.text = dateFormat.format(bookings[index].arrivalDate)
+        holder.reserveDateOut.text = dateFormat.format(bookings[index].departDate)
         holder.reservePhoneNo.text = bookings[index].guest?.phoneNumber.toString()
         holder.reserveID.text = bookings[index].bookingID.toString()
     }

@@ -42,9 +42,6 @@ class SearchReservationActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        //TODO: Format display date correctly --TUNG
-
-
         var searchBar = binding.searchBar
         searchBar.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {

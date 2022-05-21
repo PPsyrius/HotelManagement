@@ -43,6 +43,10 @@ class AddReservationActivity : AppCompatActivity() {
         binding.buttonTest.setOnClickListener {
             showDateRangePicker()
         }
+        var today = Date()
+        binding.tvDateStart.text = convertLongToDate(today.time)
+        binding.tvDateEnd.text = convertLongToDate(today.time+(1000*60*60*24))
+
         binding.btnSubmit.setOnClickListener {
             if (binding.firstNameCustomer.getValue().isNotEmpty() and
                 binding.lastNameCustomer.getValue().isNotEmpty() and
@@ -78,7 +82,6 @@ class AddReservationActivity : AppCompatActivity() {
                 addReservationViewModel.reservation.room?.smoking =
                     binding.checkBoxSmoking.isChecked
 
-                //TODO: Check for empty date in tests
                 var dateFormat = SimpleDateFormat("dd-MM-yyyy")
                 addReservationViewModel.toOccupy.arrivalDate =
                     dateFormat.parse(binding.tvDateStart.text.toString())
@@ -144,14 +147,16 @@ class AddReservationActivity : AppCompatActivity() {
 
         binding.edtGuestNumber.setOnClickListener {
             Log.i("AddReservationActivity", "edittextGuest clicked")
-            // TODO :  ADD NUMBER OF GUEST TO VIEWMODEL WHEN EDITTEXT IS EDITED (optional )
+            addReservationViewModel.reservation.adultCount =
+                binding.edtGuestNumber.text.toString().toIntOrNull() ?: 0
 
         }
 
 
         binding.edtChildNumber.setOnClickListener {
             Log.i("AddReservationActivity", "edittextChild clicked")
-            // TODO :  ADD NUMBER OF CHILD TO VIEWMODEL WHEN EDITTEXT IS EDITED (optional )
+            addReservationViewModel.reservation.adultCount =
+                binding.edtChildNumber.text.toString().toIntOrNull() ?: 0
 
         }
 
@@ -176,8 +181,6 @@ class AddReservationActivity : AppCompatActivity() {
 
         binding.checkBoxBreakfast.setOnClickListener {
             if (binding.checkBoxBreakfast.isChecked) {
-                Toast.makeText(applicationContext, "Checkbox breakfast clicked", Toast.LENGTH_LONG)
-                    .show()
                 lifecycleScope.launch {
                     addReservationViewModel.breakfastChecked()
                     binding.checkBoxBreakfast.isChecked =
@@ -187,11 +190,6 @@ class AddReservationActivity : AppCompatActivity() {
 
 
             } else {
-                Toast.makeText(
-                    applicationContext,
-                    "Checkbox breakfast not checked",
-                    Toast.LENGTH_LONG
-                ).show()
                 lifecycleScope.launch {
                     addReservationViewModel.breakfastNotChecked()
                     binding.checkBoxBreakfast.isChecked =
@@ -200,14 +198,23 @@ class AddReservationActivity : AppCompatActivity() {
                 }
 
             }
-
-
             // NOTE -> use "isChecked" for set the checked state of ui -> binding.checkBoxBreakfast.isChecked = true -> The checkbox will checked
         }
         binding.checkBoxSmoking.setOnClickListener {
-            Toast.makeText(applicationContext, "Checkbox smoking clicked", Toast.LENGTH_LONG).show()
+            if (binding.checkBoxSmoking.isChecked) {
+                lifecycleScope.launch {
+                    addReservationViewModel.smokingChecked()
+                    binding.checkBoxSmoking.isChecked =
+                        addReservationViewModel.checkedSmoking.value!!
+                }
+            } else {
+                lifecycleScope.launch {
+                    addReservationViewModel.smokingNotChecked()
+                    binding.checkBoxSmoking.isChecked =
+                        addReservationViewModel.checkedSmoking.value!!
 
-            // TODO Added here (like cbBreakfast)
+                }
+            }
         }
         observeSearchRoom()
         observeAddReservation()
