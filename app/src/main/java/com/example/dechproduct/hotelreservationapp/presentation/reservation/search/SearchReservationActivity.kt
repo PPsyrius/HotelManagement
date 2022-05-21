@@ -116,7 +116,7 @@ class SearchReservationActivity : AppCompatActivity() {
                             override fun onClick(pos: Int) {
                                 val intent =
                                     Intent(applicationContext, AddReservationActivity::class.java)
-                                startActivity(intent)
+                                startActivityForResult(intent,0)
                             }
                         }
                     ))

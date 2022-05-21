@@ -16,6 +16,7 @@ import com.example.dechproduct.hotelreservationapp.presentation.addReservationRo
 import com.example.dechproduct.hotelreservationapp.presentation.checkin.CheckInActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera.CameraActivity
+import com.example.dechproduct.hotelreservationapp.presentation.reservation.search.SearchReservationActivity
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.omarshehe.forminputkotlin.FormInputMultiline
@@ -47,6 +48,9 @@ class AddReservationActivity : AppCompatActivity() {
         if (callingActivity?.className == CheckInActivity::class.qualifiedName) {
             binding.titleTextView.text = "Add By Walk-In"
             returnToCheckInActivity = true
+        }
+        else if (callingActivity?.className == SearchReservationActivity::class.qualifiedName){
+            binding.titleTextView.text = "Edit Reservation"
         }
 
         binding.buttonTest.setOnClickListener {
@@ -105,10 +109,7 @@ class AddReservationActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Insufficient Information.", Toast.LENGTH_SHORT)
                     .show()
             }
-
-
 //            finish()
-
         }
 
         binding.buttonCamera.setOnClickListener {
@@ -227,6 +228,20 @@ class AddReservationActivity : AppCompatActivity() {
         }
         observeSearchRoom()
         observeAddReservation()
+        observeRoomTypeFragment()
+        observeBedTypeFragment()
+    }
+
+    private fun observeRoomTypeFragment(){
+        addReservationViewModel.roomType.observe(this,{
+            binding.tvDisplayRoomType.text = it.toString()
+        })
+    }
+
+    private fun observeBedTypeFragment(){
+        addReservationViewModel.bedType.observe(this,{
+            binding.tvRoomBed.text = it.toString()
+        })
     }
 
     private fun showDateRangePicker() {
