@@ -96,7 +96,6 @@ class CheckInWalkinViewModel @Inject constructor(private val useCase: UseCase) :
                         payment = Payment(
                             paymentID = null,
                             type = PaymentType.CASH,
-                            //TODO: Return and pass PaymentType object, replacing {PaymentType.CASH} -- TUNG
                             photo = null
                         ),
                         arrivalDate = Date(startDateEpoch),

@@ -14,22 +14,30 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchReservationViewModel @Inject constructor(private val useCase: UseCase) : ViewModel() {
 
-    var reserver = MutableLiveData<Resource<MutableList<Booking>>>()
+    var getter = MutableLiveData<Resource<MutableList<Booking>>>()
+    var setter = MutableLiveData<Resource<Booking>>()
+    lateinit var reservation: MutableList<Booking>
 
-    suspend fun searchReserve(keyword: String) {
+    fun searchReservation(keyword: String) {
         viewModelScope.launch {
             val reservation =
                 useCase.searchReserveByNameUseCase(keyword, mutableListOf<BookingStatus>(BookingStatus.RESERVED))
-            reserver.postValue(reservation)
-
+            getter.postValue(reservation)
         }
     }
-    //Only searchReserve() update observer for now.
 
-    suspend fun populateReserve() {
+    fun populateReservation() {
         viewModelScope.launch {
             val reservation = useCase.populateReserveUseCase(mutableListOf<BookingStatus>(BookingStatus.RESERVED))
-            reserver.postValue(reservation)
+            getter.postValue(reservation)
         }
     }
+
+    fun removeReservation(booking: Booking){
+        viewModelScope.launch {
+            val reservation = useCase.cancelReserveUseCase(booking)
+            setter.postValue(reservation)
+        }
+    }
+
 }

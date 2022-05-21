@@ -12,7 +12,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dechproduct.hotelreservationapp.databinding.ActivitySearchReservationactivityBinding
-import com.example.dechproduct.hotelreservationapp.presentation.checkinWalk.CheckInWalkInActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationActivity
 import com.example.dechproduct.hotelreservationapp.util.swipe.Helper.MySwipeHelper
@@ -26,7 +25,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class SearchReservationActivity : AppCompatActivity() {
 
-    private lateinit var binding:ActivitySearchReservationactivityBinding
+    private lateinit var binding: ActivitySearchReservationactivityBinding
     private val searchReservationViewModel: SearchReservationViewModel by viewModels()
 
     //TODO:(Important!!) Pressing edit reservation should populate data into form -- what??
@@ -37,45 +36,44 @@ class SearchReservationActivity : AppCompatActivity() {
         binding = ActivitySearchReservationactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnBackMenu.setOnClickListener{
+        binding.btnBackMenu.setOnClickListener {
             val intent = Intent(this, ReservationMenuActivity::class.java)
             startActivity(intent)
         }
 
         var searchBar = binding.searchBar
-        searchBar.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    if(query == "")
-                        lifecycleScope.launch{
-                            searchReservationViewModel.populateReserve()
-                        }
-                    else
-                        lifecycleScope.launch {
-                            searchReservationViewModel.searchReserve(query.capitalize())
-                        }
-                    return false
-                }
+        searchBar.setOnQueryTextListener(object :
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                if (query == "")
 
-                override fun onQueryTextChange(newText: String): Boolean {
-                    if(newText == "")
-                        lifecycleScope.launch{
-                            searchReservationViewModel.populateReserve()
-                        }
-                    else
-                        lifecycleScope.launch{
-                            searchReservationViewModel.searchReserve(newText.capitalize())
-                        }
-                    return false
-                }
-            })
+                    searchReservationViewModel.populateReservation()
+                else
+
+                    searchReservationViewModel.searchReservation(query.capitalize())
+
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                if (newText == "")
+
+                    searchReservationViewModel.populateReservation()
+                else
+
+                    searchReservationViewModel.searchReservation(newText.capitalize())
+
+                return false
+            }
+        })
 
         binding.reservationList.layoutManager = LinearLayoutManager(this)
 
-        lifecycleScope.launch{
-            searchReservationViewModel.populateReserve()
+        lifecycleScope.launch {
+            searchReservationViewModel.populateReservation()
         }
 
-        binding.fabAdd.setOnClickListener{
+        binding.fabAdd.setOnClickListener {
             Toast.makeText(applicationContext, "Add Reservation", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, AddReservationActivity::class.java)
             startActivity(intent)
@@ -83,7 +81,7 @@ class SearchReservationActivity : AppCompatActivity() {
 
         onSwipeHandle()
         observeSearch()
-
+        observeRemove()
     }
 
     // Add Swipe
@@ -101,11 +99,9 @@ class SearchReservationActivity : AppCompatActivity() {
                         Color.parseColor("#C0362C"),
                         object : MyButtonClickListener {
                             override fun onClick(pos: Int) {
-                                Toast.makeText(
-                                    this@SearchReservationActivity,
-                                    "Delete Reservation" + pos,
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                searchReservationViewModel.removeReservation(
+                                    searchReservationViewModel.reservation[pos]
+                                )
                             }
                         }
                     ))
@@ -118,16 +114,9 @@ class SearchReservationActivity : AppCompatActivity() {
                         Color.parseColor("#F8D568"),
                         object : MyButtonClickListener {
                             override fun onClick(pos: Int) {
-                                Toast.makeText(
-                                    this@SearchReservationActivity,
-                                    "Update Reservation" + pos,
-                                    Toast.LENGTH_SHORT
-                                ).show()
                                 val intent =
                                     Intent(applicationContext, AddReservationActivity::class.java)
                                 startActivity(intent)
-
-
                             }
                         }
                     ))
@@ -137,17 +126,44 @@ class SearchReservationActivity : AppCompatActivity() {
     }
 
     private fun observeSearch() {
-        searchReservationViewModel.reserver.observe(this, {
+        searchReservationViewModel.getter.observe(this, {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { reservationList ->
-                        Log.d("SearchResActivity",reservationList.toString())
-                        binding.reservationList.adapter = SearchAdapter(reservationList)            //here adapter set up recycler view
+                        searchReservationViewModel.reservation = reservationList
+                        Log.d("SearchResActivity", reservationList.toString())
+                        binding.reservationList.adapter =
+                            SearchAdapter(searchReservationViewModel.reservation)            //here adapter set up recycler view
                     }
                 }
 
                 is Resource.Failure -> {
-                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        })
+    }
+
+    private fun observeRemove() {
+        searchReservationViewModel.setter.observe(this, {
+            when (it) {
+                is Resource.Success -> {
+                    it.data?.let { reservation ->
+                        Toast.makeText(
+                            applicationContext,
+                            "Removed Booking: " + reservation.bookingID,
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+
+                        finish()
+                        startActivity(intent)
+                    }
+                }
+                is Resource.Failure -> {
+                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         })

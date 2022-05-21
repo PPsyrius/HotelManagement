@@ -18,6 +18,7 @@ import com.example.dechproduct.hotelreservationapp.presentation.checkin.adapter.
 import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckInDetailActivity
 import com.example.dechproduct.hotelreservationapp.presentation.checkinWalk.CheckInWalkInActivity
 import com.example.dechproduct.hotelreservationapp.presentation.menu.MenuActivity
+import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationActivity
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.swipe.Helper.MySwipeHelper
 import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButton
@@ -51,44 +52,50 @@ class CheckInActivity : AppCompatActivity() {
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 if (query == "")
-                    lifecycleScope.launch {
+
                         checkInViewModel.populateReserve()
-                    }
+
                 else
-                    lifecycleScope.launch {
+
                         checkInViewModel.searchReserve(query.capitalize())
-                    }
+
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 if (newText == "")
-                    lifecycleScope.launch {
+
                         checkInViewModel.populateReserve()
-                    }
+
                 else
-                    lifecycleScope.launch {
+
                         checkInViewModel.searchReserve(newText.capitalize())
-                    }
+
                 return false
             }
         })
 
         binding.reservationList.layoutManager = LinearLayoutManager(this)
 
-        lifecycleScope.launch {
+
             checkInViewModel.populateReserve()
-        }
+
 
         binding.fabAdd.setOnClickListener {
 
-            Toast.makeText(applicationContext, "Walk in Check-in", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, CheckInWalkInActivity::class.java)
-            startActivity(intent)
+            //Toast.makeText(applicationContext, "Walk in Check-in", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, AddReservationActivity::class.java)
+            startActivityForResult(intent, 0)
         }
-
+        observeConfirmationCallBack()
         onSwipeHandle()
         observeSearch()
+    }
+
+    private fun observeConfirmationCallBack(){
+        checkInViewModel.refreshCall.observe(this, {
+            checkInViewModel.populateReserve()
+        })
     }
 
     private fun onSwipeHandle() {

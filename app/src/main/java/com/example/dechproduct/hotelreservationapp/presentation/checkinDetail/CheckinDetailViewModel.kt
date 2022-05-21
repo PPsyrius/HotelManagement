@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
+import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingStatus
 import com.example.dechproduct.hotelreservationapp.data.model.room.Room
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.util.Resource
@@ -22,7 +23,7 @@ class CheckinDetailViewModel @Inject constructor(private val useCase: UseCase) :
 
     lateinit var reservation: Booking
     var roomConfig: Room = Room()
-    var selectedRoom: Room? = null
+    lateinit var selectedRoom: Room
 
 //    @SuppressLint("StaticFieldLeak")
 //    private val context: Context = getApplication<Application>().applicationContext
@@ -66,14 +67,14 @@ class CheckinDetailViewModel @Inject constructor(private val useCase: UseCase) :
         }
     }
 
-    suspend fun updateInfo(reserved: String) {
+    fun updateInfo(reserved: String) {
         viewModelScope.launch {
             val reserving = useCase.getReserveByIDUseCase(reserved)
             selectedReservation.postValue(reserving)
         }
     }
 
-    suspend fun checkInReserved() {
+    fun checkInReserved() {
         viewModelScope.launch {
             val response = selectedRoom?.let { useCase.checkInGuestUseCase(reservation, it) }
             resolveReservation.postValue(response!!)

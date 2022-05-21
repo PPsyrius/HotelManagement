@@ -95,7 +95,7 @@ class AddReservationRoomTypeBottomSheetFragment : BottomSheetDialogFragment() {
     private fun onRecyclerItemClicked(roomType: RoomType) {
         Toast.makeText(context, roomType.toString(), Toast.LENGTH_SHORT).show()
 
-        addReservationViewModel.reservation?.room?.type = roomType // TODO(Error) "reservation" lateinit initializer , so change it to default null
+        addReservationViewModel.reservation?.room?.type = roomType
 
         dismiss()
     }

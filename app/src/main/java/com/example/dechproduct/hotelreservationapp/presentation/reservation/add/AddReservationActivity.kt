@@ -13,6 +13,7 @@ import com.example.dechproduct.hotelreservationapp.data.model.payment.PaymentTyp
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityAddReservationBinding
 import com.example.dechproduct.hotelreservationapp.presentation.addReservationRoomBedBottomSheet.AddReservationRoomBedBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.addReservationRoomTypeBottomSheet.AddReservationRoomTypeBottomSheetFragment
+import com.example.dechproduct.hotelreservationapp.presentation.checkin.CheckInActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera.CameraActivity
 import com.example.dechproduct.hotelreservationapp.util.Resource
@@ -31,21 +32,29 @@ class AddReservationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddReservationBinding
     private val addReservationViewModel: AddReservationViewModel by viewModels()
-    //TODO: Title of this activity should adapt to which activity calls it -- Optional?
+    //TODO: ID Verification, and phone number filter needs improvement
 
     var bottomSheetRoomBedFragment = AddReservationRoomBedBottomSheetFragment()
     var bottomSheetChangeRoomTypeFragment = AddReservationRoomTypeBottomSheetFragment()
 
+    private var returnToCheckInActivity = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_add_reservation)
+
+        if (callingActivity?.className == CheckInActivity::class.qualifiedName) {
+            binding.titleTextView.text = "Add By Walk-In"
+            returnToCheckInActivity = true
+        }
 
         binding.buttonTest.setOnClickListener {
             showDateRangePicker()
         }
         var today = Date()
         binding.tvDateStart.text = convertLongToDate(today.time)
-        binding.tvDateEnd.text = convertLongToDate(today.time+(1000*60*60*24))
+        binding.tvDateEnd.text = convertLongToDate(today.time + (1000 * 60 * 60 * 24))
 
         binding.btnSubmit.setOnClickListener {
             if (binding.firstNameCustomer.getValue().isNotEmpty() and
@@ -260,8 +269,21 @@ class AddReservationActivity : AppCompatActivity() {
                             applicationContext, "Booking Success.",
                             Toast.LENGTH_SHORT
                         ).show()
-                        val intent =
-                            Intent(this@AddReservationActivity, ReservationMenuActivity::class.java)
+
+//                        if (returnToCheckInActivity) {
+                        if(false){
+                            val intent =
+                                Intent(
+                                    this@AddReservationActivity,
+                                    CheckInActivity::class.java
+                                )
+                        } else {
+                            val intent =
+                                Intent(
+                                    this@AddReservationActivity,
+                                    ReservationMenuActivity::class.java
+                                )
+                        }
                         startActivity(intent)
                     }
                 }
@@ -286,7 +308,7 @@ class AddReservationActivity : AppCompatActivity() {
                                 "No room available, try adjusting the criteria.",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            //TODO: Room condition
+                            //TODO: Show Room Availability in Date Picker
 
                         } else {
                             Toast.makeText(
@@ -295,7 +317,7 @@ class AddReservationActivity : AppCompatActivity() {
                             ).show()
                             addReservationViewModel.reservation.room = rooms.first()
                             if (rooms.first().maxCap == addReservationViewModel.reservation.adultCount) {
-                                //TODO:ADDON BED DIALOG
+                                //TODO: Required Addon Bed Dialog
                             }
 
                             addReservationViewModel.addReservation()

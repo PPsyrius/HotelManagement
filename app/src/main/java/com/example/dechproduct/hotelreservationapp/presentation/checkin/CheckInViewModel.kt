@@ -17,7 +17,9 @@ class CheckInViewModel @Inject constructor(private val useCase: UseCase) : ViewM
     var reserver = MutableLiveData<Resource<MutableList<Booking>>>()
     lateinit var result: MutableList<Booking>
 
-    suspend fun searchReserve(keyword: String) {
+    var refreshCall = MutableLiveData<BookingStatus>()
+
+    fun searchReserve(keyword: String) {
         viewModelScope.launch {
             val reservations =
                 useCase.searchReserveByNameUseCase(keyword, mutableListOf<BookingStatus>(BookingStatus.RESERVED))
@@ -25,7 +27,7 @@ class CheckInViewModel @Inject constructor(private val useCase: UseCase) : ViewM
         }
     }
 
-    suspend fun populateReserve() {
+    fun populateReserve() {
         viewModelScope.launch {
             val reservations = useCase.populateReserveUseCase(mutableListOf<BookingStatus>(BookingStatus.RESERVED))
             reserver.postValue(reservations)

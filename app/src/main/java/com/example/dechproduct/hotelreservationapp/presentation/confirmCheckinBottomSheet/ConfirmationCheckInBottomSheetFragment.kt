@@ -16,11 +16,15 @@ import android.content.Intent
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 
 import com.example.dechproduct.hotelreservationapp.presentation.checkin.CheckInActivity
+import com.example.dechproduct.hotelreservationapp.presentation.checkin.CheckInViewModel
+import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckinDetailViewModel
 import com.example.dechproduct.hotelreservationapp.presentation.checkinWalk.CheckInWalkinViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
 
 
 @AndroidEntryPoint
@@ -28,12 +32,15 @@ class ConfirmationCheckInBottomSheetFragment : BottomSheetDialogFragment() {
 
     //TODO: Handle Layout to Responsive --TUNG
 
-    private lateinit var binding : FragmentConfirmationCheckInBottomSheetBinding
+    private lateinit var binding: FragmentConfirmationCheckInBottomSheetBinding
     private val confirmationCheckInBottomSheetViewModel: ConfirmationCheckInBottomSheetViewModel by viewModels()
+    private val checkInDetailViewModel: CheckinDetailViewModel by activityViewModels()
+    private val checkInViewModel: CheckInViewModel by activityViewModels()
 
-    //TODO: Pass booking data from previous with intent put extra
     private lateinit var dialog: BottomSheetDialog
     private lateinit var behavior: BottomSheetBehavior<View>
+
+    private val dateFormat = SimpleDateFormat("dd-MM-yyyy")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,52 +52,46 @@ class ConfirmationCheckInBottomSheetFragment : BottomSheetDialogFragment() {
             false
         )
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-
         binding = FragmentConfirmationCheckInBottomSheetBinding.bind(view)
-
-
 
         binding.btnBackCheckInDetail.setOnClickListener {
             dismiss()
         }
 
-        binding.tvDisplayGuestName.text = "Marry Jane"
+        binding.tvDisplayGuestName.text =
+            checkInDetailViewModel.reservation.guest?.firstName +
+                    " " + checkInDetailViewModel.reservation.guest?.lastName
 
-        binding.tvAdultCount.text = "2"
+        binding.tvAdultCount.text = checkInDetailViewModel.reservation.adultCount.toString()
 
-        binding.tvChildCount.text = "1"
+        binding.tvChildCount.text = checkInDetailViewModel.reservation.childCount.toString()
 
-        binding.tvDateCheckInConfirmation.text = "01-02-2023"
+        binding.tvDateCheckInConfirmation.text =
+            dateFormat.format(checkInDetailViewModel.reservation.arrivalDate)
 
-        binding.tvCheckOutDateConfirmation.text = "02-03-2024"
+        binding.tvCheckOutDateConfirmation.text =
+            dateFormat.format(checkInDetailViewModel.reservation.departDate)
 
-        binding.tvConfirmRoomNumber.text = "102"
+        binding.tvConfirmRoomNumber.text = checkInDetailViewModel.selectedRoom.roomID
 
-        binding.tvConfirmRoomBed.text = "Single Bed"
+        binding.tvConfirmRoomBed.text = checkInDetailViewModel.selectedRoom.beds.toString()
 
-        binding.tvConfirmRoomType.text = "Suite"
+        binding.tvConfirmRoomType.text = checkInDetailViewModel.selectedRoom.type.toString()
 
-        binding.tvConfirmPrice.text = "12,000"
+        binding.tvConfirmPrice.text = checkInDetailViewModel.selectedRoom.price.toString()
 
-        binding.cbBreakfastConfirmCheckIn.isChecked = true
+        binding.cbBreakfastConfirmCheckIn.isChecked = checkInDetailViewModel.reservation.breakfast?:false
 
-        binding.cbSmokeConfirmCheckIn.isChecked = false
-
-
-
-
-
-
-
-
+        binding.cbSmokeConfirmCheckIn.isChecked = checkInDetailViewModel.selectedRoom.smoking?:false
 
         binding.btnConfirmCheckInDetail.setOnClickListener {
-            Toast.makeText(context, "Confirmation Clicked", Toast.LENGTH_LONG)
-                .show()
+            checkInDetailViewModel.checkInReserved()
+
+            checkInViewModel.refreshCall.postValue(checkInDetailViewModel.reservation.status)
             val intent = Intent(context, CheckInActivity::class.java)
             startActivity(intent)
         }
@@ -109,16 +110,11 @@ class ConfirmationCheckInBottomSheetFragment : BottomSheetDialogFragment() {
                 layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
                 bottomSheet.layoutParams = layoutParams
                 behaviour.state = BottomSheetBehavior.STATE_EXPANDED
-                behaviour.peekHeight =BottomSheetBehavior.PEEK_HEIGHT_AUTO
+                behaviour.peekHeight = BottomSheetBehavior.PEEK_HEIGHT_AUTO
             }
         }
         return dialog
     }
-
-
-
-
-
 
 
 }

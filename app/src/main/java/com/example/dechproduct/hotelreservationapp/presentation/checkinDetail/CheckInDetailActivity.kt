@@ -31,9 +31,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class CheckInDetailActivity : AppCompatActivity() {
 
-
-    //TODO: Handle Layout to Responsive --TUNG  --finish?--
-
     private lateinit var binding: ActivityCheckinDetailBinding    // <- can click here to open the xml that related
     private val checkInDetailViewModel: CheckinDetailViewModel by viewModels()
 
@@ -56,11 +53,6 @@ class CheckInDetailActivity : AppCompatActivity() {
         binding = ActivityCheckinDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // you can use "binding.VIEWNAME" to represent findViewByID
-        // ex)      val displayName = findViewById<TextView>(R.id.textView5)
-        // with ->  val displayName = binding.textView5     that's all! (no need <Type of view> and findVeiwByID) -> read viewbinding library
-
-        // TODO: Set default text to something formal or empty("Samson Bujova" -> "") --finish--
         binding.btnBackMenu.setOnClickListener {
             finish()
         }
@@ -68,14 +60,6 @@ class CheckInDetailActivity : AppCompatActivity() {
         binding.tvEditRoomType.setOnClickListener {
             bottomSheetChangeRoomTypeFragment.show(supportFragmentManager, "TAG")
         }
-
-//        binding.roomType.text = "Suite"
-//
-//
-//        binding.tvCheckInDate.text = "11-03-2023"
-//
-//        binding.tvCheckInDate.text = "13-03-2023"
-
 
         binding.btnPlus.setOnClickListener {
             lifecycleScope.launch {
@@ -120,11 +104,12 @@ class CheckInDetailActivity : AppCompatActivity() {
 
         binding.tvCheckingRoom.setOnClickListener {
             try {
-                Log.d("",checkInDetailViewModel.roomConfig.toString())
+                Log.d("", checkInDetailViewModel.roomConfig.toString())
                 bottomSheetCheckingRoomAvailableFragment.show(supportFragmentManager, "TAG")
                 bottomSheetCheckingRoomAvailableFragment.onResume()
+            } catch (e: Exception) {
+                Log.d("ERR", e.toString())
             }
-            catch(e:Exception){Log.d("ERR", e.toString())}
         }
 
         binding.tvSelectRoomBed.setOnClickListener {
@@ -132,9 +117,7 @@ class CheckInDetailActivity : AppCompatActivity() {
         }
 
         binding.btnConfirmationCheckIn.setOnClickListener {
-            lifecycleScope.launch { checkInDetailViewModel.checkInReserved() }
             bottomSheetConfirmationFragment.show(supportFragmentManager, "TAG")
-
         }
 
         binding.cbBreakfast.setOnClickListener {
@@ -157,11 +140,10 @@ class CheckInDetailActivity : AppCompatActivity() {
         try {
             selectedItem = intent.getParcelableExtra<Booking>(Constants.INTENT_SELECTED_BOOKING)!!
 
-            lifecycleScope.launch {
-                selectedItem.bookingID?.let { checkInDetailViewModel.updateInfo(it) }
-            }
+            selectedItem.bookingID?.let { checkInDetailViewModel.updateInfo(it) }
+
+        } catch (e: Exception) {
         }
-        catch (e: Exception){}
     }
 
     private fun observeUpdateInfo() {
@@ -174,11 +156,12 @@ class CheckInDetailActivity : AppCompatActivity() {
                         checkInDetailViewModel.roomConfig.type = reservation.room?.type
                         checkInDetailViewModel.roomConfig.smoking = reservation.room?.smoking
 
+                        checkInDetailViewModel.selectedRoom = reservation.room!!
+
                         binding.tvGuestName.text =
                             reservation.guest?.firstName + " " + reservation.guest?.lastName
-                        //TODO:check if reservation.room.type is null, set text to ""   --finish?--
                         binding.roomType.text = reservation.room?.type.toString()
-                        if(binding.roomType.text == null){
+                        if (binding.roomType.text == null) {
                             binding.roomType.text = ""
                         }
                         binding.tvCheckInDate.text = SimpleDateFormat(
@@ -189,26 +172,17 @@ class CheckInDetailActivity : AppCompatActivity() {
                             "dd-MM-yyyy",
                             Locale.getDefault()
                         ).format(reservation.departDate)
-
-                        //TODO:check if reservation.room.beds is null, set text to ""   --finish?--
+                        binding.tvDisplayRoomNumber.text = reservation.room?.roomID
                         binding.tvDisplayRoomBed.text = reservation.room?.beds.toString()
-                        if(binding.tvDisplayRoomBed.text == null){
+                        if (binding.tvDisplayRoomBed.text == null) {
                             binding.tvDisplayRoomBed.text = ""
                         }
-                        //TODO: Set binding to reservation.adultCount, reservation.childCount       --finish?--
 
                         binding.edtGuestNumber.setText(reservation.adultCount?.toString())
-
                         binding.edtChildNumber.setText(reservation.childCount?.toString())
 
-                        //TODO: Checkbox Wrong
-                        if (reservation.breakfast == true) {
-                            binding.cbBreakfast.isChecked = true
-
-
-                        } else {
-                            binding.cbSmoking.isChecked = false
-                        }
+                        binding.cbBreakfast.isChecked = reservation.breakfast == true
+                        binding.cbSmoking.isChecked = reservation.room?.smoking == true
                     }
                 }
                 is Resource.Failure -> {
@@ -231,9 +205,6 @@ class CheckInDetailActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         )
                             .show()
-                        val intent =
-                            Intent(this@CheckInDetailActivity, MenuActivity::class.java)
-                        startActivity(intent)
                     }
                 }
                 is Resource.Failure -> {

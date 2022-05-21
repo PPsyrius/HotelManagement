@@ -31,10 +31,10 @@ class CheckInWalkInActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCheckinWalkInBinding
     private val checkInWalkInViewModel: CheckInWalkinViewModel by viewModels()
 
-    var bottomSheetRoomBedFragment = RoomBedBottomSheetFragment()
-    var bottomSheetRoomTypeFragment = RoomTypeBottomSheetFragment()
-    var bottomSheetRoomFragmment  = RoomAvailableBottomSheetFragment()
-    var bottomSheetConfirmCheckInWalkInFragment = ConfirmationCheckInBottomSheetFragment()
+    private var bottomSheetRoomBedFragment = RoomBedBottomSheetFragment()
+    private var bottomSheetRoomTypeFragment = RoomTypeBottomSheetFragment()
+    private var bottomSheetRoomFragmment  = RoomAvailableBottomSheetFragment()
+    private var bottomSheetConfirmCheckInWalkInFragment = ConfirmationCheckInBottomSheetFragment()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,11 +47,9 @@ class CheckInWalkInActivity : AppCompatActivity() {
 
         binding.btnSubmit.setOnClickListener {
 
-//            //TODO: Check no fields are blank -- TUNG
 //            var fname = findViewById<FormInputText>(R.id.first_name_customer).getValue()
 //            var lname = findViewById<FormInputText>(R.id.last_name_customer).getValue()
 //            var phone = findViewById<FormInputText>(R.id.phoneNumber).getValue()
-            //TODO: Pass Payment Type object from here -- TUNG
 //            var payment = findViewById<FormInputSpinner>(R.id.payment_type).getValue()
 //            var id = findViewById<FormInputText>(R.id.ID).getValue()
 //            var address = findViewById<FormInputMultiline>(R.id.about).getValue()
@@ -68,7 +66,6 @@ class CheckInWalkInActivity : AppCompatActivity() {
 //                    fname, lname, phone,
 //                    payment, id, address, adultIntFromET, childIntFromET,
 //                    breakfast = true, isAddonBed = false
-            //TODO: Pass breakfast and addonBed here
 
 //                )
 //
