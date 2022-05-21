@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class VerificationID(
-    var id: String,
+    var id: String = "",
 
 ) : Parcelable {
     lateinit var type: Type
@@ -17,7 +17,7 @@ data class VerificationID(
         identifyID()
     }
 
-    private fun identifyID() {
+    fun identifyID() {
         type = if (id.matches("\\d{13}".toRegex())) {
             Type.THAI
         } else {

@@ -13,7 +13,8 @@ enum class PaymentType(
     CASH("Cash", "CA"),
     CARD_VISA("Visa Card", "VI"),
     CARD_MASTERCARD("Mastercard Card", "MS"),
-    EPAY("e-Payment", "EP");
+    EPAY("e-Payment", "EP"),
+    None("None","");
 
     companion object {
         private fun getByInternalCode(key: String) =

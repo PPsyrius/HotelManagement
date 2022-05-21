@@ -91,7 +91,9 @@ class RoomAvailableBottomSheetFragment : BottomSheetDialogFragment() {
                             checkinDetailViewModel.reservation.arrivalDate,
                             checkinDetailViewModel.reservation.departDate,
                             OccupancyStatus.NONE
-                        )
+                        ),
+                        adultCount = checkinDetailViewModel.reservation.adultCount!!,
+                        childCount = checkinDetailViewModel.reservation.childCount!!
                     )
                 }
             }

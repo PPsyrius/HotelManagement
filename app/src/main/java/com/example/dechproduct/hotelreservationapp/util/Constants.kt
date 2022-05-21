@@ -1,6 +1,9 @@
 package com.example.dechproduct.hotelreservationapp.util
 
 object Constants {
+    //Utility
+    const val CAPACITY_MAX_CHILD = 2
+
     //Target API
     const val API_ACCESS_BASE_URL =
         "http://10.0.2.2:3000/"

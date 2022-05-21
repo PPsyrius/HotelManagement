@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_add_reservation.xml" value="0.22" />
         <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_checkin_walk_in.xml" value="0.5" />
         <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_search_reservationactivity.xml" value="0.1" />
         <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/fragment_room_available_bottom_sheet.xml" value="0.1743659420289855" />

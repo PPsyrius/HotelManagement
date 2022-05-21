@@ -18,7 +18,6 @@ class ReservationRepositoryImpl @Inject constructor(
 
     override suspend fun add(booking: Booking): Resource<Booking> {
         return try {
-
             var response_msg = reservationAPI.postBooking(booking.toBookingDTO())
 
             Log.d("POST:", response_msg.toString())

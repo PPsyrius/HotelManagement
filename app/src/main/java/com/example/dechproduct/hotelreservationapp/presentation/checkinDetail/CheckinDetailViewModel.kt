@@ -24,11 +24,6 @@ class CheckinDetailViewModel @Inject constructor(private val useCase: UseCase) :
     var roomConfig: Room = Room()
     var selectedRoom: Room? = null
 
-
-
-
-
-
 //    @SuppressLint("StaticFieldLeak")
 //    private val context: Context = getApplication<Application>().applicationContext
 
@@ -73,8 +68,8 @@ class CheckinDetailViewModel @Inject constructor(private val useCase: UseCase) :
 
     suspend fun updateInfo(reserved: String) {
         viewModelScope.launch {
-            val reservation = useCase.getReserveByIDUseCase(reserved)
-            selectedReservation.postValue(reservation)
+            val reserving = useCase.getReserveByIDUseCase(reserved)
+            selectedReservation.postValue(reserving)
         }
     }
 

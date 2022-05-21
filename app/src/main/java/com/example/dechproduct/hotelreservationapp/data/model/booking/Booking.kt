@@ -12,7 +12,7 @@ import java.util.*
 @Parcelize
 data class Booking(
 
-    var bookingID: String?,
+    var bookingID: String? = "",
 
     var guest: Guest?,
 
@@ -22,19 +22,19 @@ data class Booking(
 
     var payment: Payment?,
 
-    var arrivalDate: Date?,
+    var arrivalDate: Date? = Date(),
 
-    var departDate: Date?,
+    var departDate: Date? = Date(),
 
-    var adultCount: Int?,
+    var adultCount: Int? = 0,
 
-    var childCount: Int?,
+    var childCount: Int? = 0,
 
-    var status: BookingStatus?,
+    var status: BookingStatus? = BookingStatus.NONE,
 
-    var breakfast: Boolean?,
+    var breakfast: Boolean? = true,
 
-    var isAddonBed: Boolean?,
+    var isAddonBed: Boolean? = false,
 
 
 

@@ -1,6 +1,7 @@
 package com.example.dechproduct.hotelreservationapp.data.model.device
 
 import android.os.Parcelable
+import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingStatus
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
@@ -8,17 +9,17 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Device(
 
-    var deviceID: String?,
+    var deviceID: String? = "",
 
-    var displayName: String?,
+    var displayName: String? = "",
 
-    var type: String?,
+    var type: String? = "",
 
-    var serial: String?,
+    var serial: String? = "",
 
-    var manufacturer: String?,
+    var manufacturer: String? = "",
 
-    var status: String?
+    var status: DeviceStatus? = DeviceStatus.NONE
 ) : Parcelable {
     override fun toString(): String {
         return displayName.toString() + ":" + serial.toString()
@@ -31,7 +32,7 @@ data class Device(
             type = type,
             serial = serial,
             manufacturer = manufacturer,
-            status = status
+            status = status?.let { DeviceStatus.pack(it) },
         )
     }
 

@@ -25,7 +25,7 @@ data class OccupancyDTO(
         )
     }
     companion object{
-        fun toListOfOccupancy(occupancies: List<OccupancyDTO>):List<Occupancy>{
+        fun toListOfOccupancy(occupancies: List<OccupancyDTO>):MutableList<Occupancy>{
             var parcel: MutableList<Occupancy> = mutableListOf<Occupancy>()
             for (occupancy in occupancies) {
                 parcel.add(occupancy.toOccupancy())

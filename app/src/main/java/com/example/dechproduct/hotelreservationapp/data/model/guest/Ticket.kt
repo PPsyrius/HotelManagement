@@ -8,13 +8,13 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Ticket(
 
-    var ticketID: String?,
+    var ticketID: String? = "",
 
-    var userName: String?,
+    var userName: String? = "",
 
-    var password: String?,
+    var password: String? = "",
 
-    var guest: Guest?,
+    var guest: Guest? = Guest(),
 ) : Parcelable {
     fun toTicketDTO(): TicketDTO {
         return TicketDTO(

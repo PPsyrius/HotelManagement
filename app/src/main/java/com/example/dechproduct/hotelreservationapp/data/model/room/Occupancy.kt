@@ -8,11 +8,11 @@ import java.util.*
 @Parcelize
 data class Occupancy(
 
-    var arrivalDate: Date?,
+    var arrivalDate: Date? = Date(),
 
-    var departDate: Date?,
+    var departDate: Date? = Date(),
 
-    var status: OccupancyStatus?
+    var status: OccupancyStatus? = OccupancyStatus.NONE
 
 ) : Parcelable {
     fun toOccupancyDTO(): OccupancyDTO {

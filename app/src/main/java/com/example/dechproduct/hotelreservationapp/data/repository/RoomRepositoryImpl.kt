@@ -3,13 +3,9 @@ package com.example.dechproduct.hotelreservationapp.data.repository
 import android.content.SharedPreferences
 import android.util.Log
 import com.example.dechproduct.hotelreservationapp.data.api.RoomAPIService
-import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
-import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingStatus
 import com.example.dechproduct.hotelreservationapp.data.model.room.*
 import com.example.dechproduct.hotelreservationapp.domain.repository.RoomRepository
 import com.example.dechproduct.hotelreservationapp.util.Resource
-import java.io.IOException
-import java.util.*
 import javax.inject.Inject
 
 class RoomRepositoryImpl @Inject constructor(
@@ -70,7 +66,9 @@ class RoomRepositoryImpl @Inject constructor(
         features: List<Feature>,
         smoking: Boolean,
         status: List<RoomStatus>,
-        occupancy: Occupancy?
+        occupancy: Occupancy?,
+        adult_count: Int,
+        child_count: Int
     ): Resource<MutableList<Room>> {
         return try {
             var results: MutableList<Room> = toListOfRooms(roomAPI.getByType(roomType.internalCode))
@@ -79,8 +77,19 @@ class RoomRepositoryImpl @Inject constructor(
                 combineRoom(results, toListOfRooms(roomAPI.getByFeature(feature.internalCode)))
             }
             combineRoom(results, toListOfRooms(roomAPI.getBySmoking(smoking)))
+
             // Query keywords empty -> query_like=""
             combineRoom(results, toListOfRooms(roomAPI.getByRoomID(keyword)))
+
+            //Straight Forward Query
+            //combineRoom(results, toListOfRooms(roomAPI.getByCapacity(adult_count.toString())))
+
+            //Non-Supported by API
+            for (room in results) {
+                if (room.maxCap ?: -1 < adult_count) {
+                    results.remove(room)
+                }
+            }
 
             results = filterStatus(results, status)
             occupancy?.let {
@@ -137,27 +146,41 @@ class RoomRepositoryImpl @Inject constructor(
         occupancy: Occupancy
     ): MutableList<Room> {
         var results: MutableList<Room> = mutableListOf<Room>()
-        var _ignore: Boolean = false
 
         for (result in raw_results) {
+
+            var _ignore: Boolean = false
+
             try {
                 if (result.occupancy.isNullOrEmpty()) {
                     results.add(result)
                     continue
-                } else if (result.status == RoomStatus.GUARANTEED) {
+                }
+                //Unused for now, but no effects on process.
+                else if (result.status == RoomStatus.GUARANTEED) {
                     continue
                 }
 
-                for (range in result.occupancy!!) {
-                    if (occupancy.arrivalDate == range.arrivalDate && occupancy.departDate == range.departDate) {
-                        _ignore = false
-                        break
-                    } else if (occupancy.arrivalDate!!.before(range.arrivalDate) &&
-                        occupancy.departDate!!.after(range.arrivalDate)
+                for (occupied in result.occupancy!!) {
+                    if (occupancy.arrivalDate == occupied.arrivalDate ||
+                        occupancy.departDate == occupied.departDate
                     ) {
                         _ignore = true
                         break
-                    } else if (occupancy.arrivalDate!!.before(range.departDate)) {
+                    }
+                    else if (occupancy.arrivalDate!!.before(occupied.arrivalDate) &&
+                        occupancy.departDate!!.after(occupied.arrivalDate)
+                    ) {
+                        _ignore = true
+                        break
+                    } else if (occupancy.arrivalDate!!.after(occupied.arrivalDate) &&
+                        occupancy.departDate!!.before(occupied.departDate)
+                    ) {
+                        _ignore = true
+                        break
+                    } else if (occupancy.arrivalDate!!.before(occupied.departDate) &&
+                        occupancy.departDate!!.after(occupied.departDate)
+                    ) {
                         _ignore = true
                         break
                     }
@@ -165,7 +188,6 @@ class RoomRepositoryImpl @Inject constructor(
                 if (!_ignore) {
                     results.add(result)
                 }
-                _ignore = false
             } catch (e: Exception) {
             }
         }

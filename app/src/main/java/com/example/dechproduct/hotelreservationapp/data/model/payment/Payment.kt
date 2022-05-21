@@ -9,11 +9,11 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Payment(
 
-    var paymentID: String?,
+    var paymentID: String? = "",
 
-    var type: PaymentType?,
+    var type: PaymentType? = PaymentType.None,
 
-    var photo: String?,
+    var photo: String? = "",
 ) : Parcelable {
     fun toPaymentDTO(): PaymentDTO {
         return PaymentDTO(

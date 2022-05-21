@@ -29,7 +29,9 @@ class RoomAvailableBottomSheetViewModel @Inject constructor(private val useCase:
         features: List<Feature> = listOf<Feature>(),
         smoking: Boolean,
         roomStatus: List<RoomStatus> = listOf<RoomStatus>(),
-        occupancy: Occupancy?
+        occupancy: Occupancy,
+        adultCount:Int,
+        childCount:Int
     ){
         viewModelScope.launch {
             val rooms = useCase.searchRoomUseCase(
@@ -39,7 +41,9 @@ class RoomAvailableBottomSheetViewModel @Inject constructor(private val useCase:
                 features = features,
                 smoking = smoking,
                 status = roomStatus,
-                occupancy = occupancy
+                occupancy = occupancy,
+                adult_count = adultCount,
+                child_count = childCount
             )
             roomer.postValue(rooms)
         }

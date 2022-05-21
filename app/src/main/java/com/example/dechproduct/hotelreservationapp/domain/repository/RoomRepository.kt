@@ -14,7 +14,9 @@ interface RoomRepository {
         features: List<Feature>,
         smoking: Boolean,
         status: List<RoomStatus>,
-        occupancy: Occupancy?
+        occupancy: Occupancy?,
+        adult_count: Int,
+        child_count: Int
     ): Resource<MutableList<Room>>
     suspend fun populate(status: List<RoomStatus>): Resource<MutableList<Room>>
 }

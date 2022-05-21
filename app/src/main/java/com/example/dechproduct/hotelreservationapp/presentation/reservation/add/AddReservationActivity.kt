@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.example.dechproduct.hotelreservationapp.R
+import com.example.dechproduct.hotelreservationapp.data.model.payment.PaymentType
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityAddReservationBinding
 import com.example.dechproduct.hotelreservationapp.presentation.addReservationRoomBedBottomSheet.AddReservationRoomBedBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.addReservationRoomTypeBottomSheet.AddReservationRoomTypeBottomSheetFragment
@@ -21,6 +22,7 @@ import com.omarshehe.forminputkotlin.FormInputSpinner
 import com.omarshehe.forminputkotlin.FormInputText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -41,67 +43,56 @@ class AddReservationActivity : AppCompatActivity() {
         binding.buttonTest.setOnClickListener {
             showDateRangePicker()
         }
-
         binding.btnSubmit.setOnClickListener {
+            if (binding.firstNameCustomer.getValue().isNotEmpty() and
+                binding.lastNameCustomer.getValue().isNotEmpty() and
+                binding.phoneNumber.getValue().isNotEmpty() and
+                binding.ID.getValue().isNotEmpty() and
+                binding.about.getValue().isNotEmpty() and
+                !(
+                        binding.edtGuestNumber.text.isNullOrEmpty() and
+                                binding.edtChildNumber.text.isNullOrEmpty())
+            ) {
+                addReservationViewModel.reservation.guest?.firstName =
+                    binding.firstNameCustomer.getValue()
+                addReservationViewModel.reservation.guest?.lastName =
+                    binding.lastNameCustomer.getValue()
+                addReservationViewModel.reservation.guest?.phoneNumber =
+                    binding.phoneNumber.getValue()
+                addReservationViewModel.reservation.payment?.type =
+                    PaymentType.unpack(binding.paymentType.getValue()) ?: PaymentType.None
+                addReservationViewModel.reservation.guest?.verificationID?.id =
+                    binding.ID.getValue()
+                addReservationViewModel.reservation.guest?.verificationID?.identifyID()
+                addReservationViewModel.reservation.guest?.address =
+                    binding.about.getValue().split("\n")
 
-            //TODO: Check no fields are blank --TUNG --* EVERY CASE *
-            var fname = findViewById<FormInputText>(R.id.first_name_customer).getValue()
-            var lname = findViewById<FormInputText>(R.id.last_name_customer).getValue()
-            var phone = findViewById<FormInputText>(R.id.phoneNumber).getValue()
-            //TODO: Pass Payment Type object from here -- TUNG
-            var payment = findViewById<FormInputSpinner>(R.id.payment_type).getValue()
-            var id = findViewById<FormInputText>(R.id.ID).getValue()
-            var address = listOf(findViewById<FormInputMultiline>(R.id.about).getValue())
-
-
-
-            //TODO: adjust code to binding.item ?? Mekh describe more to TUNG
-            //TODO: Divide address into List<String> by new line before passing as 'address' var -- TUNG -- finish?
-            var listToAddress: List<String> = emptyList()
-            for(addr in address){
-                listToAddress.toMutableList().add(addr)
-            }
-            address = listToAddress
-
-
-            //TODO: Bind adult/child count to view component --finish? Please Checking  Mekh --
-            // TODO !!ATTENTION!!: Handle NumberFomatExceeption when guest or child didnt selected       -- MEKH pls checked (already try)
-            var adult_count = binding.edtGuestNumber.text.toString()
-            var child_count = binding.edtChildNumber.text.toString()
-
-            //TODO: Check if adult+child count doesn't exceed room max cap -- ?? Mekh describe more to TUNG
-            val adultIntFromET: Int? = adult_count.toIntOrNull()
-            val childIntFromET: Int? = child_count.toIntOrNull()
-
-            var cbBreakfast =  binding.checkBoxBreakfast.isChecked
-            //TODO: Handle Checkbox smoking again (like cbBreakfast) -- Mekh?
+                addReservationViewModel.reservation.adultCount =
+                    binding.edtGuestNumber.text.toString().toIntOrNull() ?: 0
+                addReservationViewModel.reservation.childCount =
+                    binding.edtChildNumber.text.toString().toIntOrNull() ?: 0
 
 
+                addReservationViewModel.reservation.breakfast =
+                    binding.checkBoxBreakfast.isChecked
+                addReservationViewModel.reservation.room?.smoking =
+                    binding.checkBoxSmoking.isChecked
 
+                //TODO: Check for empty date in tests
+                var dateFormat = SimpleDateFormat("dd-MM-yyyy")
+                addReservationViewModel.toOccupy.arrivalDate =
+                    dateFormat.parse(binding.tvDateStart.text.toString())
+                addReservationViewModel.toOccupy.departDate =
+                    dateFormat.parse(binding.tvDateEnd.text.toString())
+                try {
+                    var room = addReservationViewModel.checkRoomAvailable()
 
-            if(fname.isNotEmpty() and lname.isNotEmpty() and phone.isNotEmpty() and payment.isNotEmpty() and id.isNotEmpty() and address.isNotEmpty()){
-                lifecycleScope.launch {
-
-                        addReservationViewModel.addReserve(
-                            fname, lname, phone,
-                            payment, id, address, adultIntFromET, childIntFromET,
-                            breakfast = cbBreakfast, isAddonBed = false
-                        )
-
-
-
-                    Log.i("Addreser", adultIntFromET.toString())
-                    Log.i("Addreser2", childIntFromET.toString())
-                    Log.i("AddreservationCBTicked5", cbBreakfast.toString())
-
-
-                    val intent = Intent(this@AddReservationActivity, ReservationMenuActivity::class.java)
-                    startActivity(intent)
+                } catch (e: Exception) {
                 }
-            }else{
-                Toast.makeText(applicationContext,"Insufficient Information.", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(applicationContext, "Insufficient Information.", Toast.LENGTH_SHORT)
+                    .show()
             }
-
 
 
 //            finish()
@@ -164,7 +155,7 @@ class AddReservationActivity : AppCompatActivity() {
 
         }
 
-        binding.btnRoomType.setOnClickListener{
+        binding.btnRoomType.setOnClickListener {
             bottomSheetChangeRoomTypeFragment.show(supportFragmentManager, "TAG")
 //            if(bottomSheetChangeRoomTypeFragment.isAdded){
 //                binding.tvDisplayRoomType.setText(addReservationViewModel.reservation?.room?.beds)
@@ -184,20 +175,27 @@ class AddReservationActivity : AppCompatActivity() {
         }
 
         binding.checkBoxBreakfast.setOnClickListener {
-            if (binding.checkBoxBreakfast.isChecked){
-                Toast.makeText(applicationContext, "Checkbox breakfast clicked", Toast.LENGTH_LONG).show()
+            if (binding.checkBoxBreakfast.isChecked) {
+                Toast.makeText(applicationContext, "Checkbox breakfast clicked", Toast.LENGTH_LONG)
+                    .show()
                 lifecycleScope.launch {
                     addReservationViewModel.breakfastChecked()
-                    binding.checkBoxBreakfast.isChecked = addReservationViewModel.checkedBreakfast.value!!
+                    binding.checkBoxBreakfast.isChecked =
+                        addReservationViewModel.checkedBreakfast.value!!
 
                 }
 
 
             } else {
-                Toast.makeText(applicationContext, "Checkbox breakfast not checked", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    applicationContext,
+                    "Checkbox breakfast not checked",
+                    Toast.LENGTH_LONG
+                ).show()
                 lifecycleScope.launch {
-                    addReservationViewModel. breakfastNotChecked()
-                    binding.checkBoxBreakfast.isChecked = addReservationViewModel.checkedBreakfast.value!!
+                    addReservationViewModel.breakfastNotChecked()
+                    binding.checkBoxBreakfast.isChecked =
+                        addReservationViewModel.checkedBreakfast.value!!
 
                 }
 
@@ -209,10 +207,10 @@ class AddReservationActivity : AppCompatActivity() {
         binding.checkBoxSmoking.setOnClickListener {
             Toast.makeText(applicationContext, "Checkbox smoking clicked", Toast.LENGTH_LONG).show()
 
-        // TODO Added here (like cbBreakfast)
+            // TODO Added here (like cbBreakfast)
         }
-
-        observeSubmit()
+        observeSearchRoom()
+        observeAddReservation()
     }
 
     private fun showDateRangePicker() {
@@ -246,7 +244,7 @@ class AddReservationActivity : AppCompatActivity() {
         return format.format(date)
     }
 
-    private fun observeSubmit() {
+    private fun observeAddReservation() {
         addReservationViewModel.reserver.observe(this, {
             when (it) {
                 is Resource.Success -> {
@@ -255,6 +253,47 @@ class AddReservationActivity : AppCompatActivity() {
                             applicationContext, "Booking Success.",
                             Toast.LENGTH_SHORT
                         ).show()
+                        val intent =
+                            Intent(this@AddReservationActivity, ReservationMenuActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+
+                is Resource.Failure -> {
+                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
+        })
+    }
+
+    private fun observeSearchRoom() {
+        addReservationViewModel.roomer.observe(this, {
+            when (it) {
+                is Resource.Success -> {
+                    it.data?.let { rooms ->
+
+                        if (rooms.isEmpty()) {
+                            Toast.makeText(
+                                applicationContext,
+                                "No room available, try adjusting the criteria.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            //TODO: Room condition
+
+                        } else {
+                            Toast.makeText(
+                                applicationContext, "Auto assigned to room.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            addReservationViewModel.reservation.room = rooms.first()
+                            if (rooms.first().maxCap == addReservationViewModel.reservation.adultCount) {
+                                //TODO:ADDON BED DIALOG
+                            }
+
+                            addReservationViewModel.addReservation()
+
+                        }
                     }
                 }
 

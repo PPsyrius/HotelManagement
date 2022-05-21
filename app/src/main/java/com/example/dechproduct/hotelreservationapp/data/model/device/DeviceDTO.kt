@@ -1,5 +1,6 @@
 package com.example.dechproduct.hotelreservationapp.data.model.device
 
+import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingStatus
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
 
@@ -28,7 +29,7 @@ data class DeviceDTO(
             type = type,
             serial = serial,
             manufacturer = manufacturer,
-            status = status
+            status = status?.let { DeviceStatus.unpack(it) },
         )
     }
 }

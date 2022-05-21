@@ -19,7 +19,6 @@ class UserRepositoryImpl @Inject constructor(
             var isFound: Boolean = false
 
             //TODO: Camera
-            //TODO: Implements LogOut system
             //TODO: Implements password hashing for comparison
             if(access.password == password){
                 isFound = true

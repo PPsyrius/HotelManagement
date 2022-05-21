@@ -6,25 +6,25 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Guest(
 
-    var guestID: String?,
+    var guestID: String? = "",
 
-    var firstName: String?,
+    var firstName: String? = "",
 
-    var lastName: String?,
+    var lastName: String? = "",
 
-    var phoneNumber: String?,
+    var phoneNumber: String? = "",
 
-    var address: List<String>?,
+    var address: List<String>? = listOf<String>(),
 
-    var region: String?,
+    var region: String? = "",
 
-    var postalCode: String?,
+    var postalCode: String?= "",
 
-    var country: String?,
+    var country: String? = "",
 
-    var verificationID: VerificationID?,
+    var verificationID: VerificationID? = VerificationID(),
 
-    var verificationPhoto: String?,
+    var verificationPhoto: String? = "",
 ) : Parcelable {
     fun toGuestDTO(): GuestDTO {
         return GuestDTO(

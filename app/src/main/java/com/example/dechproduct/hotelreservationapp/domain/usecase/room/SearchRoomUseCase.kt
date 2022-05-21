@@ -3,6 +3,7 @@ package com.example.dechproduct.hotelreservationapp.domain.usecase.room
 import com.example.dechproduct.hotelreservationapp.data.model.room.*
 import com.example.dechproduct.hotelreservationapp.domain.repository.RoomRepository
 import com.example.dechproduct.hotelreservationapp.util.Resource
+import java.util.*
 import javax.inject.Inject
 
 class SearchRoomUseCase @Inject constructor(private val roomRepository: RoomRepository) {
@@ -12,8 +13,10 @@ class SearchRoomUseCase @Inject constructor(private val roomRepository: RoomRepo
         bedType: BedType,
         features: List<Feature> = listOf<Feature>(),
         smoking: Boolean,
-        status: List<RoomStatus>,
-        occupancy: Occupancy?
+        status: List<RoomStatus> = listOf<RoomStatus>(),
+        occupancy: Occupancy,
+        adult_count: Int,
+        child_count: Int
     ): Resource<MutableList<Room>> {
         return roomRepository.searchRoom(
             keyword = keyword,
@@ -22,7 +25,9 @@ class SearchRoomUseCase @Inject constructor(private val roomRepository: RoomRepo
             features = features,
             smoking = smoking,
             status = status,
-            occupancy = occupancy
+            occupancy = occupancy,
+            adult_count = adult_count,
+            child_count = child_count
         )
     }
 }
