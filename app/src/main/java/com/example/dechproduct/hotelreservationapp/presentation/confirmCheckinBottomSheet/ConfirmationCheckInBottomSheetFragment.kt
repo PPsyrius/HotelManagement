@@ -22,7 +22,6 @@ import androidx.fragment.app.viewModels
 import com.example.dechproduct.hotelreservationapp.presentation.checkin.CheckInActivity
 import com.example.dechproduct.hotelreservationapp.presentation.checkin.CheckInViewModel
 import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckinDetailViewModel
-import com.example.dechproduct.hotelreservationapp.presentation.checkinWalk.CheckInWalkinViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 

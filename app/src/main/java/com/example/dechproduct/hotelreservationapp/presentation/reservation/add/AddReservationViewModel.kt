@@ -29,6 +29,8 @@ class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewMo
 
     var reserver = MutableLiveData<Resource<Booking>>()
     var roomer = MutableLiveData<Resource<List<Room>>>()
+    var loadedReservation = MutableLiveData<Resource<Booking>>()
+
     var startDateEpoch: Long = 0
     var endDateEpoch: Long = 0
 
@@ -142,6 +144,13 @@ class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewMo
                 Log.d("ERR:", e.toString())
             }
 
+        }
+    }
+
+    fun updateInfo(reserved: String) {
+        viewModelScope.launch {
+            val reserving = useCase.getReserveByIDUseCase(reserved)
+            loadedReservation.postValue(reserving)
         }
     }
 

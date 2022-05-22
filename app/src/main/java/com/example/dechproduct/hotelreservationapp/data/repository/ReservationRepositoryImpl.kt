@@ -108,13 +108,29 @@ class ReservationRepositoryImpl @Inject constructor(
     }
 
     //TODO: Implements search keyword e.g. #TODAY
-    override suspend fun searchByDate(
+    override suspend fun searchByArrivalDate(
         keyword: String,
         status: List<BookingStatus>
     ): Resource<MutableList<Booking>> {
         return try {
             var results: MutableList<Booking> = mutableListOf<Booking>()
             var result_date = reservationAPI.getByBookingArrivalDate(keyword)
+
+            filterResult(result_date, results, status)
+            Resource.Success(results)
+
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
+
+    override suspend fun searchByDepartDate(
+        keyword: String,
+        status: List<BookingStatus>
+    ): Resource<MutableList<Booking>> {
+        return try {
+            var results: MutableList<Booking> = mutableListOf<Booking>()
+            var result_date = reservationAPI.getByBookingDepartDate(keyword)
 
             filterResult(result_date, results, status)
             Resource.Success(results)

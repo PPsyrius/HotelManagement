@@ -2,10 +2,9 @@
 <resources>
     
     <string-array name="headings">
-        <item>Visa</item>
-        <item>Master Card</item>
         <item>Cash</item>
-
-
+        <item>Visa</item>
+        <item>Mastercard</item>
+        <item>e-Payment</item>
     </string-array>
 </resources>

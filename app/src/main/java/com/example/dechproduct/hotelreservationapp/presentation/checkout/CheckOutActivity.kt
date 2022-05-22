@@ -44,34 +44,30 @@ class CheckOutActivity : AppCompatActivity() {
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 if (query == "")
-                    lifecycleScope.launch {
-                        checkOutViewModel.populateReserve()
-                    }
+
+                    checkOutViewModel.populateReserve()
                 else
-                    lifecycleScope.launch {
-                        checkOutViewModel.searchReserve(query.capitalize())
-                    }
+
+                    checkOutViewModel.searchReserve(query.capitalize())
+
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 if (newText == "")
-                    lifecycleScope.launch {
-                        checkOutViewModel.populateReserve()
-                    }
+
+                    checkOutViewModel.populateReserve()
                 else
-                    lifecycleScope.launch {
-                        checkOutViewModel.searchReserve(newText.capitalize())
-                    }
+
+                    checkOutViewModel.searchReserve(newText.capitalize())
+
                 return false
             }
         })
 
         binding.reservationList.layoutManager = LinearLayoutManager(this)
-
-        lifecycleScope.launch {
-            checkOutViewModel.populateReserve()
-        }
+        
+        checkOutViewModel.populateReserve()
 
         onSwipeHandle()
         observeSearch()
@@ -98,9 +94,9 @@ class CheckOutActivity : AppCompatActivity() {
                                     "Check-out" + pos,
                                     Toast.LENGTH_SHORT
                                 ).show()
-                                lifecycleScope.launch {
-                                    checkOutViewModel.checkOutReserved(checkOutViewModel.result[pos])
-                                }
+
+                                checkOutViewModel.checkOutReserved(checkOutViewModel.result[pos])
+
                             }
                         }
                     ))

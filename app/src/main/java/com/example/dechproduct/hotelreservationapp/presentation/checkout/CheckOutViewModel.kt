@@ -9,6 +9,8 @@ import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 
@@ -20,22 +22,27 @@ class CheckOutViewModel @Inject constructor(private val useCase: UseCase): ViewM
 
     lateinit var result: MutableList<Booking>
 
-    suspend fun searchReserve(keyword:String){
+    var dateFormat = SimpleDateFormat("dd-MM-yyyy")
+
+    fun searchReserve(keyword:String){
         viewModelScope.launch {
             val reservation = useCase.searchReserveByNameUseCase(keyword, mutableListOf<BookingStatus>(BookingStatus.CHECK_IN))
             reserver.postValue(reservation)
         }
     }
-    //Only searchReserve() update observer for now.
 
-    suspend fun populateReserve(){
+    fun populateReserve(){
         viewModelScope.launch {
-            val reservation = useCase.populateReserveUseCase(mutableListOf<BookingStatus>(BookingStatus.CHECK_IN))
-            reserver.postValue(reservation)
+            val reservations =
+                useCase.searchReserveByDepartUseCase(
+                    dateFormat.format(Date()),
+                    mutableListOf<BookingStatus>(BookingStatus.CHECK_IN)
+                )
+            reserver.postValue(reservations)
         }
     }
 
-    suspend fun checkOutReserved(booking: Booking){
+    fun checkOutReserved(booking: Booking){
         viewModelScope.launch {
             val response = useCase.checkOutGuestUseCase(booking)
             resolveReservation.postValue(response)

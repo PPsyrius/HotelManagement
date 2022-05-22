@@ -32,6 +32,8 @@ class UseCase(
     var removeReserveUseCase: RemoveReserveUseCase,
     var searchReserveByIDUseCase: SearchReserveByIDUseCase,
     var searchReserveByNameUseCase: SearchReserveByNameUseCase,
+    var searchReserveByArrivalUseCase: SearchReserveByArrivalUseCase,
+    var searchReserveByDepartUseCase: SearchReserveByDepartUseCase,
 
     var editRoomUseCase: EditRoomUseCase,
     var markRoomUseCase: MarkRoomUseCase,

@@ -16,6 +16,7 @@ import com.example.dechproduct.hotelreservationapp.presentation.reservation.Rese
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationActivity
 import com.example.dechproduct.hotelreservationapp.util.swipe.Helper.MySwipeHelper
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.search.adapter.SearchAdapter
+import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButton
 import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButtonClickListener
 import com.example.dechproduct.hotelreservationapp.util.Resource
@@ -27,8 +28,6 @@ class SearchReservationActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySearchReservationactivityBinding
     private val searchReservationViewModel: SearchReservationViewModel by viewModels()
-
-    //TODO:(Important!!) Pressing edit reservation should populate data into form -- what??
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,9 +68,7 @@ class SearchReservationActivity : AppCompatActivity() {
 
         binding.reservationList.layoutManager = LinearLayoutManager(this)
 
-        lifecycleScope.launch {
-            searchReservationViewModel.populateReservation()
-        }
+        searchReservationViewModel.populateReservation()
 
         binding.fabAdd.setOnClickListener {
             Toast.makeText(applicationContext, "Add Reservation", Toast.LENGTH_SHORT).show()
@@ -116,7 +113,11 @@ class SearchReservationActivity : AppCompatActivity() {
                             override fun onClick(pos: Int) {
                                 val intent =
                                     Intent(applicationContext, AddReservationActivity::class.java)
-                                startActivityForResult(intent,0)
+                                intent.putExtra(
+                                    Constants.INTENT_SELECTED_BOOKING,
+                                    searchReservationViewModel.reservation[pos]
+                                )
+                                startActivityForResult(intent, 0)
                             }
                         }
                     ))
