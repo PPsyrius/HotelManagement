@@ -8,7 +8,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
-import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
 import com.example.dechproduct.hotelreservationapp.data.model.payment.PaymentType
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityAddReservationBinding
@@ -29,6 +28,11 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
+import android.content.DialogInterface
+
+import android.R
+import androidx.appcompat.app.AlertDialog
+
 
 @AndroidEntryPoint
 class AddReservationActivity : AppCompatActivity() {
@@ -45,7 +49,10 @@ class AddReservationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_add_reservation)
+        binding = DataBindingUtil.setContentView(
+            this,
+            com.example.dechproduct.hotelreservationapp.R.layout.activity_add_reservation
+        )
 
         if (callingActivity?.className == CheckInActivity::class.qualifiedName) {
             binding.titleTextView.text = "Add By Walk-In"
@@ -76,7 +83,7 @@ class AddReservationActivity : AppCompatActivity() {
                 !(
                         binding.edtGuestNumber.text.isNullOrEmpty() and
                                 binding.edtChildNumber.text.isNullOrEmpty())
-                    ) {
+            ) {
                 addReservationViewModel.reservation.guest?.firstName =
                     binding.firstNameCustomer.getValue()
                 addReservationViewModel.reservation.guest?.lastName =
@@ -386,19 +393,32 @@ class AddReservationActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                             //TODO: Show Room Availability in Date Picker
-
+                            //TODO: On add reservation, if select type and full -> show msg
                         } else {
-                            Toast.makeText(
-                                applicationContext, "Auto assigned to room.",
-                                Toast.LENGTH_SHORT
-                            ).show()
+//                            Toast.makeText(
+//                                applicationContext, "Auto assigned to room.",
+//                                Toast.LENGTH_SHORT
+//                            ).show()
                             addReservationViewModel.reservation.room = rooms.first()
                             if (rooms.first().maxCap == addReservationViewModel.reservation.adultCount) {
-                                //TODO: Required Addon Bed Dialog
+
+                                val builder = AlertDialog.Builder(this)
+                                builder.setCancelable(false)
+                                builder.setMessage("Selected room configuration required additional bed, proceed?")
+                                builder.setPositiveButton("Yes",
+                                    DialogInterface.OnClickListener { _, _ ->
+                                        addReservationViewModel.addReservation()
+                                        finish()
+                                    })
+                                builder.setNegativeButton("No",
+                                    DialogInterface.OnClickListener { dialog, _ ->
+                                        dialog.cancel()
+                                    })
+                                builder.create().show()
+
+                            } else {
+                                addReservationViewModel.addReservation()
                             }
-
-                            addReservationViewModel.addReservation()
-
                         }
                     }
                 }

@@ -1,26 +1,38 @@
 package com.example.dechproduct.hotelreservationapp.data.repository
 
 import android.content.SharedPreferences
+import android.util.Base64
 import android.util.Log
 import com.example.dechproduct.hotelreservationapp.data.api.UserAPIService
 import com.example.dechproduct.hotelreservationapp.data.model.employee.Access
 import com.example.dechproduct.hotelreservationapp.domain.repository.UserRepository
 import com.example.dechproduct.hotelreservationapp.util.Resource
+import java.security.SecureRandom
+import java.security.spec.KeySpec
+import java.util.*
+import javax.crypto.SecretKeyFactory
+import javax.crypto.spec.PBEKeySpec
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
     private val userAPI: UserAPIService,
     val sharedPreferences: SharedPreferences): UserRepository{
 
+    private lateinit var keySpecs :KeySpec
+    private var factory: SecretKeyFactory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
+
     override suspend fun login(username: String, password: String):Resource<Access> {
         return try {
+            keySpecs = PBEKeySpec(password.toCharArray(),username.toByteArray(),65536,128)
+            val pByte = Base64.encodeToString(factory.generateSecret(keySpecs).encoded,Base64.NO_WRAP)
+
+            //TODO: Remove this line for production build
+            Log.d("PASSWORD:", pByte)
 
             var access: Access = userAPI.getByUserName(username)[0].toStaff()
             var isFound: Boolean = false
 
-            //TODO: Camera
-            //TODO: Implements password hashing for comparison
-            if(access.password == password){
+            if(access.password == pByte){
                 isFound = true
             }
 

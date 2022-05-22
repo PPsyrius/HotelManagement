@@ -44,31 +44,16 @@ class SearchReservationActivity : AppCompatActivity() {
         searchBar.setOnQueryTextListener(object :
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
-                if (query == "")
-
-                    searchReservationViewModel.populateReservation()
-                else
-
-                    searchReservationViewModel.searchReservation(query.capitalize())
-
-                return false
+                return searchReservationViewModel.queryHandle(query)
             }
-
             override fun onQueryTextChange(newText: String): Boolean {
-                if (newText == "")
-
-                    searchReservationViewModel.populateReservation()
-                else
-
-                    searchReservationViewModel.searchReservation(newText.capitalize())
-
-                return false
+                return searchReservationViewModel.queryHandle(newText)
             }
         })
 
         binding.reservationList.layoutManager = LinearLayoutManager(this)
 
-        searchReservationViewModel.populateReservation()
+        searchReservationViewModel.queryHandle("")
 
         binding.fabAdd.setOnClickListener {
             Toast.makeText(applicationContext, "Add Reservation", Toast.LENGTH_SHORT).show()

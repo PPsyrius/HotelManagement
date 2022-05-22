@@ -107,7 +107,6 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
-    //TODO: Implements search keyword e.g. #TODAY
     override suspend fun searchByArrivalDate(
         keyword: String,
         status: List<BookingStatus>
