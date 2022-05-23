@@ -17,7 +17,7 @@ data class Employee(
     var position: String?,
 
 ) : Parcelable {
-    fun toGuestDTO(): EmployeeDTO {
+    fun toEmployeeDTO(): EmployeeDTO {
         return EmployeeDTO(
             employeeID = employeeID,
             firstName = firstName,

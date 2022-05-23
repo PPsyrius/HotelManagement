@@ -1,6 +1,8 @@
 package com.example.dechproduct.hotelreservationapp.data.model.device
 
 import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingStatus
+import com.example.dechproduct.hotelreservationapp.data.model.room.Occupancy
+import com.example.dechproduct.hotelreservationapp.data.model.room.OccupancyDTO
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
 
@@ -31,5 +33,15 @@ data class DeviceDTO(
             manufacturer = manufacturer,
             status = status?.let { DeviceStatus.unpack(it) },
         )
+    }
+
+    companion object{
+        fun toListOfDevice(devices: List<DeviceDTO>):MutableList<Device>{
+            var parcel: MutableList<Device> = mutableListOf<Device>()
+            for (device in devices) {
+                parcel.add(device.toDevice())
+            }
+            return parcel
+        }
     }
 }

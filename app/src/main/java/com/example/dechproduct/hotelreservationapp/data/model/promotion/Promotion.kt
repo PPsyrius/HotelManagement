@@ -8,7 +8,7 @@ data class Promotion(
     var promotionID: String,
     var title: String?,
     var description: String?,
-    var partners: List<String>?,
+    var partners: List<Partner>?,
     var discount: Double?
 ): Parcelable{
     override fun toString(): String {
@@ -20,7 +20,7 @@ data class Promotion(
             promotionID = promotionID,
             title = title,
             description = description,
-            partners = partners,
+            partners = partners?.let { Partner.toListOfStrings(it) },
             discount = discount
         )
     }

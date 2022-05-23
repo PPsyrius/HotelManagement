@@ -12,15 +12,15 @@ data class AccessDTO(
     @SerializedName(Constants.API_ACCESS_KEY_PASSWORD)
     var password: String,
     @SerializedName(Constants.API_ACCESS_KEY_EMPLOYEE)
-    var employee: Employee,
+    var employee: EmployeeDTO,
 ) {
 
-    fun toStaff(): Access {
+    fun toAccess(): Access {
         return Access(
             accessID = accessID,
             userName = userName,
             password = password,
-            employee = employee
+            employee = employee.toEmployee()
         )
     }
 }

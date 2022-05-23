@@ -24,7 +24,7 @@ data class PromotionDTO(
             promotionID = promotionID,
             title = title,
             description = description,
-            partners = partners,
+            partners = partners?.let { Partner.toListOfPartners(it) },
             discount = discount
         )
     }

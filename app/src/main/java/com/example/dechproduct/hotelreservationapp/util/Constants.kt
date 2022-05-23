@@ -14,6 +14,12 @@ object Constants {
     const val API_ACCESS_KEY_PASSWORD = "password"
     const val API_ACCESS_KEY_EMPLOYEE = "employee"
 
+    const val API_ACCESS_KEY_EID = "employeeID"
+    const val API_ACCESS_KEY_FNAME = "firstName"
+    const val API_ACCESS_KEY_LNAME = "lastName"
+    const val API_ACCESS_KEY_DEP = "department"
+    const val API_ACCESS_KEY_POS = "position"
+
     const val API_BOOKING_BASE_URL =
         "http://10.0.2.2:3001/"
     const val API_BOOKING_INDEX_URL =
@@ -57,7 +63,7 @@ object Constants {
     const val API_TICKET_INDEX_URL =
         "GuestLoginAPI/"
     const val API_TICKET_KEY_ID = "ticketID"
-    const val API_TICKET_KEY_USERNAME = "username"
+    const val API_TICKET_KEY_USERNAME = "userName"
     const val API_TICKET_KEY_PASSWORD = "password"
     const val API_TICKET_KEY_GUEST = "guest"
 

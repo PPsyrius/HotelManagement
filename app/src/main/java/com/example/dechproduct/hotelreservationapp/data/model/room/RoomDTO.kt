@@ -1,6 +1,7 @@
 package com.example.dechproduct.hotelreservationapp.data.model.room
 
 import com.example.dechproduct.hotelreservationapp.data.model.device.Device
+import com.example.dechproduct.hotelreservationapp.data.model.device.DeviceDTO
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
 
@@ -28,7 +29,7 @@ data class RoomDTO(
     @SerializedName(Constants.API_ROOM_KEY_WALKING)
     var isWalking: Boolean?,
     @SerializedName(Constants.API_ROOM_KEY_DEVICES)
-    var device: List<Device>?,
+    var device: List<DeviceDTO>?,
     @SerializedName(Constants.API_ROOM_KEY_PRICE)
     var price: Double?,
 ) {
@@ -45,7 +46,7 @@ data class RoomDTO(
             status = status?.let { RoomStatus.unpack(it) },
             occupancy = occupancy?.let { OccupancyDTO.toListOfOccupancy(it) },
             isWalking = isWalking,
-            device = device,
+            device = device?.let { DeviceDTO.toListOfDevice(it) },
             price = price,
         )
     }

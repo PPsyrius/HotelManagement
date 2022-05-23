@@ -5,6 +5,9 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.camera.core.CameraSelector
@@ -14,9 +17,14 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityCameraBinding
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.lang.Exception
 import java.text.SimpleDateFormat
@@ -24,46 +32,62 @@ import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class CameraActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class CameraFragment : DialogFragment() {
 
     private lateinit var binding: ActivityCameraBinding
     private var imageCapture: ImageCapture? = null
     private lateinit var outputDirectory: File
-    private lateinit var  cameraExecutor : ExecutorService
+    private lateinit var cameraExecutor: ExecutorService
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityCameraBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
 
-        outputDirectory = getOutputDirectory()
+        return inflater.inflate(R.layout.activity_camera, container, false)
+//        super.onCreate(savedInstanceState)
+//        binding = ActivityCameraBinding.inflate(layoutInflater)
+//        setContentView(binding.root)
+    }
+
+    //TODO: Extends Stay
+    //TODO: Mark room, isWalking
+    //TODO: Camera
+    //TODO: Partner class
+    //TODO: Transient on some api calls (e.g. room occupancy in reservation calls)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = ActivityCameraBinding.bind(view)
+
+//        outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
+
+        binding.btnTakePhoto.setOnClickListener {
+            takePhoto()
+        }
 
         if (allPermissionGranted()) {
             startCamera()
         } else {
-            ActivityCompat.requestPermissions(
-                this, ConstantsCamera.REQUIRED_PERMISSIONS,
+            requestPermissions(
+                ConstantsCamera.REQUIRED_PERMISSIONS,
                 ConstantsCamera.REQUEST_CODE_PERMISSIONS
             )
         }
-
-        binding.btnTakePhoto.setOnClickListener {
-            takePhoto()
-            finish()
-
-        }
     }
 
-    private fun getOutputDirectory(): File {
-        val mediaDir = externalMediaDirs.firstOrNull()?.let { mFile ->
-            File(mFile, resources.getString(R.string.app_name)).apply {
-                mkdirs()
-            }
-        }
-        return if (mediaDir != null && mediaDir.exists())
-            mediaDir else filesDir
-    }
+//    private fun getOutputDirectory(): File {
+//        val mediaDir = externalMediaDirs.firstOrNull()?.let { mFile ->
+//            File(mFile, resources.getString(R.string.app_name)).apply {
+//                mkdirs()
+//            }
+//        }
+//        return if (mediaDir != null && mediaDir.exists())
+//            mediaDir else filesDir
+//    }
 
 
     private fun takePhoto() {
@@ -82,14 +106,16 @@ class CameraActivity : AppCompatActivity() {
             .build()
 
         imageCapture.takePicture(
-            outputOption, ContextCompat.getMainExecutor(this),
+            outputOption, ContextCompat.getMainExecutor(requireContext()),
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val savedUri = Uri.fromFile(photoFile)
-                    val msg  = "Photo Saved"
-                    Toast.makeText(this@CameraActivity,
+                    val msg = "Photo Saved"
+                    Toast.makeText(
+                        context,
                         "$msg $savedUri",
-                        Toast.LENGTH_LONG).show()
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -114,11 +140,10 @@ class CameraActivity : AppCompatActivity() {
         if (requestCode == ConstantsCamera.REQUEST_CODE_PERMISSIONS) {
             if (allPermissionGranted()) {
                 startCamera()
-                finish()
 
             } else {
                 Toast.makeText(
-                    this,
+                    context,
                     " Permission not granted by the user",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -129,7 +154,7 @@ class CameraActivity : AppCompatActivity() {
 
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider
-            .getInstance(this)
+            .getInstance(requireContext())
 
         cameraProviderFuture.addListener({
 
@@ -159,13 +184,13 @@ class CameraActivity : AppCompatActivity() {
                 Log.d(ConstantsCamera.TAG, "start camera fail:", e)
             }
 
-        }, ContextCompat.getMainExecutor(this))
+        }, ContextCompat.getMainExecutor(requireContext()))
     }
 
     private fun allPermissionGranted() =
         ConstantsCamera.REQUIRED_PERMISSIONS.all {
             ContextCompat.checkSelfPermission(
-                baseContext, it
+                requireContext(), it
             ) == PackageManager.PERMISSION_GRANTED
         }
 

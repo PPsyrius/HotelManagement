@@ -21,7 +21,7 @@ data class Ticket(
             ticketID = ticketID,
             userName = userName,
             password = password,
-            guest = guest
+            guest = guest?.toGuestDTO()
         )
     }
 }

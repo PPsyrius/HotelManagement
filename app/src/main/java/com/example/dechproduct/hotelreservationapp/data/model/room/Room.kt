@@ -33,7 +33,7 @@ data class Room(
             status = status?.let { RoomStatus.pack(it) },
             occupancy = occupancy?.let { Occupancy.toListOfOccupancyDTO(it) },
             isWalking = isWalking,
-            device = device,
+            device = device?.let { Device.toListOfDeviceDTO(it) },
             price = price,
         )
     }

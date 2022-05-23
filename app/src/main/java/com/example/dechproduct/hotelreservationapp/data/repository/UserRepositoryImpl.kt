@@ -7,9 +7,7 @@ import com.example.dechproduct.hotelreservationapp.data.api.UserAPIService
 import com.example.dechproduct.hotelreservationapp.data.model.employee.Access
 import com.example.dechproduct.hotelreservationapp.domain.repository.UserRepository
 import com.example.dechproduct.hotelreservationapp.util.Resource
-import java.security.SecureRandom
 import java.security.spec.KeySpec
-import java.util.*
 import javax.crypto.SecretKeyFactory
 import javax.crypto.spec.PBEKeySpec
 import javax.inject.Inject
@@ -29,7 +27,7 @@ class UserRepositoryImpl @Inject constructor(
             //TODO: Remove this line for production build
             Log.d("PASSWORD:", pByte)
 
-            var access: Access = userAPI.getByUserName(username)[0].toStaff()
+            var access: Access = userAPI.getByUserName(username)[0].toAccess()
             var isFound: Boolean = false
 
             if(access.password == pByte){

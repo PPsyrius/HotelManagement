@@ -20,4 +20,13 @@ data class Access(
     var employee: Employee,
 
     ) : Parcelable {
+
+    fun toAccessDTO(): AccessDTO {
+        return AccessDTO(
+            accessID = accessID,
+            userName = userName,
+            password = password,
+            employee = employee.toEmployeeDTO()
+        )
+    }
 }

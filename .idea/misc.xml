@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_add_reservation.xml" value="0.4466666666666667" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_camera.xml" value="0.22" />
         <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_check_in.xml" value="0.4466666666666667" />
         <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_checkin_detail.xml" value="0.1897644927536232" />
         <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_checkin_walk_in.xml" value="0.12" />
+        <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_reservation_menu.xml" value="0.14666666666666667" />
         <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/activity_search_reservationactivity.xml" value="0.1" />
         <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/fragment_confirmation_check_in_bottom_sheet.xml" value="0.1897644927536232" />
         <entry key="..\:/SEPR/App/HotelManagement/app/src/main/res/layout/fragment_room_available_bottom_sheet.xml" value="0.1743659420289855" />

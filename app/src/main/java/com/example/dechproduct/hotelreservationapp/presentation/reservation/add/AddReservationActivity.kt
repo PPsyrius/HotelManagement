@@ -15,14 +15,11 @@ import com.example.dechproduct.hotelreservationapp.presentation.addReservationRo
 import com.example.dechproduct.hotelreservationapp.presentation.addReservationRoomTypeBottomSheet.AddReservationRoomTypeBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.checkin.CheckInActivity
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.ReservationMenuActivity
-import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera.CameraActivity
+import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera.CameraFragment
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.search.SearchReservationActivity
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.omarshehe.forminputkotlin.FormInputMultiline
-import com.omarshehe.forminputkotlin.FormInputSpinner
-import com.omarshehe.forminputkotlin.FormInputText
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.lang.Exception
@@ -30,7 +27,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import android.content.DialogInterface
 
-import android.R
 import androidx.appcompat.app.AlertDialog
 
 
@@ -43,6 +39,7 @@ class AddReservationActivity : AppCompatActivity() {
 
     var bottomSheetRoomBedFragment = AddReservationRoomBedBottomSheetFragment()
     var bottomSheetChangeRoomTypeFragment = AddReservationRoomTypeBottomSheetFragment()
+    var cameraFragment = CameraFragment()
 
     private var returnToCheckInActivity = false
 
@@ -128,9 +125,10 @@ class AddReservationActivity : AppCompatActivity() {
 
         binding.buttonCamera.setOnClickListener {
             Toast.makeText(applicationContext, "Camera Button is Tapped.", Toast.LENGTH_LONG).show()
-            val intent =
-                Intent(this@AddReservationActivity, CameraActivity::class.java)
-            startActivity(intent)
+//            val intent =
+//                Intent(this@AddReservationActivity, CameraFragment::class.java)
+//            startActivity(intent)
+            cameraFragment.show(supportFragmentManager, "TAG")
         }
 
         binding.btnBackMenu.setOnClickListener {

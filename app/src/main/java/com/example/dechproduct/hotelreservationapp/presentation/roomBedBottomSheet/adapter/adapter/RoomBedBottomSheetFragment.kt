@@ -15,6 +15,7 @@ import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.data.model.room.BedType
 import com.example.dechproduct.hotelreservationapp.data.model.room.RoomType
 import com.example.dechproduct.hotelreservationapp.databinding.FragmentRoomBedBottomSheetBinding
+import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckinDetailViewModel
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationViewModel
 import com.example.dechproduct.hotelreservationapp.presentation.roomTypeBottomSheet.RoomTypeAdapter
 import com.example.dechproduct.hotelreservationapp.util.Resource
@@ -26,7 +27,7 @@ import kotlinx.coroutines.launch
 class RoomBedBottomSheetFragment : BottomSheetDialogFragment(){
     private lateinit var  roomBedBinding : FragmentRoomBedBottomSheetBinding
     private val roomBedViewModel : RoomBedBottomSheetViewModel by viewModels()
-    private val addReservationViewModel: AddReservationViewModel by activityViewModels()
+    private val checkInViewDetailViewModel:CheckinDetailViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -90,7 +91,7 @@ class RoomBedBottomSheetFragment : BottomSheetDialogFragment(){
     private fun onRecyclerItemClicked(bedType: BedType) {
         Toast.makeText(context, bedType.toString(), Toast.LENGTH_SHORT).show()
 
-        addReservationViewModel.reservation?.room?.beds = bedType
+        checkInViewDetailViewModel.reservation?.room?.beds = bedType
 
         dismiss()
     }

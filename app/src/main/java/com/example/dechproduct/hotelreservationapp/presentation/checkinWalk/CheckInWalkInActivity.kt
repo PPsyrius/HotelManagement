@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityCheckinWalkInBinding
 import com.example.dechproduct.hotelreservationapp.presentation.confirmCheckinBottomSheet.ConfirmationCheckInBottomSheetFragment
-import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera.CameraActivity
+import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera.CameraFragment
 import com.example.dechproduct.hotelreservationapp.presentation.roomAvailableBottomSheet.RoomAvailableBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.roomBedBottomSheet.adapter.adapter.RoomBedBottomSheetFragment
 import com.example.dechproduct.hotelreservationapp.presentation.roomTypeBottomSheet.RoomTypeBottomSheetFragment
@@ -81,7 +81,7 @@ class CheckInWalkInActivity : AppCompatActivity() {
         binding.buttonCamera.setOnClickListener {
             Toast.makeText(applicationContext, "Camera Button is Tapped.", Toast.LENGTH_LONG).show()
             val intent =
-                Intent(this, CameraActivity::class.java)
+                Intent(this, CameraFragment::class.java)
             startActivity(intent)
         }
 

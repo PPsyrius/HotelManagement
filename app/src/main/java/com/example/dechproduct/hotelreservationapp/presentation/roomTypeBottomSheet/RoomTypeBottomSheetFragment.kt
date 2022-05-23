@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.data.model.room.RoomType
 import com.example.dechproduct.hotelreservationapp.databinding.FragmentRoomTypeBottomSheetBinding
+import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckinDetailViewModel
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationViewModel
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -25,7 +26,7 @@ class RoomTypeBottomSheetFragment (): BottomSheetDialogFragment(){
 
     private lateinit var roomTypeBinding: FragmentRoomTypeBottomSheetBinding
     private val roomTypeViewModel:  RoomTypeBottomSheetViewModel by viewModels ()
-    private val addReservationViewModel: AddReservationViewModel by activityViewModels()
+    private val checkinDetailViewModel:CheckinDetailViewModel by activityViewModels()
 
 
 
@@ -91,8 +92,7 @@ class RoomTypeBottomSheetFragment (): BottomSheetDialogFragment(){
     private fun onRecyclerItemClicked(roomType: RoomType) {
         Toast.makeText(context, roomType.toString(), Toast.LENGTH_SHORT).show()
 
-        addReservationViewModel.reservation?.room?.type = roomType
-        // TODO (Question) Should use what ViewModel ? -> CheckInDetail ViewModel? -- Mekh
+        checkinDetailViewModel.reservation?.room?.type = roomType
 
         dismiss()
     }

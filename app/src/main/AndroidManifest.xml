@@ -34,7 +34,7 @@
             android:exported="false"
             android:theme="@style/Theme.HotelReservationApp" />
         <activity
-            android:name=".presentation.reservation.add.camera.CameraActivity"
+            android:name=".presentation.reservation.add.camera.CameraFragment"
             android:exported="false"
             android:theme="@style/Theme.HotelReservationApp" />
         <activity

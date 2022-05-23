@@ -1,7 +1,6 @@
 package com.example.dechproduct.hotelreservationapp.data.model.device
 
 import android.os.Parcelable
-import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingStatus
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
@@ -36,28 +35,13 @@ data class Device(
         )
     }
 
-//    companion object {
-//        fun pack(devices: List<Device>): List<String> {
-//            var parcel: MutableList<String> = mutableListOf<String>()
-//            for (device in devices) {
-//                parcel.add(device.serial.toString())
-//            }
-//            return parcel
-//        }
-//
-//        fun unpack(devices: List<String>): List<Device> {
-//            var parcel: MutableList<Device> = mutableListOf<Device>()
-//            for (device in devices) {
-//                parcel.add(Device(
-//                    deviceID = ,
-//                    displayName = ,
-//                    type = ,
-//                    serial = device,
-//                    manufacturer = ,
-//                    status =
-//                ))
-//            }
-//            return parcel
-//        }
-//    }
+    companion object{
+        fun toListOfDeviceDTO(devices: List<Device>):MutableList<DeviceDTO>{
+            var parcel: MutableList<DeviceDTO> = mutableListOf<DeviceDTO>()
+            for (device in devices) {
+                parcel.add(device.toDeviceDTO())
+            }
+            return parcel
+        }
+    }
 }
