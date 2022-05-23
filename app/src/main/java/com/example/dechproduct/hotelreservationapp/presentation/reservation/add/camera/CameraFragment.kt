@@ -1,6 +1,8 @@
 package com.example.dechproduct.hotelreservationapp.presentation.reservation.add.camera
 
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,17 +12,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.camera.core.CameraSelector
-import androidx.camera.core.ImageCapture
-import androidx.camera.core.ImageCaptureException
-import androidx.camera.core.Preview
+import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.DialogFragment.STYLE_NORMAL
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.activityViewModels
 import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityCameraBinding
 import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationViewModel
@@ -28,6 +27,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.lang.Exception
+import java.nio.ByteBuffer
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.ExecutorService
@@ -37,6 +37,8 @@ import java.util.concurrent.Executors
 class CameraFragment : DialogFragment() {
 
     private lateinit var binding: ActivityCameraBinding
+    private val addReservationViewModel: AddReservationViewModel by activityViewModels()
+
     private var imageCapture: ImageCapture? = null
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
@@ -61,11 +63,7 @@ class CameraFragment : DialogFragment() {
 
     //TODO: Extends Stay
     //TODO: Mark room, isWalking
-    //TODO: Camera
-    //TODO: Partner class
-    //TODO: Transient on some api calls (e.g. room occupancy in reservation calls)
-
-
+    //TODO: *Optional* Transient on (room occupancy in reservation calls, exposed on verificationPhoto)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -91,43 +89,17 @@ class CameraFragment : DialogFragment() {
         }
     }
 
-//    private fun getOutputDirectory(): File {
-//        val mediaDir = externalMediaDirs.firstOrNull()?.let { mFile ->
-//            File(mFile, resources.getString(R.string.app_name)).apply {
-//                mkdirs()
-//            }
-//        }
-//        return if (mediaDir != null && mediaDir.exists())
-//            mediaDir else filesDir
-//    }
-
-
     private fun takePhoto() {
         val imageCapture = imageCapture ?: return
-        val photoFile = File(
-            outputDirectory,
-            SimpleDateFormat(
-                ConstantsCamera.FILE_NAME_FORMAT,
-                Locale.getDefault()
-            )
-                .format(System.currentTimeMillis()) + ".jpg"
-        )
-        val outputOption = ImageCapture
-            .OutputFileOptions
-            .Builder(photoFile)
-            .build()
 
         imageCapture.takePicture(
-            outputOption, ContextCompat.getMainExecutor(requireContext()),
-            object : ImageCapture.OnImageSavedCallback {
-                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    val savedUri = Uri.fromFile(photoFile)
-                    val msg = "Photo Saved"
-                    Toast.makeText(
-                        context,
-                        "$msg $savedUri",
-                        Toast.LENGTH_LONG
-                    ).show()
+            ContextCompat.getMainExecutor(requireContext()),
+            object : ImageCapture.OnImageCapturedCallback() {
+                override fun onCaptureSuccess(image: ImageProxy) {
+
+                    addReservationViewModel.photo = imageProxyToBitmap(image)
+                    super.onCaptureSuccess(image)
+                    dismiss()
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -141,6 +113,14 @@ class CameraFragment : DialogFragment() {
             }
         )
 
+    }
+
+    private fun imageProxyToBitmap(image: ImageProxy): Bitmap {
+        val planeProxy = image.planes[0]
+        val buffer: ByteBuffer = planeProxy.buffer
+        val bytes = ByteArray(buffer.remaining())
+        buffer.get(bytes)
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
     }
 
     override fun onRequestPermissionsResult(
@@ -210,7 +190,4 @@ class CameraFragment : DialogFragment() {
         super.onDestroy()
         cameraExecutor.shutdown()
     }
-
-
-
 }

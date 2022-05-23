@@ -81,6 +81,8 @@ class AddReservationActivity : AppCompatActivity() {
                         binding.edtGuestNumber.text.isNullOrEmpty() and
                                 binding.edtChildNumber.text.isNullOrEmpty())
             ) {
+                binding.btnSubmit.isEnabled = false
+
                 addReservationViewModel.reservation.guest?.firstName =
                     binding.firstNameCustomer.getValue()
                 addReservationViewModel.reservation.guest?.lastName =
@@ -116,11 +118,18 @@ class AddReservationActivity : AppCompatActivity() {
 
                 } catch (e: Exception) {
                 }
+
+                addReservationViewModel.reservation.guest?.verificationPhoto =
+                    addReservationViewModel.photo?.let { it1 ->
+                        addReservationViewModel.encodeImage(
+                            it1
+                        )
+                    }
+
             } else {
                 Toast.makeText(applicationContext, "Insufficient Information.", Toast.LENGTH_SHORT)
                     .show()
             }
-//            finish()
         }
 
         binding.buttonCamera.setOnClickListener {
@@ -373,7 +382,9 @@ class AddReservationActivity : AppCompatActivity() {
                 is Resource.Failure -> {
                     Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
                         .show()
+                    binding.btnSubmit.isEnabled = true
                 }
+
             }
         })
     }
@@ -391,7 +402,6 @@ class AddReservationActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                             //TODO: Show Room Availability in Date Picker
-                            //TODO: On add reservation, if select type and full -> show msg
                         } else {
 //                            Toast.makeText(
 //                                applicationContext, "Auto assigned to room.",

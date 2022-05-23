@@ -1,6 +1,8 @@
 package com.example.dechproduct.hotelreservationapp.presentation.reservation.add
 
 import android.app.Application
+import android.graphics.Bitmap
+import android.util.Base64
 import android.util.Log
 import android.widget.CheckBox
 import android.widget.Toast
@@ -21,6 +23,7 @@ import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
 import java.util.*
 import javax.inject.Inject
 
@@ -39,9 +42,9 @@ class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewMo
 
     val checkedBreakfast = MutableLiveData<Boolean>().apply { value = false }
     val checkedSmoking = MutableLiveData<Boolean>().apply { value = false }
-
     var roomType : MutableLiveData<RoomType> = MutableLiveData()
     var bedType : MutableLiveData<BedType> = MutableLiveData()
+    var photo: Bitmap? = null
 
     var toOccupy: Occupancy = Occupancy(null, null, OccupancyStatus.NONE)
     var reservation: Booking = Booking(
@@ -120,6 +123,12 @@ class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewMo
                 amountChild.value = a + -1
             }
         }
+    }
+
+    fun encodeImage(photo: Bitmap): String? {
+        val bOutput = ByteArrayOutputStream()
+        photo.compress(Bitmap.CompressFormat.PNG, 100, bOutput)
+        return Base64.encodeToString(bOutput.toByteArray(), Base64.NO_WRAP)
     }
 
     fun checkRoomAvailable() {
