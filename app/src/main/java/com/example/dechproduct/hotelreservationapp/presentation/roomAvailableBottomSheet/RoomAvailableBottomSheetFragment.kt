@@ -63,8 +63,6 @@ class RoomAvailableBottomSheetFragment : BottomSheetDialogFragment() {
         })
 
         roomAvailableBinding.rvRoomAvailableList.layoutManager = LinearLayoutManager(context)
-        //TODO: fragment doesn't call launchSearch() unless host activity is destroyed
-        //TODO: fragment persist even when room is selected
         launchSearch()
         observeSearch()
     }
