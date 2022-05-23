@@ -63,6 +63,7 @@ class RoomAvailableBottomSheetFragment : BottomSheetDialogFragment() {
         })
 
         roomAvailableBinding.rvRoomAvailableList.layoutManager = LinearLayoutManager(context)
+
         launchSearch()
         observeSearch()
     }
