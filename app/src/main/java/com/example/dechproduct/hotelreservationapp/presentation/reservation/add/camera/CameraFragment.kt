@@ -18,6 +18,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.DialogFragment.STYLE_NORMAL
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.example.dechproduct.hotelreservationapp.R
@@ -40,6 +41,12 @@ class CameraFragment : DialogFragment() {
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // 1.
+        setStyle(STYLE_NORMAL, R.style.Theme_App_Dialog_FullScreen)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -57,11 +64,16 @@ class CameraFragment : DialogFragment() {
     //TODO: Camera
     //TODO: Partner class
     //TODO: Transient on some api calls (e.g. room occupancy in reservation calls)
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = ActivityCameraBinding.bind(view)
 
+        requireDialog().window?.setWindowAnimations(
+            R.style.DialogAnimation
+        )
 //        outputDirectory = getOutputDirectory()
         cameraExecutor = Executors.newSingleThreadExecutor()
 
@@ -198,4 +210,7 @@ class CameraFragment : DialogFragment() {
         super.onDestroy()
         cameraExecutor.shutdown()
     }
+
+
+
 }
