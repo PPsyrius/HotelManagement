@@ -18,7 +18,6 @@ class CheckInGuestUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(booking: Booking, room: Room): Resource<Booking> {
         if(booking.room?.roomID != room.roomID){
-            booking.room?.let { markRoomUseCase(it, RoomStatus.READY) }
             var discarder = mutableListOf<Occupancy>()
             for (item in booking.room?.occupancy!!) {
                 if (booking.arrivalDate == item.arrivalDate &&
@@ -29,6 +28,8 @@ class CheckInGuestUseCase @Inject constructor(
                 }
             }
             booking.room!!.occupancy!!.removeAll(discarder)
+            booking.room?.let { markRoomUseCase(it, RoomStatus.READY) }
+
             booking.room = room
             booking.room!!.occupancy!!.add(Occupancy(booking.arrivalDate, booking.departDate, OccupancyStatus.TALLY))
         }

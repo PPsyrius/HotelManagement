@@ -22,6 +22,7 @@ import androidx.fragment.app.viewModels
 import com.example.dechproduct.hotelreservationapp.presentation.checkin.CheckInActivity
 import com.example.dechproduct.hotelreservationapp.presentation.checkin.CheckInViewModel
 import com.example.dechproduct.hotelreservationapp.presentation.checkinDetail.CheckinDetailViewModel
+import com.example.dechproduct.hotelreservationapp.presentation.menu.MenuActivity
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 
@@ -83,7 +84,7 @@ class ConfirmationCheckInBottomSheetFragment : BottomSheetDialogFragment() {
 
         binding.tvConfirmPrice.text = checkInDetailViewModel.selectedRoom.price.toString()
 
-        binding.cbBreakfastConfirmCheckIn.isChecked = checkInDetailViewModel.reservation.breakfast?:false
+        binding.cbBreakfastConfirmCheckIn.isChecked = checkInDetailViewModel.breakfast
 
         binding.cbSmokeConfirmCheckIn.isChecked = checkInDetailViewModel.selectedRoom.smoking?:false
 
@@ -91,7 +92,7 @@ class ConfirmationCheckInBottomSheetFragment : BottomSheetDialogFragment() {
             checkInDetailViewModel.checkInReserved()
 
             checkInViewModel.refreshCall.postValue(checkInDetailViewModel.reservation.status)
-            val intent = Intent(context, CheckInActivity::class.java)
+            val intent = Intent(context, MenuActivity::class.java)
             startActivity(intent)
         }
     }

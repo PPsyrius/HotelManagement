@@ -117,23 +117,32 @@ class CheckInDetailActivity : AppCompatActivity() {
         }
 
         binding.btnConfirmationCheckIn.setOnClickListener {
+
             bottomSheetConfirmationFragment.show(supportFragmentManager, "TAG")
+
         }
 
         binding.cbBreakfast.setOnClickListener {
-            Toast.makeText(applicationContext, "checkbox breakfast  clicked", Toast.LENGTH_LONG)
-                .show()
+//            Toast.makeText(applicationContext, "checkbox breakfast  clicked", Toast.LENGTH_LONG)
+//                .show()
+            checkInDetailViewModel.breakfast = binding.cbBreakfast.isChecked
 
         }
 
         binding.cbSmoking.setOnClickListener {
-            Toast.makeText(applicationContext, "checkbox smoking  clicked", Toast.LENGTH_LONG)
-                .show()
+//            Toast.makeText(applicationContext, "checkbox smoking  clicked", Toast.LENGTH_LONG)
+//                .show()
+            checkInDetailViewModel.roomConfig.smoking = binding.cbSmoking.isChecked
 
         }
         receiveSelected()
         observeUpdateInfo()
         observeCheckInResolve()
+        observeDisableButton()
+
+        observeRoomType()
+        observeRoomBed()
+        observeRoomID()
     }
 
     private fun receiveSelected() {
@@ -190,6 +199,43 @@ class CheckInDetailActivity : AppCompatActivity() {
                         .show()
                 }
             }
+        })
+    }
+
+    private fun observeDisableButton() {
+        checkInDetailViewModel.disableButton.observe(this, {
+            when (it) {
+                false -> {
+                    binding.btnConfirmationCheckIn.isEnabled = true
+                }
+                true -> {
+                    binding.btnConfirmationCheckIn.isEnabled = false
+                    Toast.makeText(
+                        applicationContext,
+                        "Please check available room before proceeding.",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                }
+            }
+        })
+    }
+
+    private fun observeRoomType() {
+        checkInDetailViewModel.roomType.observe(this, {
+            binding.roomType.text = it.toString()
+        })
+    }
+
+    private fun observeRoomBed() {
+        checkInDetailViewModel.roomBed.observe(this, {
+            binding.tvDisplayRoomBed.text = it.toString()
+        })
+    }
+
+    private fun observeRoomID() {
+        checkInDetailViewModel.roomID.observe(this, {
+            binding.tvDisplayRoomNumber.text = it
         })
     }
 

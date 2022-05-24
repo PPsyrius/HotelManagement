@@ -52,5 +52,4 @@ class CheckOutViewModel @Inject constructor(private val useCase: UseCase) : View
             resolveReservation.postValue(response)
         }
     }
-
 }

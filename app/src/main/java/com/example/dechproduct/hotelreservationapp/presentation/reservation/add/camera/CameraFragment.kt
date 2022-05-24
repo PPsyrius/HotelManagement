@@ -55,10 +55,9 @@ class CameraFragment : DialogFragment() {
     ): View? {
         return inflater.inflate(R.layout.activity_camera, container, false)
     }
-    
-    //TODO: Extends Stay
+
     //TODO: Mark room-> isWalking
-    //TODO: checkindetail
+    //TODO: Extends
 
     //TODO: *Optional* Transient on (room occupancy in reservation calls, exposed on verificationPhoto)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

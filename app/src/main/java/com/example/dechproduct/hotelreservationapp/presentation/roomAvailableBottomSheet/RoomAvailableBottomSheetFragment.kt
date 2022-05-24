@@ -73,13 +73,14 @@ class RoomAvailableBottomSheetFragment : BottomSheetDialogFragment() {
             var availableRoomStatus: MutableList<RoomStatus> = mutableListOf<RoomStatus>()
 
             if (checkinDetailViewModel.reservation.status == BookingStatus.GUARANTEED) {
-                lifecycleScope.launch {
-                    roomAvailableviewModel.getRoom(checkinDetailViewModel.reservation.room?.roomID.toString())
-                }
+
+                roomAvailableviewModel.getRoom(checkinDetailViewModel.reservation.room?.roomID.toString())
+
             } else {
                 availableRoomStatus.add(RoomStatus.READY)
+                var x = checkinDetailViewModel.roomConfig
 
-                lifecycleScope.launch {
+                lifecycleScope.launch() {
                     roomAvailableviewModel.searchRoom(
                         keyword = keyword,
                         roomType = checkinDetailViewModel.roomConfig.type ?: RoomType.NONE,
@@ -102,8 +103,12 @@ class RoomAvailableBottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun onRecyclerItemClicked(room: Room) {
-        Toast.makeText(context, room.toString(), Toast.LENGTH_SHORT).show()
+        //Toast.makeText(context, room.toString(), Toast.LENGTH_SHORT).show()
+        checkinDetailViewModel.roomID.postValue(room.roomID)
         checkinDetailViewModel.selectedRoom = room
+        checkinDetailViewModel.disableButton.postValue(false)
+
+        dismiss()
     }
 
     private fun observeSearch() {
@@ -112,6 +117,12 @@ class RoomAvailableBottomSheetFragment : BottomSheetDialogFragment() {
                 is Resource.Success -> {
                     it.data?.let { roomList ->
                         Log.d("CheckInResActivity1", roomList.toString())
+                        if (checkinDetailViewModel.roomConfig.beds == checkinDetailViewModel.reservation.room?.beds &&
+                            checkinDetailViewModel.roomConfig.type == checkinDetailViewModel.reservation.room?.type &&
+                            checkinDetailViewModel.roomConfig.smoking == checkinDetailViewModel.reservation.room?.smoking
+                        ) {
+                            checkinDetailViewModel.reservation.room?.let { it1 -> roomList.add(it1) }
+                        }
                         roomAvailableBinding.rvRoomAvailableList.adapter =
                             RoomAvailableAdapter(
                                 roomList,

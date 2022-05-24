@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.dechproduct.hotelreservationapp.data.model.booking.Booking
 import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingStatus
+import com.example.dechproduct.hotelreservationapp.data.model.room.BedType
 import com.example.dechproduct.hotelreservationapp.data.model.room.Room
+import com.example.dechproduct.hotelreservationapp.data.model.room.RoomType
 import com.example.dechproduct.hotelreservationapp.domain.usecase.UseCase
 import com.example.dechproduct.hotelreservationapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,8 +24,15 @@ class CheckinDetailViewModel @Inject constructor(private val useCase: UseCase) :
     var resolveReservation = MutableLiveData<Resource<Booking>>()
 
     lateinit var reservation: Booking
+
     var roomConfig: Room = Room()
+    var breakfast: Boolean = false
     lateinit var selectedRoom: Room
+
+    var roomID = MutableLiveData<String>()
+    var roomType = MutableLiveData<RoomType>()
+    var roomBed = MutableLiveData<BedType>()
+    var disableButton = MutableLiveData<Boolean>(false)
 
 //    @SuppressLint("StaticFieldLeak")
 //    private val context: Context = getApplication<Application>().applicationContext
