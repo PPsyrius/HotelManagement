@@ -221,6 +221,19 @@
                 app:layout_constraintEnd_toEndOf="@+id/button_test"
                 app:layout_constraintStart_toStartOf="@+id/button_test" />
 
+            <Button
+                android:id="@+id/button_camera2"
+                android:layout_width="30dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/ic_baseline_camera_alt_24"
+                android:textColor="@color/colorGrey"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.533"
+                app:layout_constraintStart_toEndOf="@+id/payment_type"
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
+
             <com.omarshehe.forminputkotlin.FormInputText
                 android:id="@+id/ID"
                 android:layout_width="match_parent"
@@ -374,15 +387,16 @@
                 android:id="@+id/payment_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="45dp"
                 app:customer_array="@array/headings"
                 app:customer_hint="Select Payment Type"
                 app:customer_isMandatory="true"
                 app:customer_label="Payment Type"
                 app:customer_value=""
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/phoneNumber">
 
             </com.omarshehe.forminputkotlin.FormInputSpinner>

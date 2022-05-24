@@ -39,13 +39,12 @@ class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewMo
 
     val amount = MutableLiveData<Int>().apply { value = 0 }
     val amountChild = MutableLiveData<Int>().apply { value = 0 }
-
     val checkedBreakfast = MutableLiveData<Boolean>().apply { value = false }
     val checkedSmoking = MutableLiveData<Boolean>().apply { value = false }
     var roomType : MutableLiveData<RoomType> = MutableLiveData()
     var bedType : MutableLiveData<BedType> = MutableLiveData()
-    var photo: Bitmap? = null
-
+    var paymentPhoto: Bitmap? = null
+    var idPhoto: Bitmap? = null
     var toOccupy: Occupancy = Occupancy(null, null, OccupancyStatus.NONE)
     var reservation: Booking = Booking(
         guest = Guest(),
@@ -54,6 +53,8 @@ class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewMo
         payment = Payment(),
         status = BookingStatus.CREATED,
     )
+
+    var cameraState: Int = 0
 
     fun breakfastChecked() {
         checkedBreakfast.value?.let { a ->

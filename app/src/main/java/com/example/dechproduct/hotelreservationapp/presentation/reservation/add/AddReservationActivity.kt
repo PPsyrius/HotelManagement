@@ -72,6 +72,10 @@ class AddReservationActivity : AppCompatActivity() {
         binding.tvDateEnd.text = convertLongToDate(today.time + (1000 * 60 * 60 * 24))
 
         binding.btnSubmit.setOnClickListener {
+
+//            var y = addReservationViewModel.idPhoto
+//            var x = addReservationViewModel.paymentPhoto
+
             if (binding.firstNameCustomer.getValue().isNotEmpty() and
                 binding.lastNameCustomer.getValue().isNotEmpty() and
                 binding.phoneNumber.getValue().isNotEmpty() and
@@ -120,7 +124,9 @@ class AddReservationActivity : AppCompatActivity() {
                 }
 
                 addReservationViewModel.reservation.guest?.verificationPhoto =
-                    addReservationViewModel.photo
+                    addReservationViewModel.idPhoto
+                addReservationViewModel.reservation.payment?.photo =
+                    addReservationViewModel.paymentPhoto
 
             } else {
                 Toast.makeText(applicationContext, "Insufficient Information.", Toast.LENGTH_SHORT)
@@ -129,10 +135,18 @@ class AddReservationActivity : AppCompatActivity() {
         }
 
         binding.buttonCamera.setOnClickListener {
-            Toast.makeText(applicationContext, "Camera Button is Tapped.", Toast.LENGTH_LONG).show()
-//            val intent =
-//                Intent(this@AddReservationActivity, CameraFragment::class.java)
-//            startActivity(intent)
+            Toast.makeText(applicationContext, "Take a photo of ID.", Toast.LENGTH_LONG).show()
+            addReservationViewModel.cameraState = 1
+            cameraFragment.show(supportFragmentManager, "TAG")
+        }
+
+        binding.buttonCamera2.setOnClickListener {
+            Toast.makeText(
+                applicationContext,
+                "Take a photo of payment invoice.",
+                Toast.LENGTH_LONG
+            ).show()
+            addReservationViewModel.cameraState = 2
             cameraFragment.show(supportFragmentManager, "TAG")
         }
 

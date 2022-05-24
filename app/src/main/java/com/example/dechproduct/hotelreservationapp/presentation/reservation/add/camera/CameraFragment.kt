@@ -53,15 +53,13 @@ class CameraFragment : DialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.activity_camera, container, false)
-//        super.onCreate(savedInstanceState)
-//        binding = ActivityCameraBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
     }
-    //TODO: Payment Photo
+    
     //TODO: Extends Stay
     //TODO: Mark room-> isWalking
+    //TODO: checkindetail
+
     //TODO: *Optional* Transient on (room occupancy in reservation calls, exposed on verificationPhoto)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -96,7 +94,12 @@ class CameraFragment : DialogFragment() {
             object : ImageCapture.OnImageCapturedCallback() {
                 override fun onCaptureSuccess(image: ImageProxy) {
 
-                    addReservationViewModel.photo = imageProxyToBitmap(image)
+                    when(addReservationViewModel.cameraState){
+                        1 -> addReservationViewModel.idPhoto = imageProxyToBitmap(image)
+                        2 -> addReservationViewModel.paymentPhoto = imageProxyToBitmap(image)
+                        else -> {throw Exception("Illegal Camera Caller")}
+                    }
+
                     super.onCaptureSuccess(image)
                     dismiss()
                 }
@@ -187,6 +190,7 @@ class CameraFragment : DialogFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        addReservationViewModel.cameraState = 0
         cameraExecutor.shutdown()
     }
 }
