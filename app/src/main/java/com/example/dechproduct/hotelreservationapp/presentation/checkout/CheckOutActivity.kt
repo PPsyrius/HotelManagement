@@ -66,7 +66,7 @@ class CheckOutActivity : AppCompatActivity() {
         })
 
         binding.reservationList.layoutManager = LinearLayoutManager(this)
-        
+
         checkOutViewModel.populateReserve()
 
         onSwipeHandle()
@@ -99,8 +99,28 @@ class CheckOutActivity : AppCompatActivity() {
 
                             }
                         }
-                    ))
+                    )
+                )
+                buffer.add(
+                    MyButton(this@CheckOutActivity,
+                        "Check-Out",
+                        45,
+                        R.drawable.ic_baseline_king_bed_24,
+                        Color.parseColor("#F8D568"),
+                        object : MyButtonClickListener {
+                            override fun onClick(pos: Int) {
+                                Toast.makeText(
+                                    this@CheckOutActivity,
+                                    "Check-out" + pos,
+                                    Toast.LENGTH_SHORT
+                                ).show()
 
+                                checkOutViewModel.checkOutReserved(checkOutViewModel.result[pos])
+
+                            }
+                        }
+                    )
+                )
             }
 
         }

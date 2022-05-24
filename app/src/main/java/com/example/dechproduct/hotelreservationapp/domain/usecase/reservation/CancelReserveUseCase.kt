@@ -16,14 +16,16 @@ class CancelReserveUseCase @Inject constructor(
 ) {
     suspend operator fun invoke(booking: Booking): Resource<Booking> {
         booking.room?.status = RoomStatus.READY
+        var discarder = mutableListOf<Occupancy>()
         for (item in booking.room?.occupancy!!) {
             if (booking.arrivalDate == item.arrivalDate &&
                 booking.departDate == item.departDate
             ) {
-                booking.room!!.occupancy!!.remove(item)
+                discarder.add(item)
                 break
             }
         }
+        booking.room!!.occupancy!!.removeAll(discarder)
         booking.room?.let { editRoomUseCase(it) }
 
         booking.room = Room()

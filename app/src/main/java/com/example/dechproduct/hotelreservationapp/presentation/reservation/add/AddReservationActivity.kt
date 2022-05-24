@@ -309,6 +309,7 @@ class AddReservationActivity : AppCompatActivity() {
         return format.format(date)
     }
 
+    //For edit reservation activity
     private fun observeUpdateInfo() {
         addReservationViewModel.loadedReservation.observe(this, {
             when (it) {
@@ -375,7 +376,7 @@ class AddReservationActivity : AppCompatActivity() {
                 }
 
                 is Resource.Failure -> {
-                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                    Toast.makeText(applicationContext, it.throwable.toString(), Toast.LENGTH_SHORT)
                         .show()
                     binding.btnSubmit.isEnabled = true
                 }
@@ -389,13 +390,13 @@ class AddReservationActivity : AppCompatActivity() {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { rooms ->
-
                         if (rooms.isEmpty()) {
                             Toast.makeText(
                                 applicationContext,
                                 "No room available, try adjusting the criteria.",
                                 Toast.LENGTH_SHORT
                             ).show()
+                            binding.btnSubmit.isEnabled = true
                         } else {
                             addReservationViewModel.reservation.room = rooms.first()
                             if (rooms.first().maxCap == addReservationViewModel.reservation.adultCount) {
@@ -422,8 +423,9 @@ class AddReservationActivity : AppCompatActivity() {
                 }
 
                 is Resource.Failure -> {
-                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                    Toast.makeText(applicationContext, it.throwable.toString(), Toast.LENGTH_SHORT)
                         .show()
+                    binding.btnSubmit.isEnabled = true
                 }
             }
         })
