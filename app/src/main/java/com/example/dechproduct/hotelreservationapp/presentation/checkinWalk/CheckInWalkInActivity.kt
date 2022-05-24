@@ -26,8 +26,6 @@ import java.util.*
 @AndroidEntryPoint
 class CheckInWalkInActivity : AppCompatActivity() {
 
-    //TODO: Handle Responsive UI -- TUNG
-
     private lateinit var binding: ActivityCheckinWalkInBinding
     private val checkInWalkInViewModel: CheckInWalkinViewModel by viewModels()
 

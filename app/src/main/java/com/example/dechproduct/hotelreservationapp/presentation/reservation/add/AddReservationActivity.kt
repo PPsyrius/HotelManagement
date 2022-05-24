@@ -276,7 +276,6 @@ class AddReservationActivity : AppCompatActivity() {
             .setCalendarConstraints(constraintsBuilder)
             .setTitleText("Select Booking Date ")
             .build()
-        //TODO: Set minimum date to current date-- done ja
 
         dateRangePicker.show(
             supportFragmentManager,

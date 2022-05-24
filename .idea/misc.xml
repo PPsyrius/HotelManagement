@@ -85,16 +85,37 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/FinalProjectHotelReservationZa/HotelManagement/app/src/main/res/menu/bottom_menu.xml" value="0.2972222222222222" />
         <entry key="..\:/Users/User/AppData/Local/Android/Sdk/platforms/android-31/data/res/drawable-watch/sym_def_app_icon.xml" value="0.34479166666666666" />
         <entry key="..\:/Users/User/AppData/Local/Android/Sdk/platforms/android-31/data/res/drawable/sym_def_app_icon.xml" value="0.36041666666666666" />
+        <entry key="app/src/main/res/layout-land/activity_checkin_detail.xml" value="0.5" />
+        <entry key="app/src/main/res/layout-land/activity_login.xml" value="0.24250440917107582" />
+        <entry key="app/src/main/res/layout-land/activity_menu2.xml" value="0.33" />
+        <entry key="app/src/main/res/layout-land/activity_reservation_menu.xml" value="0.5" />
+        <entry key="app/src/main/res/layout-land/fragment_confirmation_check_in_bottom_sheet.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_add_reservation.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/activity_camera.xml" value="0.23504273504273504" />
+        <entry key="app/src/main/res/layout/activity_check_in.xml" value="0.17606837606837608" />
+        <entry key="app/src/main/res/layout/activity_check_out.xml" value="0.23504273504273504" />
         <entry key="app/src/main/res/layout/activity_checkin_detail.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/activity_menu2.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_checkin_walk_in.xml" value="0.23504273504273504" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.23504273504273504" />
+        <entry key="app/src/main/res/layout/activity_menu2.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_reservation_menu.xml" value="0.23504273504273504" />
+        <entry key="app/src/main/res/layout/activity_search_reservationactivity.xml" value="0.23504273504273504" />
+        <entry key="app/src/main/res/layout/add_check_in.xml" value="0.23504273504273504" />
+        <entry key="app/src/main/res/layout/check_in_item.xml" value="0.23504273504273504" />
+        <entry key="app/src/main/res/layout/check_out_item.xml" value="0.23504273504273504" />
         <entry key="app/src/main/res/layout/fragment_add_reservation_room_bed_bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_add_reservation_room_type_bottom_sheet.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_confirmation_check_in_bottom_sheet.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_confirmation_check_in_bottom_sheet.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_room_available_bottom_sheet.xml" value="0.19655797101449277" />
         <entry key="app/src/main/res/layout/fragment_room_bed_bottom_sheet.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_room_type_bottom_sheet.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_searchbar.xml" value="0.23504273504273504" />
+        <entry key="app/src/main/res/layout/reservation_item.xml" value="0.23504273504273504" />
         <entry key="app/src/main/res/layout/room_available_item.xml" value="0.1609375" />
+        <entry key="app/src/main/res/layout/room_bed_item.xml" value="0.23504273504273504" />
+        <entry key="app/src/main/res/layout/room_bed_reservation_item.xml" value="0.23504273504273504" />
+        <entry key="app/src/main/res/layout/room_reservation_item.xml" value="0.23504273504273504" />
+        <entry key="app/src/main/res/layout/room_type_item.xml" value="0.23504273504273504" />
       </map>
     </option>
   </component>

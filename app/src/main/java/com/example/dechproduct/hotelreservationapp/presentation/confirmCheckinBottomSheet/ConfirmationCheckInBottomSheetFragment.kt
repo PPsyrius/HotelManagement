@@ -29,8 +29,6 @@ import java.text.SimpleDateFormat
 @AndroidEntryPoint
 class ConfirmationCheckInBottomSheetFragment : BottomSheetDialogFragment() {
 
-    //TODO: Handle Layout to Responsive --TUNG
-
     private lateinit var binding: FragmentConfirmationCheckInBottomSheetBinding
     private val confirmationCheckInBottomSheetViewModel: ConfirmationCheckInBottomSheetViewModel by viewModels()
     private val checkInDetailViewModel: CheckinDetailViewModel by activityViewModels()
