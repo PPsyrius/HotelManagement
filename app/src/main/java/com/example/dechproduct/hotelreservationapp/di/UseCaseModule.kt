@@ -67,6 +67,8 @@ object UseCaseModule {
             SearchReserveByNameUseCase(reservationRepository),
             SearchReserveByArrivalUseCase(reservationRepository),
             SearchReserveByDepartUseCase(reservationRepository),
+            SearchReserveByNamedArrivalUseCase(reservationRepository),
+            SearchReserveByNamedDepartUseCase(reservationRepository),
             
             EditRoomUseCase(roomRepository),
             MarkRoomUseCase(EditRoomUseCase(roomRepository)),

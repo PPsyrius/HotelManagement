@@ -9,12 +9,16 @@ import com.example.dechproduct.hotelreservationapp.data.model.booking.BookingSta
 import com.example.dechproduct.hotelreservationapp.data.model.room.RoomStatus
 import com.example.dechproduct.hotelreservationapp.domain.repository.ReservationRepository
 import com.example.dechproduct.hotelreservationapp.util.Resource
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 class ReservationRepositoryImpl @Inject constructor(
     private val reservationAPI: ReservationAPIService,
     val sharedPreferences: SharedPreferences
 ) : ReservationRepository {
+
+    private var dateFormat = SimpleDateFormat("dd-MM-yyyy")
 
     override suspend fun add(booking: Booking): Resource<Booking> {
         return try {
@@ -34,7 +38,8 @@ class ReservationRepositoryImpl @Inject constructor(
 
     override suspend fun edit(booking: Booking): Resource<Booking> {
         return try {
-            var response = booking.bookingID?.let { reservationAPI.updateBooking(it, booking.toBookingDTO()) }
+            var response =
+                booking.bookingID?.let { reservationAPI.updateBooking(it, booking.toBookingDTO()) }
             if (response!!.isSuccessful) {
                 Resource.Success(booking)
             } else {
@@ -156,6 +161,48 @@ class ReservationRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun searchByNamedArrivalDate(
+        name: String,
+        date: String,
+        status: List<BookingStatus>
+    ): Resource<MutableList<Booking>> {
+        return try {
+            var results: MutableList<Booking> = mutableListOf<Booking>()
+            var result_fname = reservationAPI.getByFirstName(name)
+            var result_lname = reservationAPI.getByLastName(name)
+
+            filterResult(result_fname, results, status)
+            filterResult(result_lname, results, status)
+            filterDate(date, results, true)
+
+            Resource.Success(results)
+
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
+
+    override suspend fun searchByNamedDepartDate(
+        name: String,
+        date: String,
+        status: List<BookingStatus>
+    ): Resource<MutableList<Booking>> {
+        return try {
+            var results: MutableList<Booking> = mutableListOf<Booking>()
+            var result_fname = reservationAPI.getByFirstName(name)
+            var result_lname = reservationAPI.getByLastName(name)
+
+            filterResult(result_fname, results, status)
+            filterResult(result_lname, results, status)
+            filterDate(date, results, false)
+
+            Resource.Success(results)
+
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
+
     override suspend fun populate(status: List<BookingStatus>): Resource<MutableList<Booking>> {
         return try {
 
@@ -167,6 +214,18 @@ class ReservationRepositoryImpl @Inject constructor(
             Resource.Success(results)
         } catch (exception: Exception) {
             Resource.Failure(exception)
+        }
+    }
+
+    private fun filterDate(date: String, results: MutableList<Booking>, isArrival: Boolean) {
+        val target = dateFormat.parse(date)
+        for(result in results){
+            if(isArrival && result.arrivalDate != target){
+                results.remove(result)
+            }
+            else if(!isArrival && result.departDate != target){
+                results.remove(result)
+            }
         }
     }
 

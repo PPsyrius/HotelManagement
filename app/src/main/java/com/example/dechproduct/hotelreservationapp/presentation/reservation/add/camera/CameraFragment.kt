@@ -40,7 +40,6 @@ class CameraFragment : DialogFragment() {
     private val addReservationViewModel: AddReservationViewModel by activityViewModels()
 
     private var imageCapture: ImageCapture? = null
-    private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,9 +59,10 @@ class CameraFragment : DialogFragment() {
 //        binding = ActivityCameraBinding.inflate(layoutInflater)
 //        setContentView(binding.root)
     }
-
+    //TODO: Verification Photo
+    //TODO: Payment Photo
     //TODO: Extends Stay
-    //TODO: Mark room, isWalking
+    //TODO: Mark room-> isWalking
     //TODO: *Optional* Transient on (room occupancy in reservation calls, exposed on verificationPhoto)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

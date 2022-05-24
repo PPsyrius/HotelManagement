@@ -53,11 +53,10 @@ class CheckInActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String): Boolean {
                 if (query == "")
 
-                        checkInViewModel.populateReserve()
-
+                    checkInViewModel.populateReserve()
                 else
 
-                        checkInViewModel.searchReserve(query.capitalize())
+                    checkInViewModel.searchReserve(query.capitalize())
 
                 return false
             }
@@ -65,11 +64,10 @@ class CheckInActivity : AppCompatActivity() {
             override fun onQueryTextChange(newText: String): Boolean {
                 if (newText == "")
 
-                        checkInViewModel.populateReserve()
-
+                    checkInViewModel.populateReserve()
                 else
 
-                        checkInViewModel.searchReserve(newText.capitalize())
+                    checkInViewModel.searchReserve(newText.capitalize())
 
                 return false
             }
@@ -78,7 +76,7 @@ class CheckInActivity : AppCompatActivity() {
         binding.reservationList.layoutManager = LinearLayoutManager(this)
 
 
-            checkInViewModel.populateReserve()
+        checkInViewModel.populateReserve()
 
 
         binding.fabAdd.setOnClickListener {
@@ -92,7 +90,7 @@ class CheckInActivity : AppCompatActivity() {
         observeSearch()
     }
 
-    private fun observeConfirmationCallBack(){
+    private fun observeConfirmationCallBack() {
         checkInViewModel.refreshCall.observe(this, {
             checkInViewModel.populateReserve()
         })
@@ -138,7 +136,7 @@ class CheckInActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     it.data?.let { reservation_list ->
                         checkInViewModel.result = reservation_list
-                        Log.d("CheckInActivity", checkInViewModel.result.toString())
+                        //Log.d("CheckInActivity", checkInViewModel.result.toString())
                         binding.reservationList.adapter =
                             CheckInAdapter(checkInViewModel.result)            //here adapter set up recycler view
                     }

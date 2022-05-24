@@ -34,6 +34,8 @@ class UseCase(
     var searchReserveByNameUseCase: SearchReserveByNameUseCase,
     var searchReserveByArrivalUseCase: SearchReserveByArrivalUseCase,
     var searchReserveByDepartUseCase: SearchReserveByDepartUseCase,
+    var searchReserveByNamedArrivalUseCase: SearchReserveByNamedArrivalUseCase,
+    var searchReserveByNamedDepartUseCase: SearchReserveByNamedDepartUseCase,
 
     var editRoomUseCase: EditRoomUseCase,
     var markRoomUseCase: MarkRoomUseCase,

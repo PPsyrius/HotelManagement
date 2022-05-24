@@ -1,7 +1,10 @@
 package com.example.dechproduct.hotelreservationapp.data.model.guest
 
+import android.graphics.Bitmap
 import android.os.Parcelable
+import android.util.Base64
 import kotlinx.parcelize.Parcelize
+import java.io.ByteArrayOutputStream
 
 @Parcelize
 data class Guest(
@@ -24,8 +27,14 @@ data class Guest(
 
     var verificationID: VerificationID? = VerificationID(),
 
-    var verificationPhoto: String? = "",
+    var verificationPhoto: Bitmap? = null,
 ) : Parcelable {
+    private fun encodeImage(photo: Bitmap): String? {
+        val bOutput = ByteArrayOutputStream()
+        photo.compress(Bitmap.CompressFormat.JPEG, 100, bOutput)
+        return Base64.encodeToString(bOutput.toByteArray(), Base64.NO_WRAP)
+    }
+
     fun toGuestDTO(): GuestDTO {
         return GuestDTO(
             guestID = guestID,
@@ -37,7 +46,7 @@ data class Guest(
             postalCode = postalCode,
             country = country,
             verificationID = verificationID.toString(),
-            verificationPhoto = verificationPhoto
+            verificationPhoto = verificationPhoto?.let { encodeImage(it) }
         )
     }
 }

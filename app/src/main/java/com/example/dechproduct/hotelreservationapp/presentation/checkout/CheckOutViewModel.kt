@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class CheckOutViewModel @Inject constructor(private val useCase: UseCase): ViewModel(){
+class CheckOutViewModel @Inject constructor(private val useCase: UseCase) : ViewModel() {
 
     var reserver = MutableLiveData<Resource<MutableList<Booking>>>()
     var resolveReservation = MutableLiveData<Resource<Booking>>()
@@ -24,14 +24,18 @@ class CheckOutViewModel @Inject constructor(private val useCase: UseCase): ViewM
 
     var dateFormat = SimpleDateFormat("dd-MM-yyyy")
 
-    fun searchReserve(keyword:String){
+    fun searchReserve(keyword: String) {
         viewModelScope.launch {
-            val reservation = useCase.searchReserveByNameUseCase(keyword, mutableListOf<BookingStatus>(BookingStatus.CHECK_IN))
+            val reservation = useCase.searchReserveByNamedDepartUseCase(
+                keyword,
+                dateFormat.format(Date()),
+                mutableListOf<BookingStatus>(BookingStatus.CHECK_IN)
+            )
             reserver.postValue(reservation)
         }
     }
 
-    fun populateReserve(){
+    fun populateReserve() {
         viewModelScope.launch {
             val reservations =
                 useCase.searchReserveByDepartUseCase(
@@ -42,7 +46,7 @@ class CheckOutViewModel @Inject constructor(private val useCase: UseCase): ViewM
         }
     }
 
-    fun checkOutReserved(booking: Booking){
+    fun checkOutReserved(booking: Booking) {
         viewModelScope.launch {
             val response = useCase.checkOutGuestUseCase(booking)
             resolveReservation.postValue(response)

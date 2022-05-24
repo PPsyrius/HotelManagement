@@ -1,5 +1,8 @@
 package com.example.dechproduct.hotelreservationapp.data.model.guest
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Base64
 import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.google.gson.annotations.SerializedName
 
@@ -26,6 +29,13 @@ data class GuestDTO(
     var verificationPhoto: String?,
 ) {
     fun toGuest(): Guest {
+        var image: Bitmap? = null
+        try {
+            val imageBytes = Base64.decode(verificationPhoto, 0)
+            image = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+        }
+        catch (e:Exception){
+        }
         return Guest(
             guestID = guestID,
             firstName = firstName,
@@ -36,7 +46,7 @@ data class GuestDTO(
             postalCode = postalCode,
             country = country,
             verificationID = verificationID?.let { VerificationID(it) },
-            verificationPhoto = verificationPhoto
+            verificationPhoto = image
         )
     }
 }

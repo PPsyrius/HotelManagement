@@ -125,12 +125,6 @@ class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewMo
         }
     }
 
-    fun encodeImage(photo: Bitmap): String? {
-        val bOutput = ByteArrayOutputStream()
-        photo.compress(Bitmap.CompressFormat.PNG, 100, bOutput)
-        return Base64.encodeToString(bOutput.toByteArray(), Base64.NO_WRAP)
-    }
-
     fun checkRoomAvailable() {
         viewModelScope.launch {
             try {

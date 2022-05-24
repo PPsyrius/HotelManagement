@@ -120,11 +120,7 @@ class AddReservationActivity : AppCompatActivity() {
                 }
 
                 addReservationViewModel.reservation.guest?.verificationPhoto =
-                    addReservationViewModel.photo?.let { it1 ->
-                        addReservationViewModel.encodeImage(
-                            it1
-                        )
-                    }
+                    addReservationViewModel.photo
 
             } else {
                 Toast.makeText(applicationContext, "Insufficient Information.", Toast.LENGTH_SHORT)
@@ -360,22 +356,7 @@ class AddReservationActivity : AppCompatActivity() {
                             applicationContext, "Booking Success.",
                             Toast.LENGTH_SHORT
                         ).show()
-
-//                        if (returnToCheckInActivity) {
-                        if (false) {
-                            val intent =
-                                Intent(
-                                    this@AddReservationActivity,
-                                    CheckInActivity::class.java
-                                )
-                        } else {
-                            val intent =
-                                Intent(
-                                    this@AddReservationActivity,
-                                    ReservationMenuActivity::class.java
-                                )
-                        }
-                        startActivity(intent)
+                        finish()
                     }
                 }
 
@@ -401,12 +382,7 @@ class AddReservationActivity : AppCompatActivity() {
                                 "No room available, try adjusting the criteria.",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            //TODO: Show Room Availability in Date Picker
                         } else {
-//                            Toast.makeText(
-//                                applicationContext, "Auto assigned to room.",
-//                                Toast.LENGTH_SHORT
-//                            ).show()
                             addReservationViewModel.reservation.room = rooms.first()
                             if (rooms.first().maxCap == addReservationViewModel.reservation.adultCount) {
 
