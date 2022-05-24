@@ -14,13 +14,7 @@
       ],
       "canAddonBed": false,
       "smoking": false,
-      "occupancy": [
-        {
-          "arrivalDate": "24-05-2022",
-          "departDate": "26-05-2022",
-          "status": "RS"
-        }
-      ],
+      "occupancy": [],
       "status": "RS",
       "isWalking": false,
       "device": [
@@ -127,6 +121,112 @@
       "status": "NF",
       "isWalking": false,
       "device": [],
+      "price": 3500.1
+    },
+    {
+      "roomID": "007",
+      "type": "SD",
+      "beds": "SB",
+      "maxCap": 2,
+      "floor": "G",
+      "features": [
+        "AL",
+        "CR",
+        "MV",
+        "SV"
+      ],
+      "canAddonBed": false,
+      "smoking": true,
+      "occupancy": [],
+      "status": "RS",
+      "isWalking": false,
+      "device": [
+        {
+          "deviceID": "001",
+          "displayName": "Electric Kettle",
+          "manufacturer": "Skyworth",
+          "serial": "SN0112",
+          "status": "NM",
+          "type": "EK"
+        },
+        {
+          "deviceID": "002",
+          "displayName": "Air Conditioner",
+          "manufacturer": "Samsung",
+          "serial": "SS50392128",
+          "status": "NF",
+          "type": "AC"
+        }
+      ],
+      "price": 1000.1
+    },
+    {
+      "roomID": "008",
+      "type": "DX",
+      "beds": "DB",
+      "maxCap": 2,
+      "floor": "B1",
+      "features": [
+        "AL",
+        "CV"
+      ],
+      "canAddonBed": true,
+      "smoking": false,
+      "occupancy": [],
+      "status": "RS",
+      "isWalking": false,
+      "device": [
+        {
+          "deviceID": "004",
+          "displayName": "Electric Kettle",
+          "type": "EK",
+          "serial": "SN163B",
+          "manufacturer": "Skyworth",
+          "status": "NM"
+        },
+        {
+          "deviceID": "005",
+          "displayName": "Air Conditioner",
+          "type": "AC",
+          "serial": "SS5032345B",
+          "manufacturer": "Samsung",
+          "status": "NM"
+        },
+        {
+          "deviceID": "006",
+          "displayName": "Television",
+          "type": "TV",
+          "serial": "LG1093483223B",
+          "manufacturer": "LG",
+          "status": "NM"
+        }
+      ],
+      "price": 2000.35
+    },
+    {
+      "roomID": "003",
+      "type": "SE",
+      "beds": "SB",
+      "maxCap": 3,
+      "floor": "B2",
+      "features": [
+        "CV"
+      ],
+      "canAddonBed": false,
+      "smoking": true,
+      "occupancy": [],
+      "status": "NC",
+      "isWalking": false,
+      "device": [
+        {
+          "deviceID": "007",
+          "displayName": "Television",
+          "manufacturer": "LG",
+          "serial": "LG1093483223B",
+          "status": "NM",
+          "type": "TV"
+        }
+      ],
       "price": 3500.1
     }
   ]
