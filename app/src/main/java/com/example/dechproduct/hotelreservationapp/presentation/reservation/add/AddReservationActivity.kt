@@ -28,6 +28,9 @@ import java.util.*
 import android.content.DialogInterface
 
 import androidx.appcompat.app.AlertDialog
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.DateValidatorPointForward
 
 
 @AndroidEntryPoint
@@ -265,11 +268,16 @@ class AddReservationActivity : AppCompatActivity() {
     }
 
     private fun showDateRangePicker() {
+        val constraintsBuilder= CalendarConstraints.Builder()
+            .setValidator(DateValidatorPointForward.now())
+            .build()
         val dateRangePicker = MaterialDatePicker.Builder
             .dateRangePicker()
+            .setCalendarConstraints(constraintsBuilder)
             .setTitleText("Select Booking Date ")
             .build()
-        //TODO: Set minimum date to current date
+        //TODO: Set minimum date to current date-- done ja
+
         dateRangePicker.show(
             supportFragmentManager,
             "date_range_picker"
