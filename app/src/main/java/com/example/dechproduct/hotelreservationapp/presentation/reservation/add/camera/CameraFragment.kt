@@ -59,7 +59,6 @@ class CameraFragment : DialogFragment() {
 //        binding = ActivityCameraBinding.inflate(layoutInflater)
 //        setContentView(binding.root)
     }
-    //TODO: Verification Photo
     //TODO: Payment Photo
     //TODO: Extends Stay
     //TODO: Mark room-> isWalking
