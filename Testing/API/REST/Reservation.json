@@ -1,23 +1,658 @@
 {
   "ReservationAPI": [
     {
-      "bookingID": "1639872139204",
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653466830354",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
       "guest": {
         "address": [
-          "Ham and Cheese Rd.",
-          "With Eggs District"
+          "Sunset Rd."
         ],
-        "country": "Thailand",
-        "firstName": "John",
-        "guestID": "P001",
-        "lastName": "Wicked",
-        "phoneNumber": "6600123456789",
-        "postalCode": "10240",
-        "region": "Bangkok",
-        "verificationID": "1234567890123",
-        "verificationPhoto": ""
+        "country": "",
+        "firstName": "Sam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
       },
-      "ticket": {},
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "VI"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653466851846",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          ""
+        ],
+        "country": "",
+        "firstName": "Xam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "26-05-2022",
+      "bookingID": "1653468109869",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "27-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          "",
+          ""
+        ],
+        "country": "",
+        "firstName": "Xam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653468181501",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          ""
+        ],
+        "country": "",
+        "firstName": "Xam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653468350323",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          ""
+        ],
+        "country": "",
+        "firstName": "Sam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653468604508",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          ""
+        ],
+        "country": "",
+        "firstName": "Xam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653468945210",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          ""
+        ],
+        "country": "",
+        "firstName": "Sam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653469057381",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          ""
+        ],
+        "country": "",
+        "firstName": "Sam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653469170943",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          ""
+        ],
+        "country": "",
+        "firstName": "Sam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653469336330",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          ""
+        ],
+        "country": "",
+        "firstName": "Sam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653469479433",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          ""
+        ],
+        "country": "",
+        "firstName": "Sam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653469557237",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          "",
+          ""
+        ],
+        "country": "",
+        "firstName": "Xam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653469723682",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          "",
+          ""
+        ],
+        "country": "",
+        "firstName": "Sam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
+      },
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 3,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653470072678",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Sunset Rd.",
+          "",
+          ""
+        ],
+        "country": "",
+        "firstName": "Xam",
+        "guestID": "",
+        "lastName": "Jetstream",
+        "phoneNumber": "0991231237",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "182937ASD391"
+      },
+      "isAddonBed": false,
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
+      },
       "room": {
         "beds": "SB",
         "canAddonBed": false,
@@ -27,7 +662,6 @@
             "displayName": "Electric Kettle",
             "manufacturer": "Skyworth",
             "serial": "SN0112",
-            "status": "NM",
             "type": "EK"
           },
           {
@@ -35,7 +669,6 @@
             "displayName": "Air Conditioner",
             "manufacturer": "Samsung",
             "serial": "SS50392128",
-            "status": "NF",
             "type": "AC"
           }
         ],
@@ -45,221 +678,205 @@
           "MV",
           "SV"
         ],
-        "floor": "G",
+        "floor": "1",
         "isWalking": false,
-        "maxCap": 2,
+        "maxCap": 3,
         "occupancy": [
           {
-            "arrivalDate": "01-02-2023",
-            "departDate": "02-03-2025",
-            "status": "RS"
-          },
-          {
-            "arrivalDate": "01-06-2022",
-            "departDate": "01-08-2025",
+            "arrivalDate": "25-05-2022",
+            "departDate": "26-05-2022",
             "status": "RS"
           }
         ],
-        "price": 1000.1,
-        "roomID": "000",
+        "price": 1200,
+        "roomID": "101",
         "smoking": false,
         "status": "RS",
         "type": "SD"
       },
+      "status": "RSC",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
+      "adultCount": 2,
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653470910181",
+      "breakfast": true,
+      "childCount": 0,
+      "departDate": "26-05-2022",
+      "guest": {
+        "address": [
+          "Standing Rd 10/10",
+          ""
+        ],
+        "country": "",
+        "firstName": "Jack",
+        "guestID": "",
+        "lastName": "Realized",
+        "phoneNumber": "0991003000",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "12039824"
+      },
+      "isAddonBed": false,
       "payment": {
-        "paymentID": "F123",
-        "photo": "",
+        "paymentID": "",
         "type": "CA"
       },
-      "arrivalDate": "01-02-2023",
-      "departDate": "02-03-2025",
-      "adultCount": 2,
-      "childCount": 0,
-      "status": "CHI",
-      "breakfast": true,
-      "isAddonBed": false
-    },
-    {
-      "bookingID": "1639924905347",
-      "guest": {
-        "guestID": "P021",
-        "firstName": "John",
-        "lastName": "Cena",
-        "phoneNumber": "12039458924",
-        "address": [
-          "Icecream Rd.",
-          "Poyo Bay"
-        ],
-        "region": "Soda Island",
-        "postalCode": "943JDC12",
-        "country": "Dreamland",
-        "verificationID": "0X0X0X0X0",
-        "verificationPhoto": ""
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
       },
-      "ticket": {},
-      "room": {},
-      "payment": {
-        "type": "MS"
-      },
-      "arrivalDate": "01-05-2023",
-      "departDate": "02-05-2023",
-      "adultCount": 2,
-      "childCount": 1,
-      "status": "RSC",
-      "breakfast": true,
-      "isAddonBed": false
-    },
-    {
-      "bookingID": "16398721313504",
-      "guest": {
-        "address": [
-          "25 Broadway Rd.",
-          "Something Something Lane"
-        ],
-        "country": "Thailand",
-        "firstName": "Johannas",
-        "guestID": "GX01",
-        "lastName": "Vicketry",
-        "phoneNumber": "0980000011",
-        "postalCode": "10000",
-        "region": "Bangkok",
-        "verificationID": "10000000000",
-        "verificationPhoto": ""
-      },
+      "status": "CAX",
       "ticket": {
-        "ticketID": "0A01"
-      },
-      "room": {},
-      "payment": {
-        "paymentID": "P234",
-        "photo": "",
-        "type": "VI"
-      },
-      "arrivalDate": "01-02-2023",
-      "departDate": "02-03-2025",
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
+    },
+    {
       "adultCount": 2,
+      "arrivalDate": "24-05-2022",
+      "bookingID": "1653470925545",
+      "breakfast": true,
       "childCount": 0,
-      "status": "CHO",
-      "breakfast": true,
-      "isAddonBed": false
-    },
-    {
-      "adultCount": 1,
-      "arrivalDate": "19-05-2022",
-      "bookingID": "1652299839954",
-      "breakfast": true,
-      "childCount": 1,
-      "departDate": "20-05-2022",
+      "departDate": "25-05-2022",
       "guest": {
         "address": [
-          "23/32"
+          "Standing Rd 10/10",
+          "",
+          ""
         ],
-        "firstName": "Kingbo",
-        "lastName": "Kobing",
-        "phoneNumber": "0888888888",
-        "verificationID": "22323232323"
+        "country": "",
+        "firstName": "Jack",
+        "guestID": "",
+        "lastName": "Realized",
+        "phoneNumber": "0991003000",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "12039824"
       },
       "isAddonBed": false,
-      "payment": {},
-      "status": "CRE"
-    },
-    {
-      "adultCount": 1,
-      "arrivalDate": "12-05-2022",
-      "bookingID": "1652302262809",
-      "breakfast": true,
-      "childCount": 1,
-      "departDate": "20-05-2022",
-      "guest": {
-        "address": [
-          "12251/52"
-        ],
-        "firstName": "Markman",
-        "lastName": "Eiei",
-        "phoneNumber": "0888888888",
-        "verificationID": "1454545455"
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
       },
-      "isAddonBed": false,
-      "payment": {},
-      "status": "CRE"
-    },
-    {
-      "adultCount": 3,
-      "arrivalDate": "20-05-2022",
-      "bookingID": "1652381837734",
-      "breakfast": true,
-      "childCount": 2,
-      "departDate": "28-05-2022",
-      "guest": {
-        "address": [
-          "235/88"
-        ],
-        "firstName": "Add",
-        "lastName": "Error",
-        "phoneNumber": "0945454545",
-        "verificationID": "1222111111111"
+      "room": {
+        "beds": "NON",
+        "canAddonBed": true,
+        "device": [],
+        "features": [],
+        "floor": "",
+        "isWalking": false,
+        "maxCap": 0,
+        "occupancy": [],
+        "price": 0,
+        "roomID": "",
+        "smoking": false,
+        "status": "NON",
+        "type": "NON"
       },
-      "isAddonBed": false,
-      "payment": {},
-      "status": "CRE"
+      "status": "CAX",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
     },
     {
       "adultCount": 2,
-      "arrivalDate": "19-05-2022",
-      "bookingID": "1652384349317",
+      "arrivalDate": "25-05-2022",
+      "bookingID": "1653472033254",
       "breakfast": true,
-      "childCount": 1,
-      "departDate": "20-05-2022",
+      "childCount": 0,
+      "departDate": "26-05-2022",
       "guest": {
         "address": [
-          "23/65"
+          "Standing Rd 10/10",
+          "",
+          ""
         ],
-        "firstName": "Anna",
-        "lastName": "Zamak",
-        "phoneNumber": "0888888888",
-        "verificationID": "1223322232"
+        "country": "",
+        "firstName": "Jack",
+        "guestID": "",
+        "lastName": "Realized",
+        "phoneNumber": "0991003000",
+        "postalCode": "",
+        "region": "",
+        "verificationID": "12039824"
       },
       "isAddonBed": false,
-      "payment": {},
-      "status": "CRE"
-    },
-    {
-      "adultCount": 1,
-      "arrivalDate": "27-05-2022",
-      "bookingID": "1652396141501",
-      "breakfast": true,
-      "departDate": "04-06-2022",
-      "guest": {
-        "address": [
-          "25/olympus"
-        ],
-        "firstName": "Percy",
-        "lastName": "Jackson",
-        "phoneNumber": "0974848448",
-        "verificationID": "781515115151515"
+      "payment": {
+        "paymentID": "",
+        "type": "CA"
       },
-      "isAddonBed": false,
-      "payment": {},
-      "status": "CRE"
-    },
-    {
-      "adultCount": 1,
-      "arrivalDate": "19-05-2022",
-      "bookingID": "1652571871743",
-      "breakfast": true,
-      "departDate": "21-05-2022",
-      "guest": {
-        "address": [
-          "225/45"
+      "room": {
+        "beds": "DB",
+        "canAddonBed": true,
+        "device": [
+          {
+            "deviceID": "004",
+            "displayName": "Electric Kettle",
+            "manufacturer": "Skyworth",
+            "serial": "SN163B",
+            "type": "EK"
+          },
+          {
+            "deviceID": "005",
+            "displayName": "Air Conditioner",
+            "manufacturer": "Samsung",
+            "serial": "SS5032345B",
+            "type": "AC"
+          },
+          {
+            "deviceID": "006",
+            "displayName": "Television",
+            "manufacturer": "LG",
+            "serial": "LG1093483223B",
+            "type": "TV"
+          }
         ],
-        "firstName": "Mahatja",
-        "lastName": "Kaba",
-        "phoneNumber": "0844848484",
-        "verificationID": "6596595956226"
+        "features": [
+          "AL",
+          "CV"
+        ],
+        "floor": "2",
+        "isWalking": false,
+        "maxCap": 3,
+        "occupancy": [
+          {
+            "arrivalDate": "25-05-2022",
+            "departDate": "26-05-2022",
+            "status": "RS"
+          }
+        ],
+        "price": 2400,
+        "roomID": "201",
+        "smoking": false,
+        "status": "RS",
+        "type": "DX"
       },
-      "isAddonBed": false,
-      "payment": {},
-      "status": "CRE"
+      "status": "RSC",
+      "ticket": {
+        "password": "",
+        "ticketID": "",
+        "userName": ""
+      }
     }
   ]
 }
