@@ -91,9 +91,8 @@ class CheckOutActivity : AppCompatActivity() {
                         Color.parseColor("#FF5003"),
                         object : MyButtonClickListener {
                             override fun onClick(pos: Int) {
-
+                                checkOutViewModel.isExtend = false
                                 checkOutViewModel.checkOutReserved(checkOutViewModel.result[pos])
-
                             }
                         }
                     )
@@ -106,7 +105,7 @@ class CheckOutActivity : AppCompatActivity() {
                         Color.parseColor("#F8D568"),
                         object : MyButtonClickListener {
                             override fun onClick(pos: Int) {
-                                //TODO: Extend Stay
+                                checkOutViewModel.isExtend = true
                                 checkOutViewModel.checkOutReserved(checkOutViewModel.result[pos])
                                 val intent =
                                     Intent(applicationContext, AddReservationActivity::class.java)
@@ -156,9 +155,14 @@ class CheckOutActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         )
                             .show()
-                        val intent =
-                            Intent(this@CheckOutActivity, MenuActivity::class.java)
-                        startActivity(intent)
+                        if (!checkOutViewModel.isExtend) {
+                            val intent =
+                                Intent(this@CheckOutActivity, MenuActivity::class.java)
+                            startActivity(intent)
+                        }
+                        else{
+                            finish()
+                        }
                     }
                 }
                 is Resource.Failure -> {
