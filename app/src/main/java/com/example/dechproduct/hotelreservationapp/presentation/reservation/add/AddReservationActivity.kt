@@ -339,7 +339,7 @@ class AddReservationActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     it.data?.let { reservation ->
                         addReservationViewModel.reservation = reservation
-                        addReservationViewModel.lastBooking = reservation
+                        addReservationViewModel.lastBooking = reservation.copy()
 
                         binding.firstNameCustomer.setValue(reservation.guest?.firstName!!)
                         binding.lastNameCustomer.setValue(reservation.guest?.lastName!!)
