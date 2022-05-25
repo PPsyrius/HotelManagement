@@ -34,7 +34,8 @@ class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewMo
     var roomer = MutableLiveData<Resource<List<Room>>>()
     var loadedReservation = MutableLiveData<Resource<Booking>>()
     var remover = MutableLiveData<Resource<Booking>>()
-    lateinit var lastBooking:Booking
+    lateinit var lastBooking: Booking
+    lateinit var callActivity: String
 
     var startDateEpoch: Long = 0
     var endDateEpoch: Long = 0
@@ -43,8 +44,8 @@ class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewMo
     val amountChild = MutableLiveData<Int>().apply { value = 0 }
     val checkedBreakfast = MutableLiveData<Boolean>().apply { value = false }
     val checkedSmoking = MutableLiveData<Boolean>().apply { value = false }
-    var roomType : MutableLiveData<RoomType> = MutableLiveData()
-    var bedType : MutableLiveData<BedType> = MutableLiveData()
+    var roomType: MutableLiveData<RoomType> = MutableLiveData()
+    var bedType: MutableLiveData<BedType> = MutableLiveData()
     var paymentPhoto: Bitmap? = null
     var idPhoto: Bitmap? = null
     var toOccupy: Occupancy = Occupancy(null, null, OccupancyStatus.NONE)
@@ -186,11 +187,11 @@ class AddReservationViewModel @Inject constructor(var useCase: UseCase) : ViewMo
         }
     }
 
-    fun removeReservation(booking: Booking) {
-        viewModelScope.launch {
-            val reservation = useCase.cancelReserveUseCase(booking)
-            remover.postValue(reservation)
-        }
+    suspend fun removeReservation(booking: Booking) {
+
+        val reservation = useCase.cancelReserveUseCase(booking)
+        remover.postValue(reservation)
+
     }
 
 }

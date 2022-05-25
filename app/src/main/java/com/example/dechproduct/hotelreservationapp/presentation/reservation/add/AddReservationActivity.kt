@@ -52,6 +52,7 @@ class AddReservationActivity : AppCompatActivity() {
             com.example.dechproduct.hotelreservationapp.R.layout.activity_add_reservation
         )
 
+        addReservationViewModel.callActivity = callingActivity?.className.toString()
         when (callingActivity?.className) {
             CheckInActivity::class.qualifiedName -> {
                 binding.titleTextView.text = "Add By Walk-In"
@@ -408,16 +409,21 @@ class AddReservationActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         ).show()
 
-                        when (callingActivity?.className) {
+                        //Log.d("ERR",addReservationViewModel.callActivity)
+                        when (addReservationViewModel.callActivity) {
                             SearchReservationActivity::class.qualifiedName -> {
-                                addReservationViewModel.removeReservation(
-                                    addReservationViewModel.lastBooking
-                                )
+                                lifecycleScope.launch {
+                                    addReservationViewModel.removeReservation(
+                                        addReservationViewModel.lastBooking
+                                    )
+                                }
                             }
                             CheckOutActivity::class.qualifiedName -> {
-                                addReservationViewModel.removeReservation(
-                                    addReservationViewModel.lastBooking
-                                )
+                                lifecycleScope.launch {
+                                    addReservationViewModel.removeReservation(
+                                        addReservationViewModel.lastBooking
+                                    )
+                                }
                             }
                             else -> {
                                 finish()
