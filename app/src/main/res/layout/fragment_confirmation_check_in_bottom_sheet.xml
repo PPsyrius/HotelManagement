@@ -279,8 +279,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:text="Breakfast"
-                android:textColor="@color/colorGrey"
                 android:clickable="false"
+
+                android:textColor="@color/colorGrey"
                 app:layout_constraintBottom_toBottomOf="@+id/textView20"
                 app:layout_constraintStart_toEndOf="@+id/textView20"
                 app:layout_constraintTop_toTopOf="@+id/textView20"

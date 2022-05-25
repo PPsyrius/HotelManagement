@@ -123,8 +123,7 @@ class CheckInDetailActivity : AppCompatActivity() {
         }
 
         binding.cbBreakfast.setOnClickListener {
-//            Toast.makeText(applicationContext, "checkbox breakfast  clicked", Toast.LENGTH_LONG)
-//                .show()
+
             checkInDetailViewModel.breakfast = binding.cbBreakfast.isChecked
 
         }
@@ -133,6 +132,10 @@ class CheckInDetailActivity : AppCompatActivity() {
 //            Toast.makeText(applicationContext, "checkbox smoking  clicked", Toast.LENGTH_LONG)
 //                .show()
             checkInDetailViewModel.roomConfig.smoking = binding.cbSmoking.isChecked
+            checkInDetailViewModel.disableButton.postValue(true)
+
+            /*Toast.makeText(applicationContext, checkInDetailViewModel.roomConfig.smoking.toString(), Toast.LENGTH_LONG)
+                .show()*/
 
         }
         receiveSelected()
@@ -192,6 +195,8 @@ class CheckInDetailActivity : AppCompatActivity() {
 
                         binding.cbBreakfast.isChecked = reservation.breakfast == true
                         binding.cbSmoking.isChecked = reservation.room?.smoking == true
+
+                        checkInDetailViewModel.breakfast = binding.cbBreakfast.isChecked
                     }
                 }
                 is Resource.Failure -> {

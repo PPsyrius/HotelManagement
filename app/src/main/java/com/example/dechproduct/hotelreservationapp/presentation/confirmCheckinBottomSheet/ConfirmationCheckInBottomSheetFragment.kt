@@ -57,9 +57,10 @@ class ConfirmationCheckInBottomSheetFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentConfirmationCheckInBottomSheetBinding.bind(view)
-
+        Toast.makeText(context, checkInDetailViewModel.breakfast.toString(), Toast.LENGTH_LONG)
+            .show()
         binding.btnBackCheckInDetail.setOnClickListener {
-            dismiss()
+            activity?.finish()
         }
 
         binding.tvDisplayGuestName.text =
@@ -84,9 +85,9 @@ class ConfirmationCheckInBottomSheetFragment : BottomSheetDialogFragment() {
 
         binding.tvConfirmPrice.text = checkInDetailViewModel.selectedRoom.price.toString()
 
-        binding.cbBreakfastConfirmCheckIn.isChecked = checkInDetailViewModel.breakfast
+        binding.cbBreakfastConfirmCheckIn.isChecked =checkInDetailViewModel.breakfast
 
-        binding.cbSmokeConfirmCheckIn.isChecked = checkInDetailViewModel.selectedRoom.smoking?:false
+        binding.cbSmokeConfirmCheckIn.isChecked = checkInDetailViewModel.selectedRoom.smoking == true
 
         binding.btnConfirmCheckInDetail.setOnClickListener {
             checkInDetailViewModel.checkInReserved()
