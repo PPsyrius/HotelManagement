@@ -68,6 +68,7 @@ class AddReservationActivity : AppCompatActivity() {
                 }
             }
 
+            //Call with fabAdd doesn't use StartActivityForResult -> Does not trigger below
             SearchReservationActivity::class.qualifiedName -> {
                 binding.titleTextView.text = "Edit Reservation"
                 try {
@@ -133,17 +134,17 @@ class AddReservationActivity : AppCompatActivity() {
                     dateFormat.parse(binding.tvDateStart.text.toString())
                 addReservationViewModel.toOccupy.departDate =
                     dateFormat.parse(binding.tvDateEnd.text.toString())
-                try {
-                    var room = addReservationViewModel.checkRoomAvailable()
-
-                } catch (e: Exception) {
-                }
 
                 addReservationViewModel.reservation.guest?.verificationPhoto =
                     addReservationViewModel.idPhoto
                 addReservationViewModel.reservation.payment?.photo =
                     addReservationViewModel.paymentPhoto
 
+                try {
+                    var room = addReservationViewModel.checkRoomAvailable()
+
+                } catch (e: Exception) {
+                }
             } else {
                 Toast.makeText(
                     applicationContext,
@@ -284,6 +285,7 @@ class AddReservationActivity : AppCompatActivity() {
         observeBedTypeFragment()
 
         observeUpdateInfo()
+        observeRemove()
     }
 
     private fun observeRoomTypeFragment() {
@@ -337,6 +339,7 @@ class AddReservationActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     it.data?.let { reservation ->
                         addReservationViewModel.reservation = reservation
+                        addReservationViewModel.lastBooking = reservation
 
                         binding.firstNameCustomer.setValue(reservation.guest?.firstName!!)
                         binding.lastNameCustomer.setValue(reservation.guest?.lastName!!)
@@ -365,7 +368,7 @@ class AddReservationActivity : AppCompatActivity() {
                             binding.tvDateEnd.text = SimpleDateFormat(
                                 "dd-MM-yyyy",
                                 Locale.getDefault()
-                            ).format(Date().time + 1000*60*60*24)
+                            ).format(Date().time + 1000 * 60 * 60 * 24)
                         } else {
                             binding.tvDateStart.text = SimpleDateFormat(
                                 "dd-MM-yyyy",
@@ -404,7 +407,22 @@ class AddReservationActivity : AppCompatActivity() {
                             applicationContext, "Booking Success.",
                             Toast.LENGTH_SHORT
                         ).show()
-                        finish()
+
+                        when (callingActivity?.className) {
+                            SearchReservationActivity::class.qualifiedName -> {
+                                addReservationViewModel.removeReservation(
+                                    addReservationViewModel.lastBooking
+                                )
+                            }
+                            CheckOutActivity::class.qualifiedName -> {
+                                addReservationViewModel.removeReservation(
+                                    addReservationViewModel.lastBooking
+                                )
+                            }
+                            else -> {
+                                finish()
+                            }
+                        }
                     }
                 }
 
@@ -471,4 +489,22 @@ class AddReservationActivity : AppCompatActivity() {
             }
         })
     }
+
+    private fun observeRemove() {
+        addReservationViewModel.remover.observe(this, {
+            when (it) {
+                is Resource.Success -> {
+                    it.data?.let { reservation ->
+                        finish()
+                    }
+                }
+                is Resource.Failure -> {
+                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                        .show()
+                    finish()
+                }
+            }
+        })
+    }
+
 }
