@@ -29,6 +29,8 @@ import android.content.DialogInterface
 
 import androidx.appcompat.app.AlertDialog
 import com.example.dechproduct.hotelreservationapp.presentation.checkout.CheckOutActivity
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
 
 
 @AndroidEntryPoint
@@ -302,11 +304,14 @@ class AddReservationActivity : AppCompatActivity() {
     }
 
     private fun showDateRangePicker() {
+        val constraintsBuilder= CalendarConstraints.Builder()
+            .setValidator(DateValidatorPointForward.now())
+            .build()
         val dateRangePicker = MaterialDatePicker.Builder
             .dateRangePicker()
+            .setCalendarConstraints(constraintsBuilder)
             .setTitleText("Select Booking Date ")
             .build()
-        //TODO: Set minimum date to current date
         dateRangePicker.show(
             supportFragmentManager,
             "date_range_picker"
