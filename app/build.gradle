@@ -66,7 +66,7 @@ dependencies {
     def dagger_version = "2.33"
     def retrofit_version = "2.9.0"
     def Interceptor_version = "4.7.2"
-    def Glide_version = "4.12.0"
+    def Glide_version = "4.13.2"
     def nav_version = "2.3.5"
     def camerax_version = "1.1.0-beta01"
 
