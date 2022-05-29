@@ -72,9 +72,7 @@ class RoomBedBottomSheetFragment : BottomSheetDialogFragment(){
 
         roomBedBinding.rvRoomAvailableList.layoutManager = LinearLayoutManager(context)
 
-        lifecycleScope.launch{
             roomBedViewModel.populateReserve()
-        }
 
         roomBedBinding.rvRoomAvailableList.adapter =
             RoomBedAdapter(
@@ -89,9 +87,11 @@ class RoomBedBottomSheetFragment : BottomSheetDialogFragment(){
     }
 
     private fun onRecyclerItemClicked(bedType: BedType) {
-        Toast.makeText(context, bedType.toString(), Toast.LENGTH_SHORT).show()
+//        Toast.makeText(context, bedType.toString(), Toast.LENGTH_SHORT).show()
 
-        checkInViewDetailViewModel.reservation?.room?.beds = bedType
+        checkInViewDetailViewModel.roomBed.postValue(bedType)
+        checkInViewDetailViewModel.roomConfig.beds = bedType
+        checkInViewDetailViewModel.disableButton.postValue(true)
 
         dismiss()
     }

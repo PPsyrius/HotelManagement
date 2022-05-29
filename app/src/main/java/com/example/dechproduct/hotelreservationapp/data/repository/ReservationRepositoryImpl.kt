@@ -219,14 +219,16 @@ class ReservationRepositoryImpl @Inject constructor(
 
     private fun filterDate(date: String, results: MutableList<Booking>, isArrival: Boolean) {
         val target = dateFormat.parse(date)
+        var discarder = mutableListOf<Booking>()
         for(result in results){
             if(isArrival && result.arrivalDate != target){
-                results.remove(result)
+                discarder.add(result)
             }
             else if(!isArrival && result.departDate != target){
-                results.remove(result)
+                discarder.add(result)
             }
         }
+        results.removeAll(discarder)
     }
 
     private fun filterResult(

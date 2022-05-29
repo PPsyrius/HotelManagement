@@ -23,6 +23,7 @@ class CheckOutViewModel @Inject constructor(private val useCase: UseCase) : View
     lateinit var result: MutableList<Booking>
 
     var dateFormat = SimpleDateFormat("dd-MM-yyyy")
+    var isExtend = false
 
     fun searchReserve(keyword: String) {
         viewModelScope.launch {
@@ -52,5 +53,4 @@ class CheckOutViewModel @Inject constructor(private val useCase: UseCase) : View
             resolveReservation.postValue(response)
         }
     }
-
 }

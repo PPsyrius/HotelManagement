@@ -28,8 +28,8 @@ import java.util.*
 import android.content.DialogInterface
 
 import androidx.appcompat.app.AlertDialog
+import com.example.dechproduct.hotelreservationapp.presentation.checkout.CheckOutActivity
 import com.google.android.material.datepicker.CalendarConstraints
-import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.DateValidatorPointForward
 
 
@@ -54,16 +54,32 @@ class AddReservationActivity : AppCompatActivity() {
             com.example.dechproduct.hotelreservationapp.R.layout.activity_add_reservation
         )
 
-        if (callingActivity?.className == CheckInActivity::class.qualifiedName) {
-            binding.titleTextView.text = "Add By Walk-In"
-            returnToCheckInActivity = true
-        } else if (callingActivity?.className == SearchReservationActivity::class.qualifiedName) {
-            binding.titleTextView.text = "Edit Reservation"
-            try {
-                var selectedItem =
-                    intent.getParcelableExtra<Booking>(Constants.INTENT_SELECTED_BOOKING)!!
-                selectedItem.bookingID?.let { addReservationViewModel.updateInfo(it) }
-            } catch (e: Exception) {
+        addReservationViewModel.callActivity = callingActivity?.className.toString()
+        when (callingActivity?.className) {
+            CheckInActivity::class.qualifiedName -> {
+                binding.titleTextView.text = "Add By Walk-In"
+                returnToCheckInActivity = true
+            }
+
+            CheckOutActivity::class.qualifiedName -> {
+                binding.titleTextView.text = "Extends Stay"
+                try {
+                    var selectedItem =
+                        intent.getParcelableExtra<Booking>(Constants.INTENT_SELECTED_BOOKING)!!
+                    selectedItem.bookingID?.let { addReservationViewModel.updateInfo(it) }
+                } catch (e: Exception) {
+                }
+            }
+
+            //Call with fabAdd doesn't use StartActivityForResult -> Does not trigger below
+            SearchReservationActivity::class.qualifiedName -> {
+                binding.titleTextView.text = "Edit Reservation"
+                try {
+                    var selectedItem =
+                        intent.getParcelableExtra<Booking>(Constants.INTENT_SELECTED_BOOKING)!!
+                    selectedItem.bookingID?.let { addReservationViewModel.updateInfo(it) }
+                } catch (e: Exception) {
+                }
             }
         }
 
@@ -75,6 +91,10 @@ class AddReservationActivity : AppCompatActivity() {
         binding.tvDateEnd.text = convertLongToDate(today.time + (1000 * 60 * 60 * 24))
 
         binding.btnSubmit.setOnClickListener {
+
+//            var y = addReservationViewModel.idPhoto
+//            var x = addReservationViewModel.paymentPhoto
+
             if (binding.firstNameCustomer.getValue().isNotEmpty() and
                 binding.lastNameCustomer.getValue().isNotEmpty() and
                 binding.phoneNumber.getValue().isNotEmpty() and
@@ -93,7 +113,8 @@ class AddReservationActivity : AppCompatActivity() {
                 addReservationViewModel.reservation.guest?.phoneNumber =
                     binding.phoneNumber.getValue()
                 addReservationViewModel.reservation.payment?.type =
-                    PaymentType.getByDisplayName(binding.paymentType.getValue()) ?: PaymentType.None
+                    PaymentType.getByDisplayName(binding.paymentType.getValue())
+                        ?: PaymentType.None
                 addReservationViewModel.reservation.guest?.verificationID?.id =
                     binding.ID.getValue()
                 addReservationViewModel.reservation.guest?.verificationID?.identifyID()
@@ -116,26 +137,40 @@ class AddReservationActivity : AppCompatActivity() {
                     dateFormat.parse(binding.tvDateStart.text.toString())
                 addReservationViewModel.toOccupy.departDate =
                     dateFormat.parse(binding.tvDateEnd.text.toString())
+
+                addReservationViewModel.reservation.guest?.verificationPhoto =
+                    addReservationViewModel.idPhoto
+                addReservationViewModel.reservation.payment?.photo =
+                    addReservationViewModel.paymentPhoto
+
                 try {
                     var room = addReservationViewModel.checkRoomAvailable()
 
                 } catch (e: Exception) {
                 }
-
-                addReservationViewModel.reservation.guest?.verificationPhoto =
-                    addReservationViewModel.photo
-
             } else {
-                Toast.makeText(applicationContext, "Insufficient Information.", Toast.LENGTH_SHORT)
+                Toast.makeText(
+                    applicationContext,
+                    "Insufficient Information.",
+                    Toast.LENGTH_SHORT
+                )
                     .show()
             }
         }
 
         binding.buttonCamera.setOnClickListener {
-            Toast.makeText(applicationContext, "Camera Button is Tapped.", Toast.LENGTH_LONG).show()
-//            val intent =
-//                Intent(this@AddReservationActivity, CameraFragment::class.java)
-//            startActivity(intent)
+            Toast.makeText(applicationContext, "Take a photo of ID.", Toast.LENGTH_LONG).show()
+            addReservationViewModel.cameraState = 1
+            cameraFragment.show(supportFragmentManager, "TAG")
+        }
+
+        binding.buttonCamera2.setOnClickListener {
+            Toast.makeText(
+                applicationContext,
+                "Take a photo of payment invoice.",
+                Toast.LENGTH_LONG
+            ).show()
+            addReservationViewModel.cameraState = 2
             cameraFragment.show(supportFragmentManager, "TAG")
         }
 
@@ -253,6 +288,7 @@ class AddReservationActivity : AppCompatActivity() {
         observeBedTypeFragment()
 
         observeUpdateInfo()
+        observeRemove()
     }
 
     private fun observeRoomTypeFragment() {
@@ -276,7 +312,6 @@ class AddReservationActivity : AppCompatActivity() {
             .setCalendarConstraints(constraintsBuilder)
             .setTitleText("Select Booking Date ")
             .build()
-
         dateRangePicker.show(
             supportFragmentManager,
             "date_range_picker"
@@ -286,7 +321,8 @@ class AddReservationActivity : AppCompatActivity() {
             addReservationViewModel.startDateEpoch = datePicked.first
             addReservationViewModel.endDateEpoch = datePicked.second
             if (addReservationViewModel.startDateEpoch != null && addReservationViewModel.endDateEpoch != null) {
-                binding.tvDateStart.text = convertLongToDate(addReservationViewModel.startDateEpoch)
+                binding.tvDateStart.text =
+                    convertLongToDate(addReservationViewModel.startDateEpoch)
                 binding.tvDateEnd.text = convertLongToDate(addReservationViewModel.endDateEpoch)
 
             }
@@ -302,12 +338,14 @@ class AddReservationActivity : AppCompatActivity() {
         return format.format(date)
     }
 
+    //For edit reservation activity
     private fun observeUpdateInfo() {
         addReservationViewModel.loadedReservation.observe(this, {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { reservation ->
                         addReservationViewModel.reservation = reservation
+                        addReservationViewModel.lastBooking = reservation.copy()
 
                         binding.firstNameCustomer.setValue(reservation.guest?.firstName!!)
                         binding.lastNameCustomer.setValue(reservation.guest?.lastName!!)
@@ -327,14 +365,26 @@ class AddReservationActivity : AppCompatActivity() {
                         }
 
                         binding.ID.setValue(reservation.guest?.verificationID?.id!!)
-                        binding.tvDateStart.text = SimpleDateFormat(
-                            "dd-MM-yyyy",
-                            Locale.getDefault()
-                        ).format(reservation.arrivalDate)
-                        binding.tvDateEnd.text = SimpleDateFormat(
-                            "dd-MM-yyyy",
-                            Locale.getDefault()
-                        ).format(reservation.departDate)
+
+                        if (callingActivity?.className == CheckOutActivity::class.qualifiedName) {
+                            binding.tvDateStart.text = SimpleDateFormat(
+                                "dd-MM-yyyy",
+                                Locale.getDefault()
+                            ).format(Date())
+                            binding.tvDateEnd.text = SimpleDateFormat(
+                                "dd-MM-yyyy",
+                                Locale.getDefault()
+                            ).format(Date().time + 1000 * 60 * 60 * 24)
+                        } else {
+                            binding.tvDateStart.text = SimpleDateFormat(
+                                "dd-MM-yyyy",
+                                Locale.getDefault()
+                            ).format(reservation.arrivalDate)
+                            binding.tvDateEnd.text = SimpleDateFormat(
+                                "dd-MM-yyyy",
+                                Locale.getDefault()
+                            ).format(reservation.departDate)
+                        }
 
                         binding.tvDisplayRoomType.text = reservation.room?.type.toString()
                         binding.tvRoomBed.text = reservation.room?.beds.toString()
@@ -363,12 +413,36 @@ class AddReservationActivity : AppCompatActivity() {
                             applicationContext, "Booking Success.",
                             Toast.LENGTH_SHORT
                         ).show()
-                        finish()
+
+                        //Log.d("ERR",addReservationViewModel.callActivity)
+                        when (addReservationViewModel.callActivity) {
+                            SearchReservationActivity::class.qualifiedName -> {
+                                lifecycleScope.launch {
+                                    addReservationViewModel.removeReservation(
+                                        addReservationViewModel.lastBooking
+                                    )
+                                }
+                            }
+                            CheckOutActivity::class.qualifiedName -> {
+                                lifecycleScope.launch {
+                                    addReservationViewModel.removeReservation(
+                                        addReservationViewModel.lastBooking
+                                    )
+                                }
+                            }
+                            else -> {
+                                finish()
+                            }
+                        }
                     }
                 }
 
                 is Resource.Failure -> {
-                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        applicationContext,
+                        it.throwable.toString(),
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
                     binding.btnSubmit.isEnabled = true
                 }
@@ -382,13 +456,13 @@ class AddReservationActivity : AppCompatActivity() {
             when (it) {
                 is Resource.Success -> {
                     it.data?.let { rooms ->
-
                         if (rooms.isEmpty()) {
                             Toast.makeText(
                                 applicationContext,
                                 "No room available, try adjusting the criteria.",
                                 Toast.LENGTH_SHORT
                             ).show()
+                            binding.btnSubmit.isEnabled = true
                         } else {
                             addReservationViewModel.reservation.room = rooms.first()
                             if (rooms.first().maxCap == addReservationViewModel.reservation.adultCount) {
@@ -415,10 +489,33 @@ class AddReservationActivity : AppCompatActivity() {
                 }
 
                 is Resource.Failure -> {
-                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                    Toast.makeText(
+                        applicationContext,
+                        it.throwable.toString(),
+                        Toast.LENGTH_SHORT
+                    )
                         .show()
+                    binding.btnSubmit.isEnabled = true
                 }
             }
         })
     }
+
+    private fun observeRemove() {
+        addReservationViewModel.remover.observe(this, {
+            when (it) {
+                is Resource.Success -> {
+                    it.data?.let { reservation ->
+                        finish()
+                    }
+                }
+                is Resource.Failure -> {
+                    Toast.makeText(applicationContext, it.throwable.message, Toast.LENGTH_SHORT)
+                        .show()
+                    finish()
+                }
+            }
+        })
+    }
+
 }

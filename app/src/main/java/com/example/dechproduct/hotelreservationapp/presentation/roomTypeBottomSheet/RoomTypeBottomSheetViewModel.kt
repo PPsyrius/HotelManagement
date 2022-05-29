@@ -16,14 +16,14 @@ class RoomTypeBottomSheetViewModel @Inject constructor(private val useCase: UseC
 
     var reserver = MutableLiveData<Resource<MutableList<Booking>>>()
 
-    suspend fun searchReserve(keyword:String){
+    fun searchReserve(keyword:String){
         viewModelScope.launch {
             val reservation = useCase.searchReserveByNameUseCase(keyword)
             reserver.postValue(reservation)
         }
     }
 
-    suspend fun populateReserve(){
+    fun populateReserve(){
         viewModelScope.launch {
             val reservation = useCase.populateReserveUseCase()
             reserver.postValue(reservation)

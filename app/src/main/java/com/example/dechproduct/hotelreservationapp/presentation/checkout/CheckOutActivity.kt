@@ -15,6 +15,8 @@ import com.example.dechproduct.hotelreservationapp.R
 import com.example.dechproduct.hotelreservationapp.databinding.ActivityCheckOutBinding
 import com.example.dechproduct.hotelreservationapp.presentation.checkout.adapter.CheckOutAdapter
 import com.example.dechproduct.hotelreservationapp.presentation.menu.MenuActivity
+import com.example.dechproduct.hotelreservationapp.presentation.reservation.add.AddReservationActivity
+import com.example.dechproduct.hotelreservationapp.util.Constants
 import com.example.dechproduct.hotelreservationapp.util.swipe.Helper.MySwipeHelper
 import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButton
 import com.example.dechproduct.hotelreservationapp.util.swipe.listener.MyButtonClickListener
@@ -66,7 +68,7 @@ class CheckOutActivity : AppCompatActivity() {
         })
 
         binding.reservationList.layoutManager = LinearLayoutManager(this)
-        
+
         checkOutViewModel.populateReserve()
 
         onSwipeHandle()
@@ -89,18 +91,33 @@ class CheckOutActivity : AppCompatActivity() {
                         Color.parseColor("#FF5003"),
                         object : MyButtonClickListener {
                             override fun onClick(pos: Int) {
-                                Toast.makeText(
-                                    this@CheckOutActivity,
-                                    "Check-out" + pos,
-                                    Toast.LENGTH_SHORT
-                                ).show()
-
+                                checkOutViewModel.isExtend = false
                                 checkOutViewModel.checkOutReserved(checkOutViewModel.result[pos])
-
                             }
                         }
-                    ))
-
+                    )
+                )
+                buffer.add(
+                    MyButton(this@CheckOutActivity,
+                        "ExtendStay",
+                        45,
+                        R.drawable.ic_baseline_king_bed_24,
+                        Color.parseColor("#F8D568"),
+                        object : MyButtonClickListener {
+                            override fun onClick(pos: Int) {
+                                checkOutViewModel.isExtend = true
+                                checkOutViewModel.checkOutReserved(checkOutViewModel.result[pos])
+                                val intent =
+                                    Intent(applicationContext, AddReservationActivity::class.java)
+                                intent.putExtra(
+                                    Constants.INTENT_SELECTED_BOOKING,
+                                    checkOutViewModel.result[pos]
+                                )
+                                startActivityForResult(intent, 0)
+                            }
+                        }
+                    )
+                )
             }
 
         }
@@ -138,9 +155,14 @@ class CheckOutActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT
                         )
                             .show()
-                        val intent =
-                            Intent(this@CheckOutActivity, MenuActivity::class.java)
-                        startActivity(intent)
+                        if (!checkOutViewModel.isExtend) {
+                            val intent =
+                                Intent(this@CheckOutActivity, MenuActivity::class.java)
+                            startActivity(intent)
+                        }
+                        else{
+                            finish()
+                        }
                     }
                 }
                 is Resource.Failure -> {

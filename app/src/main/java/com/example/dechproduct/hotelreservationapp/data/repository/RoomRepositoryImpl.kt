@@ -85,11 +85,13 @@ class RoomRepositoryImpl @Inject constructor(
             //combineRoom(results, toListOfRooms(roomAPI.getByCapacity(adult_count.toString())))
 
             //Non-Supported by API
+            var discarder = mutableListOf<Room>()
             for (room in results) {
                 if (room.maxCap ?: -1 < adult_count) {
-                    results.remove(room)
+                    discarder.add(room)
                 }
             }
+            results.removeAll(discarder)
 
             results = filterStatus(results, status)
             occupancy?.let {
@@ -123,11 +125,13 @@ class RoomRepositoryImpl @Inject constructor(
         rooms_target: MutableList<Room>,
         rooms_part: MutableList<Room>
     ) {
+        var discarder = mutableListOf<Room>()
         for (item in rooms_target) {
             if (!rooms_part.contains(item)) {
-                rooms_target.remove(item)
+                discarder.add(item)
             }
         }
+        rooms_target.removeAll(discarder)
     }
 
     private fun toListOfRooms(raw_results: List<RoomDTO>): MutableList<Room> {

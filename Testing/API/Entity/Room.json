@@ -13,6 +13,28 @@
                 "SV"
             ],
             "canAddonBed": false,
+            "smoking": true,
+            "status": "RS",
+            "isWalking": false,
+            "deviceID": [
+                "001",
+                "002"
+            ],
+            "price": 1000.10
+        },
+        {
+            "roomID": "000",
+            "type": "SD",
+            "beds": "SB",
+            "maxCap": 2,
+            "floor": "G",
+            "features": [
+                "AL",
+                "CR",
+                "MV",
+                "SV"
+            ],
+            "canAddonBed": false,
             "smoking": false,
             "status": "RS",
             "isWalking": false,
