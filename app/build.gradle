@@ -62,10 +62,10 @@ dependencies {
     //noinspection GroovyUnusedAssignment
     def arch_version = "2.1.0"
     def room_version = "2.3.0"
-    def coroutines_version = "1.4.2"
+    def coroutines_version = "1.6.2"
     def dagger_version = "2.33"
     def retrofit_version = "2.9.0"
-    def Interceptor_version = "4.7.2"
+    def Interceptor_version = "4.10.0"
     def Glide_version = "4.13.2"
     def nav_version = "2.3.5"
     def camerax_version = "1.2.0-alpha01"
@@ -131,7 +131,7 @@ dependencies {
 
     //form
     implementation 'com.github.OmarShehe.FormInputs:forminputkotlin:1.0.5'
-    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.google.code.gson:gson:2.9.0'
 
     //test
     testImplementation("com.squareup.okhttp3:mockwebserver:4.9.3")
