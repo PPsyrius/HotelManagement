@@ -138,7 +138,7 @@ dependencies {
 
     // hilt
     implementation("com.google.dagger:hilt-android:2.43.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.43.1")
 
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
