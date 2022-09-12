@@ -131,7 +131,7 @@ dependencies {
 
     //form
     implementation 'com.github.OmarShehe.FormInputs:forminputkotlin:1.0.5'
-    implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'com.google.code.gson:gson:2.9.1'
 
     //test
     testImplementation("com.squareup.okhttp3:mockwebserver:4.10.0")
