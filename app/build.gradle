@@ -58,12 +58,12 @@ android {
 dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'org.junit.jupiter:junit-jupiter'
-    def lifecycle_version = "2.4.1"
+    def lifecycle_version = "2.5.1"
     //noinspection GroovyUnusedAssignment
     def arch_version = "2.1.0"
-    def room_version = "2.3.0"
+    def room_version = "2.4.3"
     def coroutines_version = "1.6.4"
-    def dagger_version = "2.33"
+    def dagger_version = "2.43.2"
     def retrofit_version = "2.9.0"
     def Interceptor_version = "4.10.0"
     def Glide_version = "4.13.2"
@@ -85,7 +85,7 @@ dependencies {
 
     // Volley, network operations
     //noinspection GradleDependency
-    implementation 'com.android.volley:volley:1.2.0'
+    implementation 'com.android.volley:volley:1.2.1'
 
     // CardView
     implementation 'androidx.cardview:cardview:1.0.0'
