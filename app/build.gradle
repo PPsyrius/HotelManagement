@@ -85,7 +85,7 @@ dependencies {
 
     // Volley, network operations
     //noinspection GradleDependency
-    implementation 'com.android.volley:volley:1.2.0'
+    implementation 'com.android.volley:volley:1.2.1'
 
     // CardView
     implementation 'androidx.cardview:cardview:1.0.0'
